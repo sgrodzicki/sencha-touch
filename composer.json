@@ -1,0 +1,9 @@
+{
+    "name": "sgrodzicki/sencha-touch",
+    "type": "library",
+    "description": "Sencha Touch",
+    "keywords": ["extjs", "ext js", "touch", "sencha"],
+    "homepage": "http://www.sencha.com/products/touch/",
+    "license": "GPLv3"
+}
+
