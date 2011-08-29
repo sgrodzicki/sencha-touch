@@ -12,6 +12,7 @@ new Ext.form.Select({
 });
 </code></pre>
  * @xtype selectfield
+ * @xtype select
  */
 Ext.form.Select = Ext.extend(Ext.form.Text, {
     ui: 'select',
@@ -176,7 +177,13 @@ Ext.form.Select = Ext.extend(Ext.form.Text, {
     // @private
     showComponent: function() {
         if (Ext.is.Phone) {
-            this.getPicker().show();
+            var picker = this.getPicker(),
+                name   = this.name,
+                value  = {};
+                
+            value[name] = this.getValue();
+            picker.show();
+            picker.setValue(value);
         }
         else {
             var listPanel = this.getListPanel(),

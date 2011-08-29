@@ -6,7 +6,10 @@
     <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
 </head>
 <body  onload="prettyPrint();">
-    <pre class="prettyprint lang-js">Ext.applyIf(Ext.Element, {
+    <pre class="prettyprint lang-js">/**
+ * @class Ext.Element
+ */
+Ext.applyIf(Ext.Element, {
     unitRe: /\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i,
     camelRe: /(-[a-z])/gi,
     opacityRe: /alpha\(opacity=(.*)\)/i,
@@ -149,10 +152,11 @@
         return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
     },
 
-    <div id="method-Ext.Element-fromPoint"></div>/** Returns the top Element that is located at the passed coordinates
+    <div id="method-Ext.Element-fromPoint"></div>/**
+     * Returns the top Element that is located at the passed coordinates
      * Function description
      * @param {Number} x The x coordinate
-     * @param {Number} x The y coordinate
+     * @param {Number} y The y coordinate
      * @return {String} The found Element
      */
     fromPoint: function(x, y) {

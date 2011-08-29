@@ -5,6 +5,7 @@
  * @constructor
  * @param {Object} config Optional config object
  * @xtype checkboxfield
+ * @xtype checkbox
  */
 Ext.form.Checkbox = Ext.extend(Ext.form.Field, {
     ui: 'checkbox',

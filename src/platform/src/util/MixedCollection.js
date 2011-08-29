@@ -833,7 +833,7 @@ var middleAged = people.filter('age', 24);
         return r;
     }
 });
-/**
+/*
  * This method calls {@link #item item()}.
  * Returns the item associated with the passed key OR index. Key has priority
  * over index.  This is the equivalent of calling {@link #key} first, then if

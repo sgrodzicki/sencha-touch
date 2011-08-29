@@ -38,7 +38,8 @@
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.List/screenshot.png" /></p>
+ *
+ * {@img Ext.List/screenshot.png Ext.List screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>

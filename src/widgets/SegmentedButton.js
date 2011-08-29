@@ -11,7 +11,8 @@
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.SegmentedButton/screenshot.png" /></p>
+ *
+ * {@img Ext.SegmentedButton/screenshot.png Ext.SegmentedButton screenshot}
  * 
  * <h2>Example usage:</h2>
  * <pre><code>

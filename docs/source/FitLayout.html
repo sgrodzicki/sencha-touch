@@ -61,8 +61,9 @@ Ext.layout.FitLayout = Ext.extend(Ext.layout.ContainerLayout, {
     // @private
     setItemBox : function(item, box) {
         if (item && box.height > 0) {
+            // copy the target box because it gets used again in the card layout
+            box = Ext.apply({}, box);
             box.width -= item.el.getMargin('lr');
-            //box.width = null;
             box.height -= item.el.getMargin('tb');
             item.setCalculatedSize(box);
             item.setPosition(box);

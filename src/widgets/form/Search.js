@@ -3,6 +3,7 @@
  * @extends Ext.form.Text
  * Wraps an HTML5 search field. See {@link Ext.form.FormPanel FormPanel} for example usage.
  * @xtype searchfield
+ * @alternateClassName Ext.form.SearchField
  */
 Ext.form.Search = Ext.extend(Ext.form.Text, {
     inputType: 'search'
@@ -14,13 +15,7 @@ Ext.form.Search = Ext.extend(Ext.form.Text, {
 Ext.reg('searchfield', Ext.form.Search);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.SearchField
- * @extends Ext.form.Search
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.SearchField = Ext.extend(Ext.form.Search, {
 
     constructor: function() {

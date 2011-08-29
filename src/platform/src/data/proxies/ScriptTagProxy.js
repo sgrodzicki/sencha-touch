@@ -2,7 +2,7 @@ Ext.apply(Ext, {
     /**
      * Returns the current document body as an {@link Ext.Element}.
      * @ignore
-     * @memberOf Ext
+     * @member Ext
      * @return Ext.Element The document body
      */
     getHead : function() {

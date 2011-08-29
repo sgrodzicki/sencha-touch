@@ -6,11 +6,11 @@ Ext.apply(Ext, {
      * The version of the framework
      * @type String
      */
-    version : '1.1.0',
+    version : '1.1.1',
     versionDetail : {
         major : 1,
         minor : 1,
-        patch : 0
+        patch : 1
     },
     
     /**
@@ -239,7 +239,7 @@ function(el){
             cls.push('x-ios');
         }
         if (Is.Android) {
-            cls.push('x-android');
+            cls.push('x-android', 'x-android-' + Is.AndroidMajorVersion);
         }
         if (Is.Blackberry) {
             cls.push('x-bb');
@@ -437,7 +437,7 @@ Ext.Viewport = new (Ext.extend(Ext.util.Observable, {
         if (!Ext.is.Desktop) {
             size.height = (this.orientation == this.initialOrientation) ?
                             Math.max(this.initialHeight, size.height) :
-                            size.height
+                            size.height;
         }
 
         return size;
@@ -451,16 +451,26 @@ Ext.Viewport = new (Ext.extend(Ext.util.Observable, {
     },
 
     getOrientation: function() {
-        var size = this.getSize();
+        var me = this,
+            size = me.getSize(),
+            androidTablet, orientation;
 
         if (window.hasOwnProperty('orientation')) {
-            return (window.orientation == 0 || window.orientation == 180) ? 'portrait' : 'landscape';
+            orientation = window.orientation;
+            // Android 3 oientation is off 90 degrees from every other device on the planet...
+            androidTablet = Ext.is.Android && Ext.is.AndroidMajorVersion === 3;
+            if (orientation % 180 === 0) {
+                return androidTablet ? 'landscape' : 'portrait';
+            }
+            else {
+                return androidTablet ? 'portrait' : 'landscape';
+            }
         }
         else {
             if (!Ext.is.iOS && !Ext.is.Desktop) {
-                if ((size.width == this.lastSize.width && size.height < this.lastSize.height) ||
-                    (size.height == this.lastSize.height && size.width < this.lastSize.width)) {
-                    return this.orientation;
+                if ((size.width == me.lastSize.width && size.height < me.lastSize.height) ||
+                    (size.height == me.lastSize.height && size.width < me.lastSize.width)) {
+                    return me.orientation;
                 }
             }
 
@@ -5225,15 +5235,15 @@ failure: function(response, opts) {
      * Aborts any outstanding request.
      * @param {Object} request (Optional) defaults to the last request
      */
-    abort : function(r) {
-        if (r && this.isLoading(r)) {
+    abort : function(request) {
+        if (request && this.isLoading(request)) {
             if (!request.timedout) {
                 request.aborted = true;
             }
             // Will fire an onreadystatechange event
-            r.xhr.abort();
+            request.xhr.abort();
         }
-        else if (!r) {
+        else if (!request) {
             var id;
             for(id in this.requests) {
                 if (!this.requests.hasOwnProperty(id)) {

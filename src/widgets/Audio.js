@@ -20,7 +20,8 @@
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Audio/screenshot.png" /></p>
+ *
+ * {@img Ext.Audio/screenshot.png Ext.Audio screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>

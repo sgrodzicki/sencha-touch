@@ -809,8 +809,7 @@ Ext.util.Router = Ext.extend(Ext.util.Observable, {
     },
     
     /**
-     * Recognizes a url string connected to the Router, return the controller/action pair plus any additional
-     * config associated with it
+     * Recognizes a url string connected to the Router, return the controller/action pair associated with it
      * @param {String} url The url to recognize
      * @return {Object/undefined} If the url was recognized, the controller and action to call, else undefined
      */
@@ -872,6 +871,7 @@ Ext.Router.draw(function(map) {
  * @singleton
  */
 Ext.Router = new Ext.util.Router();
+
 /**
  * @author Ed Spencer
  * @class Ext.util.Route

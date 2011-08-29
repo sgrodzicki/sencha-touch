@@ -1,3 +1,6 @@
+/**
+ * @class Ext.Element
+ */
 Ext.applyIf(Ext.Element, {
     
     /**

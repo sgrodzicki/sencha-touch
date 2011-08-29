@@ -236,7 +236,7 @@ Ext.ComponentQuery = new function() {
 
             // no root, use all Components in the document
             if (!root) {
-                workingItems = Ext.ComponentMgr.all.items.slice();
+		workingItems = Ext.ComponentMgr.all.getArray();
             }
 
             // We are going to loop over our operations and take care of them

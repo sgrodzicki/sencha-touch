@@ -229,7 +229,7 @@ reader: {
  * work correctly otherwise.</p>
  */
 Ext.data.XmlReader = Ext.extend(Ext.data.Reader, {
-    /**
+    /*
      * @private
      * Creates a function to return some particular key of data from a response. The totalProperty and
      * successProperty are treated as special cases for type casting, everything else is just a simple selector.

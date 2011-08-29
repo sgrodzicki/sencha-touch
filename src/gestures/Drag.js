@@ -9,73 +9,72 @@ Ext.gesture.Drag = Ext.extend(Ext.gesture.Touch, {
     vertical: false,
 
     constructor: function() {
-        Ext.gesture.Drag.superclass.constructor.apply(this, arguments);
+        var me = this;
+        Ext.gesture.Drag.superclass.constructor.apply(me, arguments);
 
-        if (this.direction == 'both') {
-            this.horizontal = true;
-            this.vertical = true;
-        }
-        else if (this.direction == 'horizontal') {
-            this.horizontal = true;
-        }
-        else {
-            this.vertical = true;
+        if (me.direction == 'both') {
+            me.horizontal = true;
+            me.vertical = true;
+        } else if (me.direction == 'horizontal') {
+            me.horizontal = true;
+        } else {
+            me.vertical = true;
         }
 
-        return this;
+        return me;
     },
-    
+
     onTouchStart: function(e, touch) {
-        this.startX = this.previousX = touch.pageX;
-        this.startY = this.previousY = touch.pageY;
-        this.startTime = this.previousTime = e.timeStamp;
- 
-        this.dragging = false;
-    },    
-    
+        var me = this;
+        me.startX = me.previousX = touch.pageX;
+        me.startY = me.previousY = touch.pageY;
+        me.startTime = me.previousTime = e.timeStamp;
+
+        me.dragging = false;
+    },
+
     onTouchMove: function(e, touch) {
-        if (this.isLocked('drag')) {
+        var me = this;
+        if (me.isLocked('drag')) {
             return;
         }
-        
-        var info = this.getInfo(touch);
-        
-        if (!this.dragging) {
-            if (this.isDragging(info) && this.fire('dragstart', e, info)) {
-                this.dragging = true;
-                this.lock('drag', 'dragstart', 'dragend');
-                this.fire('drag', e, info);
+
+        var info = me.getInfo(touch);
+
+        if (!me.dragging) {
+            if ((!e.touches || e.touches.length < 2) && me.isDragging(info) && me.fire('dragstart', e, info)) {
+                me.dragging = true;
+                me.lock('drag', 'dragstart', 'dragend');
+                me.fire('drag', e, info);
             }
+        } else {
+            me.fire('drag', e, info);
         }
-        else {
-            this.fire('drag', e, info);
-       }
     },
 
     onTouchEnd: function(e) {
-        if (this.dragging) {
-            this.fire('dragend', e, this.lastInfo);
+        var me = this;
+        if (me.dragging) {
+            me.fire('dragend', e, me.lastInfo);
         }
-        
-        this.dragging = false;
+
+        me.dragging = false;
     },
-    
+
     isDragging: function(info) {
-        return (
-            (this.horizontal && info.absDeltaX >= this.dragThreshold) ||
-            (this.vertical && info.absDeltaY >= this.dragThreshold)
-        );
+        var me = this;
+        return ((me.horizontal && info.absDeltaX >= me.dragThreshold) || (me.vertical && info.absDeltaY >= me.dragThreshold));
     },
-    
-    /**
+
+    /*
      * Method to determine whether this Sortable is currently disabled.
      * @return {Boolean} the disabled state of this Sortable.
      */
     isVertical: function() {
         return this.vertical;
     },
-    
-    /**
+
+    /*
      * Method to determine whether this Sortable is currently sorting.
      * @return {Boolean} the sorting state of this Sortable.
      */

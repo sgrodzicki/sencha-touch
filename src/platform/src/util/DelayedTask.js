@@ -23,7 +23,7 @@ Ext.get('myInputField').on('keypress', function(){
  * also setup a delayed task for you to buffer events.</p>
  * @constructor The parameters to this constructor serve as defaults and are not required.
  * @param {Function} fn (optional) The default function to call.
- * @param {Object} scope The default scope (The <code><b>this</b></code> reference) in which the
+ * @param {Object} scope (optional) The default scope (The <code><b>this</b></code> reference) in which the
  * function is called. If not specified, <code>this</code> will refer to the browser window.
  * @param {Array} args (optional) The default Array of arguments.
  */

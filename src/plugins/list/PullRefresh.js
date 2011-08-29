@@ -204,6 +204,7 @@ Ext.plugins.PullRefreshPlugin = Ext.extend(Ext.util.Observable, {
 
         if (this.isLoading) {
             this.isLoading = false;
+            this.lastUpdated = new Date();
 
             this.setViewState('pull');
             this.updatedEl.setHTML(Ext.util.Format.date(this.lastUpdated, "m/d/Y h:iA"));

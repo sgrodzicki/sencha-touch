@@ -185,7 +185,7 @@ Ext.Viewport = new (Ext.extend(Ext.util.Observable, {
         if (!Ext.is.Desktop) {
             size.height = (this.orientation == this.initialOrientation) ?
                             Math.max(this.initialHeight, size.height) :
-                            size.height
+                            size.height;
         }
 
         return size;
@@ -199,16 +199,26 @@ Ext.Viewport = new (Ext.extend(Ext.util.Observable, {
     },
 
     getOrientation: function() {
-        var size = this.getSize();
+        var me = this,
+            size = me.getSize(),
+            androidTablet, orientation;
 
         if (window.hasOwnProperty('orientation')) {
-            return (window.orientation == 0 || window.orientation == 180) ? 'portrait' : 'landscape';
+            orientation = window.orientation;
+            // Android 3 oientation is off 90 degrees from every other device on the planet...
+            androidTablet = Ext.is.Android && Ext.is.AndroidMajorVersion === 3;
+            if (orientation % 180 === 0) {
+                return androidTablet ? 'landscape' : 'portrait';
+            }
+            else {
+                return androidTablet ? 'portrait' : 'landscape';
+            }
         }
         else {
             if (!Ext.is.iOS && !Ext.is.Desktop) {
-                if ((size.width == this.lastSize.width && size.height < this.lastSize.height) ||
-                    (size.height == this.lastSize.height && size.width < this.lastSize.width)) {
-                    return this.orientation;
+                if ((size.width == me.lastSize.width && size.height < me.lastSize.height) ||
+                    (size.height == me.lastSize.height && size.width < me.lastSize.width)) {
+                    return me.orientation;
                 }
             }
 

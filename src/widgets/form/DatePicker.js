@@ -3,6 +3,7 @@
  * @extends Ext.form.Field
  * <p>Specialized field which has a button which when pressed, shows a {@link Ext.DatePicker}.</p>
  * @xtype datepickerfield
+ * @alternateClassName Ext.form.DatePickerField
  */
 Ext.form.DatePicker = Ext.extend(Ext.form.Field, {
     ui: 'select',
@@ -155,13 +156,7 @@ Ext.form.DatePicker = Ext.extend(Ext.form.Field, {
 Ext.reg('datepickerfield', Ext.form.DatePicker);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.DatePickerField
- * @extends Ext.form.DatePicker
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.DatePickerField = Ext.extend(Ext.form.DatePicker, {
 
     constructor: function() {

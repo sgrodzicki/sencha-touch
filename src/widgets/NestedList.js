@@ -83,6 +83,27 @@ var nestedList = new Ext.NestedList({
     store: store
 });</code></pre>
  *
+ * <u>Using a Detail Card</u>
+ * 
+ * Often it is useful to show a "details" card for each node - this is a card generated at runtime which is displayed
+ * when the user taps on a leaf node. Here's how we can do this (using the same store as above):
+ * 
+<pre><code>
+new Ext.NestedList({
+    fullscreen: true,
+    title: 'Groceries',
+    displayField: 'text',
+    store: store,
+
+    getDetailCard: function(recordNode, parentNode) {
+        return new Ext.Panel({
+            title: 'Details about ' + recordNode.text,
+            html: recordNode.text + ' is great'
+        });
+    }
+});
+</code></pre>
+ * 
  * @xtype nestedlist
  */
 Ext.NestedList = Ext.extend(Ext.Panel, {
@@ -239,9 +260,10 @@ Ext.NestedList = Ext.extend(Ext.Panel, {
      */
 
     /**
-     * Implement getDetailCard to provide a final card for leaf nodes when useDetailCard
-     * is enabled. getDetailCard will be passed the currentRecord and the parentRecord.
-     * The default implementation will return false
+     * Implement getDetailCard to provide a final card for leaf nodes. This is useful when you want to display details
+     * about each node, instead of simply reaching the listing all of the nodes at the bottom level of the tree. See
+     * the intro docs for sample usage.
+     * The default implementation will return false, which means no detail card will be inserted
      * @param {Ext.data.Record} record
      * @param {Ext.data.Record} parentRecord
      */

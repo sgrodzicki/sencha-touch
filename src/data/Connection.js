@@ -303,15 +303,15 @@ failure: function(response, opts) {
      * Aborts any outstanding request.
      * @param {Object} request (Optional) defaults to the last request
      */
-    abort : function(r) {
-        if (r && this.isLoading(r)) {
+    abort : function(request) {
+        if (request && this.isLoading(request)) {
             if (!request.timedout) {
                 request.aborted = true;
             }
             // Will fire an onreadystatechange event
-            r.xhr.abort();
+            request.xhr.abort();
         }
-        else if (!r) {
+        else if (!request) {
             var id;
             for(id in this.requests) {
                 if (!this.requests.hasOwnProperty(id)) {

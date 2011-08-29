@@ -127,7 +127,7 @@ Ext.gesture.Manager = new Ext.AbstractManager({
     },
 
     onTouchMove: function(e) {
-        if (!Ext.is.Android) {
+        if (Ext.is.MultiTouch) {
             e.preventDefault();
         }
 
@@ -166,10 +166,7 @@ Ext.gesture.Manager = new Ext.AbstractManager({
         }
     },
 
-    /**
-     * This listener is here to always ensure we stop all current gestures
-     * @private
-     */
+    // This listener is here to always ensure we stop all current gestures
     onTouchEnd: function(e) {
         if (Ext.is.Blackberry) {
             e.preventDefault();
@@ -386,7 +383,6 @@ Ext.gesture.Manager = new Ext.AbstractManager({
 Ext.regGesture = function() {
     return Ext.gesture.Manager.registerType.apply(Ext.gesture.Manager, arguments);
 };
-
 Ext.TouchEventObjectImpl = Ext.extend(Object, {
     constructor : function(e, args) {
         if (e) {
@@ -805,73 +801,72 @@ Ext.gesture.Drag = Ext.extend(Ext.gesture.Touch, {
     vertical: false,
 
     constructor: function() {
-        Ext.gesture.Drag.superclass.constructor.apply(this, arguments);
+        var me = this;
+        Ext.gesture.Drag.superclass.constructor.apply(me, arguments);
 
-        if (this.direction == 'both') {
-            this.horizontal = true;
-            this.vertical = true;
-        }
-        else if (this.direction == 'horizontal') {
-            this.horizontal = true;
-        }
-        else {
-            this.vertical = true;
+        if (me.direction == 'both') {
+            me.horizontal = true;
+            me.vertical = true;
+        } else if (me.direction == 'horizontal') {
+            me.horizontal = true;
+        } else {
+            me.vertical = true;
         }
 
-        return this;
+        return me;
     },
-    
+
     onTouchStart: function(e, touch) {
-        this.startX = this.previousX = touch.pageX;
-        this.startY = this.previousY = touch.pageY;
-        this.startTime = this.previousTime = e.timeStamp;
- 
-        this.dragging = false;
-    },    
-    
+        var me = this;
+        me.startX = me.previousX = touch.pageX;
+        me.startY = me.previousY = touch.pageY;
+        me.startTime = me.previousTime = e.timeStamp;
+
+        me.dragging = false;
+    },
+
     onTouchMove: function(e, touch) {
-        if (this.isLocked('drag')) {
+        var me = this;
+        if (me.isLocked('drag')) {
             return;
         }
-        
-        var info = this.getInfo(touch);
-        
-        if (!this.dragging) {
-            if (this.isDragging(info) && this.fire('dragstart', e, info)) {
-                this.dragging = true;
-                this.lock('drag', 'dragstart', 'dragend');
-                this.fire('drag', e, info);
+
+        var info = me.getInfo(touch);
+
+        if (!me.dragging) {
+            if ((!e.touches || e.touches.length < 2) && me.isDragging(info) && me.fire('dragstart', e, info)) {
+                me.dragging = true;
+                me.lock('drag', 'dragstart', 'dragend');
+                me.fire('drag', e, info);
             }
+        } else {
+            me.fire('drag', e, info);
         }
-        else {
-            this.fire('drag', e, info);
-       }
     },
 
     onTouchEnd: function(e) {
-        if (this.dragging) {
-            this.fire('dragend', e, this.lastInfo);
+        var me = this;
+        if (me.dragging) {
+            me.fire('dragend', e, me.lastInfo);
         }
-        
-        this.dragging = false;
+
+        me.dragging = false;
     },
-    
+
     isDragging: function(info) {
-        return (
-            (this.horizontal && info.absDeltaX >= this.dragThreshold) ||
-            (this.vertical && info.absDeltaY >= this.dragThreshold)
-        );
+        var me = this;
+        return ((me.horizontal && info.absDeltaX >= me.dragThreshold) || (me.vertical && info.absDeltaY >= me.dragThreshold));
     },
-    
-    /**
+
+    /*
      * Method to determine whether this Sortable is currently disabled.
      * @return {Boolean} the disabled state of this Sortable.
      */
     isVertical: function() {
         return this.vertical;
     },
-    
-    /**
+
+    /*
      * Method to determine whether this Sortable is currently sorting.
      * @return {Boolean} the sorting state of this Sortable.
      */
@@ -882,91 +877,95 @@ Ext.gesture.Drag = Ext.extend(Ext.gesture.Touch, {
 
 Ext.regGesture('drag', Ext.gesture.Drag);
 Ext.gesture.Pinch = Ext.extend(Ext.gesture.Gesture, {
-    handles: [
-        'pinchstart',
-        'pinch',
-        'pinchend'
-    ],
-    
+    handles: ['pinchstart', 'pinch', 'pinchend'],
+
     touches: 2,
-    
-    onTouchStart : function(e) {
+
+    onTouchStart: function(e) {
         var me = this;
-        
-        if (Ext.supports.Touch && e.targetTouches.length >= 2) {
+
+        if (this.isMultiTouch(e)) {
             me.lock('swipe', 'scroll', 'scrollstart', 'scrollend', 'touchmove', 'touchend', 'touchstart', 'tap', 'tapstart', 'taphold', 'tapcancel', 'doubletap');
             me.pinching = true;
-            
-            var targetTouches = e.targetTouches,
-                firstTouch = me.firstTouch = targetTouches[0],
-                secondTouch = me.secondTouch = targetTouches[1];
-            
-            me.previousDistance = me.startDistance = me.getDistance();
+
+            var targetTouches = e.targetTouches;
+
+            me.startFirstTouch = targetTouches[0];
+            me.startSecondTouch = targetTouches[1];
+
+            me.previousDistance = me.startDistance = me.getDistance(me.startFirstTouch, me.startSecondTouch);
             me.previousScale = 1;
-            
+
             me.fire('pinchstart', e, {
                 distance: me.startDistance,
                 scale: me.previousScale
             });
-        }
-        else if (me.pinching) {
+        } else if (me.pinching) {
             me.unlock('swipe', 'scroll', 'scrollstart', 'scrollend', 'touchmove', 'touchend', 'touchstart', 'tap', 'tapstart', 'taphold', 'tapcancel', 'doubletap');
             me.pinching = false;
         }
     },
-    
-    onTouchMove : function(e) {
+
+    isMultiTouch: function(e) {
+        return e && Ext.supports.Touch && e.targetTouches && e.targetTouches.length > 1;
+    },
+
+    onTouchMove: function(e) {
+        if (!this.isMultiTouch(e)) {
+            this.onTouchEnd(e);
+            return;
+        }
+
         if (this.pinching) {
-            this.fire('pinch', e, this.getPinchInfo());
+            this.fire('pinch', e, this.getPinchInfo(e));
         }
     },
-    
-    onTouchEnd : function(e) {
+
+    onTouchEnd: function(e) {
         if (this.pinching) {
-            this.fire('pinchend', e, this.getPinchInfo());
+            this.fire('pinchend', e);
         }
     },
-    
-    getPinchInfo : function() {
+
+    getPinchInfo: function(e) {
         var me = this,
-            distance = me.getDistance(),
+            targetTouches = e.targetTouches,
+            firstTouch = targetTouches[0],
+            secondTouch = targetTouches[1],
+            distance = me.getDistance(firstTouch, secondTouch),
             scale = distance / me.startDistance,
-            firstTouch = me.firstTouch,
-            secondTouch = me.secondTouch,
             info = {
-                scale: scale,
-                deltaScale: scale - 1,
-                previousScale: me.previousScale,
-                previousDeltaScale: scale - me.previousScale,
-                distance: distance,
-                deltaDistance: distance - me.startDistance,
-                startDistance: me.startDistance,
-                previousDistance: me.previousDistance,
-                previousDeltaDistance: distance - me.previousDistance,
-                firstTouch: firstTouch,
-                secondTouch: secondTouch,
-                firstPageX: firstTouch.pageX,
-                firstPageY: firstTouch.pageY,
-                secondPageX: secondTouch.pageX,
-                secondPageY: secondTouch.pageY,
-                // The midpoint between the touches is (x1 + x2) / 2, (y1 + y2) / 2
-                midPointX: (firstTouch.pageX + secondTouch.pageX) / 2,
-                midPointY: (firstTouch.pageY + secondTouch.pageY) / 2
-            };
-        
+            scale: scale,
+            deltaScale: scale - 1,
+            previousScale: me.previousScale,
+            previousDeltaScale: scale - me.previousScale,
+            distance: distance,
+            deltaDistance: distance - me.startDistance,
+            startDistance: me.startDistance,
+            previousDistance: me.previousDistance,
+            previousDeltaDistance: distance - me.previousDistance,
+            firstTouch: firstTouch,
+            secondTouch: secondTouch,
+            firstPageX: firstTouch.pageX,
+            firstPageY: firstTouch.pageY,
+            secondPageX: secondTouch.pageX,
+            secondPageY: secondTouch.pageY,
+            // The midpoint between the touches is (x1 + x2) / 2, (y1 + y2) / 2
+            midPointX: (firstTouch.pageX + secondTouch.pageX) / 2,
+            midPointY: (firstTouch.pageY + secondTouch.pageY) / 2
+        };
+
         me.previousScale = scale;
         me.previousDistance = distance;
-        
-        return info;  
+
+        return info;
     },
-    
-    getDistance : function() {
-        var me = this;
+
+    getDistance: function(firstTouch, secondTouch) {
         return Math.sqrt(
-            Math.pow(Math.abs(me.firstTouch.pageX - me.secondTouch.pageX), 2) +
-            Math.pow(Math.abs(me.firstTouch.pageY - me.secondTouch.pageY), 2)
-        );        
+        Math.pow(Math.abs(firstTouch.pageX - secondTouch.pageX), 2) + Math.pow(Math.abs(firstTouch.pageY - secondTouch.pageY), 2));
     }
 });
 
 Ext.regGesture('pinch', Ext.gesture.Pinch);
+

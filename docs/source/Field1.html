@@ -6,300 +6,376 @@
     <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
 </head>
 <body  onload="prettyPrint();">
-    <pre class="prettyprint lang-js"><div id="cls-Ext.data.Field"></div>/**
- * @author Ed Spencer
- * @class Ext.data.Field
- * @extends Object
- * 
- * <p>Fields are used to define what a Model is. They aren't instantiated directly - instead, {@link Ext#regModel} 
- * creates a Field instance for each field configured in a {@link Ext.data.Model Model}. For example, we might set up a
- * model like this:</p>
- * 
-<pre><code>
-Ext.regModel('User', {
-    fields: [
-        'name', 'email',
-        {name: 'age', type: 'int'},
-        {name: 'gender', type: 'string', defaultValue: 'Unknown'}
-    ]
-});
-</code></pre>
- * 
- * <p>Four fields will have been created for the User Model - name, email, age and gender. Note that we specified a
- * couple of different formats here; if we only pass in the string name of the field (as with name and email), the
- * field is set up with the 'auto' type. It's as if we'd done this instead:</p>
- * 
-<pre><code>
-Ext.regModel('User', {
-    fields: [
-        {name: 'name', type: 'auto'},
-        {name: 'email', type: 'auto'},
-        {name: 'age', type: 'int'},
-        {name: 'gender', type: 'string', defaultValue: 'Unknown'}
-    ]
-});
-</code></pre>
- * 
- * <p><u>Types and conversion</u></p>
- * 
- * <p>The {@link #type} is important - it's used to automatically convert data passed to the field into the correct
- * format. In our example above, the name and email fields used the 'auto' type and will just accept anything that is
- * passed into them. The 'age' field had an 'int' type however, so if we passed 25.4 this would be rounded to 25.</p>
- * 
- * <p>Sometimes a simple type isn't enough, or we want to perform some processing when we load a Field's data. We can
- * do this using a {@link #convert} function. Here, we're going to create a new field based on another:</p>
- * 
-<code><pre>
-Ext.regModel('User', {
-    fields: [
-        'name', 'email',
-        {name: 'age', type: 'int'},
-        {name: 'gender', type: 'string', defaultValue: 'Unknown'},
-
-        {
-            name: 'firstName',
-            convert: function(value, record) {
-                var fullName  = record.get('name'),
-                    splits    = fullName.split(" "),
-                    firstName = splits[0];
-
-                return firstName;
-            }
-        }
-    ]
-});
-</code></pre>
- * 
- * <p>Now when we create a new User, the firstName is populated automatically based on the name:</p>
- * 
-<code><pre>
-var ed = Ext.ModelMgr.create({name: 'Ed Spencer'}, 'User');
-
-console.log(ed.get('firstName')); //logs 'Ed', based on our convert function
-</code></pre>
- * 
- * <p>In fact, if we log out all of the data inside ed, we'll see this:</p>
- * 
-<code><pre>
-console.log(ed.data);
-
-//outputs this:
-{
-    age: 0,
-    email: "",
-    firstName: "Ed",
-    gender: "Unknown",
-    name: "Ed Spencer"
-}
-</code></pre>
- * 
- * <p>The age field has been given a default of zero because we made it an int type. As an auto field, email has
- * defaulted to an empty string. When we registered the User model we set gender's {@link #defaultValue} to 'Unknown'
- * so we see that now. Let's correct that and satisfy ourselves that the types work as we expect:</p>
- * 
-<code><pre>
-ed.set('gender', 'Male');
-ed.get('gender'); //returns 'Male'
-
-ed.set('age', 25.4);
-ed.get('age'); //returns 25 - we wanted an int, not a float, so no decimal places allowed
-</code></pre>
- * 
+    <pre class="prettyprint lang-js"><div id="cls-Ext.form.Field"></div>/**
+ * @class Ext.form.Field
+ * @extends Ext.Container
+ * <p>Base class for form fields that provides default event handling, sizing, value handling and other functionality. Ext.form.Field
+ * is not used directly in applications, instead the subclasses such as {@link Ext.form.Text} should be used.</p>
+ * @constructor
+ * Creates a new Field
+ * @param {Object} config Configuration options
+ * @xtype field
  */
-Ext.data.Field = Ext.extend(Object, {
+Ext.form.Field = Ext.extend(Ext.Component,  {
+    <div id="prop-Ext.form.Field-isField"></div>/**
+     * Set to true on all Ext.form.Field subclasses. This is used by {@link Ext.form.FormPanel#getValues} to determine which
+     * components inside a form are fields.
+     * @property isField
+     * @type Boolean
+     */
+    isField: true,
+
+    <div id="prop-Ext.form.Field-labelEl"></div>/**
+     * <p>The label Element associated with this Field. <b>Only available if a {@link #label} is specified.</b></p>
+     * @type Ext.Element
+     * @property labelEl
+     */
+
+    <div id="cfg-Ext.form.Field-tabIndex"></div>/**
+     * @cfg {Number} tabIndex The tabIndex for this field. Note this only applies to fields that are rendered,
+     * not those which are built via applyTo (defaults to undefined).
+     */
+
+    <div id="cfg-Ext.form.Field-value"></div>/**
+     * @cfg {Mixed} value A value to initialize this field with (defaults to undefined).
+     */
+
+    <div id="cfg-Ext.form.Field-name"></div>/**
+     * @cfg {String} name The field's HTML name attribute (defaults to '').
+     * <b>Note</b>: this property must be set if this field is to be automatically included with
+     * {@link Ext.form.FormPanel#submit form submit()}.
+     */
+
+    <div id="cfg-Ext.form.Field-cls"></div>/**
+     * @cfg {String} cls A custom CSS class to apply to the field's underlying element (defaults to '').
+     */
+
+    <div id="cfg-Ext.form.Field-fieldCls"></div>/**
+     * @cfg {String} fieldCls The default CSS class for the field (defaults to 'x-form-field')
+     */
+    fieldCls: 'x-form-field',
+
+    baseCls: 'x-field',
+
+    <div id="cfg-Ext.form.Field-inputCls"></div>/**
+     * @cfg {String} inputCls Optional CSS class that will be added to the actual <input> element (or whichever different element is
+     * defined by {@link inputAutoEl}). Defaults to undefined.
+     */
+    inputCls: undefined,
+
+    <div id="cfg-Ext.form.Field-disabled"></div>/**
+     * @cfg {Boolean} disabled True to disable the field (defaults to false).
+     * <p>Be aware that conformant with the <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.12.1">HTML specification</a>,
+     * disabled Fields will not be {@link Ext.form.BasicForm#submit submitted}.</p>
+     */
+    disabled: false,
+
+    renderTpl: [
+        '<tpl if="label">',
+            '<div class="x-form-label"><span>{label}</span></div>',
+        '</tpl>',
+        '<tpl if="fieldEl">',
+            '<div class="x-form-field-container"><input id="{inputId}" type="{inputType}" name="{name}" class="{fieldCls}"',
+                '<tpl if="tabIndex">tabIndex="{tabIndex}" </tpl>',
+                '<tpl if="placeHolder">placeholder="{placeHolder}" </tpl>',
+                '<tpl if="style">style="{style}" </tpl>',
+                '<tpl if="maxlength">maxlength="{maxlength}" </tpl>',
+                '<tpl if="autoComplete">autocomplete="{autoComplete}" </tpl>',
+                '<tpl if="autoCapitalize">autocapitalize="{autoCapitalize}" </tpl>',
+                '<tpl if="autoCorrect">autocorrect="{autoCorrect}" </tpl> />',
+            '<tpl if="useMask"><div class="x-field-mask"></div></tpl>',
+            '</div>',
+            '<tpl if="useClearIcon"><div class="x-field-clear-container"><div class="x-field-clear x-hidden-visibility">&#215;</div></div></tpl>',
+        '</tpl>'
+    ],
+
+    // @private
+    isFormField: true,
+
+    <div id="cfg-Ext.form.Field-autoCreateField"></div>/**
+     * @cfg {Boolean} autoCreateField True to automatically create the field input element on render.
+     * This is true by default, but should be set to false for any Ext.Field subclasses that don't
+     * need an HTML input (e.g. Ext.Slider and similar)
+     */
+    autoCreateField: true,
+
+    <div id="cfg-Ext.form.Field-inputType"></div>/**
+     * @cfg {String} inputType The type attribute for input fields -- e.g. radio, text, password, file (defaults
+     * to 'text'). The types 'file' and 'password' must be used to render those field types currently -- there are
+     * no separate Ext components for those. Note that if you use <tt>inputType:'file'</tt>, {@link #emptyText}
+     * is not supported and should be avoided.
+     */
+    inputType: 'text',
     
-    constructor : function(config) {
-        if (Ext.isString(config)) {
-            config = {name: config};
-        }
-        Ext.apply(this, config);
-        
-        var types = Ext.data.Types,
-            st = this.sortType,
-            t;
+    <div id="cfg-Ext.form.Field-label"></div>/**
+     * @cfg {String} label The label to associate with this field. Defaults to <tt>null</tt>.
+     */
+    label: null,
 
-        if (this.type) {
-            if (Ext.isString(this.type)) {
-                this.type = types[this.type.toUpperCase()] || types.AUTO;
-            }
-        } else {
-            this.type = types.AUTO;
+    <div id="cfg-Ext.form.Field-labelWidth"></div>/**
+     * @cfg {Mixed} labelWidth The width of the label, can be any valid CSS size. E.g '20%', '6em', '100px'.
+     * Defaults to <tt>'30%'</tt>
+     */
+    labelWidth: '30%',
+
+    <div id="cfg-Ext.form.Field-labelAlign"></div>/**
+     * @cfg {String} labelAlign The location to render the label of the field. Acceptable values are 'top' and 'left'.
+     * Defaults to <tt>'left'</tt>
+     */
+    labelAlign: 'left',
+
+    <div id="cfg-Ext.form.Field-required"></div>/**
+     * @cfg {Boolean} required True to make this field required. Note: this only causes a visual indication.
+     * Doesn't prevent user from submitting the form.
+     */
+    required: false,
+
+    // @private
+    useMask: false,
+
+    // @private
+    initComponent: function() {
+        //<deprecated since="0.99">
+        if (Ext.isDefined(this.fieldLabel)) {
+            console.warn("[Ext.form.Field] fieldLabel has been deprecated. Please use label instead.");
+            this.label = this.fieldLabel;
         }
 
-        // named sortTypes are supported, here we look them up
-        if (Ext.isString(st)) {
-            this.sortType = Ext.data.SortTypes[st];
-        } else if(Ext.isEmpty(st)) {
-            this.sortType = this.type.sortType;
+        if (Ext.isDefined(this.fieldClass)) {
+            console.warn("[Ext.form.Field] fieldClass has been deprecated. Please use fieldCls instead.");
+            this.fieldCls = this.fieldClass;
         }
 
-        if (!this.convert) {
-            this.convert = this.type.convert;
+        if (Ext.isDefined(this.focusClass)) {
+            console.warn("[Ext.form.Field] focusClass has been deprecated. Please use focusCls instead.");
+            this.focusCls = this.focusClass;
         }
+
+        if (Ext.isDefined(this.inputValue)) {
+            console.warn("[Ext.form.Field] inputValue has been deprecated. Please use value instead.");
+            this.value = this.inputValue;
+        }
+        //</deprecated>
+
+        Ext.form.Field.superclass.initComponent.call(this);
     },
-    
-    <div id="cfg-Ext.data.Field-name"></div>/**
-     * @cfg {String} name
-     * The name by which the field is referenced within the Model. This is referenced by, for example,
-     * the <code>dataIndex</code> property in column definition objects passed to {@link Ext.grid.ColumnModel}.
-     * <p>Note: In the simplest case, if no properties other than <code>name</code> are required, a field
-     * definition may consist of just a String for the field name.</p>
+
+    <div id="method-Ext.form.Field-getName"></div>/**
+     * Returns the {@link Ext.form.Field#name name} or {@link Ext.form.ComboBox#hiddenName hiddenName}
+     * attribute of the field if available.
+     * @return {String} name The field {@link Ext.form.Field#name name} or {@link Ext.form.ComboBox#hiddenName hiddenName}
      */
-    
-    <div id="cfg-Ext.data.Field-type"></div>/**
-     * @cfg {Mixed} type
-     * (Optional) The data type for automatic conversion from received data to the <i>stored</i> value if <code>{@link Ext.data.Field#convert convert}</code>
-     * has not been specified. This may be specified as a string value. Possible values are
-     * <div class="mdetail-params"><ul>
-     * <li>auto (Default, implies no conversion)</li>
-     * <li>string</li>
-     * <li>int</li>
-     * <li>float</li>
-     * <li>boolean</li>
-     * <li>date</li></ul></div>
-     * <p>This may also be specified by referencing a member of the {@link Ext.data.Types} class.</p>
-     * <p>Developers may create their own application-specific data types by defining new members of the
-     * {@link Ext.data.Types} class.</p>
-     */
-    
-    <div id="cfg-Ext.data.Field-convert"></div>/**
-     * @cfg {Function} convert
-     * (Optional) A function which converts the value provided by the Reader into an object that will be stored
-     * in the Model. It is passed the following parameters:<div class="mdetail-params"><ul>
-     * <li><b>v</b> : Mixed<div class="sub-desc">The data value as read by the Reader, if undefined will use
-     * the configured <code>{@link Ext.data.Field#defaultValue defaultValue}</code>.</div></li>
-     * <li><b>rec</b> : Ext.data.Model<div class="sub-desc">The data object containing the Model as read so far by the 
-     * Reader. Note that the Model may not be fully populated at this point as the fields are read in the order that 
-     * they are defined in your {@link #fields} array.</div></li>
-     * </ul></div>
-     * <pre><code>
-// example of convert function
-function fullName(v, record){
-    return record.name.last + ', ' + record.name.first;
-}
-
-function location(v, record){
-    return !record.city ? '' : (record.city + ', ' + record.state);
-}
-
-var Dude = Ext.regModel({
-    fields: [
-        {name: 'fullname',  convert: fullName},
-        {name: 'firstname', mapping: 'name.first'},
-        {name: 'lastname',  mapping: 'name.last'},
-        {name: 'city', defaultValue: 'homeless'},
-        'state',
-        {name: 'location',  convert: location}
-    ]
-});
-
-// create the data store
-var store = new Ext.data.Store({
-    reader: {
-        type: 'json',
-        model: 'Dude',
-        idProperty: 'key',
-        root: 'daRoot',
-        totalProperty: 'total'
-    }
-});
-
-var myData = [
-    { key: 1,
-      name: { first: 'Fat',    last:  'Albert' }
-      // notice no city, state provided in data object
+    getName: function() {
+        return this.name || this.id || '';
     },
-    { key: 2,
-      name: { first: 'Barney', last:  'Rubble' },
-      city: 'Bedrock', state: 'Stoneridge'
-    },
-    { key: 3,
-      name: { first: 'Cliff',  last:  'Claven' },
-      city: 'Boston',  state: 'MA'
-    }
-];
-     * </code></pre>
-     */
-    <div id="cfg-Ext.data.Field-dateFormat"></div>/**
-     * @cfg {String} dateFormat
-     * <p>(Optional) Used when converting received data into a Date when the {@link #type} is specified as <code>"date"</code>.</p>
-     * <p>A format string for the {@link Date#parseDate Date.parseDate} function, or "timestamp" if the
-     * value provided by the Reader is a UNIX timestamp, or "time" if the value provided by the Reader is a
-     * javascript millisecond timestamp. See {@link Date}</p>
-     */
-    dateFormat: null,
-    
-    <div id="cfg-Ext.data.Field-useNull"></div>/**
-     * @cfg {Boolean} useNull
-     * <p>(Optional) Use when converting received data into a Number type (either int or float). If the value cannot be parsed,
-     * null will be used if useNull is true, otherwise the value will be 0. Defaults to <tt>false</tt>
-     */
-    useNull: false,
-    
-    <div id="cfg-Ext.data.Field-defaultValue"></div>/**
-     * @cfg {Mixed} defaultValue
-     * (Optional) The default value used <b>when a Model is being created by a {@link Ext.data.Reader Reader}</b>
-     * when the item referenced by the <code>{@link Ext.data.Field#mapping mapping}</code> does not exist in the data
-     * object (i.e. undefined). (defaults to "")
-     */
-    defaultValue: "",
-    <div id="cfg-Ext.data.Field-mapping"></div>/**
-     * @cfg {String/Number} mapping
-     * <p>(Optional) A path expression for use by the {@link Ext.data.DataReader} implementation
-     * that is creating the {@link Ext.data.Model Model} to extract the Field value from the data object.
-     * If the path expression is the same as the field name, the mapping may be omitted.</p>
-     * <p>The form of the mapping expression depends on the Reader being used.</p>
-     * <div class="mdetail-params"><ul>
-     * <li>{@link Ext.data.JsonReader}<div class="sub-desc">The mapping is a string containing the javascript
-     * expression to reference the data from an element of the data item's {@link Ext.data.JsonReader#root root} Array. Defaults to the field name.</div></li>
-     * <li>{@link Ext.data.XmlReader}<div class="sub-desc">The mapping is an {@link Ext.DomQuery} path to the data
-     * item relative to the DOM element that represents the {@link Ext.data.XmlReader#record record}. Defaults to the field name.</div></li>
-     * <li>{@link Ext.data.ArrayReader}<div class="sub-desc">The mapping is a number indicating the Array index
-     * of the field's value. Defaults to the field specification's Array position.</div></li>
-     * </ul></div>
-     * <p>If a more complex value extraction strategy is required, then configure the Field with a {@link #convert}
-     * function. This is passed the whole row object, and may interrogate it in whatever way is necessary in order to
-     * return the desired data.</p>
-     */
-    mapping: null,
-    <div id="cfg-Ext.data.Field-sortType"></div>/**
-     * @cfg {Function} sortType
-     * (Optional) A function which converts a Field's value to a comparable value in order to ensure
-     * correct sort ordering. Predefined functions are provided in {@link Ext.data.SortTypes}. A custom
-     * sort example:<pre><code>
-// current sort     after sort we want
-// +-+------+          +-+------+
-// |1|First |          |1|First |
-// |2|Last  |          |3|Second|
-// |3|Second|          |2|Last  |
-// +-+------+          +-+------+
 
-sortType: function(value) {
-   switch (value.toLowerCase()) // native toLowerCase():
-   {
-      case 'first': return 1;
-      case 'second': return 2;
-      default: return 3;
-   }
-}
-     * </code></pre>
-     */
-    sortType : null,
-    <div id="cfg-Ext.data.Field-sortDir"></div>/**
-     * @cfg {String} sortDir
-     * (Optional) Initial direction to sort (<code>"ASC"</code> or  <code>"DESC"</code>).  Defaults to
-     * <code>"ASC"</code>.
-     */
-    sortDir : "ASC",
     /**
-     * @cfg {Boolean} allowBlank
      * @private
-     * (Optional) Used for validating a {@link Ext.data.Model model}, defaults to <code>true</code>.
-     * An empty value here will cause {@link Ext.data.Model}.{@link Ext.data.Model#isValid isValid}
-     * to evaluate to <code>false</code>.
      */
-    allowBlank : true
+    applyRenderSelectors: function() {
+        this.renderSelectors = Ext.applyIf(this.renderSelectors || {}, {
+            mask: '.x-field-mask',
+            labelEl: '.x-form-label',
+            fieldEl: '.' + Ext.util.Format.trim(this.renderData.fieldCls).replace(/ /g, '.')
+        });
+
+        Ext.form.Field.superclass.applyRenderSelectors.call(this);
+    },
+
+    /**
+     * @private
+     */
+    initRenderData: function() {
+        Ext.form.Field.superclass.initRenderData.apply(this, arguments);
+        
+        Ext.applyIf(this.renderData, {
+            disabled        :   this.disabled,
+            fieldCls        :   'x-input-' + this.inputType + (this.inputCls ? ' ' + this.inputCls: ''),
+            fieldEl         :   !this.fieldEl && this.autoCreateField,
+            inputId         :   Ext.id(),
+            label           :    this.label,
+            labelAlign      :   'x-label-align-' + this.labelAlign,
+            name            :   this.getName(),
+            required        :   this.required,
+            style           :   this.style,
+            tabIndex        :   this.tabIndex,
+            inputType       :   this.inputType,
+            useMask         :   this.useMask
+        });
+        
+        return this.renderData;
+    },
+
+    // @private
+    initEvents: function() {
+        Ext.form.Field.superclass.initEvents.apply(this, arguments);
+        
+        if (this.fieldEl) {
+            if (this.useMask && this.mask) {
+                this.mon(this.mask, {
+                    click: this.onMaskTap,
+                    scope: this
+                });
+            }
+        }
+    },
+
+    /**
+     * @private
+     */
+    onRender: function() {
+        Ext.form.Field.superclass.onRender.apply(this, arguments);
+        
+        var cls = [];
+        
+        if (this.required) {
+            cls.push('x-field-required');
+        }
+        if (this.label) {
+            cls.push('x-label-align-' + this.labelAlign);
+        }
+
+        this.el.addCls(cls);
+    },
+
+    /**
+     * @private
+     */
+    afterRender: function() {
+        Ext.form.Field.superclass.afterRender.apply(this, arguments);
+
+        if (this.label) {
+            this.setLabelWidth(this.labelWidth);
+        }
+
+        this.initValue();
+    },
+
+    isDisabled: function() {
+        return this.disabled;
+    },
+
+    // @private
+    onEnable: function() {
+        this.fieldEl.dom.disabled = false;
+    },
+
+    // @private
+    onDisable: function() {
+        this.fieldEl.dom.disabled = true;
+    },
+
+    // @private
+    initValue: function() {
+        this.setValue(this.value || '', true);
+
+        <div id="prop-Ext.form.Field-originalValue"></div>/**
+         * The original value of the field as configured in the {@link #value} configuration, or
+         * as loaded by the last form load operation if the form's {@link Ext.form.BasicForm#trackResetOnLoad trackResetOnLoad}
+         * setting is <code>true</code>.
+         * @type mixed
+         * @property originalValue
+         */
+        this.originalValue = this.getValue();
+    },
+
+    <div id="method-Ext.form.Field-isDirty"></div>/**
+     * <p>Returns true if the value of this Field has been changed from its original value.
+     * Will return false if the field is disabled or has not been rendered yet.</p>
+     * <p>Note that if the owning {@link Ext.form.BasicForm form} was configured with
+     * {@link Ext.form.BasicForm}.{@link Ext.form.BasicForm#trackResetOnLoad trackResetOnLoad}
+     * then the <i>original value</i> is updated when the values are loaded by
+     * {@link Ext.form.BasicForm}.{@link Ext.form.BasicForm#setValues setValues}.</p>
+     * @return {Boolean} True if this field has been changed from its original value (and
+     * is not disabled), false otherwise.
+     */
+    isDirty: function() {
+        if (this.disabled || !this.rendered) {
+            return false;
+        }
+        
+        return String(this.getValue()) !== String(this.originalValue);
+    },
+
+    // @private
+    onMaskTap: function(e) {
+        if (this.disabled) {
+            return false;
+        }
+
+//        if (Ext.is.iOS && e.browserEvent && !e.browserEvent.isSimulated) {
+//            console.log('onMaskTap prevented');
+//            e.preventDefault();
+//            e.stopPropagation();
+//            return false;
+//        }
+
+        return true;
+    },
+
+    // @private
+    showMask: function(e) {
+        if (this.mask) {
+            this.mask.setStyle('display', 'block');
+        }
+    },
+
+    hideMask: function(e) {
+        if (this.mask) {
+            this.mask.setStyle('display', 'none');
+        }
+    },
+    
+    <div id="method-Ext.form.Field-reset"></div>/**
+     * Resets the current field value to the originally loaded value and clears any validation messages.
+     * See {@link Ext.form.BasicForm}.{@link Ext.form.BasicForm#trackResetOnLoad trackResetOnLoad}
+     */
+    reset: function() {
+        this.setValue(this.originalValue);
+    },
+
+    <div id="method-Ext.form.Field-getValue"></div>/**
+     * Returns the field data value
+     * @return {Mixed} value The field value
+     */
+    getValue: function(){
+        if (!this.rendered || !this.fieldEl) {
+            return this.value;
+        }
+        
+        return this.fieldEl.getValue();
+    },
+
+    <div id="method-Ext.form.Field-setValue"></div>/**
+     * Set the field data value
+     * @param {Mixed} value The value to set
+     * @return {Ext.form.Field} this
+     */
+    setValue: function(value){
+        this.value = value;
+
+        if (this.rendered && this.fieldEl) {
+            this.fieldEl.dom.value = (Ext.isEmpty(value) ? '' : value);
+        }
+
+        return this;
+    },
+
+    <div id="method-Ext.form.Field-setLabelWidth"></div>/**
+     * Set the label width
+     * @param {Mixed} width The width of the label, can be any valid CSS size. E.g '20%', '6em', '100px'
+     * @return {Ext.form.Field} this
+     */
+    setLabelWidth: function(width) {
+        if (this.labelEl) {
+            this.labelEl.setWidth(width);
+        }
+
+        return this;
+    }
 });
+
+Ext.reg('field', Ext.form.Field);
 </pre>    
 </body>
 </html>

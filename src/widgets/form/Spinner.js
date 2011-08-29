@@ -11,6 +11,7 @@ new Ext.form.Spinner({
 });
 </code></pre>
  * @xtype spinnerfield
+ * @alternateClassName Ext.form.SpinnerField
  */
 Ext.form.Spinner = Ext.extend(Ext.form.Number, {
 
@@ -257,13 +258,7 @@ Ext.form.Spinner = Ext.extend(Ext.form.Number, {
 Ext.reg('spinnerfield', Ext.form.Spinner);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.SpinnerField
- * @extends Ext.form.Spinner
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.SpinnerField = Ext.extend(Ext.form.Spinner, {
 
     constructor: function() {

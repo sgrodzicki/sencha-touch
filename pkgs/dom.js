@@ -677,6 +677,9 @@ Ext.fly = El.fly;
 
 })();
 
+/**
+ * @class Ext.Element
+ */
 Ext.applyIf(Ext.Element, {
     unitRe: /\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i,
     camelRe: /(-[a-z])/gi,
@@ -820,10 +823,11 @@ Ext.applyIf(Ext.Element, {
         return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
     },
 
-    /** Returns the top Element that is located at the passed coordinates
+    /**
+     * Returns the top Element that is located at the passed coordinates
      * Function description
      * @param {Number} x The x coordinate
-     * @param {Number} x The y coordinate
+     * @param {Number} y The y coordinate
      * @return {String} The found Element
      */
     fromPoint: function(x, y) {
@@ -831,6 +835,9 @@ Ext.applyIf(Ext.Element, {
     }
 });
 
+/**
+ * @class Ext.Element
+ */
 Ext.applyIf(Ext.Element, {
     
     /**
@@ -2308,7 +2315,7 @@ Ext.Element.addMethods({
         return [x, y];
     }
 
-    /**
+    /*
      * Anchors an element to another element and realigns it when the window is resized.
      * @param {Mixed} element The element to align to.
      * @param {String} position The position to align to.
@@ -2345,7 +2352,7 @@ Ext.Element.addMethods({
     //     action.call(me); // align immediately
     //     return me;
     // },
-    /**
+    /*
      * Remove any anchor to this element. See {@link #anchorTo}.
      * @return {Ext.Element} this
      */
@@ -2377,7 +2384,7 @@ Ext.Element.addMethods({
     //     }
     //     return anchor;
     // },
-    /**
+    /*
      * Aligns this element with another element relative to the specified anchor points. If the other element is the
      * document it aligns it to the viewport.
      * The position parameter is optional, and can be specified in any one of the following formats:
@@ -3487,7 +3494,7 @@ Ext.Anim = Ext.extend(Object, {
 
         Ext.Anim.superclass.constructor.call(this);
 
-        this.running = [];
+        this.running = {};
     },
 
     initConfig : function(el, runConfig) {
@@ -3576,7 +3583,6 @@ Ext.Anim = Ext.extend(Object, {
 
             // Bind our listener that fires after the animation ends
             el.on('webkitTransitionEnd', me.onTransitionEnd, me, {
-                single: true,
                 config: config,
                 after: after
             });
@@ -3604,6 +3610,8 @@ Ext.Anim = Ext.extend(Object, {
             config = o.config,
             property,
             me = this;
+            
+        el.un('webkitTransitionEnd', me.onTransitionEnd, me);
 
         if (config.autoClear) {
             for (property in config.to) {

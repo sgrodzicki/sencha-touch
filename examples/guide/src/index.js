@@ -60,8 +60,12 @@ Ext.setup({
             },
             listeners: {
                 maprender: function(mapC, map) {
-                    refresh(this.geo.coords);
-                    this.geo.on('update', refresh);
+                    //this.geo.coords are not available until at least 500ms after load. Using 800ms gives correct
+                    //behavior in every test performed, but still potentially flaky
+                    Ext.defer(function() {
+                        refresh(this.geo.coords);
+                        this.geo.on('update', refresh);
+                    }, 800, this);
                 }
             }
         });

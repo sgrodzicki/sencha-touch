@@ -103,7 +103,7 @@ var panel = new Ext.Panel({
 
     /**
      * Attempts a default component lookup (see {@link Ext.Container#getComponent}). If the component is not found in the normal
-     * items, the dockedItems are searched and the matched component (if any) returned (see {@loink #getDockedComponent}).
+     * items, the dockedItems are searched and the matched component (if any) returned (see {@link #getDockedComponent}).
      * @param {String/Number} comp The docked component id or itemId to find
      * @return {Ext.Component} The docked component, if found
      */

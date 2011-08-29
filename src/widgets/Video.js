@@ -19,7 +19,8 @@
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Video/screenshot.png" /></p>
+ *
+ * {@img Ext.Video/screenshot.png Ext.Video screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>

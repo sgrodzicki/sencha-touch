@@ -1,3 +1,6 @@
+/**
+ * @class Ext.Element
+ */
 Ext.applyIf(Ext.Element, {
     unitRe: /\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i,
     camelRe: /(-[a-z])/gi,
@@ -141,10 +144,11 @@ Ext.applyIf(Ext.Element, {
         return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
     },
 
-    /** Returns the top Element that is located at the passed coordinates
+    /**
+     * Returns the top Element that is located at the passed coordinates
      * Function description
      * @param {Number} x The x coordinate
-     * @param {Number} x The y coordinate
+     * @param {Number} y The y coordinate
      * @return {String} The found Element
      */
     fromPoint: function(x, y) {

@@ -14,7 +14,8 @@
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.TabPanel/screenshot.png" /></p>
+ *
+ * {@img Ext.TabPanel/screenshot.png Ext.TabPanel screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>

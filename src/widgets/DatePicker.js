@@ -12,7 +12,8 @@
  * </ul>
  *
  * <h2>Screenshot:</h2>
-  * <p><img src="doc_resources/Ext.DatePicker/screenshot.png" /></p>
+ *
+ * {@img Ext.DatePicker/screenshot.png Ext.DatePicker screenshot}
  *
  * <h2>Example code:</h2>
  *

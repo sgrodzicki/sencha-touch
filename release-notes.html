@@ -13,6 +13,46 @@
         <div id="releases">
             <div class="release">
                 <h1>
+                    Release Notes for Sencha Touch 1.1.1
+                </h1>
+                <p class="notes">
+                    Release Notes: Release Notes: August 29, 2011<br>
+                    Version Number: 1.1.1
+                </p>
+                <h2>
+                    Bugs Fixed In This Release
+                </h2>
+                <ul>
+<li>Improved documentation for NestedList</li>
+<li>Improved documentation for Ext.form.Number</li>
+<li>Improved documentation for Router</li>
+<li>Improved documentation for Button to correctly reflect ui options</li>
+<li>Updated documentation to be JSDuck compatible</li>
+
+<li>Fixed Model to correctly track modified values</li>
+<li>Fixed the Pull to Refresh plugin to correctly update the last updated timestamp</li>
+<li>Fixed an incorrect variable name in Ext.data.Connection</li>
+<li>Updated weather service url for kitchen sink and ajax examples</li>
+<li>Fixed a jsdocs issue in panel</li>
+<li>Added is.AndroidVersion and isMultiTouch support checks</li>
+<li>onTouchMove now uses Ext.is.MultiTouch instead of !Ext.is.Android</li>
+<li>Added x-android-{MajorVersion} to the root CSS selector to support different CSS for Android 3.x</li>
+<li>Flipped orientation detection for Android 3.x</li>
+<li>Update Pinch gesture to handle Android 3.x</li>
+<li>Desktop is no longer detected as MultiTouch</li>
+<li>Backberry no longer detected as MultiTouch</li>
+<li>Changed Ext.ComponentQuery.query() to create an array using Ext.util.HashMap class' getArray() method</li>
+<li>Fixed order of inclusion of the SASS files - carousel has to be after layout because if it isn't then any carousel with more than one list will not render correctly</li>
+<li>Fix an issue when using child items of a card layout that each have different margins</li>
+<li>Fix and issue to keep Picker selection on Select</li>
+<li>Fix an issue where scrolling a list and then switching cards while the list is still scrolling would cause the cardswitch event not to fire</li>
+<li>Fixed small twitter-related issues in examples</li>
+
+                </ul>
+            </div>
+            
+            <div class="release">
+                <h1>
                     Release Notes for Sencha Touch 1.1.0
                 </h1>
                 <p class="notes">

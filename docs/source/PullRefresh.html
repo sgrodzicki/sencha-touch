@@ -6,7 +6,7 @@
     <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
 </head>
 <body  onload="prettyPrint();">
-    <pre class="prettyprint lang-js"><div id="cls-Ext.plugins.ListPagingPlugin"></div>/**
+    <pre class="prettyprint lang-js">/**
  * @class Ext.plugins.ListPagingPlugin
  * @extends Ext.util.Observable
  * This plugin adds pull to refresh functionality to the List.
@@ -212,6 +212,7 @@ Ext.plugins.PullRefreshPlugin = Ext.extend(Ext.util.Observable, {
 
         if (this.isLoading) {
             this.isLoading = false;
+            this.lastUpdated = new Date();
 
             this.setViewState('pull');
             this.updatedEl.setHTML(Ext.util.Format.date(this.lastUpdated, "m/d/Y h:iA"));

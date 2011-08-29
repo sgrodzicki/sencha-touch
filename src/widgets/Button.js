@@ -8,15 +8,16 @@
  * <ul class="list">
  *   <li>{@link #ui} (defines the style of the button)</li>
  * </ul>
- * 
+ *
  * <h2>Useful Methods</h2>
  * <ul class="list">
  *   <li>{@link #handler} (method to be called when the button is tapped)</li>
  * </ul>
- * 
+ *
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Button/screenshot.png" /></p>
- * 
+ *
+ * {@img Ext.Button/screenshot.png Ext.Button screenshot}
+ *
  * <h2>Example code:</h2>
 <pre><code>
 // an array of buttons (using xtypes) to be included in the panel below
@@ -113,7 +114,7 @@ Ext.Button = Ext.extend(Ext.Component, {
              * @param {Ext.EventObject} e
              */
             'tap',
-            
+
             /**
              * @event beforetap
              * Fires when the button is tapped but before we call the handler or fire the tap event.
@@ -141,13 +142,13 @@ Ext.Button = Ext.extend(Ext.Component, {
      * @cfg {String} icon The path to an image to display in the button (the image will be set as the background-image
      * CSS property of the button by default, so if you want a mixed icon/text button, set cls:'x-btn-text-icon')
      */
-     
+
     /**
-     * @cfg {String} iconAlign The alignment of the buttons icon if one has been defined. Valid options 
+     * @cfg {String} iconAlign The alignment of the buttons icon if one has been defined. Valid options
      * are 'top', 'right', 'bottom', 'left' (defaults to 'left').
      */
     iconAlign: 'left',
-    
+
     /**
      * @cfg {Function} handler A function called when the button is clicked (can be used instead of click event).
      * The handler is passed the following parameters:<div class="mdetail-params"><ul>
@@ -200,7 +201,9 @@ Ext.Button = Ext.extend(Ext.Component, {
 
     /**
      * @cfg {String} ui
-     * Determines the UI look and feel of the button. Valid options are 'normal', 'back', 'round', 'action', 'forward'.
+     * Determines the UI look and feel of the button. Valid options are 'normal', 'back', 'round', 'action', 'forward',
+     * 'decline', 'confirm' and 'small'. The 'round' and 'small' UIs can also be appended to the other options - for
+     * example 'confirm-small', 'action-round', 'forward-small' etc
      * Defaults to 'normal'.
      */
     ui: 'normal',
@@ -218,14 +221,14 @@ Ext.Button = Ext.extend(Ext.Component, {
      * Settings this to true defaults to 100ms
      */
     pressedDelay: 0,
-    
+
     /**
      * @cfg {String} iconMaskCls
      * CSS class to be added to the iconEl when the iconMask config is set to true.
      * Defaults to 'x-icon-mask'
      */
     iconMaskCls: 'x-icon-mask',
-    
+
     /**
      * @cfg {Boolean} iconMask
      * Whether or not to mask the icon with the iconMaskCls configuration. Defaults to false.
@@ -235,7 +238,7 @@ Ext.Button = Ext.extend(Ext.Component, {
     // @private
     afterRender : function(ct, position) {
         var me = this;
-        
+
         Ext.Button.superclass.afterRender.call(me, ct, position);
 
         var text = me.text,
@@ -248,7 +251,7 @@ Ext.Button = Ext.extend(Ext.Component, {
         me.setText(text);
         me.setIcon(icon);
         me.setIconClass(iconCls);
-        
+
         if (me.iconMask && me.iconEl) {
             me.iconEl.addCls(me.iconMaskCls);
         }
@@ -258,12 +261,12 @@ Ext.Button = Ext.extend(Ext.Component, {
     // @private
     initEvents : function() {
         var me = this;
-        
+
         Ext.Button.superclass.initEvents.call(me);
 
         me.mon(me.el, {
             scope: me,
-            
+
             tap      : me.onPress,
             tapstart : me.onTapStart,
             tapcancel: me.onTapCancel
@@ -315,7 +318,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setText: function(text) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.textEl && text) {
                 me.textEl = me.el.createChild({
@@ -346,7 +349,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setIcon: function(icon) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.iconEl && icon) {
                 me.iconEl = me.el.createChild({
@@ -354,7 +357,7 @@ Ext.Button = Ext.extend(Ext.Component, {
                     src: Ext.BLANK_IMAGE_URL,
                     style: 'background-image: ' + (icon ? 'url(' + icon + ')' : '')
                 });
-                
+
                 me.setIconAlign(me.iconAlign);
             }
             else if (me.iconEl && icon != me.icon) {
@@ -381,7 +384,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setIconClass: function(cls) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.iconEl && cls) {
                 me.iconEl = me.el.createChild({
@@ -389,7 +392,7 @@ Ext.Button = Ext.extend(Ext.Component, {
                     src: Ext.BLANK_IMAGE_URL,
                     cls: cls
                 });
-                
+
                 me.setIconAlign(me.iconAlign);
             }
             else if (me.iconEl && cls != me.iconCls) {
@@ -410,12 +413,12 @@ Ext.Button = Ext.extend(Ext.Component, {
         me.iconCls = cls;
         return me;
     },
-    
+
     /**
      * Adds a CSS class to the button that changes the align of the button's icon (if one has been defined).  If no icon or iconClass has
      * been defined, it will only set the value of the {@link iconAlign} internal config.
      * @param {String} alignment The alignment you would like to align the button. Valid options are 'top', 'bottom', 'left', 'right'.
-     *                           If you pass false, it will remove the current iconAlign. If you pass nothing or an invalid alignment, 
+     *                           If you pass false, it will remove the current iconAlign. If you pass nothing or an invalid alignment,
      *                           it will default to the last used/default iconAlign.
      * @return {Ext.Button} this
      */
@@ -424,10 +427,10 @@ Ext.Button = Ext.extend(Ext.Component, {
             alignments = ['top', 'right', 'bottom', 'left'],
             alignment  = ((alignments.indexOf(alignment) == -1 || !alignment) && alignment !== false) ? me.iconAlign : alignment,
             i;
-        
+
         if (me.rendered && me.iconEl) {
             me.el.removeCls('x-iconalign-' + me.iconAlign);
-            
+
             if (alignment) me.el.addCls('x-iconalign-' + alignment);
         }
         me.iconAlign = (alignment === false) ? me.iconAlign : alignment;
@@ -441,7 +444,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setBadge : function(text) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.badgeEl && text) {
                 me.badgeEl = me.el.createChild({
@@ -512,7 +515,7 @@ Ext.Button = Ext.extend(Ext.Component, {
                     me.onTapCancel();
                 }
                 me.callHandler(e);
-                me.fireEvent('tap', me, e);                
+                me.fireEvent('tap', me, e);
             }, 10);
         }
     },

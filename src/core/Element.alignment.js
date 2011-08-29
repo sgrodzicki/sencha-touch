@@ -138,7 +138,7 @@ Ext.Element.addMethods({
         return [x, y];
     }
 
-    /**
+    /*
      * Anchors an element to another element and realigns it when the window is resized.
      * @param {Mixed} element The element to align to.
      * @param {String} position The position to align to.
@@ -175,7 +175,7 @@ Ext.Element.addMethods({
     //     action.call(me); // align immediately
     //     return me;
     // },
-    /**
+    /*
      * Remove any anchor to this element. See {@link #anchorTo}.
      * @return {Ext.Element} this
      */
@@ -207,7 +207,7 @@ Ext.Element.addMethods({
     //     }
     //     return anchor;
     // },
-    /**
+    /*
      * Aligns this element with another element relative to the specified anchor points. If the other element is the
      * document it aligns it to the viewport.
      * The position parameter is optional, and can be specified in any one of the following formats:

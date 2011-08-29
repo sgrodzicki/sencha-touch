@@ -58,7 +58,9 @@ Ext.util.Stateful = Ext.extend(Ext.util.Observable, {
      * @param {Mixed} value The value to set
      */
     set: function(fieldName, value) {
-        var fields = this.fields,
+        var me = this,
+            fields = me.fields,
+            modified = me.modified,
             convertFields = [],
             field, key, i;
         
@@ -80,12 +82,12 @@ Ext.util.Stateful = Ext.extend(Ext.util.Observable, {
                     continue;
                 }
                 
-                this.set(key, fieldName[key]);
+                me.set(key, fieldName[key]);
             }
             
             for (i = 0; i < convertFields.length; i++) {
                 field = convertFields[i];
-                this.set(field, fieldName[field]);
+                me.set(field, fieldName[field]);
             }
             
         } else {
@@ -93,16 +95,36 @@ Ext.util.Stateful = Ext.extend(Ext.util.Observable, {
                 field = fields.get(fieldName);
                 
                 if (field && field.convert) {
-                    value = field.convert(value, this);
+                    value = field.convert(value, me);
                 }
             }
             
-            this[this.persistanceProperty][fieldName] = value;
+            me[me.persistanceProperty][fieldName] = value;
 
-            this.dirty = true;
+            if (field && field.persist && !me.isEqual(currentValue, value)) {
+                if (me.isModified(fieldName)) {
+                    if (me.isEqual(modified[fieldName], value)) {
+                        // the original value in me.modified equals the new value, so the
+                        // field is no longer modified
+                        delete modified[fieldName];
+                        // we might have removed the last modified field, so check to see if
+                        // there are any modified fields remaining and correct me.dirty:
+                        me.dirty = false;
+                        for (key in modified) {
+                            if (modified.hasOwnProperty(key)){
+                                me.dirty = true;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    me.dirty = true;
+                    modified[fieldName] = currentValue;
+                }
+            }
 
-            if (!this.editing) {
-                this.afterEdit();
+            if (!me.editing) {
+                me.afterEdit();
             }
         }
     },

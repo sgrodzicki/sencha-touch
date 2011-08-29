@@ -10,7 +10,8 @@
  * <pre><code>&lt;script type="text/javascript" src="http:&#47;&#47;maps.google.com/maps/api/js?sensor=true"&gt;&lt/script&gt;</code></pre>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Map/screenshot.png" /></p>
+ *
+ * {@img Ext.Map/screenshot.png Ext.Map screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>

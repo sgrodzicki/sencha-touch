@@ -6,72 +6,50 @@
     <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
 </head>
 <body  onload="prettyPrint();">
-    <pre class="prettyprint lang-js"><div id="cls-Ext.form.Number"></div>/**
- * @class Ext.form.Number
- * @extends Ext.form.Text
- * <p>Wraps an HTML5 number field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
- * @xtype numberfield
+    <pre class="prettyprint lang-js"><div id="cls-Ext.util.Numbers"></div>/**
+ * @class Ext.util.Numbers
+ * @singleton
  */
-Ext.form.Number = Ext.extend(Ext.form.Text, {
-    ui: 'number',
 
-    inputType: 'number',
+Ext.util.Numbers = {
     
-    minValue : undefined,
+    // detect toFixed implementation bug in IE
+    toFixedBroken: (0.9).toFixed() != 1,
     
-    maxValue : undefined,
+    <div id="method-Ext.util.Numbers-constrain"></div>/**
+     * Checks whether or not the current number is within a desired range.  If the number is already within the
+     * range it is returned, otherwise the min or max value is returned depending on which side of the range is
+     * exceeded.  Note that this method returns the constrained value but does not change the current number.
+     * @param {Number} number The number to check
+     * @param {Number} min The minimum number in the range
+     * @param {Number} max The maximum number in the range
+     * @return {Number} The constrained value if outside the range, otherwise the current value
+     */
+    constrain : function(number, min, max) {
+        number = parseFloat(number);
+        if (!isNaN(min)) {
+            number = Math.max(number, min);
+        }
+        if (!isNaN(max)) {
+            number = Math.min(number, max);
+        }
+        return number;
+    },
     
-    stepValue : undefined,
-
-    renderTpl: [
-        '<tpl if="label"><div class="x-form-label"><span>{label}</span></div></tpl>',
-        '<tpl if="fieldEl"><div class="x-form-field-container">',
-            '<input id="{inputId}" type="{inputType}" name="{name}" class="{fieldCls}"',
-                '<tpl if="tabIndex">tabIndex="{tabIndex}" </tpl>',
-                '<tpl if="placeHolder">placeholder="{placeHolder}" </tpl>',
-                '<tpl if="style">style="{style}" </tpl>',
-                '<tpl if="minValue != undefined">min="{minValue}" </tpl>',
-                '<tpl if="maxValue != undefined">max="{maxValue}" </tpl>',
-                '<tpl if="stepValue != undefined">step="{stepValue}" </tpl>',
-                '<tpl if="autoComplete">autocomplete="{autoComplete}" </tpl>',
-                '<tpl if="autoCapitalize">autocapitalize="{autoCapitalize}" </tpl>',
-                '<tpl if="autoFocus">autofocus="{autoFocus}" </tpl>',
-            '/>',
-            '<tpl if="useMask"><div class="x-field-mask"></div></tpl>',
-            '</div></tpl>',
-        '<tpl if="useClearIcon"><div class="x-field-clear-container"><div class="x-field-clear x-hidden-visibility">&#215;</div><div></tpl>'
-    ],
-    
-    // @private
-    onRender : function() {
-        Ext.apply(this.renderData, {
-            maxValue : this.maxValue,
-            minValue : this.minValue,
-            stepValue : this.stepValue 
-        });
-        
-        Ext.form.Number.superclass.onRender.apply(this, arguments);
+    <div id="method-Ext.util.Numbers-toFixed"></div>/**
+     * Formats a number using fixed-point notation
+     * @param {Number} value The number to format
+     * @param {Number} precision The number of digits to show after the decimal point
+     */
+    toFixed : function(value, precision) {
+        if(Ext.util.Numbers.toFixedBroken) {
+            precision = precision || 0;
+            var pow = Math.pow(10, precision);
+            return Math.round(value * pow) / pow;
+        }
+        return value.toFixed(precision);
     }
-});
-
-Ext.reg('numberfield', Ext.form.Number);
-
-//<deprecated since=0.99>
-<div id="cls-Ext.form.NumberField"></div>/**
- * @class Ext.form.NumberField
- * @extends Ext.form.Number
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
-Ext.form.NumberField = Ext.extend(Ext.form.Number, {
-
-    constructor: function() {
-        console.warn("Ext.form.NumberField has been deprecated and will be removed in Sencha Touch 1.0. Please use Ext.form.Number instead");
-        Ext.form.NumberField.superclass.constructor.apply(this, arguments);
-    }
-});
-//</deprecated>
+};
 </pre>    
 </body>
 </html>

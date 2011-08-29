@@ -41,7 +41,7 @@ Ext.data.TwitterProxy = Ext.extend(Ext.data.ScriptTagProxy, {
         
         Ext.apply(params, {
             rpp: operation.limit,
-            page: operation.page
+            page: operation.page || 1
         });
         
         if (filter) {

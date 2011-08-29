@@ -1,5 +1,5 @@
 Sencha Touch - JavaScript Library
-Copyright (c) 2010, Sencha, Inc.
+Copyright (c) 2011, Sencha, Inc.
 All rights reserved.
 licensing@sencha.com
 

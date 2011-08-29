@@ -707,9 +707,7 @@ Ext.pluck(Ext.query("p"), "className"); // [el1.className, el2.className, ..., e
      * intended for arguments of type {@link Ext.Element} and {@link Ext.Component}, but any subclass of
      * {@link Ext.util.Observable} can be passed in.  Any number of elements and/or components can be
      * passed into this function in a single call as separate arguments.
-     * @param {Mixed} arg1 An {@link Ext.Element}, {@link Ext.Component}, or an Array of either of these to destroy
-     * @param {Mixed} arg2 (optional)
-     * @param {Mixed} etc... (optional)
+     * @param {Object...} args An {@link Ext.Element}, {@link Ext.Component}, or an Array of either of these to destroy
      */
     destroy : function() {
         var ln = arguments.length,
@@ -1589,7 +1587,9 @@ Ext.util.Stateful = Ext.extend(Ext.util.Observable, {
      * @param {Mixed} value The value to set
      */
     set: function(fieldName, value) {
-        var fields = this.fields,
+        var me = this,
+            fields = me.fields,
+            modified = me.modified,
             convertFields = [],
             field, key, i;
         
@@ -1611,12 +1611,12 @@ Ext.util.Stateful = Ext.extend(Ext.util.Observable, {
                     continue;
                 }
                 
-                this.set(key, fieldName[key]);
+                me.set(key, fieldName[key]);
             }
             
             for (i = 0; i < convertFields.length; i++) {
                 field = convertFields[i];
-                this.set(field, fieldName[field]);
+                me.set(field, fieldName[field]);
             }
             
         } else {
@@ -1624,16 +1624,36 @@ Ext.util.Stateful = Ext.extend(Ext.util.Observable, {
                 field = fields.get(fieldName);
                 
                 if (field && field.convert) {
-                    value = field.convert(value, this);
+                    value = field.convert(value, me);
                 }
             }
             
-            this[this.persistanceProperty][fieldName] = value;
+            me[me.persistanceProperty][fieldName] = value;
 
-            this.dirty = true;
+            if (field && field.persist && !me.isEqual(currentValue, value)) {
+                if (me.isModified(fieldName)) {
+                    if (me.isEqual(modified[fieldName], value)) {
+                        // the original value in me.modified equals the new value, so the
+                        // field is no longer modified
+                        delete modified[fieldName];
+                        // we might have removed the last modified field, so check to see if
+                        // there are any modified fields remaining and correct me.dirty:
+                        me.dirty = false;
+                        for (key in modified) {
+                            if (modified.hasOwnProperty(key)){
+                                me.dirty = true;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    me.dirty = true;
+                    modified[fieldName] = currentValue;
+                }
+            }
 
-            if (!this.editing) {
-                this.afterEdit();
+            if (!me.editing) {
+                me.afterEdit();
             }
         }
     },
@@ -2900,7 +2920,7 @@ var middleAged = people.filter('age', 24);
         return r;
     }
 });
-/**
+/*
  * This method calls {@link #item item()}.
  * Returns the item associated with the passed key OR index. Key has priority
  * over index.  This is the equivalent of calling {@link #key} first, then if
@@ -3070,7 +3090,7 @@ Ext.get('myInputField').on('keypress', function(){
  * also setup a delayed task for you to buffer events.</p>
  * @constructor The parameters to this constructor serve as defaults and are not required.
  * @param {Function} fn (optional) The default function to call.
- * @param {Object} scope The default scope (The <code><b>this</b></code> reference) in which the
+ * @param {Object} scope (optional) The default scope (The <code><b>this</b></code> reference) in which the
  * function is called. If not specified, <code>this</code> will refer to the browser window.
  * @param {Array} args (optional) The default Array of arguments.
  */
@@ -5351,7 +5371,6 @@ Ext.util.Format = {
      * Escapes the passed string for ' and \
      * @param {String} string The string to escape
      * @return {String} The escaped string
-     * @static
      */
     escape : function(string) {
         return string.replace(Ext.util.Format.escapeRe, "\\$1");
@@ -5404,7 +5423,6 @@ var s = Ext.util.Format.leftPad('123', 5, '0');
      * @param {Number} size The total length of the output string
      * @param {String} char (optional) The character with which to pad the original string (defaults to empty string " ")
      * @return {String} The padded string
-     * @static
      */
     leftPad : function (val, size, ch) {
         var result = String(val);
@@ -5427,7 +5445,6 @@ var s = Ext.util.Format.format('&lt;div class="{0}">{1}&lt;/div>', cls, text);
      * @param {String} value1 The value to replace token {0}
      * @param {String} value2 Etc...
      * @return {String} The formatted string
-     * @static
      */
     format : function (format) {
         var args = Ext.toArray(arguments, 1);

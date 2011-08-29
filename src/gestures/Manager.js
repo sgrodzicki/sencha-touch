@@ -127,7 +127,7 @@ Ext.gesture.Manager = new Ext.AbstractManager({
     },
 
     onTouchMove: function(e) {
-        if (!Ext.is.Android) {
+        if (Ext.is.MultiTouch) {
             e.preventDefault();
         }
 
@@ -166,10 +166,7 @@ Ext.gesture.Manager = new Ext.AbstractManager({
         }
     },
 
-    /**
-     * This listener is here to always ensure we stop all current gestures
-     * @private
-     */
+    // This listener is here to always ensure we stop all current gestures
     onTouchEnd: function(e) {
         if (Ext.is.Blackberry) {
             e.preventDefault();

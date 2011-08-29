@@ -4436,7 +4436,7 @@ store.sort('myField', 'DESC');
      * @param {Number} startIndex (optional) The index to start searching at
      * @param {Boolean} anyMatch (optional) True to match any part of the string, not just the beginning
      * @param {Boolean} caseSensitive (optional) True for case sensitive comparison
-     * @param {Boolean} exactMatch True to force exact match (^ and $ characters added to the regex). Defaults to false. 
+     * @param {Boolean} exactMatch (optional) True to force exact match (^ and $ characters added to the regex). Defaults to false. 
      * @return {Number} The matched index or -1
      */
     find : function(property, value, start, anyMatch, caseSensitive, exactMatch) {
@@ -4452,7 +4452,7 @@ store.sort('myField', 'DESC');
      * @param {Number} startIndex (optional) The index to start searching at
      * @param {Boolean} anyMatch (optional) True to match any part of the string, not just the beginning
      * @param {Boolean} caseSensitive (optional) True for case sensitive comparison
-     * @param {Boolean} exactMatch True to force exact match (^ and $ characters added to the regex). Defaults to false.
+     * @param {Boolean} exactMatch (optional) True to force exact match (^ and $ characters added to the regex). Defaults to false.
      * @return {Ext.data.Record} The matched record or null
      */
     findRecord : function() {
@@ -4837,9 +4837,7 @@ Ext.StoreMgr = Ext.apply(new Ext.util.MixedCollection(), {
     /**
      * Registers one or more Stores with the StoreMgr. You do not normally need to register stores
      * manually.  Any store initialized with a {@link Ext.data.Store#storeId} will be auto-registered. 
-     * @param {Ext.data.Store} store1 A Store instance
-     * @param {Ext.data.Store} store2 (optional)
-     * @param {Ext.data.Store} etc... (optional)
+     * @param {Ext.data.Store...} stores Variable number of Store instances
      */
     register : function() {
         for (var i = 0, s; (s = arguments[i]); i++) {
@@ -4849,9 +4847,7 @@ Ext.StoreMgr = Ext.apply(new Ext.util.MixedCollection(), {
 
     /**
      * Unregisters one or more Stores with the StoreMgr
-     * @param {String/Object} id1 The id of the Store, or a Store instance
-     * @param {String/Object} id2 (optional)
-     * @param {String/Object} etc... (optional)
+     * @param {String/Object...} ids Variable number of Store ID-s or instances
      */
     unregister : function() {
         for (var i = 0, s; (s = arguments[i]); i++) {
@@ -7015,7 +7011,7 @@ Ext.apply(Ext, {
     /**
      * Returns the current document body as an {@link Ext.Element}.
      * @ignore
-     * @memberOf Ext
+     * @member Ext
      * @return Ext.Element The document body
      */
     getHead : function() {

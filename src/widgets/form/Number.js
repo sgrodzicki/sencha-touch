@@ -3,16 +3,27 @@
  * @extends Ext.form.Text
  * <p>Wraps an HTML5 number field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype numberfield
+ * @alternateClassName Ext.form.NumberField
  */
 Ext.form.Number = Ext.extend(Ext.form.Text, {
     ui: 'number',
 
     inputType: 'number',
     
+    /**
+     * @cfg {Number} minValue The minimum value that this Number field can accept (defaults to undefined, e.g. no minimium)
+     */
     minValue : undefined,
     
+    /**
+     * @cfg {Number} minValue The maximum value that this Number field can accept (defaults to undefined, e.g. no maximum)
+     */
     maxValue : undefined,
     
+    /**
+     * @cfg {Number} stepValue The amount by which the field is incremented or decremented each time the spinner is tapped.
+     * Defaults to undefined, which means that the field goes up or down by 1 each time the spinner is tapped
+     */
     stepValue : undefined,
 
     renderTpl: [
@@ -49,13 +60,7 @@ Ext.form.Number = Ext.extend(Ext.form.Text, {
 Ext.reg('numberfield', Ext.form.Number);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.NumberField
- * @extends Ext.form.Number
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.NumberField = Ext.extend(Ext.form.Number, {
 
     constructor: function() {

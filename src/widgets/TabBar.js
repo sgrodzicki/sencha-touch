@@ -5,7 +5,8 @@
  * <p>Used in the {@link Ext.TabPanel} component to display {@link Ext.Tab} components.</p>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.TabBar/screenshot.png" /></p>
+ *
+ * {@img Ext.TabBar/screenshot.png Ext.TabBar screenshot}
  * 
  * <h2>Example code:</h2>
 <pre><code>

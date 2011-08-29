@@ -28,6 +28,7 @@ slider.setValue(8); //will update the value and move the thumb;
 slider.getValue(); //returns 8
    </code></pre>
  * @xtype sliderfield
+ * @xtype slider
  */
 Ext.form.Slider = Ext.extend(Ext.form.Field, {
     ui: 'slider',
@@ -456,11 +457,12 @@ Ext.form.Slider = Ext.extend(Ext.form.Field, {
 Ext.reg('sliderfield', Ext.form.Slider);
 
 //<deprecated since=1.0>
-Ext.reg('sliderfield', Ext.form.Slider);
+Ext.reg('slider', Ext.form.Slider);
 //</deprecated>
 /**
  * @class Ext.form.Slider.Thumb
  * @extends Ext.form.Field
+ * @xtype sliderthumb
  * @xtype thumb
  * @ignore
  * Utility class used by Ext.form.Slider - should never need to be used directly.

@@ -22,22 +22,25 @@ Ext.lib.Component = Ext.extend(Ext.util.Observable, {
     renderTpl: null,
 
     /**
-     * @cfg {Object} renderSelectors.
-     * <p>An object containing properties specifying {@link Ext.DomQuery DomQuery} selectors which identify child elements
-     * created by the render process.</p>
-     * <p>After the Component's internal structure is rendered according to the {@link renderTpl}, this object is iterated through,
-     * and the found Elements are added as properties to the Component using the <code>renderSelector</code> property name.</p>
-     * <p>For example, a Component which rendered an image, and description into its element might use the following properties
-     * coded into its prototype:<pre><code>
-renderTpl: '<img src="{imageUrl}" class="x-image-component-img"><div class="x-image-component-desc">{description}</div>',
-
-renderSelectors: {
-    image: 'img.x-image-component-img',
-    descEl: 'div.x-image-component-desc'
-}
-</code></pre>
-     * <p>After rendering, the Component would have a property <code>image</code> referencing its child <code>img</code> Element,
-     * and a property <code>descEl</code> referencing the <code>div</code> Element which contains the description.</p>
+     * @cfg {Object} renderSelectors
+     * An object containing properties specifying {@link Ext.DomQuery DomQuery} selectors which identify child elements
+     * created by the render process.
+     *
+     * After the Component's internal structure is rendered according to the {@link renderTpl}, this object is iterated through,
+     * and the found Elements are added as properties to the Component using the <code>renderSelector</code> property name.
+     *
+     * For example, a Component which rendered an image, and description into its element might use the following properties
+     * coded into its prototype:
+     *
+     *     renderTpl: '<img src="{imageUrl}" class="x-image-component-img"><div class="x-image-component-desc">{description}</div>',
+     *
+     *     renderSelectors: {
+     *         image: 'img.x-image-component-img',
+     *         descEl: 'div.x-image-component-desc'
+     *     }
+     *
+     * After rendering, the Component would have a property <code>image</code> referencing its child `img` Element,
+     * and a property `descEl` referencing the `div` Element which contains the description.
      */
 
     /**
@@ -158,29 +161,29 @@ renderSelectors: {
         });
      </code></pre>
      */
-    
+
     /**
      * @cfg {Number} width
      * The width of this component in pixels.
      */
-    
+
     /**
      * @cfg {Number} height
      * The height of this component in pixels.
      */
-    
+
     /**
      * @cfg {Number/String} border
      * Specifies the border for this component. The border can be a single numeric value to apply to all sides or
      * it can be a CSS style specification for each style, for example: '10 5 3 10'.
      */
-    
+
     /**
      * @cfg {Number/String} padding
      * Specifies the padding for this component. The padding can be a single numeric value to apply to all sides or
      * it can be a CSS style specification for each style, for example: '10 5 3 10'.
      */
-    
+
     /**
      * @cfg {Number/String} margin
      * Specifies the margin for this component. The margin can be a single numeric value to apply to all sides or
@@ -282,7 +285,7 @@ renderSelectors: {
      // @private
      allowDomMove: true,
      autoShow: false,
-     
+
      autoRender: false,
 
      needsLayout: false,
@@ -482,7 +485,7 @@ renderSelectors: {
             this.render(this.renderTo);
             delete this.renderTo;
         }
-        
+
         //<debug>
         if (Ext.isDefined(this.disabledClass)) {
             throw "Component: disabledClass has been deprecated. Please use disabledCls.";
@@ -492,7 +495,7 @@ renderSelectors: {
 
     initComponent: Ext.emptyFn,
     applyToMarkup: Ext.emptyFn,
-    
+
     show: Ext.emptyFn,
 
     onShow : function() {
@@ -502,7 +505,7 @@ renderSelectors: {
             this.doComponentLayout(needsLayout.width, needsLayout.height, needsLayout.isSetSize);
         }
     },
-    
+
     // @private
     initPlugin : function(plugin) {
         if (plugin.ptype && typeof plugin.init != 'function') {
@@ -871,7 +874,7 @@ var owningTabContainer = grid.up('tabcontainer');
      * @returns The next sibling (or the next sibling which matches the selector). Returns null if there is no matching sibling.
      */
     nextSibling: function(selector) {
-        var o = this.ownerCt, it, last, idx, c; 
+        var o = this.ownerCt, it, last, idx, c;
         if (o) {
             it = o.items;
             idx = it.indexOf(this) + 1;
@@ -900,7 +903,7 @@ var owningTabContainer = grid.up('tabcontainer');
      * @returns The previous sibling (or the previous sibling which matches the selector). Returns null if there is no matching sibling.
      */
     previousSibling: function(selector) {
-        var o = this.ownerCt, it, idx, c; 
+        var o = this.ownerCt, it, idx, c;
         if (o) {
             it = o.items;
             idx = it.indexOf(this);
@@ -1132,7 +1135,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     isDisabled : function() {
         return this.disabled;
     },
-    
+
     /**
      * Enable or disable the component.
      * @param {Boolean} disabled
@@ -1148,7 +1151,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     isHidden : function() {
         return this.hidden;
     },
-    
+
     /**
      * Adds a CSS class to the top level element representing this component.
      * @returns {Ext.Component} Returns the Component to allow method chaining.
@@ -1170,7 +1173,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         throw "Component: addClass has been deprecated. Please use addCls.";
     },
     //</debug>
-    
+
     /**
      * Removes a CSS class from the top level element representing this component.
      * @returns {Ext.Component} Returns the Component to allow method chaining.
@@ -1188,7 +1191,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         }
         return me;
     },
-    
+
     //<debug>
     removeClass : function() {
         throw "Component: removeClass has been deprecated. Please use removeCls.";
@@ -1253,11 +1256,11 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     /**
      * Method to determine whether this Component is draggable.
      * @return {Boolean} the draggable state of this component.
-     */    
+     */
     isDraggable : function() {
         return !!this.draggable;
     },
-    
+
     /**
      * Method to determine whether this Component is droppable.
      * @return {Boolean} the droppable state of this component.
@@ -1402,7 +1405,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         this.componentLayout = layout;
         layout.setOwner(this);
     },
-    
+
     getComponentLayout : function() {
         if (!this.componentLayout || !this.componentLayout.isLayout) {
             this.setComponentLayout(Ext.layout.LayoutManager.create(this.componentLayout, 'autocomponent'));
@@ -1502,7 +1505,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
      * @param {Boolean} targetEl True to mask the targetEl of this Component instead of the this.el.
      * For example, setting this to true on a Panel will cause only the body to be masked. (defaults to false)
      * @return {Ext.LoadMask} The LoadMask instance that has just been shown.
-     */    
+     */
     setLoading : function(load, targetEl) {
         if (this.rendered) {
             if (load) {
@@ -1513,7 +1516,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
                 this.loadMask = null;
             }
         }
-        
+
         return this.loadMask;
     },
 
@@ -3449,7 +3452,7 @@ var panel = new Ext.Panel({
 
     /**
      * Attempts a default component lookup (see {@link Ext.Container#getComponent}). If the component is not found in the normal
-     * items, the dockedItems are searched and the matched component (if any) returned (see {@loink #getDockedComponent}).
+     * items, the dockedItems are searched and the matched component (if any) returned (see {@link #getDockedComponent}).
      * @param {String/Number} comp The docked component id or itemId to find
      * @return {Ext.Component} The docked component, if found
      */
@@ -3658,7 +3661,8 @@ Ext.reg('panel', Ext.Panel);
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Panel/screenshot.png" /></p>
+ *
+ * {@img Ext.Panel/screenshot.png Ext.Panel screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -3707,15 +3711,16 @@ Ext.reg('panel', Ext.Panel);
  * <ul class="list">
  *   <li>{@link #ui} (defines the style of the button)</li>
  * </ul>
- * 
+ *
  * <h2>Useful Methods</h2>
  * <ul class="list">
  *   <li>{@link #handler} (method to be called when the button is tapped)</li>
  * </ul>
- * 
+ *
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Button/screenshot.png" /></p>
- * 
+ *
+ * {@img Ext.Button/screenshot.png Ext.Button screenshot}
+ *
  * <h2>Example code:</h2>
 <pre><code>
 // an array of buttons (using xtypes) to be included in the panel below
@@ -3812,7 +3817,7 @@ Ext.Button = Ext.extend(Ext.Component, {
              * @param {Ext.EventObject} e
              */
             'tap',
-            
+
             /**
              * @event beforetap
              * Fires when the button is tapped but before we call the handler or fire the tap event.
@@ -3840,13 +3845,13 @@ Ext.Button = Ext.extend(Ext.Component, {
      * @cfg {String} icon The path to an image to display in the button (the image will be set as the background-image
      * CSS property of the button by default, so if you want a mixed icon/text button, set cls:'x-btn-text-icon')
      */
-     
+
     /**
-     * @cfg {String} iconAlign The alignment of the buttons icon if one has been defined. Valid options 
+     * @cfg {String} iconAlign The alignment of the buttons icon if one has been defined. Valid options
      * are 'top', 'right', 'bottom', 'left' (defaults to 'left').
      */
     iconAlign: 'left',
-    
+
     /**
      * @cfg {Function} handler A function called when the button is clicked (can be used instead of click event).
      * The handler is passed the following parameters:<div class="mdetail-params"><ul>
@@ -3899,7 +3904,9 @@ Ext.Button = Ext.extend(Ext.Component, {
 
     /**
      * @cfg {String} ui
-     * Determines the UI look and feel of the button. Valid options are 'normal', 'back', 'round', 'action', 'forward'.
+     * Determines the UI look and feel of the button. Valid options are 'normal', 'back', 'round', 'action', 'forward',
+     * 'decline', 'confirm' and 'small'. The 'round' and 'small' UIs can also be appended to the other options - for
+     * example 'confirm-small', 'action-round', 'forward-small' etc
      * Defaults to 'normal'.
      */
     ui: 'normal',
@@ -3917,14 +3924,14 @@ Ext.Button = Ext.extend(Ext.Component, {
      * Settings this to true defaults to 100ms
      */
     pressedDelay: 0,
-    
+
     /**
      * @cfg {String} iconMaskCls
      * CSS class to be added to the iconEl when the iconMask config is set to true.
      * Defaults to 'x-icon-mask'
      */
     iconMaskCls: 'x-icon-mask',
-    
+
     /**
      * @cfg {Boolean} iconMask
      * Whether or not to mask the icon with the iconMaskCls configuration. Defaults to false.
@@ -3934,7 +3941,7 @@ Ext.Button = Ext.extend(Ext.Component, {
     // @private
     afterRender : function(ct, position) {
         var me = this;
-        
+
         Ext.Button.superclass.afterRender.call(me, ct, position);
 
         var text = me.text,
@@ -3947,7 +3954,7 @@ Ext.Button = Ext.extend(Ext.Component, {
         me.setText(text);
         me.setIcon(icon);
         me.setIconClass(iconCls);
-        
+
         if (me.iconMask && me.iconEl) {
             me.iconEl.addCls(me.iconMaskCls);
         }
@@ -3957,12 +3964,12 @@ Ext.Button = Ext.extend(Ext.Component, {
     // @private
     initEvents : function() {
         var me = this;
-        
+
         Ext.Button.superclass.initEvents.call(me);
 
         me.mon(me.el, {
             scope: me,
-            
+
             tap      : me.onPress,
             tapstart : me.onTapStart,
             tapcancel: me.onTapCancel
@@ -4014,7 +4021,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setText: function(text) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.textEl && text) {
                 me.textEl = me.el.createChild({
@@ -4045,7 +4052,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setIcon: function(icon) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.iconEl && icon) {
                 me.iconEl = me.el.createChild({
@@ -4053,7 +4060,7 @@ Ext.Button = Ext.extend(Ext.Component, {
                     src: Ext.BLANK_IMAGE_URL,
                     style: 'background-image: ' + (icon ? 'url(' + icon + ')' : '')
                 });
-                
+
                 me.setIconAlign(me.iconAlign);
             }
             else if (me.iconEl && icon != me.icon) {
@@ -4080,7 +4087,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setIconClass: function(cls) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.iconEl && cls) {
                 me.iconEl = me.el.createChild({
@@ -4088,7 +4095,7 @@ Ext.Button = Ext.extend(Ext.Component, {
                     src: Ext.BLANK_IMAGE_URL,
                     cls: cls
                 });
-                
+
                 me.setIconAlign(me.iconAlign);
             }
             else if (me.iconEl && cls != me.iconCls) {
@@ -4109,12 +4116,12 @@ Ext.Button = Ext.extend(Ext.Component, {
         me.iconCls = cls;
         return me;
     },
-    
+
     /**
      * Adds a CSS class to the button that changes the align of the button's icon (if one has been defined).  If no icon or iconClass has
      * been defined, it will only set the value of the {@link iconAlign} internal config.
      * @param {String} alignment The alignment you would like to align the button. Valid options are 'top', 'bottom', 'left', 'right'.
-     *                           If you pass false, it will remove the current iconAlign. If you pass nothing or an invalid alignment, 
+     *                           If you pass false, it will remove the current iconAlign. If you pass nothing or an invalid alignment,
      *                           it will default to the last used/default iconAlign.
      * @return {Ext.Button} this
      */
@@ -4123,10 +4130,10 @@ Ext.Button = Ext.extend(Ext.Component, {
             alignments = ['top', 'right', 'bottom', 'left'],
             alignment  = ((alignments.indexOf(alignment) == -1 || !alignment) && alignment !== false) ? me.iconAlign : alignment,
             i;
-        
+
         if (me.rendered && me.iconEl) {
             me.el.removeCls('x-iconalign-' + me.iconAlign);
-            
+
             if (alignment) me.el.addCls('x-iconalign-' + alignment);
         }
         me.iconAlign = (alignment === false) ? me.iconAlign : alignment;
@@ -4140,7 +4147,7 @@ Ext.Button = Ext.extend(Ext.Component, {
      */
     setBadge : function(text) {
         var me = this;
-        
+
         if (me.rendered) {
             if (!me.badgeEl && text) {
                 me.badgeEl = me.el.createChild({
@@ -4211,7 +4218,7 @@ Ext.Button = Ext.extend(Ext.Component, {
                     me.onTapCancel();
                 }
                 me.callHandler(e);
-                me.fireEvent('tap', me, e);                
+                me.fireEvent('tap', me, e);
             }, 10);
         }
     },
@@ -4264,7 +4271,8 @@ Ext.reg('button', Ext.Button);
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.SegmentedButton/screenshot.png" /></p>
+ *
+ * {@img Ext.SegmentedButton/screenshot.png Ext.SegmentedButton screenshot}
  * 
  * <h2>Example usage:</h2>
  * <pre><code>
@@ -6078,7 +6086,8 @@ Ext.DataView.override({
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.List/screenshot.png" /></p>
+ *
+ * {@img Ext.List/screenshot.png Ext.List screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -6697,7 +6706,8 @@ Ext.reg('list', Ext.List);
  * the <tt>{@link #index}</tt> event.</p>
  *
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.IndexBar/screenshot.png" /></p>
+ *
+ * {@img Ext.IndexBar/screenshot.png Ext.IndexBar screenshot}
  * 
  * <h2>Example code:</h2>
  * <p>Here is an example of the usage in a {@link Ext.List}:</p>
@@ -7028,7 +7038,8 @@ Ext.regModel('IndexBarModel', {
  * <p>The {@link #defaultType} of Toolbar's is '{@link Ext.Button button}'.</p>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Toolbar/screenshot.png" /></p>
+ *
+ * {@img Ext.Toolbar/screenshot.png Ext.Toolbar screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -7205,7 +7216,8 @@ Ext.reg('spacer', Ext.Spacer);
  * transitions for popup or side-anchored sliding Panels.</p>
  *
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Sheet/screenshot.png" /></p>
+ *
+ * {@img Ext.Sheet/screenshot.png Ext.Sheet screenshot}
  * 
  * <h2>Example usage:</h2>
  * <pre><code>
@@ -7417,7 +7429,8 @@ Ext.reg('sheet', Ext.Sheet);
  * <p>A Button Sheet class designed to popup or slide/anchor a series of buttons.</p>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.ActionSheet/screenshot.png" /></p>
+ *
+ * {@img Ext.ActionSheet/screenshot.png Ext.ActionSheet screenshot}
  *
  * <h2>Example code:</h2>
  * <pre><code>
@@ -7465,7 +7478,8 @@ Ext.reg('actionsheet', Ext.ActionSheet);
  * <p>Used in the {@link Ext.TabPanel} component to display {@link Ext.Tab} components.</p>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.TabBar/screenshot.png" /></p>
+ *
+ * {@img Ext.TabBar/screenshot.png Ext.TabBar screenshot}
  * 
  * <h2>Example code:</h2>
 <pre><code>
@@ -7739,7 +7753,8 @@ Ext.reg('tab', Ext.Tab);
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.TabPanel/screenshot.png" /></p>
+ *
+ * {@img Ext.TabPanel/screenshot.png Ext.TabPanel screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -7890,7 +7905,8 @@ Ext.reg('tabpanel', Ext.TabPanel);
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Carousel/screenshot.png" /></p>
+ *
+ * {@img Ext.Carousel/screenshot.png Ext.Carousel screenshot}
  * 
  * <h2>Example code:</h2>
 <pre><code>
@@ -8437,7 +8453,8 @@ Ext.reg('carouselindicator', Ext.Carousel.Indicator);
  * <pre><code>&lt;script type="text/javascript" src="http:&#47;&#47;maps.google.com/maps/api/js?sensor=true"&gt;&lt/script&gt;</code></pre>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Map/screenshot.png" /></p>
+ *
+ * {@img Ext.Map/screenshot.png Ext.Map screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -8825,6 +8842,27 @@ var nestedList = new Ext.NestedList({
     store: store
 });</code></pre>
  *
+ * <u>Using a Detail Card</u>
+ * 
+ * Often it is useful to show a "details" card for each node - this is a card generated at runtime which is displayed
+ * when the user taps on a leaf node. Here's how we can do this (using the same store as above):
+ * 
+<pre><code>
+new Ext.NestedList({
+    fullscreen: true,
+    title: 'Groceries',
+    displayField: 'text',
+    store: store,
+
+    getDetailCard: function(recordNode, parentNode) {
+        return new Ext.Panel({
+            title: 'Details about ' + recordNode.text,
+            html: recordNode.text + ' is great'
+        });
+    }
+});
+</code></pre>
+ * 
  * @xtype nestedlist
  */
 Ext.NestedList = Ext.extend(Ext.Panel, {
@@ -8981,9 +9019,10 @@ Ext.NestedList = Ext.extend(Ext.Panel, {
      */
 
     /**
-     * Implement getDetailCard to provide a final card for leaf nodes when useDetailCard
-     * is enabled. getDetailCard will be passed the currentRecord and the parentRecord.
-     * The default implementation will return false
+     * Implement getDetailCard to provide a final card for leaf nodes. This is useful when you want to display details
+     * about each node, instead of simply reaching the listing all of the nodes at the bottom level of the tree. See
+     * the intro docs for sample usage.
+     * The default implementation will return false, which means no detail card will be inserted
      * @param {Ext.data.Record} record
      * @param {Ext.data.Record} parentRecord
      */
@@ -9975,7 +10014,8 @@ Ext.reg('pickerslot', Ext.Picker.Slot);
  * </ul>
  *
  * <h2>Screenshot:</h2>
-  * <p><img src="doc_resources/Ext.DatePicker/screenshot.png" /></p>
+ *
+ * {@img Ext.DatePicker/screenshot.png Ext.DatePicker screenshot}
  *
  * <h2>Example code:</h2>
  *
@@ -10343,7 +10383,8 @@ Ext.reg('media', Ext.Media);
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Video/screenshot.png" /></p>
+ *
+ * {@img Ext.Video/screenshot.png Ext.Video screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -10436,7 +10477,8 @@ Ext.reg('video', Ext.Video);
  * </ul>
  * 
  * <h2>Screenshot:</h2>
- * <p><img src="doc_resources/Ext.Audio/screenshot.png" /></p>
+ *
+ * {@img Ext.Audio/screenshot.png Ext.Audio screenshot}
  * 
  * <h2>Example code:</h2>
  * <pre><code>
@@ -10513,7 +10555,8 @@ Ext.reg('audio', Ext.Audio);
  * (see the <code>fn</code> configuration option parameter for the {@link #show show} method for more details).</p>
  * 
  * <h2>Screenshot</h2>
- * <p><img src="doc_resources/Ext.MessageBox/screenshot.png" /></p>
+ *
+ * {@img Ext.MessageBox/screenshot.png Ext.MessageBox screenshot}
  * 
  * <h2>Example usage:</h2>
  * <pre><code>
@@ -10890,7 +10933,7 @@ Ext.Msg.show({
      * @param {Boolean/Number} multiLine (optional) True to create a multiline textbox using the defaultTextHeight
      * property, or the height in pixels to create the textbox (defaults to false / single-line)
      * @param {String} value (optional) Default value of the text input element (defaults to '')
-     * @param {Object} promptConfig <div class="sub-desc">(optional) A hash collection of input attribute values.<div class="sub-desc">Specified values may include:<ul>
+     * @param {Object} promptConfig (optional) <div class="sub-desc">(optional) A hash collection of input attribute values.<div class="sub-desc">Specified values may include:<ul>
      * <li><tt>focus</tt> : Boolean <div class="sub-desc"><tt>true</tt> to assert initial input focus (defaults to false)</div></li>
      * <li><tt>placeholder</tt> : String <div class="sub-desc">String value rendered when the input field is empty (defaults to empty string)</div></li>
      * <li><tt>autocapitalize</tt> : String/Boolean <div class="sub-desc"><tt>true/on</tt> to capitalize the first letter of each word in the input value (defaults to 'off')</div></li>
@@ -11067,6 +11110,7 @@ var user = Ext.ModelMgr.create({
 
 form.load(user);
 </code></pre>
+ * @xtype formpanel
  * @xtype form
  */
 Ext.form.FormPanel = Ext.extend(Ext.Panel, {
@@ -12163,6 +12207,7 @@ slider.setValue(8); //will update the value and move the thumb;
 slider.getValue(); //returns 8
    </code></pre>
  * @xtype sliderfield
+ * @xtype slider
  */
 Ext.form.Slider = Ext.extend(Ext.form.Field, {
     ui: 'slider',
@@ -12591,11 +12636,12 @@ Ext.form.Slider = Ext.extend(Ext.form.Field, {
 Ext.reg('sliderfield', Ext.form.Slider);
 
 //<deprecated since=1.0>
-Ext.reg('sliderfield', Ext.form.Slider);
+Ext.reg('slider', Ext.form.Slider);
 //</deprecated>
 /**
  * @class Ext.form.Slider.Thumb
  * @extends Ext.form.Field
+ * @xtype sliderthumb
  * @xtype thumb
  * @ignore
  * Utility class used by Ext.form.Slider - should never need to be used directly.
@@ -12653,6 +12699,7 @@ Ext.reg('thumb', Ext.form.Slider.Thumb);
  * <p>Specialized Slider with a single thumb and only two values. By default the toggle component can
  * be switched between the values of 0 and 1.</p>
  * @xtype togglefield
+ * @xtype toggle
  */
 Ext.form.Toggle = Ext.extend(Ext.form.Slider, {
     minValue: 0,
@@ -12753,6 +12800,7 @@ Ext.form.Toggle.Thumb = Ext.extend(Ext.form.Slider.Thumb, {
  * @extends Ext.form.Field
  * <p>Simple text input field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype textfield
+ * @alternateClassName Ext.form.TextField
  */
 Ext.form.Text = Ext.extend(Ext.form.Field, {
     ui: 'text',
@@ -13111,13 +13159,7 @@ Ext.form.Text = Ext.extend(Ext.form.Field, {
 
 Ext.reg('textfield', Ext.form.Text);
 
-/**
- * @class Ext.form.TextField
- * @extends Ext.form.Text
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.TextField = Ext.extend(Ext.form.Text, {
     constructor: function() {
         console.warn("Ext.form.TextField has been deprecated and will be removed in Sencha Touch 1.0. Please use Ext.form.Text instead");
@@ -13130,6 +13172,7 @@ Ext.form.TextField = Ext.extend(Ext.form.Text, {
  * @extends Ext.form.Text
  * <p>Wraps an HTML5 password field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype passwordfield
+ * @alternateClassName Ext.form.PasswordField
  */
 Ext.form.Password = Ext.extend(Ext.form.Text, {
     inputType: 'password',
@@ -13139,13 +13182,7 @@ Ext.form.Password = Ext.extend(Ext.form.Text, {
 Ext.reg('passwordfield', Ext.form.Password);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.PasswordField
- * @extends Ext.form.Password
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.PasswordField = Ext.extend(Ext.form.Password, {
 
     constructor: function() {
@@ -13159,6 +13196,7 @@ Ext.form.PasswordField = Ext.extend(Ext.form.Password, {
  * @extends Ext.form.Text
  * <p>Wraps an HTML5 email field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype emailfield
+ * @alternateClassName Ext.form.EmailField
  */
 Ext.form.Email = Ext.extend(Ext.form.Text, {
     inputType: 'email',
@@ -13169,13 +13207,7 @@ Ext.form.Email = Ext.extend(Ext.form.Text, {
 Ext.reg('emailfield', Ext.form.Email);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.EmailField
- * @extends Ext.form.Email
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.EmailField = Ext.extend(Ext.form.Email, {
 
     constructor: function() {
@@ -13189,6 +13221,7 @@ Ext.form.EmailField = Ext.extend(Ext.form.Email, {
  * @extends Ext.form.Text
  * Wraps an HTML5 url field. See {@link Ext.form.FormPanel FormPanel} for example usage.
  * @xtype urlfield
+ * @alternateClassName Ext.form.UrlField
  */
 Ext.form.Url = Ext.extend(Ext.form.Text, {
     inputType: 'url',
@@ -13199,13 +13232,7 @@ Ext.form.Url = Ext.extend(Ext.form.Text, {
 Ext.reg('urlfield', Ext.form.Url);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.UrlField
- * @extends Ext.form.Url
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.UrlField = Ext.extend(Ext.form.Url, {
 
     constructor: function() {
@@ -13219,6 +13246,7 @@ Ext.form.UrlField = Ext.extend(Ext.form.Url, {
  * @extends Ext.form.Text
  * Wraps an HTML5 search field. See {@link Ext.form.FormPanel FormPanel} for example usage.
  * @xtype searchfield
+ * @alternateClassName Ext.form.SearchField
  */
 Ext.form.Search = Ext.extend(Ext.form.Text, {
     inputType: 'search'
@@ -13230,13 +13258,7 @@ Ext.form.Search = Ext.extend(Ext.form.Text, {
 Ext.reg('searchfield', Ext.form.Search);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.SearchField
- * @extends Ext.form.Search
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.SearchField = Ext.extend(Ext.form.Search, {
 
     constructor: function() {
@@ -13250,16 +13272,27 @@ Ext.form.SearchField = Ext.extend(Ext.form.Search, {
  * @extends Ext.form.Text
  * <p>Wraps an HTML5 number field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype numberfield
+ * @alternateClassName Ext.form.NumberField
  */
 Ext.form.Number = Ext.extend(Ext.form.Text, {
     ui: 'number',
 
     inputType: 'number',
     
+    /**
+     * @cfg {Number} minValue The minimum value that this Number field can accept (defaults to undefined, e.g. no minimium)
+     */
     minValue : undefined,
     
+    /**
+     * @cfg {Number} minValue The maximum value that this Number field can accept (defaults to undefined, e.g. no maximum)
+     */
     maxValue : undefined,
     
+    /**
+     * @cfg {Number} stepValue The amount by which the field is incremented or decremented each time the spinner is tapped.
+     * Defaults to undefined, which means that the field goes up or down by 1 each time the spinner is tapped
+     */
     stepValue : undefined,
 
     renderTpl: [
@@ -13296,13 +13329,7 @@ Ext.form.Number = Ext.extend(Ext.form.Text, {
 Ext.reg('numberfield', Ext.form.Number);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.NumberField
- * @extends Ext.form.Number
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.NumberField = Ext.extend(Ext.form.Number, {
 
     constructor: function() {
@@ -13325,6 +13352,7 @@ new Ext.form.Spinner({
 });
 </code></pre>
  * @xtype spinnerfield
+ * @alternateClassName Ext.form.SpinnerField
  */
 Ext.form.Spinner = Ext.extend(Ext.form.Number, {
 
@@ -13571,13 +13599,7 @@ Ext.form.Spinner = Ext.extend(Ext.form.Number, {
 Ext.reg('spinnerfield', Ext.form.Spinner);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.SpinnerField
- * @extends Ext.form.Spinner
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.SpinnerField = Ext.extend(Ext.form.Spinner, {
 
     constructor: function() {
@@ -13591,6 +13613,8 @@ Ext.form.SpinnerField = Ext.extend(Ext.form.Spinner, {
  * @extends Ext.form.Field
  * <p>Wraps a hidden field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype hiddenfield
+ * @xtype hidden
+ * @alternateClassName Ext.form.HiddenField
  */
 Ext.form.Hidden = Ext.extend(Ext.form.Field, {
     ui: 'hidden',
@@ -13603,13 +13627,7 @@ Ext.form.Hidden = Ext.extend(Ext.form.Field, {
 Ext.reg('hiddenfield', Ext.form.Hidden);
 
 
-/**
- * @class Ext.form.HiddenField
- * @extends Ext.form.Hidden
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.HiddenField = Ext.extend(Ext.form.Hidden, {
 
     constructor: function() {
@@ -13629,6 +13647,7 @@ Ext.reg('hidden', Ext.form.Hidden);
  * @constructor
  * @param {Object} config Optional config object
  * @xtype checkboxfield
+ * @xtype checkbox
  */
 Ext.form.Checkbox = Ext.extend(Ext.form.Field, {
     ui: 'checkbox',
@@ -13851,6 +13870,7 @@ Ext.reg('checkbox', Ext.form.Checkbox);
  * Creates a new Radio
  * @param {Object} config Configuration options
  * @xtype radiofield
+ * @xtype radio
  */
 Ext.form.Radio = Ext.extend(Ext.form.Checkbox, {
     inputType: 'radio',
@@ -13922,6 +13942,7 @@ new Ext.form.Select({
 });
 </code></pre>
  * @xtype selectfield
+ * @xtype select
  */
 Ext.form.Select = Ext.extend(Ext.form.Text, {
     ui: 'select',
@@ -14086,7 +14107,13 @@ Ext.form.Select = Ext.extend(Ext.form.Text, {
     // @private
     showComponent: function() {
         if (Ext.is.Phone) {
-            this.getPicker().show();
+            var picker = this.getPicker(),
+                name   = this.name,
+                value  = {};
+                
+            value[name] = this.getValue();
+            picker.show();
+            picker.setValue(value);
         }
         else {
             var listPanel = this.getListPanel(),
@@ -14203,6 +14230,7 @@ Ext.reg('select', Ext.form.Select);
  * @extends Ext.form.Text
  * <p>Wraps a textarea. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype textareafield
+ * @xtype textarea
  */
 Ext.form.TextArea = Ext.extend(Ext.form.Text, {
     ui: 'textarea',
@@ -14255,6 +14283,7 @@ Ext.reg('textarea', Ext.form.TextArea);
  * @extends Ext.form.Field
  * <p>Specialized field which has a button which when pressed, shows a {@link Ext.DatePicker}.</p>
  * @xtype datepickerfield
+ * @alternateClassName Ext.form.DatePickerField
  */
 Ext.form.DatePicker = Ext.extend(Ext.form.Field, {
     ui: 'select',
@@ -14407,13 +14436,7 @@ Ext.form.DatePicker = Ext.extend(Ext.form.Field, {
 Ext.reg('datepickerfield', Ext.form.DatePicker);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.DatePickerField
- * @extends Ext.form.DatePicker
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.DatePickerField = Ext.extend(Ext.form.DatePicker, {
 
     constructor: function() {

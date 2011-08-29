@@ -3,6 +3,7 @@
  * @extends Ext.form.Text
  * <p>Wraps an HTML5 password field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype passwordfield
+ * @alternateClassName Ext.form.PasswordField
  */
 Ext.form.Password = Ext.extend(Ext.form.Text, {
     inputType: 'password',
@@ -12,13 +13,7 @@ Ext.form.Password = Ext.extend(Ext.form.Text, {
 Ext.reg('passwordfield', Ext.form.Password);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.PasswordField
- * @extends Ext.form.Password
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.PasswordField = Ext.extend(Ext.form.Password, {
 
     constructor: function() {

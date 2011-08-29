@@ -113,7 +113,7 @@ Ext.Anim = Ext.extend(Object, {
 
         Ext.Anim.superclass.constructor.call(this);
 
-        this.running = [];
+        this.running = {};
     },
 
     initConfig : function(el, runConfig) {
@@ -202,7 +202,6 @@ Ext.Anim = Ext.extend(Object, {
 
             // Bind our listener that fires after the animation ends
             el.on('webkitTransitionEnd', me.onTransitionEnd, me, {
-                single: true,
                 config: config,
                 after: after
             });
@@ -230,6 +229,8 @@ Ext.Anim = Ext.extend(Object, {
             config = o.config,
             property,
             me = this;
+            
+        el.un('webkitTransitionEnd', me.onTransitionEnd, me);
 
         if (config.autoClear) {
             for (property in config.to) {

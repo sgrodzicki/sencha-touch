@@ -135,7 +135,7 @@
     },
 
     onTouchMove: function(e) {
-        if (!Ext.is.Android) {
+        if (Ext.is.MultiTouch) {
             e.preventDefault();
         }
 
@@ -174,10 +174,7 @@
         }
     },
 
-    /**
-     * This listener is here to always ensure we stop all current gestures
-     * @private
-     */
+    // This listener is here to always ensure we stop all current gestures
     onTouchEnd: function(e) {
         if (Ext.is.Blackberry) {
             e.preventDefault();
@@ -393,7 +390,6 @@
 
 Ext.regGesture = function() {
     return Ext.gesture.Manager.registerType.apply(Ext.gesture.Manager, arguments);
-};
-</pre>    
+};</pre>    
 </body>
 </html>

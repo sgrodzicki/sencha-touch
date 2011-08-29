@@ -3,6 +3,7 @@
  * @extends Ext.form.Text
  * Wraps an HTML5 url field. See {@link Ext.form.FormPanel FormPanel} for example usage.
  * @xtype urlfield
+ * @alternateClassName Ext.form.UrlField
  */
 Ext.form.Url = Ext.extend(Ext.form.Text, {
     inputType: 'url',
@@ -13,13 +14,7 @@ Ext.form.Url = Ext.extend(Ext.form.Text, {
 Ext.reg('urlfield', Ext.form.Url);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.UrlField
- * @extends Ext.form.Url
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.UrlField = Ext.extend(Ext.form.Url, {
 
     constructor: function() {

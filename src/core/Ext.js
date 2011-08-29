@@ -6,11 +6,11 @@ Ext.apply(Ext, {
      * The version of the framework
      * @type String
      */
-    version : '1.1.0',
+    version : '1.1.1',
     versionDetail : {
         major : 1,
         minor : 1,
-        patch : 0
+        patch : 1
     },
     
     /**
@@ -239,7 +239,7 @@ function(el){
             cls.push('x-ios');
         }
         if (Is.Android) {
-            cls.push('x-android');
+            cls.push('x-android', 'x-android-' + Is.AndroidMajorVersion);
         }
         if (Is.Blackberry) {
             cls.push('x-bb');

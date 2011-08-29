@@ -1,6 +1,6 @@
 {
     "projectName": "Sencha Touch",
-    "licenseText": "Copyright(c) 2010 Sencha Inc.\nlicensing@sencha.com\nhttp://www.sencha.com/touchlicense",
+    "licenseText": "Copyright(c) 2011 Sencha Inc.\nlicensing@sencha.com\nhttp://www.sencha.com/touchlicense",
     "packages": [
         {
             "name"  : "Platform Util",

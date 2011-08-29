@@ -4,6 +4,7 @@
  * <p>Specialized Slider with a single thumb and only two values. By default the toggle component can
  * be switched between the values of 0 and 1.</p>
  * @xtype togglefield
+ * @xtype toggle
  */
 Ext.form.Toggle = Ext.extend(Ext.form.Slider, {
     minValue: 0,

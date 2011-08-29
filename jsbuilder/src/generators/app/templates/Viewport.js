@@ -33,7 +33,7 @@
                     store: store,
                     width: 250,
 
-                    tpl         : '<{tpl} for="."><div class="link"><strong>\{text\}</strong></div></{tpl}>',
+                    itemTpl         : '<{tpl} for="."><div class="link"><strong>\{text\}</strong></div></{tpl}>',
                     itemSelector: 'div.link',
 
                     listeners: {

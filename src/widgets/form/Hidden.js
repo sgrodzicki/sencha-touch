@@ -3,6 +3,8 @@
  * @extends Ext.form.Field
  * <p>Wraps a hidden field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype hiddenfield
+ * @xtype hidden
+ * @alternateClassName Ext.form.HiddenField
  */
 Ext.form.Hidden = Ext.extend(Ext.form.Field, {
     ui: 'hidden',
@@ -15,13 +17,7 @@ Ext.form.Hidden = Ext.extend(Ext.form.Field, {
 Ext.reg('hiddenfield', Ext.form.Hidden);
 
 
-/**
- * @class Ext.form.HiddenField
- * @extends Ext.form.Hidden
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.HiddenField = Ext.extend(Ext.form.Hidden, {
 
     constructor: function() {

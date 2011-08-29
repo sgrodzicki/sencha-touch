@@ -22,22 +22,25 @@ Ext.lib.Component = Ext.extend(Ext.util.Observable, {
     renderTpl: null,
 
     /**
-     * @cfg {Object} renderSelectors.
-     * <p>An object containing properties specifying {@link Ext.DomQuery DomQuery} selectors which identify child elements
-     * created by the render process.</p>
-     * <p>After the Component's internal structure is rendered according to the {@link renderTpl}, this object is iterated through,
-     * and the found Elements are added as properties to the Component using the <code>renderSelector</code> property name.</p>
-     * <p>For example, a Component which rendered an image, and description into its element might use the following properties
-     * coded into its prototype:<pre><code>
-renderTpl: '<img src="{imageUrl}" class="x-image-component-img"><div class="x-image-component-desc">{description}</div>',
-
-renderSelectors: {
-    image: 'img.x-image-component-img',
-    descEl: 'div.x-image-component-desc'
-}
-</code></pre>
-     * <p>After rendering, the Component would have a property <code>image</code> referencing its child <code>img</code> Element,
-     * and a property <code>descEl</code> referencing the <code>div</code> Element which contains the description.</p>
+     * @cfg {Object} renderSelectors
+     * An object containing properties specifying {@link Ext.DomQuery DomQuery} selectors which identify child elements
+     * created by the render process.
+     *
+     * After the Component's internal structure is rendered according to the {@link renderTpl}, this object is iterated through,
+     * and the found Elements are added as properties to the Component using the <code>renderSelector</code> property name.
+     *
+     * For example, a Component which rendered an image, and description into its element might use the following properties
+     * coded into its prototype:
+     *
+     *     renderTpl: '<img src="{imageUrl}" class="x-image-component-img"><div class="x-image-component-desc">{description}</div>',
+     *
+     *     renderSelectors: {
+     *         image: 'img.x-image-component-img',
+     *         descEl: 'div.x-image-component-desc'
+     *     }
+     *
+     * After rendering, the Component would have a property <code>image</code> referencing its child `img` Element,
+     * and a property `descEl` referencing the `div` Element which contains the description.
      */
 
     /**
@@ -158,29 +161,29 @@ renderSelectors: {
         });
      </code></pre>
      */
-    
+
     /**
      * @cfg {Number} width
      * The width of this component in pixels.
      */
-    
+
     /**
      * @cfg {Number} height
      * The height of this component in pixels.
      */
-    
+
     /**
      * @cfg {Number/String} border
      * Specifies the border for this component. The border can be a single numeric value to apply to all sides or
      * it can be a CSS style specification for each style, for example: '10 5 3 10'.
      */
-    
+
     /**
      * @cfg {Number/String} padding
      * Specifies the padding for this component. The padding can be a single numeric value to apply to all sides or
      * it can be a CSS style specification for each style, for example: '10 5 3 10'.
      */
-    
+
     /**
      * @cfg {Number/String} margin
      * Specifies the margin for this component. The margin can be a single numeric value to apply to all sides or
@@ -282,7 +285,7 @@ renderSelectors: {
      // @private
      allowDomMove: true,
      autoShow: false,
-     
+
      autoRender: false,
 
      needsLayout: false,
@@ -482,7 +485,7 @@ renderSelectors: {
             this.render(this.renderTo);
             delete this.renderTo;
         }
-        
+
         //<debug>
         if (Ext.isDefined(this.disabledClass)) {
             throw "Component: disabledClass has been deprecated. Please use disabledCls.";
@@ -492,7 +495,7 @@ renderSelectors: {
 
     initComponent: Ext.emptyFn,
     applyToMarkup: Ext.emptyFn,
-    
+
     show: Ext.emptyFn,
 
     onShow : function() {
@@ -502,7 +505,7 @@ renderSelectors: {
             this.doComponentLayout(needsLayout.width, needsLayout.height, needsLayout.isSetSize);
         }
     },
-    
+
     // @private
     initPlugin : function(plugin) {
         if (plugin.ptype && typeof plugin.init != 'function') {
@@ -871,7 +874,7 @@ var owningTabContainer = grid.up('tabcontainer');
      * @returns The next sibling (or the next sibling which matches the selector). Returns null if there is no matching sibling.
      */
     nextSibling: function(selector) {
-        var o = this.ownerCt, it, last, idx, c; 
+        var o = this.ownerCt, it, last, idx, c;
         if (o) {
             it = o.items;
             idx = it.indexOf(this) + 1;
@@ -900,7 +903,7 @@ var owningTabContainer = grid.up('tabcontainer');
      * @returns The previous sibling (or the previous sibling which matches the selector). Returns null if there is no matching sibling.
      */
     previousSibling: function(selector) {
-        var o = this.ownerCt, it, idx, c; 
+        var o = this.ownerCt, it, idx, c;
         if (o) {
             it = o.items;
             idx = it.indexOf(this);
@@ -1132,7 +1135,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     isDisabled : function() {
         return this.disabled;
     },
-    
+
     /**
      * Enable or disable the component.
      * @param {Boolean} disabled
@@ -1148,7 +1151,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     isHidden : function() {
         return this.hidden;
     },
-    
+
     /**
      * Adds a CSS class to the top level element representing this component.
      * @returns {Ext.Component} Returns the Component to allow method chaining.
@@ -1170,7 +1173,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         throw "Component: addClass has been deprecated. Please use addCls.";
     },
     //</debug>
-    
+
     /**
      * Removes a CSS class from the top level element representing this component.
      * @returns {Ext.Component} Returns the Component to allow method chaining.
@@ -1188,7 +1191,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         }
         return me;
     },
-    
+
     //<debug>
     removeClass : function() {
         throw "Component: removeClass has been deprecated. Please use removeCls.";
@@ -1253,11 +1256,11 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     /**
      * Method to determine whether this Component is draggable.
      * @return {Boolean} the draggable state of this component.
-     */    
+     */
     isDraggable : function() {
         return !!this.draggable;
     },
-    
+
     /**
      * Method to determine whether this Component is droppable.
      * @return {Boolean} the droppable state of this component.
@@ -1402,7 +1405,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         this.componentLayout = layout;
         layout.setOwner(this);
     },
-    
+
     getComponentLayout : function() {
         if (!this.componentLayout || !this.componentLayout.isLayout) {
             this.setComponentLayout(Ext.layout.LayoutManager.create(this.componentLayout, 'autocomponent'));
@@ -1502,7 +1505,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
      * @param {Boolean} targetEl True to mask the targetEl of this Component instead of the this.el.
      * For example, setting this to true on a Panel will cause only the body to be masked. (defaults to false)
      * @return {Ext.LoadMask} The LoadMask instance that has just been shown.
-     */    
+     */
     setLoading : function(load, targetEl) {
         if (this.rendered) {
             if (load) {
@@ -1513,7 +1516,7 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
                 this.loadMask = null;
             }
         }
-        
+
         return this.loadMask;
     },
 

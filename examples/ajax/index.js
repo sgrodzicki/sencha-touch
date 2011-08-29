@@ -22,7 +22,7 @@ Ext.setup({
         var makeJSONPRequest = function() {
             Ext.getBody().mask('Loading...', 'x-mask-loading', false);
             Ext.util.JSONP.request({
-                url: 'http://www.worldweatheronline.com/feed/weather.ashx',
+                url: 'http://free.worldweatheronline.com/feed/weather.ashx',
                 callbackKey: 'callback',
                 params: {                    
                     key: '23f6a0ab24185952101705',

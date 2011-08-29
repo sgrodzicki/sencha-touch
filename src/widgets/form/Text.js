@@ -3,6 +3,7 @@
  * @extends Ext.form.Field
  * <p>Simple text input field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype textfield
+ * @alternateClassName Ext.form.TextField
  */
 Ext.form.Text = Ext.extend(Ext.form.Field, {
     ui: 'text',
@@ -361,13 +362,7 @@ Ext.form.Text = Ext.extend(Ext.form.Field, {
 
 Ext.reg('textfield', Ext.form.Text);
 
-/**
- * @class Ext.form.TextField
- * @extends Ext.form.Text
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.TextField = Ext.extend(Ext.form.Text, {
     constructor: function() {
         console.warn("Ext.form.TextField has been deprecated and will be removed in Sencha Touch 1.0. Please use Ext.form.Text instead");

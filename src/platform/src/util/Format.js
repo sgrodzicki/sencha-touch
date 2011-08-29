@@ -44,7 +44,6 @@ Ext.util.Format = {
      * Escapes the passed string for ' and \
      * @param {String} string The string to escape
      * @return {String} The escaped string
-     * @static
      */
     escape : function(string) {
         return string.replace(Ext.util.Format.escapeRe, "\\$1");
@@ -97,7 +96,6 @@ var s = Ext.util.Format.leftPad('123', 5, '0');
      * @param {Number} size The total length of the output string
      * @param {String} char (optional) The character with which to pad the original string (defaults to empty string " ")
      * @return {String} The padded string
-     * @static
      */
     leftPad : function (val, size, ch) {
         var result = String(val);
@@ -120,7 +118,6 @@ var s = Ext.util.Format.format('&lt;div class="{0}">{1}&lt;/div>', cls, text);
      * @param {String} value1 The value to replace token {0}
      * @param {String} value2 Etc...
      * @return {String} The formatted string
-     * @static
      */
     format : function (format) {
         var args = Ext.toArray(arguments, 1);

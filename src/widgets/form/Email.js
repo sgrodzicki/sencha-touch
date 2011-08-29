@@ -3,6 +3,7 @@
  * @extends Ext.form.Text
  * <p>Wraps an HTML5 email field. See {@link Ext.form.FormPanel FormPanel} for example usage.</p>
  * @xtype emailfield
+ * @alternateClassName Ext.form.EmailField
  */
 Ext.form.Email = Ext.extend(Ext.form.Text, {
     inputType: 'email',
@@ -13,13 +14,7 @@ Ext.form.Email = Ext.extend(Ext.form.Text, {
 Ext.reg('emailfield', Ext.form.Email);
 
 //<deprecated since=0.99>
-/**
- * @class Ext.form.EmailField
- * @extends Ext.form.Email
- * @private
- * @hidden
- * DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
- */
+// DEPRECATED - remove this in 1.0. See RC1 Release Notes for details
 Ext.form.EmailField = Ext.extend(Ext.form.Email, {
 
     constructor: function() {
