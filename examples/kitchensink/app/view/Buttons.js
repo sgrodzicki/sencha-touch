@@ -4,6 +4,8 @@
 Ext.define('Kitchensink.view.Buttons', {
     extend: 'Ext.Container',
 
+    requires: 'Ext.layout.VBox',
+
     config: {
         layout: {
             type : 'vbox',

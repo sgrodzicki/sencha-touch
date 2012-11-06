@@ -15,71 +15,102 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-scroll-indicator-ScrollPosition'>/**
+  <pre class="prettyprint lang-js"><span id='Ext-util-translatable-ScrollPosition'>/**
 </span> * @private
+ *
+ * Scroll position implementation
  */
-Ext.define('Ext.scroll.indicator.ScrollPosition', {
-    extend: 'Ext.scroll.indicator.Abstract',
+Ext.define('Ext.util.translatable.ScrollPosition', {
+    extend: 'Ext.util.translatable.Dom',
 
+<span id='Ext-util-translatable-ScrollPosition-property-wrapperWidth'>    wrapperWidth: 0,
+</span>
+<span id='Ext-util-translatable-ScrollPosition-property-wrapperHeight'>    wrapperHeight: 0,
+</span>
     config: {
-        cls: 'scrollposition'
-    },
+<span id='Ext-util-translatable-ScrollPosition-cfg-useWrapper'>        useWrapper: true
+</span>    },
 
-    getElementConfig: function() {
-        var config = this.callParent(arguments);
+<span id='Ext-util-translatable-ScrollPosition-method-getWrapper'>    getWrapper: function() {
+</span>        var wrapper = this.wrapper,
+            element = this.getElement(),
+            container;
 
-        config.children.unshift({
-            className: 'x-scroll-bar-stretcher'
-        });
+        if (!wrapper) {
+            container = element.getParent();
 
-        return config;
-    },
-
-    updateValue: function(value) {
-        if (this.gapLength === 0) {
-            if (value &gt; 1) {
-                value = value - 1;
+            if (!container) {
+                return null;
             }
 
-            this.setOffset(this.barLength * value);
+            if (this.getUseWrapper()) {
+                wrapper = element.wrap();
+            }
+            else {
+                wrapper = container;
+            }
+
+            element.addCls('x-translatable');
+            wrapper.addCls('x-translatable-container');
+
+            this.wrapper = wrapper;
+
+            wrapper.on('resize', 'onWrapperResize', this);
+            wrapper.on('painted', 'refresh', this);
+
+            this.refresh();
         }
-        else {
-            this.setOffset(this.gapLength * value);
+
+        return wrapper;
+    },
+
+<span id='Ext-util-translatable-ScrollPosition-method-doTranslate'>    doTranslate: function(x, y) {
+</span>        var wrapper = this.getWrapper(),
+            dom;
+
+        if (wrapper) {
+            dom = wrapper.dom;
+
+            if (typeof x == 'number') {
+                dom.scrollLeft = this.wrapperWidth - x;
+            }
+
+            if (typeof y == 'number') {
+                dom.scrollTop = this.wrapperHeight - y;
+            }
         }
     },
 
-    setLength: function(length) {
-        var axis = this.getAxis(),
-            scrollOffset = this.barLength,
-            barDom = this.barElement.dom,
-            element = this.element;
+<span id='Ext-util-translatable-ScrollPosition-method-onWrapperResize'>    onWrapperResize: function(wrapper, info) {
+</span>        this.wrapperWidth = info.width;
+        this.wrapperHeight = info.height;
 
-        this.callParent(arguments);
-
-        if (axis === 'x') {
-            barDom.scrollLeft = scrollOffset;
-            element.setLeft(scrollOffset);
-        }
-        else {
-            barDom.scrollTop = scrollOffset;
-            element.setTop(scrollOffset);
-        }
+        this.refresh();
     },
 
-    setOffset: function(offset) {
-        var axis = this.getAxis(),
-            scrollOffset = this.barLength,
-            barDom = this.barElement.dom;
+<span id='Ext-util-translatable-ScrollPosition-method-destroy'>    destroy: function() {
+</span>        var element = this.getElement(),
+            wrapper = this.wrapper;
 
-        offset = scrollOffset - offset;
+        if (wrapper) {
+            if (!element.isDestroyed) {
+                if (this.getUseWrapper()) {
+                    wrapper.doReplaceWith(element);
+                }
+                element.removeCls('x-translatable');
+            }
 
-        if (axis === 'x') {
-            barDom.scrollLeft = offset;
+            wrapper.removeCls('x-translatable-container');
+            wrapper.un('resize', 'onWrapperResize', this);
+            wrapper.un('painted', 'refresh', this);
+
+            delete this.wrapper;
+            delete this._element;
         }
-        else {
-            barDom.scrollTop = offset;
-        }
+
+        this.callSuper();
     }
+
 });
 </pre>
 </body>

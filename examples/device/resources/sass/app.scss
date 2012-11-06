@@ -19,6 +19,7 @@
 @include pictos-iconmask('maps');
 @include pictos-iconmask('compass1');
 @include pictos-iconmask('refresh');
+@include pictos-iconmask('address_book');
 
 //information
 .information {
@@ -30,6 +31,10 @@
         border: 1px solid darken(#EEEEEE, 15);
         @include border-radius(10px);
         @include box-shadow(inset 0 1px 3px #ccc);
+    }
+
+    .url-button {
+        margin-top: 1.2em;
     }
 }
 
@@ -115,3 +120,46 @@
     -webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
 }
 
+//contacts
+.person {
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
+
+    .thumbnail {
+        float: left;
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-right: 5px;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+    .company {
+        color: rgba(0,0,0,.5);
+        font-size: 90%;
+    }
+
+    ul {
+        font-size: 90%;
+        padding: 5px;
+        margin: 10px 0;
+        background: rgba(255,255,255,.5);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+
+        table {
+            width: 100%;
+
+            span {
+                color: #617888;
+                display: block;
+                margin-right: 10px;
+                white-space: nowrap;
+            }
+        }
+    }
+    
+}

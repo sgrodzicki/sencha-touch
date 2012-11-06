@@ -14,7 +14,8 @@ Ext.define('Kiva.view.LoanFilter', {
     xtype: 'loanfilter',
     requires: [
         'Ext.field.Select',
-        'Ext.field.Search'
+        'Ext.field.Search',
+        'Ext.Toolbar'
     ],
 
     config: {

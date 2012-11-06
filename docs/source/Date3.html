@@ -16,46 +16,45 @@
 </head>
 <body onload="prettyPrint(); highlight();">
   <pre class="prettyprint lang-js"><span id='Ext-picker-Date'>/**
-</span>A date picker component which shows a Date Picker on the screen. This class extends from {@link Ext.picker.Picker}
-and {@link Ext.Sheet} so it is a popup.
-
-This component has no required configurations.
-
-## Examples
-
-    @example miniphone preview
-    var datePicker = Ext.create('Ext.picker.Date');
-    Ext.Viewport.add(datePicker);
-    datePicker.show();
-
-You may want to adjust the {@link #yearFrom} and {@link #yearTo} properties:
-
-    @example miniphone preview
-    var datePicker = Ext.create('Ext.picker.Date', {
-        yearFrom: 2000,
-        yearTo  : 2015
-    });
-    Ext.Viewport.add(datePicker);
-    datePicker.show();
-
-You can set the value of the {@link Ext.picker.Date} to the current date using `new Date()`:
-
-    @example miniphone preview
-    var datePicker = Ext.create('Ext.picker.Date', {
-        value: new Date()
-    });
-    Ext.Viewport.add(datePicker);
-    datePicker.show();
-
-And you can hide the titles from each of the slots by using the {@link #useTitles} configuration:
-
-    @example miniphone preview
-    var datePicker = Ext.create('Ext.picker.Date', {
-        useTitles: false
-    });
-    Ext.Viewport.add(datePicker);
-    datePicker.show();
-
+</span> * A date picker component which shows a Date Picker on the screen. This class extends from {@link Ext.picker.Picker}
+ * and {@link Ext.Sheet} so it is a popup.
+ *
+ * This component has no required configurations.
+ *
+ * ## Examples
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date');
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ *
+ * You may want to adjust the {@link #yearFrom} and {@link #yearTo} properties:
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date', {
+ *         yearFrom: 2000,
+ *         yearTo  : 2015
+ *     });
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ *
+ * You can set the value of the {@link Ext.picker.Date} to the current date using `new Date()`:
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date', {
+ *         value: new Date()
+ *     });
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ *
+ * And you can hide the titles from each of the slots by using the {@link #useTitles} configuration:
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date', {
+ *         useTitles: false
+ *     });
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
  */
 Ext.define('Ext.picker.Date', {
     extend: 'Ext.picker.Picker',
@@ -73,15 +72,16 @@ Ext.define('Ext.picker.Date', {
     config: {
 <span id='Ext-picker-Date-cfg-yearFrom'>        /**
 </span>         * @cfg {Number} yearFrom
-         * The start year for the date picker.
+         * The start year for the date picker. If {@link #yearFrom} is greater than
+         * {@link #yearTo} then the order of years will be reversed.
          * @accessor
          */
         yearFrom: 1980,
 
 <span id='Ext-picker-Date-cfg-yearTo'>        /**
-</span>         * @cfg {Number} yearTo
-         * The last year for the date picker.
-         * @default the current year (new Date().getFullYear())
+</span>         * @cfg {Number} [yearTo=new Date().getFullYear()]
+         * The last year for the date picker. If {@link #yearFrom} is greater than
+         * {@link #yearTo} then the order of years will be reversed.
          * @accessor
          */
         yearTo: new Date().getFullYear(),
@@ -120,8 +120,9 @@ Ext.define('Ext.picker.Date', {
          * 'month' and 'day' values, all of which should be numbers, or a {@link Date}.
          *
          * Examples:
-         * {year: 1989, day: 1, month: 5} = 1st May 1989.
-         * new Date() = current date
+         *
+         * - `{year: 1989, day: 1, month: 5}` = 1st May 1989
+         * - `new Date()` = current date
          * @accessor
          */
 
@@ -132,18 +133,23 @@ Ext.define('Ext.picker.Date', {
          */
     },
 
-    initialize: function() {
-        this.callParent();
+<span id='Ext-picker-Date-method-initialize'>    initialize: function() {
+</span>        this.callParent();
 
         this.on({
             scope: this,
             delegate: '&gt; slot',
             slotpick: this.onSlotPick
         });
+
+        this.on({
+            scope: this,
+            show: this.onSlotPick
+        });
     },
 
-    setValue: function(value, animated) {
-        if (Ext.isDate(value)) {
+<span id='Ext-picker-Date-method-setValue'>    setValue: function(value, animated) {
+</span>        if (Ext.isDate(value)) {
             value = {
                 day  : value.getDate(),
                 month: value.getMonth() + 1,
@@ -154,8 +160,8 @@ Ext.define('Ext.picker.Date', {
         this.callParent([value, animated]);
     },
 
-    getValue: function(useDom) {
-        var values = {},
+<span id='Ext-picker-Date-method-getValue'>    getValue: function(useDom) {
+</span>        var values = {},
             items = this.getItems().items,
             ln = items.length,
             daysInMonth, day, month, year, item, i;
@@ -167,7 +173,7 @@ Ext.define('Ext.picker.Date', {
             }
         }
 
-        //if all the slots return null, we should not reutrn a date
+        //if all the slots return null, we should not return a date
         if (values.year === null &amp;&amp; values.month === null &amp;&amp; values.day === null) {
             return null;
         }
@@ -223,7 +229,7 @@ Ext.define('Ext.picker.Date', {
     },
 
 <span id='Ext-picker-Date-method-updateDayText'>    /**
-</span>     * Updates the dayText configuraton
+</span>     * Updates the {@link #dayText} configuration.
      */
     updateDayText: function(newDayText, oldDayText) {
         var innerItems = this.getInnerItems,
@@ -262,8 +268,8 @@ Ext.define('Ext.picker.Date', {
         }
     },
 
-    // @private
-    constructor: function() {
+<span id='Ext-picker-Date-method-constructor'>    // @private
+</span>    constructor: function() {
         this.callParent(arguments);
         this.createSlots();
     },
@@ -274,50 +280,53 @@ Ext.define('Ext.picker.Date', {
      */
     createSlots: function() {
         var me        = this,
-            slotOrder = this.getSlotOrder(),
+            slotOrder = me.getSlotOrder(),
             yearsFrom = me.getYearFrom(),
             yearsTo   = me.getYearTo(),
             years     = [],
             days      = [],
             months    = [],
-            ln, tmp, i,
-            daysInMonth;
+            reverse   = yearsFrom &gt; yearsTo,
+            ln, i, daysInMonth;
 
-        // swap values if user mixes them up.
-        if (yearsFrom &gt; yearsTo) {
-            tmp = yearsFrom;
-            yearsFrom = yearsTo;
-            yearsTo = tmp;
-        }
-
-        for (i = yearsFrom; i &lt;= yearsTo; i++) {
+        while (yearsFrom) {
             years.push({
-                text: i,
-                value: i
+                text  : yearsFrom,
+                value : yearsFrom
             });
+
+            if (yearsFrom === yearsTo) {
+                break;
+            }
+
+            if (reverse) {
+                yearsFrom--;
+            } else {
+                yearsFrom++;
+            }
         }
 
-        daysInMonth = this.getDaysInMonth(1, new Date().getFullYear());
+        daysInMonth = me.getDaysInMonth(1, new Date().getFullYear());
 
         for (i = 0; i &lt; daysInMonth; i++) {
             days.push({
-                text: i + 1,
-                value: i + 1
+                text  : i + 1,
+                value : i + 1
             });
         }
 
         for (i = 0, ln = Ext.Date.monthNames.length; i &lt; ln; i++) {
             months.push({
-                text: Ext.Date.monthNames[i],
-                value: i + 1
+                text  : Ext.Date.monthNames[i],
+                value : i + 1
             });
         }
 
         var slots = [];
 
-        slotOrder.forEach(function(item) {
-            slots.push(this.createSlot(item, days, months, years));
-        }, this);
+        slotOrder.forEach(function (item) {
+            slots.push(me.createSlot(item, days, months, years));
+        });
 
         me.setSlots(slots);
     },
@@ -355,8 +364,8 @@ Ext.define('Ext.picker.Date', {
         }
     },
 
-    onSlotPick: function() {
-        var value = this.getValue(true),
+<span id='Ext-picker-Date-method-onSlotPick'>    onSlotPick: function() {
+</span>        var value = this.getValue(true),
             slot = this.getDaySlot(),
             year = value.getFullYear(),
             month = value.getMonth(),
@@ -367,6 +376,8 @@ Ext.define('Ext.picker.Date', {
             return;
         }
 
+        this.callParent();
+
         //get the new days of the month for this new date
         daysInMonth = this.getDaysInMonth(month + 1, year);
         for (i = 0; i &lt; daysInMonth; i++) {
@@ -376,18 +387,18 @@ Ext.define('Ext.picker.Date', {
             });
         }
 
-        // We dont need to update the slot days unless it has changed
+        // We don't need to update the slot days unless it has changed
         if (slot.getData().length == days.length) {
             return;
         }
 
-        // Now we have the correct amounnt of days for the day slot, lets update it
+        slot.setData(days);
+
+        // Now we have the correct amount of days for the day slot, lets update it
         var store = slot.getStore(),
             viewItems = slot.getViewItems(),
             valueField = slot.getValueField(),
             index, item;
-
-        slot.setData(days);
 
         index = store.find(valueField, value.getDate());
         if (index == -1) {
@@ -402,8 +413,8 @@ Ext.define('Ext.picker.Date', {
 //        slot._value = value;
     },
 
-    getDaySlot: function() {
-        var innerItems = this.getInnerItems(),
+<span id='Ext-picker-Date-method-getDaySlot'>    getDaySlot: function() {
+</span>        var innerItems = this.getInnerItems(),
             ln = innerItems.length,
             i, slot;
 
@@ -422,19 +433,19 @@ Ext.define('Ext.picker.Date', {
         return null;
     },
 
-    // @private
-    getDaysInMonth: function(month, year) {
+<span id='Ext-picker-Date-method-getDaysInMonth'>    // @private
+</span>    getDaysInMonth: function(month, year) {
         var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         return month == 2 &amp;&amp; this.isLeapYear(year) ? 29 : daysInMonth[month-1];
     },
 
-    // @private
-    isLeapYear: function(year) {
+<span id='Ext-picker-Date-method-isLeapYear'>    // @private
+</span>    isLeapYear: function(year) {
         return !!((year &amp; 3) === 0 &amp;&amp; (year % 100 || (year % 400 === 0 &amp;&amp; year)));
     },
 
-    onDoneButtonTap: function() {
-        var oldValue = this._value,
+<span id='Ext-picker-Date-method-onDoneButtonTap'>    onDoneButtonTap: function() {
+</span>        var oldValue = this._value,
             newValue = this.getValue(true),
             testValue = newValue;
 

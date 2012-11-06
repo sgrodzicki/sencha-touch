@@ -15,43 +15,52 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-util-Translatable'>/**
-</span> * The utility class to abstract different implementations to have the best performance when applying 2D translation
- * on any DOM element.
- *
- * @private
+  <pre class="prettyprint lang-js"><span id='Ext-behavior-Translatable'>/**
+</span> * @private
  */
-Ext.define('Ext.util.Translatable', {
+Ext.define('Ext.behavior.Translatable', {
+
+    extend: 'Ext.behavior.Behavior',
+
     requires: [
-        'Ext.util.translatable.CssTransform',
-        'Ext.util.translatable.ScrollPosition'
+        'Ext.util.Translatable'
     ],
 
-    constructor: function(config) {
-        var namespace = Ext.util.translatable,
-            CssTransform = namespace.CssTransform,
-            ScrollPosition = namespace.ScrollPosition,
-            classReference;
+<span id='Ext-behavior-Translatable-method-setConfig'>    setConfig: function(config) {
+</span>        var translatable = this.translatable,
+            component = this.component;
 
-        if (typeof config == 'object' &amp;&amp; 'translationMethod' in config) {
-            if (config.translationMethod === 'scrollposition') {
-                classReference = ScrollPosition;
+        if (config) {
+            if (!translatable) {
+                this.translatable = translatable = new Ext.util.Translatable(config);
+                translatable.setElement(component.renderElement);
+                translatable.on('destroy', 'onTranslatableDestroy', this);
             }
-            else if (config.translationMethod === 'csstransform') {
-                classReference = CssTransform;
+            else if (Ext.isObject(config)) {
+                translatable.setConfig(config);
             }
         }
-
-        if (!classReference) {
-            if (Ext.os.is.Android2 || Ext.browser.is.ChromeMobile) {
-                classReference = ScrollPosition;
-            }
-            else {
-                classReference = CssTransform;
-            }
+        else if (translatable) {
+            translatable.destroy();
         }
 
-        return new classReference(config);
+        return this;
+    },
+
+<span id='Ext-behavior-Translatable-method-getTranslatable'>    getTranslatable: function() {
+</span>        return this.translatable;
+    },
+
+<span id='Ext-behavior-Translatable-method-onTranslatableDestroy'>    onTranslatableDestroy: function() {
+</span>        delete this.translatable;
+    },
+
+<span id='Ext-behavior-Translatable-method-onComponentDestroy'>    onComponentDestroy: function() {
+</span>        var translatable = this.translatable;
+
+        if (translatable) {
+            translatable.destroy();
+        }
     }
 });
 </pre>

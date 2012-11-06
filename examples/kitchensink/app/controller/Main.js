@@ -52,7 +52,7 @@ Ext.define('Kitchensink.controller.Main', {
     /**
      * Finds a given view by ID and shows it. End-point of the "demo/:id" route
      */
-    showViewById: function(id) {
+    showViewById: function (id) {
         var nav = this.getNav(),
             view = nav.getStore().getNodeById(id);
 
@@ -64,14 +64,16 @@ Ext.define('Kitchensink.controller.Main', {
     /**
      * Shows the source code for the {@link #currentDemo} in an overlay
      */
-    onSourceTap: function() {
+    onSourceTap: function () {
         var overlay = this.getSourceOverlay(),
-            demo    = this.getCurrentDemo();
+            demo = this.getCurrentDemo();
 
         if (!overlay.getParent()) {
             Ext.Viewport.add(overlay);
         }
+
         overlay.show();
+
         overlay.setMasked({
             xtype: 'loadmask',
             message: 'Loading...'
@@ -81,9 +83,12 @@ Ext.define('Kitchensink.controller.Main', {
             Ext.Ajax.request({
                 url: 'app/view/' + (demo.get('view') || demo.get('text')) + '.js',
 
-                callback: function(request, success, response) {
+                callback: function (request, success, response) {
                     overlay.setHtml(response.responseText);
-                    overlay.unmask();
+
+                    setTimeout(function() {
+                        overlay.unmask();
+                    }, 500);
                 }
             });
         }
@@ -99,32 +104,29 @@ Ext.define('Kitchensink.controller.Main', {
      * @param {String} name The full class name of the view to create (e.g. "Kitchensink.view.Forms")
      * @return {Ext.Component} The component, which may be from the cache
      */
-    createView: function(name) {
-        var cache = this.getViewCache(),
+    createView: function (item) {
+        var name = this.getViewName(item),
+            cache = this.getViewCache(),
             ln = cache.length,
-            limit = 20,
-            view, i, oldView;
+            limit = item.get('limit') || 20,
+            view, i = 0, j, oldView;
 
-        Ext.each(cache, function(item) {
-            if (item.viewName === name) {
-                view = item;
-                return;
+        for (; i < ln; i++) {
+            if (cache[i].viewName === name) {
+                return cache[i];
             }
-        }, this);
-
-        if (view) {
-            return view;
         }
 
         if (ln >= limit) {
-            for (i = 0; i < ln; i++) {
+            for (i = 0, j = 0; i < ln; i++) {
                 oldView = cache[i];
                 if (!oldView.isPainted()) {
                     oldView.destroy();
-                    cache.splice(i, 1);
-                    break;
+                } else {
+                    cache[j++] = oldView;
                 }
             }
+            cache.length = j;
         }
 
         view = Ext.create(name);
@@ -141,9 +143,9 @@ Ext.define('Kitchensink.controller.Main', {
      * @param {Kitchensink.model.Demo} item The demo
      * @return {String} The full class name of the view
      */
-    getViewName: function(item) {
+    getViewName: function (item) {
         var name = item.get('view') || item.get('text'),
-            ns   = 'Kitchensink.view.';
+            ns = 'Kitchensink.view.';
 
         if (name == 'TouchEvents') {
             if (this.getApplication().getCurrentProfile().getName() === 'Tablet') {
@@ -155,14 +157,14 @@ Ext.define('Kitchensink.controller.Main', {
             return ns + name;
         }
     },
-    
+
     /**
      * we iterate over all of the floating sheet components and make sure they're hidden when we
      * navigate to a new view. This stops things like Picker overlays staying visible when you hit
      * the browser's back button
      */
-    hideSheets: function() {
-        Ext.each(Ext.ComponentQuery.query('sheet'), function(sheet) {
+    hideSheets: function () {
+        Ext.each(Ext.ComponentQuery.query('sheet'), function (sheet) {
             sheet.setHidden(true);
         });
     }

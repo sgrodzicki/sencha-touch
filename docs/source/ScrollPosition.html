@@ -15,112 +15,71 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-util-translatable-ScrollPosition'>/**
+  <pre class="prettyprint lang-js"><span id='Ext-scroll-indicator-ScrollPosition'>/**
 </span> * @private
- *
- * Scroll position implementation
  */
-Ext.define('Ext.util.translatable.ScrollPosition', {
-    extend: 'Ext.util.translatable.Abstract',
-
-    wrapperWidth: 0,
-
-    wrapperHeight: 0,
-
-    baseCls: 'x-translatable',
+Ext.define('Ext.scroll.indicator.ScrollPosition', {
+    extend: 'Ext.scroll.indicator.Abstract',
 
     config: {
-        useWrapper: true
+<span id='Ext-scroll-indicator-ScrollPosition-cfg-cls'>        cls: 'scrollposition'
+</span>    },
+
+<span id='Ext-scroll-indicator-ScrollPosition-method-getElementConfig'>    getElementConfig: function() {
+</span>        var config = this.callParent(arguments);
+
+        config.children.unshift({
+            className: 'x-scroll-bar-stretcher'
+        });
+
+        return config;
     },
 
-    getWrapper: function() {
-        var wrapper = this.wrapper,
-            baseCls = this.baseCls,
-            element = this.getElement(),
-            nestedStretcher, container;
-
-        if (!wrapper) {
-            container = element.getParent();
-
-            if (!container) {
-                return null;
+<span id='Ext-scroll-indicator-ScrollPosition-method-updateValue'>    updateValue: function(value) {
+</span>        if (this.gapLength === 0) {
+            if (value &gt; 1) {
+                value = value - 1;
             }
 
-            if (this.getUseWrapper()) {
-                wrapper = element.wrap({
-                    className: baseCls + '-wrapper'
-                }, true);
-            }
-            else {
-                wrapper = container.dom;
-            }
-
-            wrapper.appendChild(Ext.Element.create({
-                className: baseCls + '-stretcher'
-            }, true));
-
-            this.nestedStretcher = nestedStretcher = Ext.Element.create({
-                className: baseCls + '-nested-stretcher'
-            }, true);
-
-            element.appendChild(nestedStretcher);
-
-            element.addCls(baseCls);
-            container.addCls(baseCls + '-container');
-
-            this.container = container;
-            this.wrapper = wrapper;
-
-            this.refresh();
+            this.setOffset(this.barLength * value);
         }
-
-        return wrapper;
-    },
-
-    doTranslate: function(x, y) {
-        var wrapper = this.getWrapper();
-
-        if (wrapper) {
-            if (typeof x == 'number') {
-                wrapper.scrollLeft = this.wrapperWidth - x;
-            }
-
-            if (typeof y == 'number') {
-                wrapper.scrollTop = this.wrapperHeight - y;
-            }
-        }
-
-        return this.callParent(arguments);
-    },
-
-    refresh: function() {
-        var wrapper = this.getWrapper();
-
-        if (wrapper) {
-            this.wrapperWidth = wrapper.offsetWidth;
-            this.wrapperHeight = wrapper.offsetHeight;
-
-            this.callParent(arguments);
+        else {
+            this.setOffset(this.gapLength * value);
         }
     },
 
-    destroy: function() {
-        var element = this.getElement(),
-            baseCls = this.baseCls;
-
-        if (this.wrapper) {
-            if (this.getUseWrapper()) {
-                element.unwrap();
-            }
-
-            this.container.removeCls(baseCls + '-container');
-            element.removeCls(baseCls);
-            element.removeChild(this.nestedStretcher);
-        }
+<span id='Ext-scroll-indicator-ScrollPosition-method-updateLength'>    updateLength: function() {
+</span>        var scrollOffset = this.barLength,
+            barDom = this.barElement.dom,
+            element = this.element;
 
         this.callParent(arguments);
-    }
 
+        if (this.getAxis() === 'x') {
+            barDom.scrollLeft = scrollOffset;
+            element.setLeft(scrollOffset);
+        }
+        else {
+            barDom.scrollTop = scrollOffset;
+            element.setTop(scrollOffset);
+        }
+    },
+
+<span id='Ext-scroll-indicator-ScrollPosition-method-setOffset'>    setOffset: function(offset) {
+</span>        var barLength = this.barLength,
+            minLength = this.getMinLength(),
+            barDom = this.barElement.dom;
+
+        offset = Math.min(barLength - minLength, Math.max(offset, minLength - this.getLength()));
+        offset = barLength - offset;
+
+        if (this.getAxis() === 'x') {
+            barDom.scrollLeft = offset;
+        }
+        else {
+            barDom.scrollTop = offset;
+        }
+    }
 });
 </pre>
 </body>

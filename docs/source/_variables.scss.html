@@ -15,7 +15,7 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">$theme-name: 'default';
+  <pre class="prettyprint lang-js">$theme-name: 'default' !default;
 
 <span id='Global_CSS'>/**
 </span> * @class Global_CSS
@@ -128,9 +128,15 @@ $page-bg-color: #eee !default;
 
 <span id='Global_CSS-css_var-S-global-row-height'>/**
 </span> * @var {measurement} $global-row-height
- * The minimum row height for items like toolbars and list items.
+ * The minimum row height for items like toolbars.
  */
 $global-row-height: 2.6em !default;
+
+<span id='Global_CSS-css_var-S-global-list-height'>/**
+</span> * @var {measurement} $global-list-height
+ * The minimum row height for items like toolbars.
+ */
+$global-list-height: 46px !default;
 </pre>
 </body>
 </html>

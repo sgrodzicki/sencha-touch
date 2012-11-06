@@ -22,6 +22,11 @@ Ext.define('Device.view.Main', {
                 scrollable: 'horizontal',
                 items: [
                     {
+                        title: 'Purchases',
+                        // iconCls: 'mail',
+                        className: 'Device.view.Purchases'
+                    },
+                    {
                         title: 'Notifications',
                         iconCls: 'mail',
                         className: 'Device.view.Information'
@@ -30,6 +35,11 @@ Ext.define('Device.view.Main', {
                         title: 'Push',
                         iconCls: 'mail',
                         className: 'Device.view.Push'
+                    },
+                    {
+                        title: 'Contacts',
+                        iconCls: 'address_book',
+                        className: 'Device.view.Contacts'
                     },
                     {
                         title: 'Camera',
@@ -55,8 +65,10 @@ Ext.define('Device.view.Main', {
             },
 
             { xclass: 'Device.view.Information' },
+            { xclass: 'Device.view.Purchases' },
             { xclass: 'Device.view.Notification' },
             { xclass: 'Device.view.Push' },
+            { xclass: 'Device.view.Contacts' },
             { xclass: 'Device.view.Camera' },
             { xclass: 'Device.view.Orientation' },
             { xclass: 'Device.view.Connection' },

@@ -1,13 +1,27 @@
-@import 'compass';
+@import 'sencha-touch/default/all';
 
-$experimental-support-for-mozilla : false;
-$experimental-support-for-opera : false;
-$experimental-support-for-microsoft : false;
-$experimental-support-for-khtml : false;
-// We should investigate:
-// $support-for-original-webkit-gradients
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-list-paging;
+@include sencha-list-pullrefresh;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+@include sencha-draw;
+@include sencha-charts;
 
 // Code samples
+
+@include pictos-iconmask('loop2');
 
 code, pre, pre * {
   font-family: Menlo, Monaco, Courier, monospace;
@@ -343,7 +357,7 @@ span.loading {
 
 .ux-code {
   background: #fff;
-  padding: 20px;
+  padding: 6px;
   font-size: 18px;
   line-height: 24px;
   color: #000;

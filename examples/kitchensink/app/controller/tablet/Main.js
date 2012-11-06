@@ -27,7 +27,7 @@ Ext.define('Kitchensink.controller.tablet.Main', {
      */
     showView: function(item) {
         var nav  = this.getNav(),
-            view = this.createView(this.getViewName(item)),
+            view = this.createView(item),
             main = this.getMain(),
             anim = item.get('animation'),
             layout  = main.getLayout(),

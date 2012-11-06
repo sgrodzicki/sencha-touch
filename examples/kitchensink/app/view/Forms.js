@@ -38,7 +38,6 @@ Ext.define('Kitchensink.view.Forms', {
                 title: 'Basic',
                 xtype: 'formpanel',
                 id: 'basicform',
-                iconCls: 'refresh',
                 items: [
                     {
                         xtype: 'fieldset',
@@ -82,7 +81,7 @@ Ext.define('Kitchensink.view.Forms', {
                                 label      : 'Spinner',
                                 minValue   : 0,
                                 maxValue   : 10,
-                                increment  : 1,
+                                stepValue  : 1,
                                 cycle      : true
                             },
                             {

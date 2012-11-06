@@ -152,6 +152,7 @@ $include-default-icons: false;
 
 .x-title {
   font-weight: normal;
+  display: inline-block;
 }
 
 .x-list-emptytext {
@@ -159,7 +160,7 @@ $include-default-icons: false;
   text-align: center;
 }
 
-#billSummary .x-body .x-innerhtml {
+#billSummary .x-dock-body .x-innerhtml {
   padding: 20px;
   font-size: 80%;
 }

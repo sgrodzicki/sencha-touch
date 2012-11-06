@@ -7,7 +7,7 @@
  *  - {@link #retweets}: used to display the number of retweets, if specified
  */
 Ext.define('Twitter.view.TweetListItem', {
-    extend: 'Ext.dataview.component.DataItem',
+    extend: 'Ext.dataview.component.ListItem',
     xtype : 'tweetlistitem',
     requires: [
         'Twitter.view.TweetListItemText',
@@ -79,7 +79,9 @@ Ext.define('Twitter.view.TweetListItem', {
         avatar: {
             docked: 'left',
             xtype : 'image',
-            cls   : 'avatar'
+            cls   : 'avatar',
+            width: '48px',
+            height: '48px'
         },
 
         /**
@@ -157,6 +159,7 @@ Ext.define('Twitter.view.TweetListItem', {
         }
     },
 
+    updateTpl: Ext.emptyFn,
     /**
      * We must override the {@link #updateRecord} method in dataitem. This is so we can look at the records metadata field and check
      * if the tweet is popuplar, and if the tweet has retweets. If it is popular, it adds a custom className. If it has retweets, we

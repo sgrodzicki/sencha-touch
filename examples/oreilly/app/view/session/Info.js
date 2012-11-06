@@ -1,6 +1,6 @@
 Ext.define('Oreilly.view.session.Info', {
 
-	extend: 'Ext.Component',
+	extend: 'Ext.Container',
 	xtype: 'sessionInfo',
 
 	config: {

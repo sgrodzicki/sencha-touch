@@ -6,18 +6,16 @@ Ext.define('Oreilly.view.speaker.Detail', {
 	config: {
 
 		layout: 'vbox',
-		scrollable: 'vertical',
-
 		items: [
 			{
+                flex: 1,
+                scrollable: 'vertical',
 				xtype: 'speakerInfo'
 			},
 			{
+                flex: 2,
 				xtype: 'list',
 				store: 'SpeakerSessions',
-
-				scrollable: false,
-
 				items: [
 					{
 						xtype: 'listitemheader',
@@ -25,7 +23,6 @@ Ext.define('Oreilly.view.speaker.Detail', {
 						html: 'Sessions'
 					}
 				],
-
 				itemTpl: [
 					'{title}'
 				]

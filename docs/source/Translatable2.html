@@ -15,74 +15,43 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-behavior-Translatable'>/**
-</span> * @private
+  <pre class="prettyprint lang-js"><span id='Ext-util-Translatable'>/**
+</span> * The utility class to abstract different implementations to have the best performance when applying 2D translation
+ * on any DOM element.
+ *
+ * @private
  */
-Ext.define('Ext.behavior.Translatable', {
-
-    extend: 'Ext.behavior.Behavior',
-
+Ext.define('Ext.util.Translatable', {
     requires: [
-        'Ext.util.Translatable'
+        'Ext.util.translatable.CssTransform',
+        'Ext.util.translatable.ScrollPosition'
     ],
 
-    constructor: function() {
-        this.listeners = {
-            painted: 'onComponentPainted',
-            scope: this
-        };
+<span id='Ext-util-Translatable-method-constructor'>    constructor: function(config) {
+</span>        var namespace = Ext.util.translatable,
+            CssTransform = namespace.CssTransform,
+            ScrollPosition = namespace.ScrollPosition,
+            classReference;
 
-        this.callParent(arguments);
-    },
-
-    onComponentPainted: function() {
-        this.translatable.refresh();
-    },
-
-    setConfig: function(config) {
-        var translatable = this.translatable,
-            component = this.component;
-
-        if (config) {
-            if (!translatable) {
-                this.translatable = translatable = new Ext.util.Translatable(config);
-                translatable.setElement(component.renderElement);
-                translatable.on('destroy', 'onTranslatableDestroy', this);
-
-                if (component.isPainted()) {
-                    this.onComponentPainted(component);
-                }
-
-                component.on(this.listeners);
+        if (typeof config == 'object' &amp;&amp; 'translationMethod' in config) {
+            if (config.translationMethod === 'scrollposition') {
+                classReference = ScrollPosition;
             }
-            else if (Ext.isObject(config)) {
-                translatable.setConfig(config);
+            else if (config.translationMethod === 'csstransform') {
+                classReference = CssTransform;
             }
         }
-        else if (translatable) {
-            translatable.destroy();
+
+        if (!classReference) {
+            if (Ext.os.is.Android2 || Ext.browser.is.ChromeMobile) {
+                classReference = ScrollPosition;
+            }
+            else {
+                classReference = CssTransform;
+            }
         }
 
-        return this;
-    },
-
-    getTranslatable: function() {
-        return this.translatable;
-    },
-
-    onTranslatableDestroy: function() {
-        var component = this.component;
-
-        delete this.translatable;
-        component.un(this.listeners);
-    },
-
-    onComponentDestroy: function() {
-        var translatable = this.translatable;
-
-        if (translatable) {
-            translatable.destroy();
-        }
+        return new classReference(config);
     }
 });
 </pre>

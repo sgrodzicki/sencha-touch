@@ -21,7 +21,7 @@ Ext.define('Twitter.model.Search', {
             name : 'tweets',
             filterProperty: 'query',
             store: {
-                pageSize       : 20,
+                pageSize       : 50,
                 remoteFilter   : true,
                 clearOnPageLoad: false
             }

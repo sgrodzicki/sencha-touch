@@ -4,7 +4,7 @@
 Ext.define('Kitchensink.view.TouchEvents', {
     extend: 'Ext.Container',
     xtype: 'touchevents',
-    
+
     requires: [
         'Kitchensink.view.touchevent.Info',
         'Kitchensink.view.touchevent.Logger',
@@ -14,14 +14,15 @@ Ext.define('Kitchensink.view.TouchEvents', {
     initialize: function() {
         this.callParent(arguments);
 
-        this.getEventDispatcher().addListener('element', '#touchpad', '*', this.onTouchPadEvent, this);
+        var padElement = Ext.get('touchpad');
+
+        padElement.on(['touchstart', 'touchend', 'touchmove',
+                        'swipe', 'dragstart', 'drag', 'dragend',
+                        'tap', 'doubletap', 'longpress', 'pinch', 'rotate'],
+        'onTouchPadEvent', this);
     },
 
     onTouchPadEvent: function(e, target, options, eventController) {
-        var eventName = eventController.info.eventName;
-
-        if (!eventName.match("mouse") && eventName !== 'click') {
-            this.down('toucheventlogger').addLog(eventName);
-        }
+        this.down('toucheventlogger').addLog(eventController.info.eventName);
     }
 });

@@ -23,9 +23,9 @@ Ext.define('Ext.data.proxy.Kiva', {
      * The Proxy will always use this url for all requests - Yahoo's YQL service does the rest with the
      * query that we send it in {@link #buildRequest}
      */
-    url: 'http://query.yahooapis.com/v1/public/yql',
-    _url: 'http://query.yahooapis.com/v1/public/yql',
-    // url: 'fake.json',
+//    url: 'http://query.yahooapis.com/v1/public/yql',
+//    _url: 'http://query.yahooapis.com/v1/public/yql',
+    _url: 'fake.json',
 
     /**
      * This proxy uses YQL, which is an SQL-like way of accessing remote data. We are using an XTemplate

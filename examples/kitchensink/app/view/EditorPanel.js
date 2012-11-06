@@ -11,12 +11,9 @@ Ext.define('Kitchensink.view.EditorPanel', {
         width: 300,
         scrollable: false,
         items: [{
-            xtype: 'fieldset',
-            items: [{
-                xtype: 'textfield',
-                name: 'text',
-                label: 'Name'
-            }]
+            xtype: 'textfield',
+            name: 'text',
+            label: 'Name'
         }, {
             docked: 'top',
             xtype: 'toolbar',

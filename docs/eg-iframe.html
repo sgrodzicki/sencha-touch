@@ -77,7 +77,7 @@
     </style>
 
     <script type="text/javascript">
-        function loadInlineExample(code, options) {
+        function loadInlineExample(code, options, callback) {
             try {
                 document.body.innerHTML = '';
                 if (!options.raw) {
@@ -88,8 +88,10 @@
                     Ext.get('iframe-css').update("body {font-size: 79.8% !important}");
                 }
                 eval(code);
+                callback && callback(true);
             } catch (e) {
                 document.body.innerHTML = e;
+                callback && callback(false, e);
             }
         }
     </script>

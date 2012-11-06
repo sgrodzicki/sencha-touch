@@ -13,19 +13,24 @@ Ext.application({
         'Main',
         'Information',
         'Camera',
+        'Contacts',
         'Connection',
         'Notification',
         'Orientation',
         'Geolocation',
-        'Push'
+        'Push',
+        'Purchases'
     ],
 
     controllers: [
         'Application',
         'Camera',
+        'Contacts',
         'Notification',
         'Connection',
-        'Push'
+        'Push',
+        'Purchases',
+        'Scheme'
     ],
 
     launch: function() {

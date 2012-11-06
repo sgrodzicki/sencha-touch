@@ -2,6 +2,10 @@ Ext.define('AddressBook.view.contact.Show', {
     extend: 'Ext.Container',
     xtype: 'contact-show',
 
+    requires: [
+        'Ext.Map'
+    ],
+
     config: {
         title: 'Information',
         baseCls: 'x-show-contact',

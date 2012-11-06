@@ -28,7 +28,7 @@ Ext.define('GeoCon.view.Settings', {
                     {
                         xtype: 'spinnerfield',
                         label: 'District',
-                        increment: 1,
+                        stepValue: 1,
                         minValue: 0,
                         maxValue: 0,
                         id: 'districtSpinner'

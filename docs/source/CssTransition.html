@@ -22,21 +22,21 @@
 Ext.define('Ext.fx.runner.CssTransition', {
     extend: 'Ext.fx.runner.Css',
 
-    listenersAttached: false,
-
-    constructor: function() {
-        this.runningAnimationsData = {};
+<span id='Ext-fx-runner-CssTransition-property-listenersAttached'>    listenersAttached: false,
+</span>
+<span id='Ext-fx-runner-CssTransition-method-constructor'>    constructor: function() {
+</span>        this.runningAnimationsData = {};
 
         return this.callParent(arguments);
     },
 
-    attachListeners: function() {
-        this.listenersAttached = true;
+<span id='Ext-fx-runner-CssTransition-method-attachListeners'>    attachListeners: function() {
+</span>        this.listenersAttached = true;
         this.getEventDispatcher().addListener('element', '*', 'transitionend', 'onTransitionEnd', this);
     },
 
-    onTransitionEnd: function(e) {
-        var target = e.target,
+<span id='Ext-fx-runner-CssTransition-method-onTransitionEnd'>    onTransitionEnd: function(e) {
+</span>        var target = e.target,
             id = target.id;
 
         if (id &amp;&amp; this.runningAnimationsData.hasOwnProperty(id)) {
@@ -44,8 +44,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         }
     },
 
-    onAnimationEnd: function(element, data, animation, isInterrupted, isReplaced) {
-        var id = element.getId(),
+<span id='Ext-fx-runner-CssTransition-method-onAnimationEnd'>    onAnimationEnd: function(element, data, animation, isInterrupted, isReplaced) {
+</span>        var id = element.getId(),
             runningData = this.runningAnimationsData[id],
             endRules = {},
             endData = {},
@@ -92,8 +92,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         this.fireEvent('animationend', this, animation, element, isInterrupted);
     },
 
-    onAllAnimationsEnd: function(element) {
-        var id = element.getId(),
+<span id='Ext-fx-runner-CssTransition-method-onAllAnimationsEnd'>    onAllAnimationsEnd: function(element) {
+</span>        var id = element.getId(),
             endRules = {};
 
         delete this.runningAnimationsData[id];
@@ -109,15 +109,15 @@ Ext.define('Ext.fx.runner.CssTransition', {
         this.fireEvent('animationallend', this, element);
     },
 
-    hasRunningAnimations: function(element) {
-        var id = element.getId(),
+<span id='Ext-fx-runner-CssTransition-method-hasRunningAnimations'>    hasRunningAnimations: function(element) {
+</span>        var id = element.getId(),
             runningAnimationsData = this.runningAnimationsData;
 
         return runningAnimationsData.hasOwnProperty(id) &amp;&amp; runningAnimationsData[id].sessions.length &gt; 0;
     },
 
-    refreshRunningAnimationsData: function(element, propertyNames, interrupt, replace) {
-        var id = element.getId(),
+<span id='Ext-fx-runner-CssTransition-method-refreshRunningAnimationsData'>    refreshRunningAnimationsData: function(element, propertyNames, interrupt, replace) {
+</span>        var id = element.getId(),
             runningAnimationsData = this.runningAnimationsData,
             runningData = runningAnimationsData[id];
 
@@ -192,8 +192,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         }
     },
 
-    getRunningData: function(id) {
-        var runningAnimationsData = this.runningAnimationsData;
+<span id='Ext-fx-runner-CssTransition-method-getRunningData'>    getRunningData: function(id) {
+</span>        var runningAnimationsData = this.runningAnimationsData;
 
         if (!runningAnimationsData.hasOwnProperty(id)) {
             runningAnimationsData[id] = {
@@ -206,8 +206,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         return runningAnimationsData[id];
     },
 
-    getTestElement: function() {
-        var testElement = this.testElement,
+<span id='Ext-fx-runner-CssTransition-method-getTestElement'>    getTestElement: function() {
+</span>        var testElement = this.testElement,
             iframe, iframeDocument, iframeStyle;
 
         if (!testElement) {
@@ -236,8 +236,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         return testElement;
     },
 
-    getCssStyleValue: function(name, value) {
-        var testElement = this.getTestElement(),
+<span id='Ext-fx-runner-CssTransition-method-getCssStyleValue'>    getCssStyleValue: function(name, value) {
+</span>        var testElement = this.getTestElement(),
             computedStyle = this.testElementComputedStyle,
             style = testElement.style;
 
@@ -248,8 +248,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         return value;
     },
 
-    run: function(animations) {
-        var me = this,
+<span id='Ext-fx-runner-CssTransition-method-run'>    run: function(animations) {
+</span>        var me = this,
             isLengthPropertyMap = this.lengthProperties,
             fromData = {},
             toData = {},
@@ -405,8 +405,8 @@ Ext.define('Ext.fx.runner.CssTransition', {
         window.postMessage(message, '*');
     },
 
-    onAnimationStop: function(animation) {
-        var runningAnimationsData = this.runningAnimationsData,
+<span id='Ext-fx-runner-CssTransition-method-onAnimationStop'>    onAnimationStop: function(animation) {
+</span>        var runningAnimationsData = this.runningAnimationsData,
             id, runningData, sessions, i, ln, session;
 
         for (id in runningAnimationsData) {
@@ -417,7 +417,7 @@ Ext.define('Ext.fx.runner.CssTransition', {
                 for (i = 0,ln = sessions.length; i &lt; ln; i++) {
                     session = sessions[i];
                     if (session.animation === animation) {
-                        this.refreshRunningAnimationsData(session.element, session.list.slice(), true);
+                        this.refreshRunningAnimationsData(session.element, session.list.slice(), false);
                     }
                 }
             }

@@ -2,6 +2,12 @@ Ext.define('AddressBook.view.contact.Edit', {
     extend: 'Ext.Container',
     xtype: 'contact-edit',
 
+    requires: [
+        'Ext.form.Panel',
+        'Ext.form.FieldSet',
+        'Ext.field.Text'
+    ],
+
     config: {
         title: 'Edit',
         layout: 'fit',

@@ -15,128 +15,169 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-slider-Slider'>/**
-</span> * Utility class used by Ext.field.Slider.
- * @private
+  <pre class="prettyprint lang-js"><span id='Ext-field-Slider'>/**
+</span> * @aside guide forms
+ *
+ * The slider is a way to allow the user to select a value from a given numerical range. You might use it for choosing
+ * a percentage, combine two of them to get min and max values, or use three of them to specify the hex values for a
+ * color. Each slider contains a single 'thumb' that can be dragged along the slider's length to change the value.
+ * Sliders are equally useful inside {@link Ext.form.Panel forms} and standalone. Here's how to quickly create a
+ * slider in form, in this case enabling a user to choose a percentage:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'sliderfield',
+ *                 label: 'Percentage',
+ *                 value: 50,
+ *                 minValue: 0,
+ *                 maxValue: 100
+ *             }
+ *         ]
+ *     });
+ *
+ * In this case we set a starting value of 50%, and defined the min and max values to be 0 and 100 respectively, giving
+ * us a percentage slider. Because this is such a common use case, the defaults for {@link #minValue} and
+ * {@link #maxValue} are already set to 0 and 100 so in the example above they could be removed.
+ *
+ * It's often useful to render sliders outside the context of a form panel too. In this example we create a slider that
+ * allows a user to choose the waist measurement of a pair of jeans. Let's say the online store we're making this for
+ * sells jeans with waist sizes from 24 inches to 60 inches in 2 inch increments - here's how we might achieve that:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'sliderfield',
+ *                 label: 'Waist Measurement',
+ *                 minValue: 24,
+ *                 maxValue: 60,
+ *                 increment: 2,
+ *                 value: 32
+ *             }
+ *         ]
+ *     });
+ *
+ * Now that we've got our slider, we can ask it what value it currently has and listen to events that it fires. For
+ * example, if we wanted our app to show different images for different sizes, we can listen to the {@link #change}
+ * event to be informed whenever the slider is moved:
+ *
+ *     slider.on('change', function(field, newValue) {
+ *         if (newValue[0] &gt; 40) {
+ *             imgComponent.setSrc('large.png');
+ *         } else {
+ *             imgComponent.setSrc('small.png');
+ *         }
+ *     }, this);
+ *
+ * Here we listened to the {@link #change} event on the slider and updated the background image of an
+ * {@link Ext.Img image component} based on what size the user selected. Of course, you can use any logic inside your
+ * event listener.
  */
-Ext.define('Ext.slider.Slider', {
-    extend: 'Ext.Container',
-    xtype: 'slider',
+Ext.define('Ext.field.Slider', {
+    extend  : 'Ext.field.Field',
+    xtype   : 'sliderfield',
+    requires: ['Ext.slider.Slider'],
+    alternateClassName: 'Ext.form.Slider',
 
-    requires: [
-        'Ext.slider.Thumb',
-        'Ext.fx.easing.EaseOut'
-    ],
+<span id='Ext-field-Slider-event-change'>    /**
+</span>     * @event change
+     * Fires when an option selection has changed.
+     * @param {Ext.field.Slider} me
+     * @param {Ext.slider.Slider} sl Slider Component.
+     * @param {Ext.slider.Thumb} thumb
+     * @param {Number} newValue The new value of this thumb.
+     * @param {Number} oldValue The old value of this thumb.
+     */
 
-<span id='Ext-slider-Slider-event-change'>    /**
-</span>    * @event change
-    * Fires when the value changes
-    * @param {Ext.slider.Slider} this
-    * @param {Ext.slider.Thumb} thumb The thumb being changed
-    * @param {Number} newValue The new value
-    * @param {Number} oldValue The old value
-    */
-
-<span id='Ext-slider-Slider-event-dragstart'>    /**
+<span id='Ext-field-Slider-event-dragstart'>    /**
 </span>    * @event dragstart
-    * Fires when the slider thumb starts a drag
-    * @param {Ext.slider.Slider} this
-    * @param {Ext.slider.Thumb} thumb The thumb being dragged
-    * @param {Array} value The start value
+    * Fires when the slider thumb starts a drag operation.
+    * @param {Ext.field.Slider} this
+    * @param {Ext.slider.Slider} sl Slider Component.
+    * @param {Ext.slider.Thumb} thumb The thumb being dragged.
+    * @param {Array} value The start value.
     * @param {Ext.EventObject} e
     */
 
-<span id='Ext-slider-Slider-event-drag'>    /**
+<span id='Ext-field-Slider-event-drag'>    /**
 </span>    * @event drag
-    * Fires when the slider thumb starts a drag
-    * @param {Ext.slider.Slider} this
-    * @param {Ext.slider.Thumb} thumb The thumb being dragged
+    * Fires when the slider thumb starts a drag operation.
+    * @param {Ext.field.Slider} this
+    * @param {Ext.slider.Slider} sl Slider Component.
+    * @param {Ext.slider.Thumb} thumb The thumb being dragged.
     * @param {Ext.EventObject} e
     */
 
-<span id='Ext-slider-Slider-event-dragend'>    /**
+<span id='Ext-field-Slider-event-dragend'>    /**
 </span>    * @event dragend
-    * Fires when the slider thumb starts a drag
-    * @param {Ext.slider.Slider} this
-    * @param {Ext.slider.Thumb} thumb The thumb being dragged
-    * @param {Array} value The end value
+    * Fires when the slider thumb ends a drag operation.
+    * @param {Ext.field.Slider} this
+    * @param {Ext.slider.Slider} sl Slider Component.
+    * @param {Ext.slider.Thumb} thumb The thumb being dragged.
+    * @param {Array} value The end value.
     * @param {Ext.EventObject} e
     */
-    config: {
-        baseCls: 'x-slider',
 
-<span id='Ext-slider-Slider-cfg-thumbConfig'>        /**
-</span>         * @cfg {Object} thumbConfig The config object to factory {@link Ext.slider.Thumb} instances
+    config: {
+<span id='Ext-field-Slider-cfg-cls'>        /**
+</span>         * @cfg
+         * @inheritdoc
+         */
+        cls: Ext.baseCSSPrefix + 'slider-field',
+
+<span id='Ext-field-Slider-cfg-tabIndex'>        /**
+</span>         * @cfg
+         * @inheritdoc
+         */
+        tabIndex: -1,
+
+<span id='Ext-field-Slider-cfg-readOnly'>        /**
+</span>         * Will make this field read only, meaning it cannot be changed with used interaction.
+         * @cfg {Boolean} readOnly
          * @accessor
          */
-        thumbConfig: {
-            draggable: {
-                translatable: {
-                    easingX: {
-                        duration: 300,
-                        type: 'ease-out'
-                    }
-                }
-            }
-        },
+        readOnly: false
+    },
 
-<span id='Ext-slider-Slider-cfg-value'>        /**
-</span>         * @cfg {Number/Number[]} value The value(s) of this slider's thumbs. If you pass
-         * a number, it will assume you have just 1 thumb.
+<span id='Ext-field-Slider-property-proxyConfig'>    proxyConfig: {
+</span>
+<span id='Ext-field-Slider-cfg-increment'>        /**
+</span>         * @inheritdoc Ext.slider.Slider#increment
+         * @cfg {Number} increment
+         * @accessor
+         */
+        increment : 1,
+
+<span id='Ext-field-Slider-cfg-value'>        /**
+</span>         * @inheritdoc Ext.slider.Slider#value
+         * @cfg {Number/Number[]} value
          * @accessor
          */
         value: 0,
 
-<span id='Ext-slider-Slider-cfg-minValue'>        /**
-</span>         * @cfg {Number} minValue The lowest value any thumb on this slider can be set to.
+<span id='Ext-field-Slider-cfg-minValue'>        /**
+</span>         * @inheritdoc Ext.slider.Slider#minValue
+         * @cfg {Number} minValue
          * @accessor
          */
         minValue: 0,
 
-<span id='Ext-slider-Slider-cfg-maxValue'>        /**
-</span>         * @cfg {Number} maxValue The highest value any thumb on this slider can be set to.
+<span id='Ext-field-Slider-cfg-maxValue'>        /**
+</span>         * @inheritdoc Ext.slider.Slider#maxValue
+         * @cfg {Number} maxValue
          * @accessor
          */
-        maxValue: 100,
-
-<span id='Ext-slider-Slider-cfg-increment'>        /**
-</span>         * @cfg {Number} increment The increment by which to snap each thumb when its value changes. Defaults to 1. Any thumb movement
-         * will be snapped to the nearest value that is a multiple of the increment (e.g. if increment is 10 and the user
-         * tries to move the thumb to 67, it will be snapped to 70 instead)
-         * @accessor
-         */
-        increment: 1,
-
-<span id='Ext-slider-Slider-cfg-allowThumbsOverlapping'>        /**
-</span>         * @cfg {Boolean} allowThumbsOverlapping Whether or not to allow multiple thumbs to overlap each other.
-         * Setting this to true guarantees the ability to select every possible value in between {@link #minValue}
-         * and {@link #maxValue} that satisfies {@link #increment}
-         * @accessor
-         */
-        allowThumbsOverlapping: false,
-
-<span id='Ext-slider-Slider-cfg-animation'>        /**
-</span>         * @cfg {Boolean/Object} animation
-         * The animation to use when moving the slider. Possible properties are:
-         *
-         * - duration
-         * - easingX
-         * - easingY
-         *
-         * @accessor
-         */
-        animation: true
+        maxValue: 100
     },
 
-<span id='Ext-slider-Slider-cfg-values'>    /**
-</span>     * @cfg {Number/Number[]} values Alias to {@link #value}
+<span id='Ext-field-Slider-cfg-values'>    /**
+</span>     * @inheritdoc Ext.slider.Slider#values
+     * @cfg {Number/Number[]} values
      */
-
-    elementWidth: 0,
-
-    offsetValueRatio: 0,
-
-    activeThumb: null,
 
     constructor: function(config) {
         config = config || {};
@@ -148,408 +189,81 @@ Ext.define('Ext.slider.Slider', {
         this.callParent([config]);
     },
 
-    // @private
-    initialize: function() {
-        var element = this.element;
-
+<span id='Ext-field-Slider-method-initialize'>    // @private
+</span>    initialize: function() {
         this.callParent();
 
-        element.on({
+        this.getComponent().on({
             scope: this,
-            tap: 'onTap'
-        });
 
-        this.on({
-            scope: this,
-            delegate: '&gt; thumb',
-            dragstart: 'onThumbDragStart',
-            drag: 'onThumbDrag',
-            dragend: 'onThumbDragEnd'
-        });
-
-        this.on({
-            painted: 'refresh',
-            resize: 'refresh'
+            change: 'onSliderChange',
+            dragstart: 'onSliderDragStart',
+            drag: 'onSliderDrag',
+            dragend: 'onSliderDragEnd'
         });
     },
 
-<span id='Ext-slider-Slider-method-factoryThumb'>    /**
-</span>     * @private
-     */
-    factoryThumb: function() {
-        return Ext.factory(this.getThumbConfig(), Ext.slider.Thumb);
+<span id='Ext-field-Slider-method-applyComponent'>    // @private
+</span>    applyComponent: function(config) {
+        return Ext.factory(config, Ext.slider.Slider);
     },
 
-<span id='Ext-slider-Slider-method-getThumbs'>    /**
-</span>     * Returns the Thumb instances bound to this Slider
-     * @return {Ext.slider.Thumb[]} The thumb instances
-     */
-    getThumbs: function() {
-        return this.innerItems;
+<span id='Ext-field-Slider-method-onSliderChange'>    onSliderChange: function() {
+</span>        this.fireEvent.apply(this, [].concat('change', this, Array.prototype.slice.call(arguments)));
     },
 
-<span id='Ext-slider-Slider-method-getThumb'>    /**
-</span>     * Returns the Thumb instance bound to this Slider
-     * @param {Number} [index=0] The index of Thumb to return.
-     * @return {Ext.slider.Thumb} The thumb instance
-     */
-    getThumb: function(index) {
-        if (typeof index != 'number') {
-            index = 0;
-        }
-
-        return this.innerItems[index];
+<span id='Ext-field-Slider-method-onSliderDragStart'>    onSliderDragStart: function() {
+</span>        this.fireEvent.apply(this, [].concat('dragstart', this, Array.prototype.slice.call(arguments)));
     },
 
-    refreshOffsetValueRatio: function() {
-        var valueRange = this.getMaxValue() - this.getMinValue(),
-            trackWidth = this.elementWidth - this.thumbWidth;
-
-        this.offsetValueRatio = trackWidth / valueRange;
+<span id='Ext-field-Slider-method-onSliderDrag'>    onSliderDrag: function() {
+</span>        this.fireEvent.apply(this, [].concat('drag', this, Array.prototype.slice.call(arguments)));
     },
 
-    refreshElementWidth: function() {
-        this.elementWidth = this.element.dom.offsetWidth;
-        var thumb = this.getThumb(0);
-        if (thumb) {
-            this.thumbWidth = thumb.getElementWidth();
-        }
+<span id='Ext-field-Slider-method-onSliderDragEnd'>    onSliderDragEnd: function() {
+</span>        this.fireEvent.apply(this, [].concat('dragend', this, Array.prototype.slice.call(arguments)));
     },
 
-    refresh: function() {
-        this.refreshElementWidth();
-        this.refreshValue();
-    },
-
-    setActiveThumb: function(thumb) {
-        var oldActiveThumb = this.activeThumb;
-
-        if (oldActiveThumb &amp;&amp; oldActiveThumb !== thumb) {
-            oldActiveThumb.setZIndex(null);
-        }
-
-        this.activeThumb = thumb;
-        thumb.setZIndex(2);
-
-        return this;
-    },
-
-    onThumbDragStart: function(thumb, e) {
-        if (e.absDeltaX &lt;= e.absDeltaY) {
-            return false;
-        }
-        else {
-            e.stopPropagation();
-        }
-
-        if (this.getAllowThumbsOverlapping()) {
-            this.setActiveThumb(thumb);
-        }
-
-        this.dragStartValue = this.getValue()[this.getThumbIndex(thumb)];
-        this.fireEvent('dragstart', this, thumb, this.dragStartValue, e);
-    },
-
-    onThumbDrag: function(thumb, e, offsetX) {
-        var index = this.getThumbIndex(thumb),
-            offsetValueRatio = this.offsetValueRatio,
-            constrainedValue = this.constrainValue(offsetX / offsetValueRatio);
-
-        e.stopPropagation();
-
-        this.setIndexValue(index, constrainedValue);
-
-        this.fireEvent('drag', this, thumb, this.getValue(), e);
-
-        return false;
-    },
-
-    setIndexValue: function(index, value, animation) {
-        var thumb = this.getThumb(index),
-            values = this.getValue(),
-            offsetValueRatio = this.offsetValueRatio,
-            draggable = thumb.getDraggable();
-
-        draggable.setOffset(value * offsetValueRatio, null, animation);
-
-        values[index] = value;
-    },
-
-    onThumbDragEnd: function(thumb, e) {
-        this.refreshThumbConstraints(thumb);
-        var index = this.getThumbIndex(thumb),
-            newValue = this.getValue()[index],
-            oldValue = this.dragStartValue;
-
-        this.fireEvent('dragend', this, thumb, this.getValue(), e);
-        if (oldValue !== newValue) {
-            this.fireEvent('change', this, thumb, newValue, oldValue);
-        }
-    },
-
-    getThumbIndex: function(thumb) {
-        return this.getThumbs().indexOf(thumb);
-    },
-
-    refreshThumbConstraints: function(thumb) {
-        var allowThumbsOverlapping = this.getAllowThumbsOverlapping(),
-            offsetX = thumb.getDraggable().getOffset().x,
-            thumbs = this.getThumbs(),
-            index = this.getThumbIndex(thumb),
-            previousThumb = thumbs[index - 1],
-            nextThumb = thumbs[index + 1],
-            thumbWidth = this.thumbWidth;
-
-        if (previousThumb) {
-            previousThumb.getDraggable().addExtraConstraint({
-                max: {
-                    x: offsetX - ((allowThumbsOverlapping) ? 0 : thumbWidth)
-                }
-            });
-        }
-
-        if (nextThumb) {
-            nextThumb.getDraggable().addExtraConstraint({
-                min: {
-                    x: offsetX + ((allowThumbsOverlapping) ? 0 : thumbWidth)
-                }
-            });
-        }
-    },
-
-    // @private
-    onTap: function(e) {
-        if (this.isDisabled()) {
-            return;
-        }
-
-        var targetElement = Ext.get(e.target);
-
-        if (!targetElement || targetElement.hasCls('x-thumb')) {
-            return;
-        }
-
-        var touchPointX = e.touch.point.x,
-            element = this.element,
-            elementX = element.getX(),
-            offset = touchPointX - elementX - (this.thumbWidth / 2),
-            value = this.constrainValue(offset / this.offsetValueRatio),
-            values = this.getValue(),
-            minDistance = Infinity,
-            ln = values.length,
-            i, absDistance, testValue, closestIndex, oldValue, thumb;
-
-        if (ln === 1) {
-            closestIndex = 0;
-        }
-        else {
-            for (i = 0; i &lt; ln; i++) {
-                testValue = values[i];
-                absDistance = Math.abs(testValue - value);
-
-                if (absDistance &lt; minDistance) {
-                    minDistance = absDistance;
-                    closestIndex = i;
-                }
-            }
-        }
-
-        oldValue = values[closestIndex];
-        thumb = this.getThumb(closestIndex);
-
-        this.setIndexValue(closestIndex, value, this.getAnimation());
-        this.refreshThumbConstraints(thumb);
-
-        if (oldValue !== value) {
-            this.fireEvent('change', this, thumb, value, oldValue);
-        }
-    },
-
-    // @private
-    updateThumbs: function(newThumbs) {
-        this.add(newThumbs);
-    },
-
-    applyValue: function(value) {
-        var values = Ext.Array.from(value || 0),
-            filteredValues = [],
-            previousFilteredValue = this.getMinValue(),
-            filteredValue, i, ln;
-
-        for (i = 0,ln = values.length; i &lt; ln; i++) {
-            filteredValue = this.constrainValue(values[i]);
-
-            if (filteredValue &lt; previousFilteredValue) {
-                //&lt;debug warn&gt;
-                Ext.Logger.warn(&quot;Invalid values of '&quot;+Ext.encode(values)+&quot;', values at smaller indexes must &quot; +
-                    &quot;be smaller than or equal to values at greater indexes&quot;);
-                //&lt;/debug&gt;
-                filteredValue = previousFilteredValue;
-            }
-
-            filteredValues.push(filteredValue);
-
-            previousFilteredValue = filteredValue;
-        }
-
-        return filteredValues;
-    },
-
-<span id='Ext-slider-Slider-method-updateValue'>    /**
-</span>     * Updates the sliders thumbs with their new value(s)
-     */
-    updateValue: function(newValue, oldValue) {
-        var thumbs = this.getThumbs(),
-            ln = newValue.length,
-            i;
-
-        this.setThumbsCount(ln);
-
-        for (i = 0; i &lt; ln; i++) {
-            thumbs[i].getDraggable().setExtraConstraint(null)
-                                    .setOffset(newValue[i] * this.offsetValueRatio);
-        }
-
-        for (i = 0; i &lt; ln; i++) {
-            this.refreshThumbConstraints(thumbs[i]);
-        }
-    },
-
-<span id='Ext-slider-Slider-method-refreshValue'>    /**
-</span>     * @private
-     */
-    refreshValue: function() {
-        this.refreshOffsetValueRatio();
-
-        this.setValue(this.getValue());
-    },
-
-<span id='Ext-slider-Slider-method-constrainValue'>    /**
-</span>     * @private
-     * Takes a desired value of a thumb and returns the nearest snap value. e.g if minValue = 0, maxValue = 100, increment = 10 and we
-     * pass a value of 67 here, the returned value will be 70. The returned number is constrained within {@link #minValue} and {@link #maxValue},
-     * so in the above example 68 would be returned if {@link #maxValue} was set to 68.
-     * @param {Number} value The value to snap
-     * @return {Number} The snapped value
-     */
-    constrainValue: function(value) {
-        var me = this,
-            minValue  = me.getMinValue(),
-            maxValue  = me.getMaxValue(),
-            increment = me.getIncrement(),
-            remainder;
-
-        value = parseFloat(value);
-
-        if (isNaN(value)) {
-            value = minValue;
-        }
-
-        remainder = value % increment;
-        value -= remainder;
-
-        if (Math.abs(remainder) &gt;= (increment / 2)) {
-            value += (remainder &gt; 0) ? increment : -increment;
-        }
-
-        value = Math.max(minValue, value);
-        value = Math.min(maxValue, value);
-
-        return value;
-    },
-
-    setThumbsCount: function(count) {
-        var thumbs = this.getThumbs(),
-            thumbsCount = thumbs.length,
-            i, ln, thumb;
-
-        if (thumbsCount &gt; count) {
-            for (i = 0,ln = thumbsCount - count; i &lt; ln; i++) {
-                thumb = thumbs[thumbs.length - 1];
-                thumb.destroy();
-            }
-        }
-        else if (thumbsCount &lt; count) {
-            for (i = 0,ln = count - thumbsCount; i &lt; ln; i++) {
-                this.add(this.factoryThumb());
-            }
-        }
-
-        return this;
-    },
-
-<span id='Ext-slider-Slider-method-setValues'>    /**
-</span>     * Convience method. Calls {@link #setValue}
+<span id='Ext-field-Slider-method-setValues'>    /**
+</span>     * Convenience method. Calls {@link #setValue}.
+     * @param {Object} value
      */
     setValues: function(value) {
         this.setValue(value);
     },
 
-<span id='Ext-slider-Slider-method-getValues'>    /**
-</span>     * Convience method. Calls {@link #getValue}
+<span id='Ext-field-Slider-method-getValues'>    /**
+</span>     * Convenience method. Calls {@link #getValue}
+     * @return {Object}
      */
     getValues: function() {
         return this.getValue();
     },
 
-    // Sets the {@link #increment} configuration
-    applyIncrement: function(increment) {
-        if (increment === 0) {
-            increment = 1;
-        }
+<span id='Ext-field-Slider-method-reset'>    reset: function() {
+</span>        var config = this.config,
+            initialValue = (this.config.hasOwnProperty('values')) ? config.values : config.value;
 
-        return Math.abs(increment);
+        this.setValue(initialValue);
     },
 
-    // @private
-    updateAllowThumbsOverlapping: function(newValue, oldValue) {
-        if (typeof oldValue != 'undefined') {
-            this.refreshValue();
-        }
+<span id='Ext-field-Slider-method-doSetDisabled'>    doSetDisabled: function(disabled) {
+</span>        this.callParent(arguments);
+
+        this.getComponent().setDisabled(disabled);
     },
 
-    // @private
-    updateMinValue: function(newValue, oldValue) {
-        if (typeof oldValue != 'undefined') {
-            this.refreshValue();
-        }
+<span id='Ext-field-Slider-method-updateReadOnly'>    updateReadOnly: function(newValue) {
+</span>        this.getComponent().setReadOnly(newValue);
     },
 
-    // @private
-    updateMaxValue: function(newValue, oldValue) {
-        if (typeof oldValue != 'undefined') {
-            this.refreshValue();
+<span id='Ext-field-Slider-method-isDirty'>    isDirty : function () {
+</span>        if (this.getDisabled()) {
+            return false;
         }
-    },
 
-    // @private
-    updateIncrement: function(newValue, oldValue) {
-        if (typeof oldValue != 'undefined') {
-            this.refreshValue();
-        }
-    },
-
-    doSetDisabled: function(disabled) {
-        this.callParent(arguments);
-
-        var items = this.getItems().items,
-            ln = items.length,
-            i;
-
-        for (i = 0; i &lt; ln; i++) {
-            items[i].setDisabled(disabled);
-        }
+        return this.getValue() !== this.originalValue;
     }
-
-}, function() {
-    //&lt;deprecated product=touch since=2.0&gt;
-<span id='Ext-slider-Slider-cfg-animationDuration'>    /**
-</span>     * @cfg {Boolean} animationDuration
-     * Animation duration in ms.
-     * @removed 2.0.0 Use the duration property on the animation config instead.
-     */
-    Ext.deprecateProperty(this, 'animationDuration', null, &quot;Ext.slider.Slider.animationDuration has been removed&quot;);
-    //&lt;/deprecated&gt;
 });
 </pre>
 </body>

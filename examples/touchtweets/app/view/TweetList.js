@@ -6,7 +6,7 @@
 * The {@link #defaultType} is a tweetlistitem.
 */
 Ext.define('Twitter.view.TweetList', {
-    extend: 'Ext.dataview.DataView',
+    extend: 'Ext.dataview.List',
     xtype: 'tweetlist',
     requires: [
         'Twitter.view.TweetListItem',

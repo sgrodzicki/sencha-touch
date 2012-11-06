@@ -107,8 +107,8 @@ Ext.define('Ext.field.Number', {
         ui: 'number'
     },
 
-    proxyConfig: {
-<span id='Ext-field-Number-cfg-minValue'>        /**
+<span id='Ext-field-Number-property-proxyConfig'>    proxyConfig: {
+</span><span id='Ext-field-Number-cfg-minValue'>        /**
 </span>         * @cfg {Number} minValue The minimum value that this Number field can accept
          * @accessor
          */
@@ -128,8 +128,8 @@ Ext.define('Ext.field.Number', {
         stepValue: null
     },
 
-    applyValue: function(value) {
-        var minValue = this.getMinValue(),
+<span id='Ext-field-Number-method-applyValue'>    applyValue: function(value) {
+</span>        var minValue = this.getMinValue(),
             maxValue = this.getMaxValue();
 
         if (Ext.isNumber(minValue)) {
@@ -144,13 +144,13 @@ Ext.define('Ext.field.Number', {
         return (isNaN(value)) ? '' : value;
     },
 
-    getValue: function() {
-        var value = parseFloat(this.callParent(), 10);
+<span id='Ext-field-Number-method-getValue'>    getValue: function() {
+</span>        var value = parseFloat(this.callParent(), 10);
         return (isNaN(value)) ? null : value;
     },
 
-    doClearIconTap: function(me, e) {
-        me.getComponent().setValue('');
+<span id='Ext-field-Number-method-doClearIconTap'>    doClearIconTap: function(me, e) {
+</span>        me.getComponent().setValue('');
         me.getValue();
         me.hideClearIcon();
     }

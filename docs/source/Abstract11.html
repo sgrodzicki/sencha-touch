@@ -15,35 +15,44 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-device-orientation-Abstract'>/**
+  <pre class="prettyprint lang-js"><span id='Ext-fx-easing-Abstract'>/**
 </span> * @private
  */
-Ext.define('Ext.device.orientation.Abstract', {
-    extend: 'Ext.EventedBase',
+Ext.define('Ext.fx.easing.Abstract', {
 
-<span id='Ext-device-orientation-Abstract-event-orientationchange'>    /**
-</span>     * @event orientationchange
-     * Fires when the orientation has been changed on this device.
-     *
-     *     Ext.device.Orientation.on({
-     *         scope: this,
-     *         orientationchange: function(e) {
-     *             console.log('Alpha: ', e.alpha);
-     *             console.log('Beta: ', e.beta);
-     *             console.log('Gamma: ', e.gamma);
-     *         }
-     *     });
-     *
-     * @param {Object} event The event object
-     * @param {Object} event.alpha The alpha value of the orientation event
-     * @param {Object} event.beta The beta value of the orientation event
-     * @param {Object} event.gamma The gamma value of the orientation event
-     */
+    config: {
+<span id='Ext-fx-easing-Abstract-cfg-startTime'>        startTime: 0,
+</span><span id='Ext-fx-easing-Abstract-cfg-startValue'>        startValue: 0
+</span>    },
 
-    onDeviceOrientation: function(e) {
-        this.doFireEvent('orientationchange', [e]);
-    }
-});
+<span id='Ext-fx-easing-Abstract-property-isEasing'>    isEasing: true,
+</span>
+<span id='Ext-fx-easing-Abstract-property-isEnded'>    isEnded: false,
+</span>
+<span id='Ext-fx-easing-Abstract-method-constructor'>    constructor: function(config) {
+</span>        this.initConfig(config);
+
+        return this;
+    },
+
+<span id='Ext-fx-easing-Abstract-method-applyStartTime'>    applyStartTime: function(startTime) {
+</span>        if (!startTime) {
+            startTime = Ext.Date.now();
+        }
+
+        return startTime;
+    },
+
+<span id='Ext-fx-easing-Abstract-method-updateStartTime'>    updateStartTime: function(startTime) {
+</span>        this.reset();
+    },
+
+<span id='Ext-fx-easing-Abstract-method-reset'>    reset: function() {
+</span>        this.isEnded = false;
+    },
+
+<span id='Ext-fx-easing-Abstract-method-getValue'>    getValue: Ext.emptyFn
+</span>});
 </pre>
 </body>
 </html>

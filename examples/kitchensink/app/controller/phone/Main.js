@@ -74,7 +74,7 @@ Ext.define('Kitchensink.controller.phone.Main', {
     showView: function(item) {
         var nav    = this.getNav(),
             title  = item.get('text'),
-            view   = this.createView(this.getViewName(item)),
+            view   = this.createView(item),
             layout = nav.getLayout(),
             anim   = item.get('animation'),
             initialAnim = layout.getAnimation(),

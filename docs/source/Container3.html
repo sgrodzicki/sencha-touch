@@ -15,96 +15,86 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js"><span id='Ext-dataview-component-Container'>/**
+  <pre class="prettyprint lang-js"><span id='Ext-dataview-element-Container'>/**
 </span> * @private
  */
-Ext.define('Ext.dataview.component.Container', {
-    extend: 'Ext.Container',
+Ext.define('Ext.dataview.element.Container', {
+    extend: 'Ext.Component',
 
-    requires: [
-        'Ext.dataview.component.DataItem'
-    ],
-
-<span id='Ext-dataview-component-Container-event-itemtouchstart'>    /**
+<span id='Ext-dataview-element-Container-event-itemtouchstart'>    /**
 </span>     * @event itemtouchstart
      * Fires whenever an item is touched
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item touched
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item touched
      * @param {Number} index The index of the item touched
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemtouchmove'>    /**
+<span id='Ext-dataview-element-Container-event-itemtouchmove'>    /**
 </span>     * @event itemtouchmove
      * Fires whenever an item is moved
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item moved
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item moved
      * @param {Number} index The index of the item moved
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemtouchend'>    /**
+<span id='Ext-dataview-element-Container-event-itemtouchend'>    /**
 </span>     * @event itemtouchend
      * Fires whenever an item is touched
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item touched
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item touched
      * @param {Number} index The index of the item touched
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemtap'>    /**
+<span id='Ext-dataview-element-Container-event-itemtap'>    /**
 </span>     * @event itemtap
      * Fires whenever an item is tapped
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item tapped
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item tapped
      * @param {Number} index The index of the item tapped
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemtaphold'>    /**
+<span id='Ext-dataview-element-Container-event-itemtaphold'>    /**
 </span>     * @event itemtaphold
      * Fires whenever an item is tapped
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item tapped
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item tapped
      * @param {Number} index The index of the item tapped
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemsingletap'>    /**
+<span id='Ext-dataview-element-Container-event-itemsingletap'>    /**
 </span>     * @event itemsingletap
-     * Fires whenever an item is doubletapped
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item singletapped
+     * Fires whenever an item is singletapped
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item singletapped
      * @param {Number} index The index of the item singletapped
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemdoubletap'>    /**
+<span id='Ext-dataview-element-Container-event-itemdoubletap'>    /**
 </span>     * @event itemdoubletap
      * Fires whenever an item is doubletapped
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item doubletapped
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item doubletapped
      * @param {Number} index The index of the item doubletapped
      * @param {Ext.EventObject} e The event object
      */
 
-<span id='Ext-dataview-component-Container-event-itemswipe'>    /**
+<span id='Ext-dataview-element-Container-event-itemswipe'>    /**
 </span>     * @event itemswipe
      * Fires whenever an item is swiped
-     * @param {Ext.dataview.component.Container} this
-     * @param {Ext.dataview.component.DataItem} item The item swiped
+     * @param {Ext.dataview.element.Container} this
+     * @param {Ext.dom.Element} item The item swiped
      * @param {Number} index The index of the item swiped
      * @param {Ext.EventObject} e The event object
      */
 
-    constructor: function() {
-        this.itemCache = [];
-        this.callParent(arguments);
-    },
-
-    //@private
     doInitialize: function() {
-        this.innerElement.on({
+        this.element.on({
             touchstart: 'onItemTouchStart',
             touchend: 'onItemTouchEnd',
             tap: 'onItemTap',
@@ -113,127 +103,190 @@ Ext.define('Ext.dataview.component.Container', {
             singletap: 'onItemSingleTap',
             doubletap: 'onItemDoubleTap',
             swipe: 'onItemSwipe',
-            delegate: '&gt; .' + Ext.baseCSSPrefix + 'data-item',
+            delegate: '&gt; div',
             scope: this
         });
     },
 
-    //@private
-    initialize: function() {
+<span id='Ext-dataview-element-Container-method-initialize'>    //@private
+</span>    initialize: function() {
         this.callParent();
         this.doInitialize();
     },
 
-    onItemTouchStart: function(e) {
-        var me = this,
-            target = e.getTarget(),
-            item = Ext.getCmp(target.id);
+<span id='Ext-dataview-element-Container-method-updateBaseCls'>    updateBaseCls: function(newBaseCls, oldBaseCls) {
+</span>        var me = this;
 
-        item.on({
+        me.callParent([newBaseCls + '-container', oldBaseCls]);
+    },
+
+<span id='Ext-dataview-element-Container-method-onItemTouchStart'>    onItemTouchStart: function(e) {
+</span>        var me = this,
+            target = e.getTarget(),
+            index = me.getViewItems().indexOf(target);
+
+        Ext.get(target).on({
             touchmove: 'onItemTouchMove',
             scope   : me,
             single: true
         });
 
-        me.fireEvent('itemtouchstart', me, item, me.indexOf(item), e);
+        me.fireEvent('itemtouchstart', me, Ext.get(target), index, e);
     },
 
-    onItemTouchMove: function(e) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemTouchEnd'>    onItemTouchEnd: function(e) {
+</span>        var me = this,
             target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-        me.fireEvent('itemtouchmove', me, item, me.indexOf(item), e);
-    },
+            index = me.getViewItems().indexOf(target);
 
-    onItemTouchEnd: function(e) {
-        var me = this,
-            target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-
-        item.un({
+        Ext.get(target).un({
             touchmove: 'onItemTouchMove',
             scope   : me
         });
 
-        me.fireEvent('itemtouchend', me, item, me.indexOf(item), e);
+        me.fireEvent('itemtouchend', me, Ext.get(target), index, e);
     },
 
-    onItemTap: function(e) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemTouchMove'>    onItemTouchMove: function(e) {
+</span>        var me = this,
             target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-        me.fireEvent('itemtap', me, item, me.indexOf(item), e);
+            index = me.getViewItems().indexOf(target);
+
+        me.fireEvent('itemtouchmove', me, Ext.get(target), index, e);
     },
 
-    onItemTapHold: function(e) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemTap'>    onItemTap: function(e) {
+</span>        var me = this,
             target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-        me.fireEvent('itemtaphold', me, item, me.indexOf(item), e);
+            index = me.getViewItems().indexOf(target);
+
+        me.fireEvent('itemtap', me, Ext.get(target), index, e);
     },
 
-    onItemSingleTap: function(e) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemTapHold'>    onItemTapHold: function(e) {
+</span>        var me     = this,
             target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-        me.fireEvent('itemsingletap', me, item, me.indexOf(item), e);
+            index  = me.getViewItems().indexOf(target);
+
+        me.fireEvent('itemtaphold', me, Ext.get(target), index, e);
     },
 
-    onItemDoubleTap: function(e) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemDoubleTap'>    onItemDoubleTap: function(e) {
+</span>        var me = this,
             target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-        me.fireEvent('itemdoubletap', me, item, me.indexOf(item), e);
+            index = me.getViewItems().indexOf(target);
+
+        me.fireEvent('itemdoubletap', me, Ext.get(target), index, e);
     },
 
-    onItemSwipe: function(e) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemSingleTap'>    onItemSingleTap: function(e) {
+</span>        var me = this,
             target = e.getTarget(),
-            item = Ext.getCmp(target.id);
-        me.fireEvent('itemswipe', me, item, me.indexOf(item), e);
+            index = me.getViewItems().indexOf(target);
+
+        me.fireEvent('itemsingletap', me, Ext.get(target), index, e);
     },
 
-    moveItemsToCache: function(from, to) {
-        var me = this,
+<span id='Ext-dataview-element-Container-method-onItemSwipe'>    onItemSwipe: function(e) {
+</span>        var me = this,
+            target = e.getTarget(),
+            index = me.getViewItems().indexOf(target);
+
+        me.fireEvent('itemswipe', me,  Ext.get(target), index, e);
+    },
+
+<span id='Ext-dataview-element-Container-method-updateListItem'>    updateListItem: function(record, item) {
+</span>        var me       = this,
             dataview = me.dataview,
-            maxItemCache = dataview.getMaxItemCache(),
+            store    = dataview.getStore(),
+            index    = store.indexOf(record),
+            data     = dataview.prepareData(record.getData(true), index, record);
+
+        data.xcount = store.getCount();
+        data.xindex = typeof data.xindex === 'number' ? data.xindex : index;
+
+        item.innerHTML = dataview.getItemTpl().apply(data);
+    },
+
+<span id='Ext-dataview-element-Container-method-addListItem'>    addListItem: function(index, record) {
+</span>        var me         = this,
+            dataview   = me.dataview,
+            store      = dataview.getStore(),
+            data       = dataview.prepareData(record.getData(true), index, record),
+            element    = me.element,
+            childNodes = element.dom.childNodes,
+            ln         = childNodes.length,
+            wrapElement;
+
+        data.xcount = typeof data.xcount === 'number' ? data.xcount : store.getCount();
+        data.xindex = typeof data.xindex === 'number' ? data.xindex : index;
+
+        wrapElement = Ext.Element.create(this.getItemElementConfig(index, data));
+
+        if (!ln || index == ln) {
+            wrapElement.appendTo(element);
+        } else {
+            wrapElement.insertBefore(childNodes[index]);
+        }
+    },
+
+<span id='Ext-dataview-element-Container-method-getItemElementConfig'>    getItemElementConfig: function(index, data) {
+</span>        var dataview = this.dataview,
+            itemCls = dataview.getItemCls(),
+            cls = dataview.getBaseCls() + '-item';
+
+        if (itemCls) {
+            cls += ' ' + itemCls;
+        }
+        return {
+            cls: cls,
+            html: dataview.getItemTpl().apply(data)
+        };
+    },
+
+<span id='Ext-dataview-element-Container-method-doRemoveItemCls'>    doRemoveItemCls: function(cls) {
+</span>        var elements = this.getViewItems(),
+            ln = elements.length,
+            i = 0;
+
+        for (; i &lt; ln; i++) {
+            Ext.fly(elements[i]).removeCls(cls);
+        }
+    },
+
+<span id='Ext-dataview-element-Container-method-doAddItemCls'>    doAddItemCls: function(cls) {
+</span>        var elements = this.getViewItems(),
+            ln = elements.length,
+            i = 0;
+
+        for (; i &lt; ln; i++) {
+            Ext.fly(elements[i]).addCls(cls);
+        }
+    },
+
+<span id='Ext-dataview-element-Container-method-moveItemsToCache'>    // Remove
+</span>    moveItemsToCache: function(from, to) {
+        var me = this,
             items = me.getViewItems(),
-            itemCache = me.itemCache,
-            cacheLn = itemCache.length,
-            pressedCls = dataview.getPressedCls(),
-            selectedCls = dataview.getSelectedCls(),
             i = to - from,
             item;
 
         for (; i &gt;= 0; i--) {
             item = items[from + i];
-            if (cacheLn !== maxItemCache) {
-                me.remove(item, false);
-                item.removeCls([pressedCls, selectedCls]);
-                itemCache.push(item);
-                cacheLn++;
-            }
-            else {
-                item.destroy();
-            }
+            Ext.get(item).destroy();
         }
-
         if (me.getViewItems().length == 0) {
             this.dataview.showEmptyText();
         }
     },
 
-    moveItemsFromCache: function(records) {
+<span id='Ext-dataview-element-Container-method-moveItemsFromCache'>    // Add
+</span>    moveItemsFromCache: function(records) {
         var me = this,
             dataview = me.dataview,
             store = dataview.getStore(),
             ln = records.length,
-            xtype = dataview.getDefaultType(),
-            itemConfig = dataview.getItemConfig(),
-            itemCache = me.itemCache,
-            cacheLn = itemCache.length,
-            items = [],
-            i, item, record;
+            i, record;
 
         if (ln) {
             dataview.hideEmptyText();
@@ -249,70 +302,28 @@ Ext.define('Ext.dataview.component.Container', {
 
         for (i = 0; i &lt; ln; i++) {
             record = records[i];
-            if (cacheLn) {
-                cacheLn--;
-                item = itemCache.pop();
-                this.updateListItem(record, item);
-            }
-            else {
-                item = me.getDataItemConfig(xtype, record, itemConfig);
-            }
-            this.insert(record._tmpIndex, item);
+            me.addListItem(record._tmpIndex, record);
             delete record._tmpIndex;
         }
-        return items;
     },
 
-    getViewItems: function() {
-        return this.getInnerItems();
+<span id='Ext-dataview-element-Container-method-getViewItems'>    // Transform ChildNodes into a proper Array so we can do indexOf...
+</span>    getViewItems: function() {
+        return Array.prototype.slice.call(this.element.dom.childNodes);
     },
 
-    updateListItem: function(record, item) {
-        if (item.updateRecord) {
-            item.updateRecord(record);
-        }
+<span id='Ext-dataview-element-Container-method-updateAtNewIndex'>    updateAtNewIndex: function(oldIndex, newIndex, record) {
+</span>        this.moveItemsToCache(oldIndex, oldIndex);
+        this.moveItemsFromCache([record]);
     },
 
-    getDataItemConfig: function(xtype, record, itemConfig) {
-        var dataview = this.dataview,
-            dataItemConfig = {
-                xtype: xtype,
-                record: record,
-                dataview: dataview,
-                itemCls: dataview.getItemCls(),
-                defaults: itemConfig
-            };
-        return Ext.merge(dataItemConfig, itemConfig);
-    },
-
-    doRemoveItemCls: function(cls) {
-        var items = this.getViewItems(),
-            ln = items.length,
+<span id='Ext-dataview-element-Container-method-destroy'>    destroy: function() {
+</span>        var elements = this.getViewItems(),
+            ln = elements.length,
             i = 0;
 
         for (; i &lt; ln; i++) {
-            items[i].removeCls(cls);
-        }
-    },
-
-    doAddItemCls: function(cls) {
-        var items = this.getViewItems(),
-            ln = items.length,
-            i = 0;
-
-        for (; i &lt; ln; i++) {
-            items[i].addCls(cls);
-        }
-    },
-
-    destroy: function() {
-        var me = this,
-            itemCache = me.itemCache,
-            ln = itemCache.length,
-            i = 0;
-
-        for (; i &lt; ln; i++) {
-            itemCache[i].destroy();
+            Ext.get(elements[i]).destroy();
         }
         this.callParent();
     }

@@ -2,6 +2,8 @@ Ext.define('Oreilly.util.Proxy', {
 
 	singleton: true,
 
+	requires: ['Ext.data.proxy.JsonP'],
+
 	process: function(url, callback) {
 
 		var sessionStore = Ext.getStore('Sessions'),

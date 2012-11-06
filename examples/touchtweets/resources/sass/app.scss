@@ -58,7 +58,6 @@ $list-active-gradient: matte;
 
     &.big {
         padding: .5em;
-        height: 4.7em !important;
     }
 
     .x-field {
@@ -81,6 +80,10 @@ $list-active-gradient: matte;
         text-align: center;
         font-weight: bold;
         margin: 0 0 .5em 0;
+
+        .x-innerhtml {
+            width: 100%;
+        }
     }
 }
 
@@ -124,21 +127,24 @@ $list-active-gradient: matte;
 }
 
 //tweetlist
-.x-dataview-timeline {
+.x-list-timeline {
     .x-dataview-emptytext {
         padding: 3em;
         font-weight: bold;
         text-align: center;
     }
 
-    .x-data-item {
-        padding: 1em;
+    .x-list-item-body {
+        min-height: 0px;
+        padding: 0;
+    }
+
+    .x-list-item .x-dock-horizontal {
+        padding: .5em;
         background: #fff;
         border-bottom: 1px solid $gray;
 
         .avatar {
-            width: 48px;
-            height: 48px;
             margin-right: .5em;
             border: 1px solid $gray;
             @include border-radius(.4em);

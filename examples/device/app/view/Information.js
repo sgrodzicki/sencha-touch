@@ -20,6 +20,30 @@ Ext.define('Device.view.Information', {
                 cls: 'device-information',
                 id: 'deviceInformation',
                 tpl: '<strong>Name:</strong> {name}<br /><strong>UUID:</strong> {uuid}<br /><strong>Platform:</strong> {platform}'
+            },
+            {
+                xtype: 'button',
+                cls: 'url-button',
+                text: 'Open Google',
+                handler: function() {
+                    Ext.device.Device.openURL('http://google.com');
+                }
+            },
+            {
+                xtype: 'button',
+                cls: 'url-button',
+                text: 'Send a new email',
+                handler: function() {
+                    Ext.device.Device.openURL('mailto:?to=rob@sencha.com');
+                }
+            },
+            {
+                xtype: 'button',
+                cls: 'url-button',
+                text: 'Open Settings.app',
+                handler: function() {
+                    Ext.device.Device.openURL('prefs:root=General&path=About');
+                }
             }
         ]
     },

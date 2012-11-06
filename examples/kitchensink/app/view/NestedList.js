@@ -3,7 +3,7 @@
  */
 Ext.require('Ext.data.TreeStore', function() {
     Ext.define('Kitchensink.view.NestedList', {
-        requires: ['Kitchensink.view.EditorPanel', 'Kitchensink.model.Cars'],
+        requires: ['Kitchensink.view.EditorPanel', 'Kitchensink.model.Cars', 'Ext.layout.Fit'],
         extend: 'Ext.Container',
         config: {
             layout: 'fit',

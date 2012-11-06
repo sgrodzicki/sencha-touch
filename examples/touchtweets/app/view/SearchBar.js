@@ -12,7 +12,9 @@ Ext.define('Twitter.view.SearchBar', {
     config: {
         ui: 'searchbar',
         layout: 'vbox',
+        height: '79px',
         cls: 'big',
+        height: '4.7em',
 
         items: [
             {

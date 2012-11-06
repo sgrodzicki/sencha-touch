@@ -6,7 +6,7 @@ Ext.define('Device.controller.Application', {
             main: 'main'
         },
         control: {
-            tabbar: {
+            'main > tabbar': {
                 activetabchange: 'onActiveTabChange'
             }
         }

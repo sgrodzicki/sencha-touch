@@ -77,6 +77,7 @@ $include-button-highlights: $include-highlights !default;
     position: relative;
     overflow: hidden;
     -webkit-user-select: none;
+    z-index: 1;
 
     // Default icon style
     .x-button-icon {
@@ -87,9 +88,9 @@ $include-button-highlights: $include-highlights !default;
       display: block;
 
       &amp;.x-icon-mask {
-        width: 1.3em;
-        height: 1.3em;
-        -webkit-mask-size: 1.3em;
+        width: 1.1em;
+        height: 1.1em;
+        -webkit-mask-size: 1.1em;
       }
     }
 
@@ -98,9 +99,10 @@ $include-button-highlights: $include-highlights !default;
     }
   }
 
-  .x-button-round {
-    @if $include-border-radius { @include border-radius($button-height/2); }
-    padding: .1em $button-height/2;
+  @if $include-border-radius {
+    .x-button-round {
+      @include border-radius($button-height/2);
+    }
   }
 
   // Button icon alignment
@@ -150,6 +152,10 @@ $include-button-highlights: $include-highlights !default;
     .x-button-label {
       font-size: .7em;
     }
+
+    .x-button-label, .x-hasbadge .x-badge {
+      line-height: 1.6em;
+    }
   }
 
   .x-button-small, .x-toolbar .x-button-small {
@@ -164,30 +170,34 @@ $include-button-highlights: $include-highlights !default;
     .x-button-icon {
       width: .75em;
       height: .75em;
+
+      &amp;.x-icon-mask {
+        -webkit-mask-size: .75em;
+      }
     }
   }
 
   // Back/Forward buttons
-  $shadow-width: .065em; // Space between tip and its shadow
+  $shadow-width: .045em; // Space between tip and its shadow
   $overlap-width: .2em; // how far the mask is clipped
 
   // $mask-height: $button-height + $button-stroke-weight * 2; // Ugh, this is non-specific... borders?
   $mask-height: $button-height;
-  $mask-width: $mask-height/2.33;
+  $mask-width: $mask-height/2.23;
 
-  $mask-offset: $button-radius - $overlap-width - $button-stroke-weight + $shadow-width - .02em;
+  $mask-offset: $button-radius - $overlap-width - $button-stroke-weight + $shadow-width - .02;
 
   $tip-width: $mask-width - $mask-offset + $shadow-width;
 
   .x-button-forward, .x-button-back {
     position: relative;
     overflow: visible;
-    height: $button-height;
+    height: $button-height - 0.1;
     z-index: 1;
     &amp;:before, &amp;:after {
       @include insertion($mask-width, $mask-height, -$button-stroke-weight, auto);
       z-index: 2;
-      -webkit-mask: $mask-offset 0 theme_image($theme-name, &quot;tip.png&quot;) no-repeat;
+      -webkit-mask: $mask-offset 0 theme_image($theme-name, &quot;tip2_left.png&quot;) no-repeat;
       -webkit-mask-size: $mask-width $mask-height;
       overflow: hidden;
     }
@@ -195,7 +205,7 @@ $include-button-highlights: $include-highlights !default;
 
   .x-button-back,
   .x-toolbar .x-button-back {
-    margin-left: $tip-width - $shadow-width + $toolbar-spacing;
+    margin-left: $tip-width - $shadow-width + $toolbar-spacing  - 0.01;
     padding-left: .4em;
     &amp;:before {
       left: - $tip-width;
@@ -210,7 +220,7 @@ $include-button-highlights: $include-highlights !default;
     margin-right: $tip-width - $shadow-width + $toolbar-spacing;
     padding-right: .4em;
     &amp;:before, &amp;:after {
-      -webkit-mask: -$mask-offset 0 theme_image($theme-name, &quot;tip_right.png&quot;) no-repeat;
+      -webkit-mask: -$mask-offset 0 theme_image($theme-name, &quot;tip2_right.png&quot;) no-repeat;
     }
     &amp;:before {
       right: - $tip-width;
@@ -269,7 +279,7 @@ $include-button-highlights: $include-highlights !default;
       }
     }
 
-    &amp;:not(:first-child) {
+    &amp;:not(.x-first) {
       border-left: 0;
     }
   }
@@ -357,8 +367,10 @@ $include-button-highlights: $include-highlights !default;
     @include toolbar-button($color, $gradient);
   }
 
-  .x-button.x-button-#{$ui-label}-round {
-    @extend .x-button-round;
+  @if $include-border-radius {
+    .x-button.x-button-#{$ui-label}-round {
+      @extend .x-button-round;
+    }
   }
 
   .x-button.x-button-#{$ui-label}-small {

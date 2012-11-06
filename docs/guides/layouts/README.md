@@ -123,14 +123,14 @@ For example, coming back to our first hbox layout above, let's imagine we want t
 
 {@img docktop.jpg}
 
-This is often used for things like toolbars and banners, and is easy to achieve using the *dock: 'top'* configuration:
+This is often used for things like toolbars and banners, and is easy to achieve using the *docked: 'top'* configuration:
 
     Ext.create('Ext.Container', {
 		fullscreen: true,
 		layout: 'hbox',
 		items: [
 		    {
-		        dock: 'top',
+		        docked: 'top',
 		        xtype: 'panel',
 		        height: 20,
 		        html: 'This is docked to the top'
@@ -152,14 +152,14 @@ You can add any number of docked items by simply providing the *dock* configurat
 
 {@img dockleft.jpg}
 
-We can achieve it by specifying *dock: 'left'*:
+We can achieve it by specifying *docked: 'left'*:
 
     Ext.create('Ext.Container', {
 		fullscreen: true,
 		layout: 'vbox',
 		items: [
 		    {
-		        dock: 'left',
+		        docked: 'left',
 		        xtype: 'panel',
 		        width: 100,
 		        html: 'This is docked to the left'
@@ -215,9 +215,9 @@ axis. The example below illustrates the difference.
                         xtype: 'segmentedbutton',
                         allowDepress: false,
                         items: [
-                            { text: 'Start',  handler: function() { layout.setPack('start') }, pressed: true },
-                            { text: 'Center', handler: function() { layout.setPack('center') } },
-                            { text: 'End',    handler: function() { layout.setPack('end') } }
+                            { text: 'Start',  handler: function() { layout.setPack('start'); }, pressed: true },
+                            { text: 'Center', handler: function() { layout.setPack('center'); } },
+                            { text: 'End',    handler: function() { layout.setPack('end'); } }
                         ]
                     }
                 ]
@@ -284,9 +284,9 @@ axis. The example below illustrates the difference.
                         xtype: 'segmentedbutton',
                         allowDepress: false,
                         items: [
-                            { text: 'Start',  handler: function() { layout.setPack('start') }, pressed: true },
-                            { text: 'Center', handler: function() { layout.setPack('center') } },
-                            { text: 'End',    handler: function() { layout.setPack('end') } }
+                            { text: 'Start',  handler: function() { layout.setPack('start'); }, pressed: true },
+                            { text: 'Center', handler: function() { layout.setPack('center'); } },
+                            { text: 'End',    handler: function() { layout.setPack('end'); } }
                         ]
                     }
                 ]

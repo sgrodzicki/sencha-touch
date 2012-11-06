@@ -24,11 +24,16 @@
   .x-msgbox {
     min-width: 15em;
     max-width: 20em;
-    padding: 0.8em;
+    max-height: 90%;
     margin: .5em;
-    -webkit-box-shadow: rgba(#000, .4) 0 .1em .5em;
+    @include box-shadow(rgba(#000, .4) 0 .1em .5em);
     @if $include-border-radius { @include border-radius($panel-border-radius); }
     border: .15em solid $base-color;
+
+    // to hide content that is too large (vertically)
+    .x-docking-vertical {
+      overflow: hidden;
+    }
 
     //icons
     .x-icon {
@@ -38,19 +43,19 @@
     }
 
     .x-msgbox-info {
-      -webkit-mask-image: theme_image($theme-name, &quot;pictos/info.png&quot;);
+      -webkit-mask-image: theme_image('default', &quot;pictos/info.png&quot;);
     }
 
     .x-msgbox-warning {
-      -webkit-mask-image: theme_image($theme-name, &quot;pictos/warning_black.png&quot;);
+      -webkit-mask-image: theme_image('default', &quot;pictos/warning_black.png&quot;);
     }
 
     .x-msgbox-question {
-      -webkit-mask-image: theme_image($theme-name, &quot;pictos/help.png&quot;);
+      -webkit-mask-image: theme_image('default', &quot;pictos/help.png&quot;);
     }
 
     .x-msgbox-error {
-      -webkit-mask-image: theme_image($theme-name, &quot;pictos/minus_black2.png&quot;);
+      -webkit-mask-image: theme_image('default', &quot;pictos/minus_black2.png&quot;);
     }
 
     .x-title {
@@ -59,12 +64,12 @@
     }
 
     .x-body {
-      background:transparent !important;
+      background: transparent !important;
     }
 
     .x-toolbar {
       background: transparent none;
-      -webkit-box-shadow: none;
+      @include box-shadow(none);
 
       &amp;.x-docked-top {
         border-bottom: 0;
@@ -77,7 +82,7 @@
     }
 
     .x-field {
-      min-height:2em;
+      min-height: 2em;
       background: #fff;
       @if $include-border-radius { @include border-radius(.2em); }
     }

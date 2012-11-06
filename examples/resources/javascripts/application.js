@@ -3,14 +3,21 @@ window.onload = function() {
         url = "examples.json",
         section = document.getElementsByTagName('section')[0],
         categories = [],
-        retina = window.devicePixelRatio > 1 ? true : false,
+        iPad = navigator.userAgent.match(/iPad/i) != null,
+        retina = window.devicePixelRatio >= 2 ? true : false,
+        icon = (retina) ? (iPad) ? 'icon@144.png' : 'icon@2x.png' : (iPad) ? 'icon@72.png' : 'icon.png',
         category, item, ul, element, ln, i, j;
 
     request.open('GET', url, false);
     request.send(null);
 
     if (request.status === 200) {
-        categories = JSON.parse(request.responseText);
+        // preprocess tags out of the response to allow the json to parse correctly
+        var text = request.responseText
+                .replace("//<feature charts>",'')
+                .replace("//</feature>",'');
+        
+        categories = JSON.parse(text);
 
         ln = categories.length;
         for (i = 0; i < ln; i++) {
@@ -28,7 +35,7 @@ window.onload = function() {
                 element = document.createElement('li');
                 element.innerHTML = [
                     '<a href="' + item.url + '">',
-                        '<img src="' + ((retina && item.icon2x) ? item.icon2x : item.icon) + '" />',
+                        '<img src="' + item.iconLocation + '/' + icon + '" />',
                         '<h3>' + item.text + '</h3>',
                         '<p>' + item.desc + '</p>',
                     '</a>'
