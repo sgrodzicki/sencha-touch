@@ -251,9 +251,7 @@ Ext.define('Ext.picker.Picker', {
         toolbar: true
     },
 
-    initElement: function() {
-        this.callParent(arguments);
-
+    initialize: function() {
         var me = this,
             clsPrefix = Ext.baseCSSPrefix,
             innerElement = this.innerElement;
@@ -271,11 +269,6 @@ Ext.define('Ext.picker.Picker', {
             scope   : this,
             delegate: 'pickerslot',
             slotpick: 'onSlotPick'
-        });
-
-        me.on({
-            scope: this,
-            show: 'onShow'
         });
     },
 
@@ -477,7 +470,13 @@ Ext.define('Ext.picker.Picker', {
         this.fireEvent('pick', this, this.getValue(true), slot);
     },
 
-    onShow: function() {
+    show: function() {
+        if (this.getParent() === undefined) {
+            Ext.Viewport.add(this);
+        }
+        
+        this.callParent(arguments);
+
         if (!this.isHidden()) {
             this.setValue(this._value);
         }

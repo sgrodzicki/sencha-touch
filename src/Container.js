@@ -365,15 +365,16 @@ Ext.define('Ext.Container', {
      * @param currentMask
      * @return {Object}
      */
-    applyMasked: function(masked, currentMask) {
-        var isVisible = true;
+    applyMasked: function(masked) {
+        var isVisible = true,
+            currentMask;
 
         if (masked === false) {
             masked = true;
             isVisible = false;
         }
 
-        currentMask = Ext.factory(masked, Ext.Mask, currentMask);
+        currentMask = Ext.factory(masked, Ext.Mask, this.getMasked());
 
         if (currentMask) {
             this.add(currentMask);
@@ -998,11 +999,12 @@ Ext.define('Ext.Container', {
 
             items.removeAt(currentIndex);
         }
-        else {
-            item.setParent(me);
-        }
 
         items.insert(index, item);
+
+        if (currentIndex === -1) {
+            item.setParent(me);
+        }
 
         if (isInnerItem) {
             me.insertInner(item, index);
@@ -1298,7 +1300,15 @@ Ext.define('Ext.Container', {
      * @private
      */
     applyScrollable: function(config) {
-        if (config && !config.isObservable) {
+        if (typeof config === 'boolean') {
+            //<debug warn>
+            if (config === false && !this.heightLayoutSized) {
+                Ext.Logger.warn("This container is set to scrollable: false but has no specified height. " +
+                    "You may need to set the container to scrollable: null or provide a height.", this);
+            }
+            //</debug>
+            this.getScrollableBehavior().setConfig({disabled: !config});
+        } else if (config && !config.isObservable) {
             this.getScrollableBehavior().setConfig(config);
         }
         return config;

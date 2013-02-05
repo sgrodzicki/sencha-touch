@@ -29,6 +29,21 @@ Ext.define('Kitchensink.view.LineChartWithMarker', {
                         handler: function (a, b, c, d, e) {
                             Ext.getStore('Pie').generateData(10);
                         }
+                    },
+                    {
+                        text: '&nbsp;Reset',
+                        handler: function () {
+                            //ensure the query gets the chart for this kitchensink example
+                            var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];
+
+                            //reset the axis
+                            Ext.ComponentQuery.query('axis', chart)[0].setVisibleRange([0, 1]);
+                            Ext.ComponentQuery.query('axis', chart)[1].setVisibleRange([0, 0.5]);
+                            chart.redraw();
+
+                            //reset the legend
+                            chart.resetLegendStore();
+                        }
                     }
                 ]
             },

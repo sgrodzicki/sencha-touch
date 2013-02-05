@@ -198,6 +198,7 @@ Ext.define('Kitchensink.view.Forms', {
             {
                 title: 'Sliders',
                 xtype: 'formpanel',
+                scrollable: true,
                 items: [
                     {
                         xtype: 'fieldset',

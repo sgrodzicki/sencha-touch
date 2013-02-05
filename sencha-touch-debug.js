@@ -1,7 +1,7 @@
 /*
 This file is part of Sencha Touch 2.1
 
-Copyright (c) 2011-2012 Sencha Inc
+Copyright (c) 2011-2013 Sencha Inc
 
 Contact:  http://www.sencha.com/contact
 
@@ -16,7 +16,7 @@ requirements will be met: http://www.gnu.org/copyleft/gpl.html.
 If you are unsure which license is appropriate for your use, please contact the sales department
 at http://www.sencha.com/contact.
 
-Build date: 2012-11-05 22:31:29 (08c91901ae8449841ff23e5d3fb404d6128d3b0b)
+Build date: 2013-02-05 12:25:50 (3ba7c63bea96e5ea776e2bbd67cfb0aa01e43322)
 */
 //@tag foundation,core
 //@define Ext
@@ -364,6 +364,19 @@ Build date: 2012-11-05 22:31:29 (08c91901ae8449841ff23e5d3fb404d6128d3b0b)
          */
         isDate: function(value) {
             return toString.call(value) === '[object Date]';
+        },
+
+        /**
+         * Returns 'true' if the passed value is a String that matches the MS Date JSON encoding format
+         * @param value {String} The string to test
+         * @return {Boolean}
+         */
+        isMSDate: function(value) {
+            if (!Ext.isString(value)) {
+                return false;
+            } else {
+                return value.match("\\\\?/Date\\(([-+])?(\\d+)(?:[+-]\\d{4})?\\)\\\\?/") !== null;
+            }
         },
 
         /**
@@ -1935,40 +1948,37 @@ Ext.urlAppend = Ext.String.urlAppend;
         intersect: function() {
             var intersect = [],
                 arrays = slice.call(arguments),
-                i, j, k, minArray, array, x, y, ln, arraysLn, arrayLn;
+                item, minArray, itemIndex, arrayIndex;
 
             if (!arrays.length) {
                 return intersect;
             }
 
-            // Find the smallest array
-            for (i = x = 0,ln = arrays.length; i < ln,array = arrays[i]; i++) {
-                if (!minArray || array.length < minArray.length) {
-                    minArray = array;
-                    x = i;
+            //Find the Smallest Array
+            arrays = arrays.sort(function(a, b) {
+                if (a.length > b.length) {
+                    return 1;
+                } else if (a.length < b.length) {
+                    return -1;
+                } else {
+                    return 0;
                 }
-            }
+            });
 
-            minArray = ExtArray.unique(minArray);
-            erase(arrays, x, 1);
+            //Remove duplicates from smallest array
+            minArray = ExtArray.unique(arrays[0]);
 
-            // Use the smallest unique'd array as the anchor loop. If the other array(s) do contain
-            // an item in the small array, we're likely to find it before reaching the end
-            // of the inner loop and can terminate the search early.
-            for (i = 0,ln = minArray.length; i < ln,x = minArray[i]; i++) {
-                var count = 0;
-
-                for (j = 0,arraysLn = arrays.length; j < arraysLn,array = arrays[j]; j++) {
-                    for (k = 0,arrayLn = array.length; k < arrayLn,y = array[k]; k++) {
-                        if (x === y) {
-                            count++;
-                            break;
-                        }
+            //Populate intersecting values
+            for (itemIndex = 0; itemIndex < minArray.length; itemIndex++) {
+                item = minArray[itemIndex];
+                for (arrayIndex = 1; arrayIndex < arrays.length; arrayIndex++) {
+                    if (arrays[arrayIndex].indexOf(item) === -1) {
+                        break;
                     }
-                }
 
-                if (count === arraysLn) {
-                    intersect.push(x);
+                    if (arrayIndex == (arrays.length - 1)) {
+                        intersect.push(item);
+                    }
                 }
             }
 
@@ -3545,7 +3555,11 @@ Ext.JSON = new(function() {
         } else if (Ext.isDate(o)) {
             return Ext.JSON.encodeDate(o);
         } else if (Ext.isString(o)) {
-            return encodeString(o);
+            if (Ext.isMSDate(o)) {
+               return encodeMSDate(o);
+            } else {
+                return encodeString(o);
+            }
         } else if (typeof o == "number") {
             //don't use isNumber here, since finite checks happen inside isNumber
             return isFinite(o) ? String(o) : "null";
@@ -3599,6 +3613,9 @@ Ext.JSON = new(function() {
         // Overwrite trailing comma (or empty string)
         a[a.length - 1] = '}';
         return a.join("");
+    },
+    encodeMSDate = function(o) {
+        return '"' + o + '"';
     };
 
     /**
@@ -8720,7 +8737,7 @@ var noArgs = [],
  *
  * [getting_started]: #!/guide/getting_started
  */
-Ext.setVersion('touch', '2.1.0');
+Ext.setVersion('touch', '2.1.1');
 
 Ext.apply(Ext, {
     /**
@@ -10417,7 +10434,7 @@ Ext.define('Ext.env.OS', {
             ios: 'i(?:Pad|Phone|Pod)(?:.*)CPU(?: iPhone)? OS ',
             android: '(Android |HTC_|Silk/)', // Some HTC devices ship with an OSX userAgent by default,
                                         // so we need to add a direct check for HTC_
-            blackberry: 'BlackBerry(?:.*)Version\/',
+            blackberry: '(?:BlackBerry|BB)(?:.*)Version\/',
             rimTablet: 'RIM Tablet OS ',
             webos: '(?:webOS|hpwOS)\/',
             bada: 'Bada\/'
@@ -10627,7 +10644,7 @@ Ext.define('Ext.env.OS', {
             // always set it to false when you are on a desktop
             Ext.browser.is.WebView = false;
         }
-        else if (osEnv.is.iPad || osEnv.is.Android3 || (osEnv.is.Android4 && userAgent.search(/mobile/i) == -1)) {
+        else if (osEnv.is.iPad || osEnv.is.RIMTablet || osEnv.is.Android3 || (osEnv.is.Android4 && userAgent.search(/mobile/i) == -1)) {
             deviceType = 'Tablet';
         }
         else {
@@ -14483,6 +14500,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.data.Batch": [],
   "Ext.draw.modifier.Animation": [],
   "Ext.chart.AbstractChart": [],
+  "Ext.field.File": [],
   "Ext.tab.Panel": [
     "Ext.TabPanel"
   ],
@@ -14579,7 +14597,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.series.sprite.Pie3DPart": [],
   "Ext.viewport.Default": [],
   "Ext.layout.HBox": [],
-  "Ext.ux.auth.model.Session": [],
   "Ext.scroll.indicator.Default": [],
   "Ext.data.ModelManager": [
     "Ext.ModelMgr",
@@ -14614,7 +14631,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.Box": [],
   "Ext.bb.CrossCut": [],
   "Ext.Video": [],
-  "Ext.ux.auth.Session": [],
   "Ext.chart.series.Line": [],
   "Ext.fx.layout.card.Cube": [],
   "Ext.event.recognizer.HorizontalSwipe": [],
@@ -14749,7 +14765,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.device.notification.Sencha": [],
   "Ext.chart.series.sprite.Line": [],
   "Ext.data.ArrayStore": [],
-  "Ext.data.proxy.SQL": [],
   "Ext.mixin.Sortable": [],
   "Ext.fx.layout.card.Flip": [],
   "Ext.chart.interactions.CrossZoom": [],
@@ -14778,6 +14793,9 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.data.DirectProxy"
   ],
   "Ext.chart.axis.layout.Continuous": [],
+  "Ext.data.proxy.Sql": [
+    "Ext.data.proxy.SQL"
+  ],
   "Ext.table.Cell": [],
   "Ext.fx.layout.card.ScrollCover": [],
   "Ext.device.orientation.Sencha": [],
@@ -14863,7 +14881,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.VBox": [],
   "Ext.slider.Thumb": [],
   "Ext.MessageBox": [],
-  "Ext.ux.Faker": [],
   "Ext.dataview.IndexBar": [
     "Ext.IndexBar"
   ],
@@ -15112,6 +15129,9 @@ Ext.ClassManager.addNameAlternateMappings({
     "modifier.animation"
   ],
   "Ext.chart.AbstractChart": [],
+  "Ext.field.File": [
+    "widget.file"
+  ],
   "Ext.tab.Panel": [
     "widget.tabpanel"
   ],
@@ -15241,7 +15261,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.HBox": [
     "layout.hbox"
   ],
-  "Ext.ux.auth.model.Session": [],
   "Ext.scroll.indicator.Default": [],
   "Ext.data.ModelManager": [],
   "Ext.data.Validations": [],
@@ -15287,7 +15306,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.Video": [
     "widget.video"
   ],
-  "Ext.ux.auth.Session": [],
   "Ext.chart.series.Line": [
     "series.line"
   ],
@@ -15479,9 +15497,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.data.ArrayStore": [
     "store.array"
   ],
-  "Ext.data.proxy.SQL": [
-    "proxy.sql"
-  ],
   "Ext.mixin.Sortable": [],
   "Ext.fx.layout.card.Flip": [
     "fx.layout.card.flip"
@@ -15523,6 +15538,9 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.chart.axis.layout.Continuous": [
     "axisLayout.continuous"
+  ],
+  "Ext.data.proxy.Sql": [
+    "proxy.sql"
   ],
   "Ext.table.Cell": [
     "widget.tablecell"
@@ -15657,7 +15675,6 @@ Ext.ClassManager.addNameAlternateMappings({
     "widget.thumb"
   ],
   "Ext.MessageBox": [],
-  "Ext.ux.Faker": [],
   "Ext.dataview.IndexBar": [],
   "Ext.dataview.element.List": [],
   "Ext.layout.FlexBox": [

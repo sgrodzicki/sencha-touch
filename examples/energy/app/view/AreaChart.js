@@ -2,6 +2,7 @@ Ext.require("Ext.draw.Color", function () {
     Ext.define('EnergyApp.view.AreaChart', {
         xtype: 'area',
         extend: 'Ext.Panel',
+        require: ['Ext.draw.Color'],
         config: {
             title: 'Area',
             layout: 'fit',
@@ -74,7 +75,9 @@ Ext.require("Ext.draw.Color", function () {
                             type: 'numeric',
                             position: 'right',
                             minimum: 0,
-                            renderer: EnergyApp.app.commify,
+                            renderer: function (nStr, x) {
+                                return(nStr / 1000000).toFixed(2);
+                            },
                             style: {
                                 lineWidth: 2,
                                 stroke: '#555',

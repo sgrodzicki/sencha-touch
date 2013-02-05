@@ -1364,8 +1364,9 @@ Ext.define('Ext.Component', {
      * @private
      * All cls methods directly report to the {@link #cls} configuration, so anytime it changes, {@link #updateCls} will be called
      */
-    updateCls: function(newCls, oldCls) {
-        if (oldCls != newCls && this.element) {
+    updateCls: function (newCls, oldCls) {
+        if (this.element && ((newCls && !oldCls) || (!newCls && oldCls) || newCls.length != oldCls.length || Ext.Array.difference(newCls,
+            oldCls).length > 0)) {
             this.element.replaceCls(oldCls, newCls);
         }
     },
@@ -1721,7 +1722,8 @@ Ext.define('Ext.Component', {
         return docked;
     },
 
-    doSetDocked: function(docked) {
+    doSetDocked: function(docked, oldDocked) {
+        this.fireEvent('afterdockedchange', this, docked, oldDocked);
         if (!docked) {
             this.refreshInnerState();
         }
@@ -1761,7 +1763,6 @@ Ext.define('Ext.Component', {
 
         if (floating !== this.floating) {
             this.floating = floating;
-            this.element.toggleCls(floatingCls, floating);
 
             if (floating) {
                 this.refreshInnerState = Ext.emptyFn;
@@ -1778,6 +1779,8 @@ Ext.define('Ext.Component', {
 
                 delete this.refreshInnerState;
             }
+
+            this.element.toggleCls(floatingCls, floating);
 
             if (this.initialized) {
                 this.fireEvent('floatingchange', this, floating);

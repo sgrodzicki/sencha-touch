@@ -100,6 +100,15 @@ $list-round-padding: 13px !default;
       margin: 0.5em 0.5em 0 0;
     }
 
+    .x-list-emptytext {
+      text-align: center;
+      pointer-events: none;
+      font-size: #333333;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-box-pack: center;
+    }
+
     &.x-list-indexed .x-list-disclosure {
       margin-right: 1.8em;
     }

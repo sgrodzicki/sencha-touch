@@ -68,6 +68,10 @@ Ext.define('Ext.util.sizemonitor.Abstract', {
         Ext.TaskQueue.requestRead('refresh', this);
     },
 
+    getContentBounds: function() {
+        return this.detectorsContainer.getBoundingClientRect();
+    },
+
     refreshSize: function() {
         var element = this.getElement();
 
@@ -75,11 +79,12 @@ Ext.define('Ext.util.sizemonitor.Abstract', {
             return false;
         }
 
-        var width = element.getWidth(),
-            height = element.getHeight(),
-            contentElement = this.detectorsContainer,
-            contentWidth = contentElement.offsetWidth,
-            contentHeight = contentElement.offsetHeight,
+        var elementBounds = element.dom.getBoundingClientRect(),
+            width = elementBounds.width,
+            height = elementBounds.height,
+            contentBounds = this.getContentBounds(),
+            contentWidth = contentBounds.width,
+            contentHeight = contentBounds.height,
             currentContentWidth = this.contentWidth,
             currentContentHeight = this.contentHeight,
             info = this.info,

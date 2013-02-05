@@ -29,12 +29,7 @@ Ext.define('Particles.sprite.Emitter', {
     },
 
     getBBox: function () {
-        return {
-            x: 0,
-            y: 0,
-            width: 1,
-            height: 1
-        };
+        return null;
     },
 
     updateTemplate: function () {
@@ -57,7 +52,6 @@ Ext.define('Particles.sprite.Emitter', {
         this.setDirty(true);
         var attr = this.attr,
             corner = attr.corner,
-            template = this.getTemplate(),
             fn = attr.step,
             scope = attr.scope,
             now = Ext.draw.Animator.animationTime(),

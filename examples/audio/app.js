@@ -97,15 +97,11 @@ Ext.application({
                 }
             ];
         } else {
-            items = [hiddenAudio, styledAudio];
-            if (Ext.os.deviceType.toLowerCase() != "phone") {
-                items.push(autoAudio);
-            }
+            items = [hiddenAudio, styledAudio, autoAudio];
         }
 
         Ext.create('Ext.tab.Panel', {
             fullscreen: true,
-            tabBarPosition: 'top',
             items: items
         });
     }

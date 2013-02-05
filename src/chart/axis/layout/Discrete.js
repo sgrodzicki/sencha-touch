@@ -1,7 +1,7 @@
 /**
  * @class Ext.chart.axis.layout.Discrete
  * @extends Ext.chart.axis.layout.Layout
- * 
+ *
  * Simple processor for data that cannot be interpolated.
  */
 Ext.define("Ext.chart.axis.layout.Discrete", {
@@ -36,11 +36,11 @@ Ext.define("Ext.chart.axis.layout.Discrete", {
             attr = context.attr,
             data = context.data,
             range = attr.max - attr.min,
-            zoom = range / attr.length * (attr.visibleMax - attr.visibleMin),
+            zoom = range / Math.max(1, attr.length) * (attr.visibleMax - attr.visibleMin),
             viewMin = attr.min + range * attr.visibleMin,
             viewMax = attr.min + range * attr.visibleMax,
             estStepSize = attr.estStepSize * zoom;
-        
+
         var out = me.snapEnds(context, Math.max(0, attr.min), Math.min(attr.max, data.length - 1), estStepSize);
         if (out) {
             me.trimByRange(context, out, viewMin - zoom * (1 + attr.startGap), viewMax + zoom * (1 + attr.endGap));
@@ -86,7 +86,7 @@ Ext.define("Ext.chart.axis.layout.Discrete", {
             out.max = out.to;
         }
 
-        if (out.from < trimMin) {
+        if (out.from < trimMin && out.step > 0) {
             out.from = out.from + begin * out.step * unit;
             while (out.from < trimMin) {
                 begin++;

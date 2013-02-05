@@ -49,7 +49,7 @@ Ext.define('Kitchensink.view.Icons', {
                 html   : '<span class="action">User tapped Bookmarks</span>'
             },
             {
-                iconCls: 'more',
+                iconCls: (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10) ? 'more2' : 'more',
                 title  : 'More',
                 cls    : 'card',
                 html   : '<span class="action">User tapped More</span>'

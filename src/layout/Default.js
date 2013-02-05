@@ -64,9 +64,9 @@ Ext.define('Ext.layout.Default', {
         this.callSuper(arguments);
 
         container.on('centeredchange', 'onItemCenteredChange', this, options, 'before')
-                 .on('floatingchange', 'onItemFloatingChange', this, options, 'before')
-                 .on('dockedchange', 'onBeforeItemDockedChange', this, options, 'before')
-                 .on('dockedchange', 'onAfterItemDockedChange', this, options);
+            .on('floatingchange', 'onItemFloatingChange', this, options, 'before')
+            .on('dockedchange', 'onBeforeItemDockedChange', this, options, 'before')
+            .on('afterdockedchange', 'onAfterItemDockedChange', this, options);
     },
 
     monitorSizeStateChange: function() {
@@ -208,6 +208,13 @@ Ext.define('Ext.layout.Default', {
     onAfterItemDockedChange: function(item, docked, oldDocked) {
         if (docked) {
             this.dockItem(item);
+        }
+    },
+
+    onAfterDockedChange:function(item, docked, oldDocked) {
+        var parent = item.getParent();
+        if(parent && docked) {
+            parent.getLayout().onAfterItemDockedChange(item, docked, oldDocked);
         }
     },
 

@@ -39,11 +39,13 @@ Ext.define('Ext.app.History', {
             window.addEventListener('hashchange', Ext.bind(this.detectStateChange, this));
         }
         else {
-            this.setToken(window.location.hash.substr(1));
             setInterval(Ext.bind(this.detectStateChange, this), 100);
         }
 
         this.initConfig(config);
+        if (config && Ext.isEmpty(config.token)) { 
+            this.setToken(window.location.hash.substr(1)); 
+        }
     },
 
     /**
@@ -75,12 +77,16 @@ Ext.define('Ext.app.History', {
      */
     back: function() {
         var actions = this.getActions(),
-            previousAction = actions[actions.length - 2],
-            app = previousAction.getController().getApplication();
+            previousAction = actions[actions.length - 2];
 
-        actions.pop();
+        if (previousAction) {
+            actions.pop();
 
-        app.redirectTo(previousAction.getUrl());
+            previousAction.getController().getApplication().redirectTo(previousAction.getUrl());
+        }
+        else {
+            actions[actions.length - 1].getController().getApplication().redirectTo('');
+        }
     },
 
     /**

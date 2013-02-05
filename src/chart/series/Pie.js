@@ -237,7 +237,6 @@ Ext.define('Ext.chart.series.Pie', {
                 sprite.setAttributes(this.getStyleByIndex(i));
                 spriteCreated = true;
             }
-            sprite.fx.setConfig(animation);
         }
         if (spriteCreated) {
             me.doUpdateStyles();
@@ -273,23 +272,27 @@ Ext.define('Ext.chart.series.Pie', {
                 donutLimit = Math.sqrt(originalX * originalX + originalY * originalY),
                 endRadius = me.getRadius(),
                 startRadius = donut / 100 * endRadius,
+                hidden = me.getHidden(),
                 i, ln, attr;
 
             for (i = 0, ln = items.length; i < ln; i++) {
-                // Fortunately, the id of items equals the index of it in instances list.
-                attr = sprites[i].attr;
-                if (startRadius + attr.margin <= donutLimit && donutLimit + attr.margin <= endRadius) {
-                    if (this.betweenAngle(direction, attr.startAngle, attr.endAngle)) {
-                        return {
-                            series: this,
-                            sprite: sprites[i],
-                            index: i,
-                            record: items[i],
-                            field: this.getXField()
-                        };
+                if(!hidden[i]) {
+                    // Fortunately, the id of items equals the index of it in instances list.
+                    attr = sprites[i].attr;
+                    if (startRadius + attr.margin <= donutLimit && donutLimit + attr.margin <= endRadius) {
+                        if (this.betweenAngle(direction, attr.startAngle, attr.endAngle)) {
+                            return {
+                                series: this,
+                                sprite: sprites[i],
+                                index: i,
+                                record: items[i],
+                                field: this.getXField()
+                            };
+                        }
                     }
                 }
             }
+            return null;
         }
     },
 

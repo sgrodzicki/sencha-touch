@@ -17,7 +17,7 @@
  *         ]
  *     });
  *
- * A more advanced example showing a list of people groped by last name:
+ * A more advanced example showing a list of people grouped by last name:
  *
  *     @example miniphone preview
  *     Ext.define('Contact', {
@@ -59,6 +59,55 @@
  *        itemTpl: '<div class="contact">{firstName} <strong>{lastName}</strong></div>',
  *        store: store,
  *        grouped: true
+ *     });
+ *
+ * If you want to dock items to the bottom or top of a List, you can use the scrollDock configuration on child items in this List. The following example adds a button to the bottom of the List.
+ *
+ *     @example phone preview
+ *     Ext.define('Contact', {
+ *         extend: 'Ext.data.Model',
+ *         config: {
+ *             fields: ['firstName', 'lastName']
+ *         }
+ *     });
+ *
+ *     var store = Ext.create('Ext.data.Store', {
+ *        model: 'Contact',
+ *        sorters: 'lastName',
+ *
+ *        grouper: {
+ *            groupFn: function(record) {
+ *                return record.get('lastName')[0];
+ *            }
+ *        },
+ *
+ *        data: [
+ *            { firstName: 'Tommy',   lastName: 'Maintz'  },
+ *            { firstName: 'Rob',     lastName: 'Dougan'  },
+ *            { firstName: 'Ed',      lastName: 'Spencer' },
+ *            { firstName: 'Jamie',   lastName: 'Avins'   },
+ *            { firstName: 'Aaron',   lastName: 'Conran'  },
+ *            { firstName: 'Dave',    lastName: 'Kaneda'  },
+ *            { firstName: 'Jacky',   lastName: 'Nguyen'  },
+ *            { firstName: 'Abraham', lastName: 'Elias'   },
+ *            { firstName: 'Jay',     lastName: 'Robinson'},
+ *            { firstName: 'Nigel',   lastName: 'White'   },
+ *            { firstName: 'Don',     lastName: 'Griffin' },
+ *            { firstName: 'Nico',    lastName: 'Ferrero' },
+ *            { firstName: 'Jason',   lastName: 'Johnston'}
+ *        ]
+ *     });
+ *
+ *     Ext.create('Ext.List', {
+ *         fullscreen: true,
+ *         itemTpl: '<div class="contact">{firstName} <strong>{lastName}</strong></div>',
+ *         store: store,
+ *         items: [{
+ *             xtype: 'button',
+ *             scrollDock: 'bottom',
+ *             docked: 'bottom',
+ *             text: 'Load More...'
+ *         }]
  *     });
  */
 Ext.define('Ext.dataview.List', {
@@ -236,9 +285,7 @@ Ext.define('Ext.dataview.List', {
          * Note that if you have {@link #variableHeights} set to false, this configuration option has
          * no effect.
          */
-        refreshHeightOnUpdate: true,
-
-        scrollable: false
+        refreshHeightOnUpdate: true
     },
 
     constructor: function(config) {
@@ -425,6 +472,22 @@ Ext.define('Ext.dataview.List', {
         }
     },
 
+    updateItemTpl: function(newTpl, oldTpl) {
+        var listItems = this.listItems,
+            ln = listItems.length || 0,
+            store = this.getStore(),
+            i, listItem;
+
+        for (i = 0; i < ln; i++) {
+            listItem = listItems[i];
+            listItem.setTpl(newTpl);
+        }
+
+        if (store && store.getCount()) {
+            this.doRefresh();
+        }
+    },
+
     updateScrollerSize: function() {
         var me = this,
             totalHeight = me.getItemMap().getTotalHeight(),
@@ -483,7 +546,7 @@ Ext.define('Ext.dataview.List', {
             currentTopIndex = me.topItemIndex,
             itemMap = me.getItemMap(),
             store = me.getStore(),
-            storeCount = store.getCount(),
+            storeCount = store && store.getCount(),
             info = me.getListItemInfo(),
             grouped = me.getGrouped(),
             storeGroups = me.groups,
@@ -593,6 +656,11 @@ Ext.define('Ext.dataview.List', {
             item.dataIndex = null;
             if (info.store) {
                 me.updateListItem(item, i + me.topItemIndex, info);
+            }
+            else {
+                item.setRecord(null);
+                item.translate(0, -10000);
+                item._list_hidden = true;
             }
         }
 
@@ -831,11 +899,9 @@ Ext.define('Ext.dataview.List', {
     },
 
     updateItemHeights: function() {
-        if (!this.isPainted()) {
+        if (!this.isPainted() && !this.pendingHeightUpdate) {
             this.pendingHeightUpdate = true;
-            if (!this.pendingHeightUpdate) {
-                this.on('painted', this.updateItemHeights, this, {single: true});
-            }
+            this.on('painted', this.updateItemHeights, this, {single: true});
             return;
         }
 
@@ -893,7 +959,6 @@ Ext.define('Ext.dataview.List', {
         }
 
         this.updatedItems.length = 0;
-
     },
 
     /**
@@ -917,11 +982,10 @@ Ext.define('Ext.dataview.List', {
     /**
      * Returns an index for the specified item.
      * @param {Number} item The item to locate.
-     * @return {Number} Index for the specified item.
+     * @return {Number} Index of the record bound to the specified item.
      */
     getItemIndex: function(item) {
-        var index = item.dataIndex;
-        return (index === -1) ? index : this.indexOffset + index;
+        return item.dataIndex;
     },
 
     /**
@@ -955,14 +1019,21 @@ Ext.define('Ext.dataview.List', {
 
         // This will refresh the items on the screen with the new data
         if (me.listItems.length) {
+            if (me.getScrollToTopOnRefresh()) {
+                me.topItemIndex = 0;
+                me.topItemPosition = 0;
+                scroller.position.y = 0;
+            }
             me.setItemsCount(me.listItems.length);
             if (painted) {
                 me.refreshScroller(scroller);
+            } else if (!me.pendingRefreshScroller) {
+                me.pendingRefreshScroller = true;
+                me.on('painted', function() {
+                    me.pendingRefreshScroller = false;
+                    me.refreshScroller(scroller);
+                }, this, {single: true});
             }
-        }
-
-        if (painted && this.getScrollToTopOnRefresh() && scroller && list) {
-            scroller.scrollToTop();
         }
 
         // No items, hide all the items from the collection.
@@ -1025,14 +1096,16 @@ Ext.define('Ext.dataview.List', {
         else {
             if (newIndex >= me.topItemIndex && newIndex < me.topItemIndex + me.listItems.length) {
                 item = me.getItemAt(newIndex);
-                me.doUpdateListItem(item, newIndex, me.getListItemInfo());
+                if(item) {
+                    me.doUpdateListItem(item, newIndex, me.getListItemInfo());
 
-                // Bypassing setter because sometimes we pass the same record (different data)
-                //me.updateListItem(me.getItemAt(newIndex), newIndex, me.getListItemInfo());
-                if (me.getVariableHeights() && me.getRefreshHeightOnUpdate()) {
-                    me.updatedItems.push(item);
-                    me.updateItemHeights();
-                    me.refreshScroller(scroller);
+                    // Bypassing setter because sometimes we pass the same record (different data)
+                    //me.updateListItem(me.getItemAt(newIndex), newIndex, me.getListItemInfo());
+                    if (me.getVariableHeights() && me.getRefreshHeightOnUpdate()) {
+                        me.updatedItems.push(item);
+                        me.updateItemHeights();
+                        me.refreshScroller(scroller);
+                    }
                 }
             }
         }
@@ -1219,7 +1292,7 @@ Ext.define('Ext.dataview.List', {
     },
 
     destroy: function() {
-        Ext.destroy(this.getIndexBar(), this.indexBarElement, this.header);
+        Ext.destroy(this.getIndexBar(), this.indexBarElement, this.header, this.scrollDockItems.top, this.scrollDockItems.bottom);
         if (this.intervalId) {
             cancelAnimationFrame(this.intervalId);
             delete this.intervalId;

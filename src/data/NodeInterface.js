@@ -408,7 +408,7 @@ Ext.define('Ext.data.NodeInterface', {
                     // if passed an array or multiple args do them one by one
                     if (Ext.isArray(node)) {
                         for (i = 0, ln = node.length; i < ln; i++) {
-                            me.appendChild(node[i]);
+                            me.appendChild(node[i], suppressEvents, suppressNodeUpdate);
                         }
                     } else {
                         // Make sure it is a record

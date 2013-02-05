@@ -141,6 +141,7 @@ Ext.define('Ext.picker.Date', {
         }
 
         this.callParent([value, animated]);
+        this.onSlotPick();
     },
 
     getValue: function(useDom) {
@@ -371,11 +372,11 @@ Ext.define('Ext.picker.Date', {
         }
 
         // We don't need to update the slot days unless it has changed
-        if (slot.getData().length == days.length) {
+        if (slot.getStore().getCount() == days.length) {
             return;
         }
 
-        slot.setData(days);
+        slot.getStore().setData(days);
 
         // Now we have the correct amount of days for the day slot, lets update it
         var store = slot.getStore(),

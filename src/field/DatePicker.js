@@ -279,7 +279,7 @@ Ext.define('Ext.field.DatePicker', {
             change: 'onPickerChange',
             hide  : 'onPickerHide'
         });
-        Ext.Viewport.add(picker);
+        
         this._picker = picker;
 
         return picker;

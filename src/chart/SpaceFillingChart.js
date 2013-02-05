@@ -17,6 +17,7 @@ Ext.define('Ext.chart.SpaceFillingChart', {
     performLayout: function () {
         try {
             this.resizing++;
+            this.callSuper();
             var me = this,
                 size = me.element.getSize(),
                 series = me.getSeries(), seriesItem,

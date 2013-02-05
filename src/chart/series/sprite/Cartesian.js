@@ -54,9 +54,6 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                  */
                 labelOverflowPadding: 'number',
 
-                /**
-                 * @cfg {Boolean} [flipXY=true] 'true' if the series is flipped
-                 */
                 flipXY: 'bool',
                 renderer: 'default',
 

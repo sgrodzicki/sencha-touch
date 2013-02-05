@@ -110,7 +110,9 @@ Ext.define("EnergyApp.view.LineChart", {
                         type: 'numeric',
                         position: 'right',
                         minimum: 0,
-                        renderer: EnergyApp.app.commify,
+                        renderer: function (nStr, x) {
+                            return(nStr / 1000000).toFixed(2);
+                        },
                         label: {
                             fill: '#777'
                         },

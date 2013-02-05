@@ -96,6 +96,8 @@
     "resources": [
         "resources/images",
         "resources/icons",
+        "app/data/states_data.json",
+        "app/data/states_geo.json",
         "resources/startup"
     ],
 

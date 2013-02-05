@@ -89,6 +89,12 @@
  * - **decline** - shaded using the {@link Global_CSS#$alert-color $alert-color} (red by default)
  * - **confirm** - shaded using the {@link Global_CSS#$confirm-color $confirm-color} (green by default)
  *
+ * You can also append `-round` to each of the last three UI's to give it a round shape:
+ *
+ * - **action-round**
+ * - **decline-round**
+ * - **confirm-round**
+ *
  * And setting them is very simple:
  *
  *     var uiButton = Ext.create('Ext.Button', {
@@ -357,10 +363,16 @@ Ext.define('Ext.Button', {
          * - `'back'` - a back button.
          * - `'forward'` - a forward button.
          * - `'round'` - a round button.
+         * - `'plain'`
          * - `'action'` - shaded using the {@link Global_CSS#$active-color $active-color} (dark blue by default).
          * - `'decline'` - shaded using the {@link Global_CSS#$alert-color $alert-color} (red by default).
          * - `'confirm'` - shaded using the {@link Global_CSS#$confirm-color $confirm-color} (green by default).
-         * - `'plain'`
+         *
+         * You can also append `-round` to each of the last three UI's to give it a round shape:
+         *
+         * - **action-round**
+         * - **decline-round**
+         * - **confirm-round**
          *
          * @accessor
          */
@@ -503,11 +515,12 @@ Ext.define('Ext.Button', {
 
         if (icon) {
             me.showIconElement();
-            element.setStyle('background-image', icon ? 'url(' + icon + ')' : '');
+            element.setStyle('background-image', 'url(' + icon + ')');
             me.refreshIconAlign();
             me.refreshIconMask();
         }
         else {
+        	element.setStyle('background-image', '');
             me.hideIconElement();
             me.setIconAlign(false);
         }
@@ -527,6 +540,7 @@ Ext.define('Ext.Button', {
             me.refreshIconMask();
         }
         else {
+			element.removeCls(oldIconCls);
             me.hideIconElement();
             me.setIconAlign(false);
         }

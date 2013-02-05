@@ -280,8 +280,9 @@ Ext.define('Ext.chart.axis.Axis', {
         visibleRange: [0, 1],
 
         /**
-         * @private
          * @cfg {Boolean} needHighPrecision
+         * Indicates that the axis needs high precision surface implementation.
+         * See {@link Ext.draw.engine.Canvas#highPrecision}
          */
         needHighPrecision: false
     },
@@ -403,7 +404,7 @@ Ext.define('Ext.chart.axis.Axis', {
                 return null;
             }
             var surface = this.surface = chart.getSurface(this.getId(), 'axis'),
-                gridSurface = this.gridSurface = chart.getSurface("grid-" + this.getId(), 'grid'),
+                gridSurface = this.gridSurface = chart.getSurface('main'),
                 sprites = this.getSprites(),
                 sprite = sprites[0],
                 grid = this.getGrid(),
@@ -494,15 +495,6 @@ Ext.define('Ext.chart.axis.Axis', {
     showLabels: function () {
         this.getSprites()[0].setDirty(true);
         this.setLabel({hidden: false});
-    },
-
-    /**
-     * @private
-     * Reset the axis to its original state, before any user interaction.
-     *
-     */
-    reset: function () {
-        // TODO: finish this
     },
 
     /**
@@ -663,7 +655,7 @@ Ext.define('Ext.chart.axis.Axis', {
             min = me.prevMin;
         }
 
-        if (this.getLabelInSpan()) {
+        if (this.getLabelInSpan() || min === max) {
             max += this.getIncrement();
             min -= this.getIncrement();
         }

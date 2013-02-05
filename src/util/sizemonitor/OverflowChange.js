@@ -61,16 +61,20 @@ Ext.define('Ext.util.sizemonitor.OverflowChange', {
     refreshMonitors: function() {
         var expandHelper = this.expandHelper,
             shrinkHelper = this.shrinkHelper,
-            width = this.contentWidth,
-            height = this.contentHeight;
+            contentBounds = this.getContentBounds(),
+            width = contentBounds.width,
+            height = contentBounds.height,
+            style;
 
-        if (expandHelper && !expandHelper.isDestroyed) {
-            expandHelper.style.width = (width + 1) + 'px';
-            expandHelper.style.height = (height + 1) + 'px';
+            if (expandHelper && !expandHelper.isDestroyed) {
+                style = expandHelper.style;
+                style.width = (width + 1) + 'px';
+                style.height = (height + 1) + 'px';
         }
         if (shrinkHelper && !shrinkHelper.isDestroyed) {
-            shrinkHelper.style.width = width + 'px';
-            shrinkHelper.style.height = height + 'px';
+            style = shrinkHelper.style;
+            style.width = width  + 'px';
+            style.height = height + 'px';
         }
 
         Ext.TaskQueue.requestRead('refresh', this);

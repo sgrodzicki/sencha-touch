@@ -139,5 +139,10 @@ Ext.define('Ext.dataview.component.ListItem', {
          * @param {Object} newData The new data.
          */
         me.fireEvent('updatedata', me, data);
+    },
+
+    destroy: function() {
+        Ext.destroy(this.getHeader());
+        this.callParent(arguments);
     }
 });

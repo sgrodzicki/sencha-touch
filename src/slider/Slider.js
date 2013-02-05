@@ -157,6 +157,11 @@ Ext.define('Ext.slider.Slider', {
             drag: 'onThumbDrag',
             dragend: 'onThumbDragEnd'
         });
+        
+        var thumb = this.getThumb(0);
+        if(thumb) {
+            thumb.on('resize', 'onThumbResize', this);
+        }
     },
 
     /**
@@ -194,11 +199,15 @@ Ext.define('Ext.slider.Slider', {
         this.offsetValueRatio = trackWidth / valueRange;
     },
 
-    onResize: function(element, info) {
+    onThumbResize: function(){
         var thumb = this.getThumb(0);
         if (thumb) {
             this.thumbWidth = thumb.getElementWidth();
         }
+        this.refresh();
+    },
+
+    onResize: function(element, info) {
         this.elementWidth = info.width;
         this.refresh();
     },

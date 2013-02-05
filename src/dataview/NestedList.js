@@ -88,7 +88,7 @@ Ext.define('Ext.dataview.NestedList', {
     extend: 'Ext.Container',
     xtype: 'nestedlist',
     requires: [
-        'Ext.List',
+        'Ext.dataview.List',
         'Ext.TitleBar',
         'Ext.Button',
         'Ext.XTemplate',
@@ -237,6 +237,24 @@ Ext.define('Ext.dataview.NestedList', {
          * configuration used to create each nested list.
          */
         listConfig: null,
+
+        /**
+         * @cfg {Boolean} variableHeights
+         * Whether or not the lists contain items with variable heights. If you want to force the
+         * items in the list to have a fixed height, set the {@link #itemHeight} configuration.
+         * If you also set variableHeights to false, the scrolling performance of the list will be
+         * improved.
+         */
+        variableHeights: false,
+
+        /**
+         * @cfg {Number} itemHeight
+         * This allows you to set the default item height and is used to roughly calculate the amount
+         * of items needed to fill the list. By default items are around 50px high. If you set this
+         * configuration in combination with setting the {@link #variableHeights} to false you
+         * can improve the scrolling speed
+         */
+        itemHeight: 47,
 
         // @private
         lastNode: null,
@@ -671,18 +689,20 @@ Ext.define('Ext.dataview.NestedList', {
             me.setActiveItem(list);
         }
         else {
+            if (animation) {
+                animation.setReverse(reverse);
+            }
+
             if (firstList && secondList) {
                 //firstList and secondList have both been created
                 activeItem = me.getActiveItem();
 
                 me.setLastActiveList(activeItem);
                 list = (activeItem == firstList) ? secondList : firstList;
+
                 list.getStore().setNode(node);
                 node.expand();
 
-                if (animation) {
-                    animation.setReverse(reverse);
-                }
                 me.setActiveItem(list);
                 list.deselectAll();
             }
@@ -809,7 +829,8 @@ Ext.define('Ext.dataview.NestedList', {
             store: nodeStore,
             onItemDisclosure: me.getOnItemDisclosure(),
             allowDeselect: me.getAllowDeselect(),
-            variableHeights: false,
+            variableHeights: me.getVariableHeights(),
+            itemHeight: me.getItemHeight(),
             listeners: [
                 { event: 'itemdoubletap', fn: 'onItemDoubleTap', scope: me },
                 { event: 'itemtap', fn: 'onItemInteraction', scope: me, order: 'before'},

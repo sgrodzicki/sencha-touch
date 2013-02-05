@@ -5,7 +5,7 @@ Ext.define('Kitchensink.view.Tabs', {
     extend: 'Ext.tab.Panel',
 
     config: {
-        ui: 'light',
+        ui: 'dark',
         tabBar: {
             layout: {
                 pack: 'center'

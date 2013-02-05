@@ -116,7 +116,9 @@ Ext.define('Ext.mixin.Selectable', {
             }
             else {
                 oldStore.un(bindEvents);
-                newStore.un('clear', 'onSelectionStoreClear', this);
+                if(newStore) {
+                    newStore.un('clear', 'onSelectionStoreClear', this);
+                }
             }
         }
 

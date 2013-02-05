@@ -32,6 +32,16 @@ Ext.define('Kitchensink.view.PieChart3D', {
                             });
                             Ext.getStore('Pie').generateData(9);
                         }
+                    },
+                    {
+                        text: '&nbsp;Reset',
+                        handler: function () {
+                            //ensure the query gets the chart for this kitchensink example
+                            var chart = Ext.ComponentQuery.query('polar', this.getParent().getParent())[0];
+
+                            //reset the rotation
+                            Ext.ComponentQuery.query('series', chart)[0].setRotation(0);
+                        }
                     }
                 ]
             },

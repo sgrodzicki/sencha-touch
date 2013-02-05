@@ -84,10 +84,9 @@ Ext.define('Kitchensink.controller.Main', {
                 url: 'app/view/' + (demo.get('view') || demo.get('text')) + '.js',
 
                 callback: function (request, success, response) {
-                    overlay.setHtml(response.responseText);
-
                     setTimeout(function() {
                         overlay.unmask();
+                        overlay.setHtml(response.responseText);
                     }, 500);
                 }
             });

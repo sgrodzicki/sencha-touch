@@ -9,7 +9,7 @@ Ext.define('Kitchensink.view.EditorPanel', {
         hideOnMaskTap: false,
         centered: true,
         width: 300,
-        scrollable: false,
+        scrollable: null,
         items: [{
             xtype: 'textfield',
             name: 'text',
@@ -20,7 +20,7 @@ Ext.define('Kitchensink.view.EditorPanel', {
             title: 'Edit Item'
         }, {
             docked: 'bottom',
-            ui: 'light',
+            ui: ((Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10)) ? 'plain' : 'light',
             xtype: 'toolbar',
             items: [{
                 text: 'Cancel',

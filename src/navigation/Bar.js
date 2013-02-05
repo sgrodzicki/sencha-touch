@@ -254,6 +254,8 @@ Ext.define('Ext.navigation.Bar', {
             properties, leftGhost, titleGhost, leftProps, titleProps;
 
         if (animated) {
+            me.isAnimating = true;
+
             leftGhost = me.createProxy(leftBox.element);
             leftBoxElement.setStyle('opacity', '0');
             backButton.setText(backButtonText);
@@ -263,18 +265,15 @@ Ext.define('Ext.navigation.Bar', {
             titleElement.setStyle('opacity', '0');
             me.setTitle(titleText);
 
-            me.refreshTitlePosition();
-
             properties = me.measureView(leftGhost, titleGhost, reverse);
             leftProps = properties.left;
             titleProps = properties.title;
-
-            me.isAnimating = true;
 
             me.animate(leftBoxElement, leftProps.element);
             me.animate(titleElement, titleProps.element, function() {
                 titleElement.setLeft(properties.titleLeft);
                 me.isAnimating = false;
+                me.refreshTitlePosition();
             });
 
             if (Ext.os.is.Android2 && !this.getAndroid2Transforms()) {

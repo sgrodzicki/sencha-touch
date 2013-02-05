@@ -26,7 +26,7 @@ Ext.define('Ext.util.Translatable', {
         }
 
         if (!classReference) {
-            if (Ext.os.is.Android2 || Ext.browser.is.ChromeMobile) {
+            if (Ext.os.is.Android2) {
                 classReference = ScrollPosition;
             }
             else {

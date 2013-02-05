@@ -11,26 +11,26 @@ Ext.define("Ext.chart.series.sprite.Line", {
     inheritableStatics: {
         def: {
             processors: {
-                /**
-                 * @cfg {Boolean} [smooth=false] 'true' if the sprite uses line smoothing.
-                 */
                 smooth: 'bool',
-
-                /**
-                 * @cfg {Boolean} [step=false] 'true' if the line uses step.
-                 */
                 step: 'bool',
-                
-                /**
-                 * @cfg {Boolean} [preciseStroke=false] 'true' if the line uses precise stroke.
-                 */
                 preciseStroke: 'bool'
             },
 
             defaults: {
+                /**
+                 * @cfg {Boolean} smooth 'true' if the sprite uses line smoothing.
+                 */
                 smooth: false,
+
+                /**
+                 * @cfg {Boolean} step 'true' if the line uses step.
+                 */
                 step: false,
-                preciseStroke: false
+
+                /**
+                 * @cfg {Boolean} preciseStroke 'true' if the line uses precise stroke.
+                 */
+                preciseStroke: true
             },
 
             dirtyTriggers: {
@@ -41,7 +41,7 @@ Ext.define("Ext.chart.series.sprite.Line", {
 
             updaters: {
                 "smooth": function (attr) {
-                    if (attr.smooth && attr.dataX && attr.dataY) {
+                    if (attr.smooth && attr.dataX && attr.dataY && attr.dataX.length > 2 && attr.dataY.length > 2) {
                         this.smoothX = Ext.draw.Draw.spline(attr.dataX);
                         this.smoothY = Ext.draw.Draw.spline(attr.dataY);
                     } else {
@@ -79,7 +79,7 @@ Ext.define("Ext.chart.series.sprite.Line", {
             smoothY = this.smoothY,
             i, j;
         ctx.beginPath();
-        if (smooth) {
+        if (smooth && smoothX && smoothY) {
             ctx.moveTo(smoothX[start * 3] * xx + dx, smoothY[start * 3] * yy + dy);
             for (i = 0, j = start * 3 + 1; i < list.length - 3; i += 3, j += 3) {
                 ctx.bezierCurveTo(

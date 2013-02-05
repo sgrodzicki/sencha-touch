@@ -1,6 +1,6 @@
 /**
  * A class to replicate the behavior of the Contextual menu in BlackBerry 10.
- * 
+ *
  * More information: http://docs.blackberry.com/en/developers/deliverables/41577/contextual_menus.jsp
  *
  *     var menu = Ext.create('Ext.bb.CrossCut', {
@@ -75,6 +75,11 @@ Ext.define('Ext.bb.CrossCut', {
         /**
          * @hide
          */
+        scrollable: true,
+
+        /**
+         * @hide
+         */
         layout: {
             type: 'vbox',
             pack: 'middle'
@@ -91,7 +96,7 @@ Ext.define('Ext.bb.CrossCut', {
         showAnimation: {
             preserveEndState: true,
             to: {
-                width: 275
+                width: 250
             }
         },
 
@@ -103,10 +108,6 @@ Ext.define('Ext.bb.CrossCut', {
             to: {
                 width: 68
             }
-        },
-
-        defaults: {
-            baseCls: 'bb-crosscut-item'
         }
     }
 });

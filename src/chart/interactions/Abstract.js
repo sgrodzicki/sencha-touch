@@ -115,13 +115,13 @@ Ext.define('Ext.chart.interactions.Abstract', {
                 name,
                 // wrap the handler so it does not fire if the event is locked by another interaction
                 me.listeners[name] = function (e) {
-                    var locks = me.getLocks();
+                    var locks = me.getLocks(), result;
                     if (!(name in locks) || locks[name] === me) {
-                        if (e && e.stopPropagation) {
+                        result = (Ext.isFunction(fn) ? fn : me[fn]).apply(this, arguments);
+                        if (result === false && e && e.stopPropagation) {
                             e.stopPropagation();
-                            e.preventDefault();
                         }
-                        return (Ext.isFunction(fn) ? fn : me[fn]).apply(this, arguments);
+                        return result;
                     }
                 },
                 me

@@ -99,6 +99,12 @@ Ext.define('Ext.picker.Slot', {
         valueField: 'value',
 
         /**
+         * @cfg {String} itemTpl The template to be used in this slot.
+         * If you set this, {@link #displayField} will be ignored.
+         */
+        itemTpl: null,
+
+        /**
          * @cfg {Object} scrollable
          * @accessor
          * @hide
@@ -174,7 +180,9 @@ Ext.define('Ext.picker.Slot', {
     },
 
     updateDisplayField: function(newDisplayField) {
-        this.setItemTpl('<div class="' + Ext.baseCSSPrefix + 'picker-item {cls} <tpl if="extra">' + Ext.baseCSSPrefix + 'picker-invalid</tpl>">{' + newDisplayField + '}</div>');
+        if (!this.config.itemTpl) {
+            this.setItemTpl('<div class="' + Ext.baseCSSPrefix + 'picker-item {cls} <tpl if="extra">' + Ext.baseCSSPrefix + 'picker-invalid</tpl>">{' + newDisplayField + '}</div>');
+        }
     },
 
     /**
@@ -216,13 +224,6 @@ Ext.define('Ext.picker.Slot', {
         }
 
         return data;
-    },
-
-    updateData: function(data) {
-        this.setStore(Ext.create('Ext.data.Store', {
-            fields: ['text', 'value'],
-            data : data
-        }));
     },
 
     // @private
@@ -369,6 +370,18 @@ Ext.define('Ext.picker.Slot', {
      * @private
      */
     setValue: function(value) {
+        return this.doSetValue(value);
+    },
+
+    /**
+     * Sets the value of this slot
+     * @private
+     */
+    setValueAnimated: function(value) {
+        return this.doSetValue(value, true);
+    },
+
+    doSetValue: function(value, animated) {
         if (!Ext.isDefined(value)) {
             return;
         }
@@ -390,38 +403,9 @@ Ext.define('Ext.picker.Slot', {
 
             this.selectedIndex = index;
             if (item) {
-                this.scrollToItem(item);
-            }
-
-            this._value = value;
-        }
-    },
-
-    /**
-     * Sets the value of this slot
-     * @private
-     */
-    setValueAnimated: function(value) {
-        if (!this.rendered) {
-            //we don't want to call this until the slot has been rendered
-            this._value = value;
-            return;
-        }
-
-        var store = this.getStore(),
-            viewItems = this.getViewItems(),
-            valueField = this.getValueField(),
-            index, item;
-
-        index = store.find(valueField, value);
-        if (index != -1) {
-            item = Ext.get(viewItems[index]);
-            this.selectedIndex = index;
-
-            if (item) {
-                this.scrollToItem(item, {
+                this.scrollToItem(item, (animated) ? {
                     duration: 100
-                });
+                } : false);
             }
 
             this._value = value;

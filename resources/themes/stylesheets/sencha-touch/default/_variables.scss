@@ -68,14 +68,16 @@ $base-color: #1985D0 !default; // Triton Blue
 /**
  * @var {string} $base-gradient
  * The primary gradient variable from which most elements derive their color scheme.
- * @see background-gradient
+ *
+ * See background-gradient mixin.
  */
 $base-gradient: if($include-highlights, matte, null) !default;
 
 /**
  * @var {font-family} $font-family
  * The font-family to be used throughout the theme.
- * @see background-gradient
+ *
+ * See background-gradient mixin.
  */
 $font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif !default;
 

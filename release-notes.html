@@ -12,6 +12,138 @@
 </p>
 
 <div id="releases">
+    <div class="release">
+        <h1>
+            Release Notes for Sencha Touch 2.1.1
+        </h1>
+
+        <p class="notes">
+            Release Notes: Release Notes: February 5, 2013<br>
+            Version Number: 2.1.1
+        </p>
+
+        <ul>
+            <li>Enhancements/Changes
+                <ul>
+                    <li>[TOUCH-2886] Added styling for indicatorsUi 'light'</li>
+                    <li>[TOUCH-3233] Removed margin from audio component example</li>
+                    <li>[TOUCH-3614] Added 'seriestoggle' event to chart when a series is toggled</li>
+                    <li>[TOUCH-3595] Added support for hidden toggle in a chart series</li>
+                    <li>Added high javascript precision to the line series</li>
+                    <li>[TOUCH-3648] Allow dynamically adding/removing of chart series</li>
+                    <li>Enable setting `true`/`false` to `scrollable` config. Note that this is different than no scrollable behavior at all which is `scrollable: null`.</li>
+                    <li>[TOUCH-3613] Allow no scrolling on legends</li>
+                    <li>[TOUCH-3677] Added ability to dynamically change itemTpl on a List</li>
+                    <li>[TOUCH-3291] Force the originalValue in numberfield to be a number (if it exists)</li>
+                    <li>[TOUCH-3637] Removed $form-label-width from SASS</li>
+                    <li>[TOUCH-3505] Added a `file` input component</li>
+                    <li>[TOUCH-3290] Allow slot to use itemTpl if it has been defined</li>
+                    <li>[TOUCH-3615] Added config option to Legend to disable item toggling functionality</li>
+                    <li>[TOUCH-3593] Implemented gradient stops using rgba in SVG via stop-opacity</li>
+                    <li>[TOUCH-3593] Added toFixed to alpha value in toString of Color</li>
+                    <li>Changed the default value of `preciseStroke` to `true` for Line series</li>
+                    <li>Move the setParent order in doInsert to be the same as add</li>
+                    <li>Series now share a same surface so they are clipped in the same way</li>
+                    <li>[TOUCH-3492] Added Legend store reset functionality</li>
+                    <li>Added isDestroyed check to TitleBar</li>
+                    <li>[TOUCH-3682] Added documentation for scrollDock to the List component</li>
+                    <li>[TOUCH-3756] Changed the implementation of the getItemIndex method in List to return the data index of the record bound to that item</li>
+                    <li>[TOUCH-3780] Added suspendAnimation functionality to abstract chart in the same vein of suspendLayout</li>
+                    <li>[TOUCH-3753] Added toggle to sprite to constrain its gradients to the view</li>
+                    <li>Updated Picker to use initalize instead of initElement</li>
+                    <li>Removed Picker `show` listener and replaced with function override</li>
+                    <li>Added a warning when using `scrollable: false` on a container with no height as this should be `scrollable: null`</li>
+                    <li>[TOUCH-3897] Reduce the number of drawing surfaces from 8 to 5 for charts</li>
+                    <li>[TOUCH-3788] Renamed the default Ext.data.proxy.SQL class to Ext.data.proxy.Sql</li>
+                    <li>[TOUCH-3910] Change ChromeMobile to use transforms instead of scrollPosition</li>
+                    <li>[TOUCH-3850] Allow radiofield group to be able to assign/get value if ui='checkbox'</li>
+                </ul>
+            </li>
+
+            <li>Bug Fixes
+                <ul>
+                    <li>[TOUCH-728] Fixed button UI docs</li>
+                    <li>[TOUCH-3638] Fixed NodeInterface appendChild missing parameters</li>
+                    <li>Fixed broken SVG surface on high precision</li>
+                    <li>Fixed Blackberry 10 UA detection</li>
+                    <li>Fixed NestedList's dependency for List</li>
+                    <li>[TOUCH-3642] Fixed Gauge charts not rendering in vBox or hBox if configure as an object</li>
+                    <li>[TOUCH-3653] Fixed Bar Series ItemHighlight with negative value</li>
+                    <li>[TOUCH-3662] Fixed Line chart did not displaying when all yField's value are the same</li>
+                    <li>[TOUCH-3464] Fixed duplicate setValueAnimated code in slot</li>
+                    <li>[TOUCH-3158] Fixed segementedbutton hiddenchange issue</li>
+                    <li>[TOUCH-3623] Fixed Series getItemForPoint returning null if item is hidden</li>
+                    <li>Fix default List scrollable setting to be inherited</li>
+                    <li>[TOUCH-3697] Fixed Playbook/Blackberry paint detection</li>
+                    <li>[TOUCH-3697] Fixed Playbook to be detected as a Tablet</li>
+                    <li>[TOUCH-3593] Fixed certain cases where the radial gradient compression parameter would NaN in SVG</li>
+                    <li>[TOUCH-3705] Fixed Draw component not laying out within a card layout</li>
+                    <li>[TOUCH-3138] Fixed an issue where you could apply multiple masks to a container</li>
+                    <li>[TOUCH-3594] Fixed an issue where loading a store that is bound to a data view that isn't painted yet would prevent the LoadMask from showing up</li>
+                    <li>Fixed `suspendLayout` and `resumeLayout` for Charts</li>
+                    <li>[TOUCH-3704] Fixed Stores not listening to the storechange event and fail to find the dynamically bound store on chart</li>
+                    <li>[TOUCH-3575] Fixed isues with Charts in a Carousel and DirectionLocking</li>
+                    <li>[TOUCH-3734] Fixed bad typo in PhoneGap messagebox API bridge</li>
+                    <li>Fixed issues with History where calling the back method with no previous actions would cause a hard error. This will now set the action to an empty string</li>
+                    <li>Fixed issue where some items in a List might not be destroyed properly</li>
+                    <li>[TOUCH-3717] Fixed SQL proxy failed reading when not passing any sorters</li>
+                    <li>[TOUCH-3675] Fixed variableHeights and itemHeight config for NestedList</li>
+                    <li>[TOUCH-3646] Fixed an issue where scrolling to a bottom of a long list in a NestedList would result in an empty list being presented when refreshing that list with a different node</li>
+                    <li>[TOUCH-3174] Fixed a rare case where the animation would be incorrectly reversed on a NestedList</li>
+                    <li>Fixed issue with OverflowChange shrink detection with sub-pixels</li>
+                    <li>Fixed issues with updating cls configuration for components unnecessarily when in an array</li>
+                    <li>Fixed Card layout animation not calling it's superclass on the destroy method</li>
+                    <li>[TOUCH-3652] Fixed an issue where the pull refresh plugin didn't work when the list had no current results</li>
+                    <li>Fix particle demo on retina iPads</li>
+                    <li>Fixed issue with PhoneGap Ready check</li>
+                    <li>[TOUCH-3768] Fixed an issue where List would crash if you change the itemTpl before a Store is assigned</li>
+                    <li>[TOUCH-3674] Fixed `0` values not being displayed in a dataview</li>
+                    <li>Fixed Map creation being attempted prior to paint event. The resize event was then fired and causing an odd offset from google</li>
+                    <li>[TOUCH-3796] Fixed line series smoothing if there are less than 3 points in the chart</li>
+                    <li>[TOUCH-3778] Fixed Scroller.js only checking for value of 'undefined' and not false for animation. This was causing mobile chrome to display inconsitent scrolling results on the DatePicker</li>
+                    <li>[TOUCH-3802] Fixed Stores auto-created by a DataView to now properly be AutoDestroyed</li>
+                    <li>[TOUCH-3803] Fixed Ext.Button#updateIconCls Faililing after unset</li>
+                    <li>[TOUCH-3800] Fixed issue with Ext.app.History token now always being initialized</li>
+                    <li>[TOUCH-3221] Fixed Date picker not populating slots correctly when you call setValue</li>
+                    <li>[TOUCH-3578] Fixed FreeDraw example to use destroy instead of removeAll</li>
+                    <li>[TOUCH-3838] Fixed direction variable of vertical swiping</li>
+                    <li>Fixed Dispatcher logic to ensure proper subscribing/unsubscribing of events</li>
+                    <li>[TOUCH-3809] Fixed PanZoom transformAxesBy to make use of the configured min and max zoom values</li>
+                    <li>[TOUCH-3821] Fixed The SVG engine to removes the sprite along with its associated dom element from the surface</li>
+                    <li>[TOUCH-3827] Fixed the Default store to be an empty array instead of null, removing the possibility of no store and fixing rendering issues on empty lists</li>
+                    <li>[TOUCH-3826] Fixed DatePicker automatically adding itself to the viewport on getPicker()</li>
+                    <li>[TOUCH-3819] Fixed resize issue with Android 4 browser when soft keyboard is shown. Viewport size now corrected</li>
+                    <li>[TOUCH-3749] Fixed Scatter series to now provide the appropriate marker styling to legend</li>
+                    <li>[TOUCH-3739] Fixed Slider allowThumbsOverlapping</li>
+                    <li>Fixed Date Picker addition of days on Month Change</li>
+                    <li>Fixed  Date Picker Last Item snapping selection on Desktop</li>
+                    <li>Fixed namespace Ext.device from sencha-touch-all-* files generated by framework build</li>
+                    <li>[TOUCH-3777] Fixed updating records for empty items in a list</li>
+                    <li>[TOUCH-3859] Fixed issue with adding a loading mask to a DataView before it is painted</li>
+                    <li>[TOUCH-3668] Fixed Default Layout to correctly handle dynanic docking changes</li>
+                    <li>[TOUCH-3793] Fixed Selectable to allow removing a store from a DataView</li>
+                    <li>[TOUCH-3627] Fixed selected items on DataView Refresh to insure styles are properly added when items are added to the dom</li>
+                    <li>[TOUCH-3748] Fixed Ext.Array.intersect edge case issue</li>
+                    <li>Fixed issue with NavigationView ellipsis and animation</li>
+                    <li>Fixed blur with size monitored elements in ChromeMobile</li>
+                    <li>[TOUCH-3916] Fixed initialOffset for Draggable not being maintained on multiple uses</li>
+                    <li>[TOUCH-3928] Fixed improper documentation for suspendEvents/resumeEvents. EventQueueing will be present in 2.2</li>
+                    <li>[TOUCH-3908] Fixed improper zIndex handling for chart series</li>
+                    <li>[TOUCH-3935] Fixed fill and smooth configs for charts</li>
+                    <li>[TOUCH-3884] Fixed hidden buttons for toolbar in MsgBox when no buttons defined</li>
+                    <li>[TOUCH-3284, TOUCH-3179] Fixed detection and encoding of MS Date JSON format.</li>
+                </ul>
+            </li>
+
+            <li>Known Issues / Upcoming Changes
+                <ul>
+                    <li>Android 4.1 (Jellybean) has <a href="http://code.google.com/p/android/issues/detail?id=37529" target="_blank">issues</a> with
+                        clearing it's graphics buffer when using Canvas. We are forcing our SVG implementation on this specific version of Android.</li>
+                    <li>[TOUCH-3820] SVG engine loaded for Android Jellybean 4.2 even if chrome is used. Due to canvas bugs in most recent Android version (See Above)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
     <div class="release">
         <h1>

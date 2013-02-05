@@ -40,6 +40,7 @@
     "resources": [
         "resources/images",
         "resources/icons",
+        "app/data",
         "resources/startup"
     ],
     "ignore": [

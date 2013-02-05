@@ -715,6 +715,10 @@ Ext.define('Ext.scroll.Scroller', {
      * @chainable
      */
     scrollTo: function(x, y, animation) {
+        if (this.isDestroyed) {
+            return this;
+        }
+
         //<deprecated product=touch since=2.0>
         if (typeof x != 'number' && arguments.length === 1) {
             //<debug warn>
@@ -761,7 +765,7 @@ Ext.define('Ext.scroll.Scroller', {
         }
 
         if (positionChanged) {
-            if (animation !== undefined) {
+            if (animation !== undefined && animation !== false) {
                 translatable.translateAnimated(translationX, translationY, animation);
             }
             else {
@@ -1123,13 +1127,9 @@ Ext.define('Ext.scroll.Scroller', {
 
             mod = (position - snapOffset) % snapSize;
 
-            if (mod !== 0) {
+            if ((mod !== 0) && (position !== maxPosition)) {
                 if (Math.abs(mod) > snapSize / 2) {
-                    snapPosition = position + ((mod > 0) ? snapSize - mod : mod - snapSize);
-
-                    if (snapPosition > maxPosition) {
-                        snapPosition = position - mod;
-                    }
+                    snapPosition = Math.min(maxPosition, position + ((mod > 0) ? snapSize - mod : mod - snapSize));
                 }
                 else {
                     snapPosition = position - mod;

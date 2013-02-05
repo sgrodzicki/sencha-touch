@@ -1,9 +1,10 @@
 /**
  * SQL proxy.
  */
-Ext.define('Ext.data.proxy.SQL', {
+Ext.define('Ext.data.proxy.Sql', {
     alias: 'proxy.sql',
     extend: 'Ext.data.proxy.Client',
+    alternateClassName: 'Ext.data.proxy.SQL',
 
     config: {
         /**
@@ -16,9 +17,15 @@ Ext.define('Ext.data.proxy.SQL', {
          * @hide
          */
         writer: null,
-
+        /**
+         * @cfg {String} table
+         * Optional Table name to use if not provided ModelName will be used
+         */
         table: null,
-
+        /**
+         * @cfg {String} database
+         * Database name to access tables from
+         */
         database: 'Sencha',
 
         columns: '',
@@ -278,7 +285,7 @@ Ext.define('Ext.data.proxy.SQL', {
                 }
             }
 
-            ln = params.sorters.length;
+            ln = params.sorters && params.sorters.length;
             if (ln) {
                 for (i = 0; i < ln; i++) {
                     sorter = params.sorters[i];

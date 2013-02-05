@@ -26,6 +26,20 @@ Ext.define('Kitchensink.view.OHLCChart', {
                 items: [
                     {
                         xtype: 'spacer'
+                    },
+                    {
+                        text: '&nbsp;Reset',
+                        handler: function () {
+                            //ensure the query gets the chart for this kitchensink example
+                            var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];
+
+                            //reset the axis
+                            Ext.ComponentQuery.query('axis', chart)[1].setVisibleRange([0, 0.3]);
+                            chart.redraw();
+
+                            //reset the legend
+                            chart.resetLegendStore();
+                        }
                     }
                 ]
             },

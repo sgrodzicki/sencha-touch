@@ -153,7 +153,7 @@ Ext.define('Ext.Map', {
     updateUseCurrentLocation: function(useCurrentLocation) {
         this.setGeo(useCurrentLocation);
         if (!useCurrentLocation) {
-            this.renderMap();
+            this.setMapCenter();
         }
     },
 

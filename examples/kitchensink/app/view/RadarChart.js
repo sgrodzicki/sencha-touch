@@ -35,6 +35,17 @@ Ext.define('Kitchensink.view.RadarChart', {
                         handler: function () {
                             Ext.getStore('OrderItems').generateData(10 + 10 * Math.random());
                         }
+                    },
+                    {
+                        text: '&nbsp;Reset',
+                        handler: function () {
+                            //ensure the query gets the chart for this kitchensink example
+                            var chart = Ext.ComponentQuery.query('polar', this.getParent().getParent())[0];
+
+                            //reset the rotation
+                            Ext.ComponentQuery.query('series', chart)[0].setRotation(0);
+                            Ext.ComponentQuery.query('axis', chart)[1].setRotation(0);
+                        }
                     }
                 ]
             },

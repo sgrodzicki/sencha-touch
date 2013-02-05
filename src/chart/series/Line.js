@@ -122,6 +122,15 @@ Ext.define('Ext.chart.series.Line', {
          */
         smooth: false,
 
+        /**
+         * @cfg {Boolean} fill
+         * If set to `true`, the area underneath the line is filled with the color defined as follows, listed by priority:
+         * - The color that is configured for this series ({@link Ext.chart.series.Series#colors}).
+         * - The color that is configured for this chart ({@link Ext.chart.AbstractChart#colors}).
+         * - The fill color that is set in the {@link #style} config.
+         * - The stroke color that is set in the {@link #style} config, or the same color as the line .
+         */
+
         aggregator: { strategy: 'double' }
     },
 
@@ -135,5 +144,33 @@ Ext.define('Ext.chart.series.Line', {
      * transforms. Expressed as a multiple of the viewport length, e.g. 1 will make the buffer on
      * each side equal to the length of the visible axis viewport.
      */
-    overflowBuffer: 1
+    overflowBuffer: 1,
+
+    /**
+     * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
+     */
+    getDefaultSpriteConfig: function () {
+        var me = this,
+            parentConfig = me.callSuper(arguments),
+            style;
+
+        if (typeof me.config.fill != 'undefined') {
+            // If config.fill is present, set or clear style.fillStyle accordingly
+            // because that's what is used by the Line sprite to fill below the line.
+            style = this.getStyle();
+            if (me.config.fill) {
+                if (typeof style.fillStyle == 'undefined') {
+                    style.fillStyle = style.strokeStyle;
+                }
+            }
+            else {
+                delete style.fillStyle;
+            }
+        }
+
+        return Ext.apply(parentConfig || {}, {
+            smooth: me.config.smooth
+        });
+    }
+
 });

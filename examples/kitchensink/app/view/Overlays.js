@@ -20,38 +20,76 @@ Ext.define('Kitchensink.view.Overlays', {
         },
         items: [
             {
-                text: 'Action Sheet',
+                text: (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10) ? 'CrossCut Menu' : 'Action Sheet',
                 model: false,
                 handler: function() {
+                    var items = [],
+                        isBB = (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10);
+
+                    if (isBB) {
+                        items = [
+                            {
+                                text: 'Settings',
+                                iconCls: 'settings',
+                                scope: this,
+                                handler: function() {
+                                    this.actions.hide();
+                                }
+                            },
+                            {
+                                text: 'New Item',
+                                iconCls: 'compose',
+                                scope: this,
+                                handler: function() {
+                                    this.actions.hide();
+                                }
+                            },
+                            {
+                                xtype: 'button',
+                                text: 'Star',
+                                iconCls: 'star',
+                                scope: this,
+                                handler: function() {
+                                    this.actions.hide();
+                                }
+                            }
+                        ];
+                    } else {
+                        items = [
+                            {
+
+                                text: 'Delete draft',
+                                ui: 'decline',
+                                scope: this,
+                                handler: function() {
+                                    this.actions.hide();
+                                }
+                            },
+                            {
+                                text: 'Save draft',
+                                scope: this,
+                                handler: function() {
+                                    this.actions.hide();
+                                }
+                            },
+                            {
+                                xtype: 'button',
+                                text: 'Cancel',
+                                scope: this,
+                                handler: function() {
+                                    this.actions.hide();
+                                }
+                            }
+                        ];
+                    }
+
                     if (!this.actions) {
                         this.actions = Ext.Viewport.add({
-                            xtype: 'actionsheet',
-                            items: [
-                                {
-
-                                    text: 'Delete draft',
-                                    ui: 'decline',
-                                    scope: this,
-                                    handler: function() {
-                                        this.actions.hide();
-                                    }
-                                },
-                                {
-                                    text: 'Save draft',
-                                    scope: this,
-                                    handler: function() {
-                                        this.actions.hide();
-                                    }
-                                },
-                                {
-                                    xtype: 'button',
-                                    text: 'Cancel',
-                                    scope: this,
-                                    handler: function() {
-                                        this.actions.hide();
-                                    }
-                                }
-                            ]
+                            xclass: (isBB) ? 'Ext.bb.CrossCut' : 'Ext.ActionSheet',
+                            defaults: {
+                                iconMask: true
+                            },
+                            items: items
                         });
                     }
 

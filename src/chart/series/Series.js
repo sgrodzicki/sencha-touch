@@ -70,7 +70,7 @@ Ext.define('Ext.chart.series.Series', {
          * @cfg {Function} renderer
          * A function that can be overridden to set custom styling properties to each rendered element.
          * Passes in (sprite, record, attributes, index, store) to the function.
-         * 
+         *
          * @param sprite The sprite affected by the renderer.
          * @param record The store record associated with the sprite.
          * @param attributes The list of attributes to be applied to the sprite.
@@ -185,7 +185,12 @@ Ext.define('Ext.chart.series.Series', {
         /**
          * @cfg {Object} highlightCfg The sprite configuration used when highlighting items in the series.
          */
-        highlightCfg: null
+        highlightCfg: null,
+
+        /**
+         * @cfg {Object} animate The series animation configuration.
+         */
+        animate: null
     },
 
     directions: [],
@@ -201,6 +206,31 @@ Ext.define('Ext.chart.series.Series', {
             fields.push(fieldsItem);
         }
         return fields;
+    },
+
+    updateAnimate: function (animate) {
+        var sprites = this.getSprites(), i = -1, ln = sprites.length;
+        while (++i < ln) {
+            sprites[i].fx.setConfig(animate);
+        }
+    },
+
+    updateTitle: function (newTitle) {
+        if (newTitle) {
+            var chart = this.getChart(),
+                series = chart.getSeries(),
+                legendStore = chart.getLegendStore(),
+                index, rec;
+
+            if (series) {
+                index = Ext.Array.indexOf(series, this);
+
+                if (index !== -1) {
+                    rec = legendStore.getAt(index);
+                    rec.set('name', newTitle);
+                }
+            }
+        }
     },
 
     updateColors: function (colorSet) {
@@ -285,10 +315,9 @@ Ext.define('Ext.chart.series.Series', {
         }
     },
 
-    onStoreChanged: function () {
-        var store = this.getStore();
-        if (store) {
-            this.refresh();
+    onStoreChanged: function (store, oldStore) {
+        if (!this._store) {
+            this.updateStore(store, oldStore);
         }
     },
 
@@ -480,9 +509,8 @@ Ext.define('Ext.chart.series.Series', {
             me.onChartDetached(oldChart);
         }
         if (newChart) {
-            me.setSurface(newChart.getSurface(this.getId() + '-surface', 'series'));
-            me.setOverlaySurface(newChart.getSurface(me.getId() + '-overlay-surface', 'overlay'));
-            me.getOverlaySurface().waitFor(me.getSurface());
+            me.setSurface(newChart.getSurface('series-surface', 'series'));
+            me.setOverlaySurface(newChart.getSurface('overlay-surface', 'overlay'));
 
             newChart.on("axeschanged", 'onAxesChanged', me);
             if (newChart.getAxes()) {
@@ -499,6 +527,7 @@ Ext.define('Ext.chart.series.Series', {
             axes = chart.getAxes(), axis,
             directionMap = {}, directionMapItem,
             fieldMap = {}, fieldMapItem,
+            needHighPrecision = false,
             directions = this.directions, direction,
             i, ln, j, ln2, k, ln3;
 
@@ -524,12 +553,18 @@ Ext.define('Ext.chart.series.Series', {
                     axis = directionMapItem[j];
                     if (axis.getFields().length === 0) {
                         me['set' + direction + 'Axis'](axis);
+                        if (axis.getNeedHighPrecision()) {
+                            needHighPrecision = true;
+                        }
                     } else {
                         fieldMapItem = fieldMap[direction];
                         if (fieldMapItem) {
                             for (k = 0, ln3 = fieldMapItem.length; k < ln3; k++) {
                                 if (axis.fieldsMap[fieldMapItem[k]]) {
                                     me['set' + direction + 'Axis'](axis);
+                                    if (axis.getNeedHighPrecision()) {
+                                        needHighPrecision = true;
+                                    }
                                     break;
                                 }
                             }
@@ -538,16 +573,19 @@ Ext.define('Ext.chart.series.Series', {
                 }
             }
         }
+        this.getSurface().setHighPrecision(needHighPrecision);
     },
 
     onChartDetached: function (oldChart) {
         this.fireEvent("chartdetached", oldChart);
+        oldChart.un('storechanged', 'onStoreChanged', this);
     },
 
     onChartAttached: function (chart) {
         var me = this;
         me.setBackground(me.getBackground());
         me.fireEvent("chartattached", chart);
+        chart.on('storechanged', 'onStoreChanged', me);
         me.processData();
     },
 
@@ -575,7 +613,7 @@ Ext.define('Ext.chart.series.Series', {
             template,
             markers = new Ext.chart.Markers();
 
-        markers.setAttributes({zIndex: 1e100});
+        markers.setAttributes({zIndex: Number.MAX_VALUE});
         var config = Ext.apply({}, itemInstancing);
         if (me.getHighlightCfg()) {
             config.highlightCfg = me.getHighlightCfg();

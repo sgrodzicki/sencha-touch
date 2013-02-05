@@ -28,6 +28,7 @@
         "lib",
         "resources/images",
         "resources/icons",
+        "fake.json",
         "resources/loading"
     ],
     "archivePath": "archive",

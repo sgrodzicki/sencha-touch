@@ -60,6 +60,9 @@ Ext.define('Kitchensink.view.SourceOverlay', {
                     }
                     this.matches.push([midx, regex.lastIndex]);
                 }
+                else {
+                    break;
+                }
             }
             return str;
         }, this);
@@ -83,13 +86,11 @@ Ext.define('Kitchensink.view.SourceOverlay', {
         // Line comments
         v = highlight(v, /\/\/[^\n\r]*/ig, 'comment');
 
-        // Integers and Floats
-        v = highlight(v, /\d+\.?\d*/ig, 'number');
-
         // Function names
         v = highlight(v, /(\w+)\s*\:\s*function/ig, 'function', function(match){
             return [match.index, match[1]];
         });
+
         v = highlight(v, /function (\w+)/ig, 'function', function(match){
             return [match.index + 9, match[1]];
         });

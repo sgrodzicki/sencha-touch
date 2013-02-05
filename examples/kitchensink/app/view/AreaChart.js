@@ -1,11 +1,11 @@
 /**
  * Demonstrates how use Ext.chart.LineChart
  */
-//<feature charts>
+    //<feature charts>
 Ext.define('Kitchensink.view.AreaChart', {
     extend: 'Ext.Panel',
     requires: ['Ext.chart.Chart', 'Ext.chart.interactions.PanZoom', 'Ext.chart.series.Area',
-               'Ext.chart.axis.Numeric', 'Kitchensink.view.ColorPatterns'],
+        'Ext.chart.axis.Numeric', 'Kitchensink.view.ColorPatterns'],
     config: {
         cls: 'card1',
         layout: 'fit',
@@ -29,6 +29,20 @@ Ext.define('Kitchensink.view.AreaChart', {
                         text: '&nbsp;Refresh',
                         handler: function () {
                             Ext.getStore('OrderItems').generateData(25);
+                        }
+                    },
+                    {
+                        text: '&nbsp;Reset',
+                        handler: function () {
+                            //ensure the query gets the chart for this kitchensink example
+                            var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];
+
+                            //reset the axis
+                            Ext.ComponentQuery.query('axis', chart)[1].setVisibleRange([0, 0.25]);
+                            chart.redraw();
+
+                            //reset the legend
+                            chart.resetLegendStore();
                         }
                     }
                 ]
@@ -117,7 +131,7 @@ Ext.define('Kitchensink.view.AreaChart', {
         ]
     },
 
-    initialize: function () {
+    initialize: function() {
         this.callParent();
         Ext.getStore('OrderItems').generateData(25);
         var toolbar = Ext.ComponentQuery.query('toolbar', this)[0],

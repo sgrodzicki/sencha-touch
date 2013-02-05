@@ -271,7 +271,6 @@ Ext.define('Ext.util.Draggable', {
         if (this.getDisabled()) {
             return false;
         }
-
         var offset = this.offset;
 
         this.fireAction('dragstart', [this, e, offset.x, offset.y], this.initDragStart);

@@ -29,8 +29,8 @@
                             text: 'Clear',
                             handler: function () {
                                 var draw = Ext.getCmp('free-paint');
-                                draw.getSurface().removeAll();
-                                draw.getSurface('overlay').removeAll();
+                                draw.getSurface().destroy();
+                                draw.getSurface('overlay').destroy();
                                 draw.renderFrame();
                             }
                         }

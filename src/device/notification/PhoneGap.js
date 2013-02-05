@@ -15,7 +15,7 @@ Ext.define('Ext.device.notification.PhoneGap', {
             };
 
         // change Ext.MessageBox buttons into normal arrays
-        var ln = butons.length;
+        var ln = buttons.length;
         if (ln && typeof buttons[0] != "string") {
             var newButtons = [],
                 i;
