@@ -37,6 +37,7 @@ Ext.define('GeoCon.view.Settings', {
             },
             {
                 xtype: 'button',
+                margin: '0 25%',
                 text: 'Lookup',
                 ui: 'confirm',
                 id: 'lookupBtn'

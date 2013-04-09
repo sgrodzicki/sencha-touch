@@ -1,93 +1,101 @@
-@import 'compass';
+//$dark-theme: false;
+//$base-color: #2672EC;
 
-#mainNestedList {
-    border-right: 1px solid #000;
-}
+@import 'sencha-touch/bb10';
+@import 'sencha-touch/bb10/all';
 
-.ux-code {
-    > .x-body {
-        @include border-top-left-radius(4px);
-        @include border-top-right-radius(4px);
+@include icon('retweet');
+
+.ks-basic .x-dataview {
+    background: #eee;
+
+    .x-dataview-item {
+        padding: 1em;
+        text-align: center;
+        color: #000;
+
+        img {
+            margin: 1em;
+        }
+
+        &:nth-child(odd) {
+            color: white;
+            background: black;
+        }
+        &:nth-child(even) {
+            color: black;
+            background: white;
+        }
     }
 }
 
-.card .x-innerhtml {
+#mainNestedList {
+    border-right: 1px solid #2C2C2C;
+}
+
+.demo-list {
+    background: #eee;
+}
+
+.card > .x-inner,
+.card > .x-scroll-view > .x-scroll-container .x-inner,
+.card > .x-dock > .x-dock-body .x-inner {
     padding: 10px;
 }
 
-#launchscreen {
-    .x-scroll-scroller {
-        padding: 13px;
-    }
-
-    font-size: 14px;
-
-    h2 {
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    h3 {
-        font-weight: bold;
-        color: #555;
-    }
-
-    .main {
-        h2 {
-            font-size: 18px;
-        }
-    }
-
-    .feature {
-        color: #777;
-        background: #eee;
-        border: 1px solid #ddd;
-        margin-bottom: 10px;
-        padding: 10px;
-
-        img {
-            display: none;
-        }
-    }
-}
-
 .demo-weather {
-  text-align: center;
+    text-align: center;
 }
 .day {
-  display: inline-block;
-  background-color: #f9f9f9;
-  color: rgba(0, 0, 0, .6);
-  text-shadow: #fff 0 1px 0;
-  width: 8em;
-  text-align: center;
-  @include border-radius(15px);
-  @include box-shadow(inset 0 0 4px #888);
-  box-shadow: inset 0 0 4px #888;
-  padding: 1em;
-  margin: .5em;
+    display: inline-block;
+    background-color: #f9f9f9;
+    color: rgba(0, 0, 0, .6);
+    text-shadow: #fff 0 1px 0;
+    width: 8em;
+    text-align: center;
+    @include border-radius(15px);
+    @include st-box-shadow(inset 0 0 4px #888);
+    padding: 1em;
+    margin: .5em;
 
-  .x-android & {
-    @include box-shadow(none);
-  }
+    .x-android & {
+        @include box-shadow(none);
+    }
 }
 .date {
-  font-size: .8em;
+    font-size: .8em;
 }
 .icon img {
-  @include border-radius(10px);
-  margin: .6em;
-  width: 3.5em;
+    @include border-radius(10px);
+    margin: .6em;
+    width: 3.5em;
 }
 .temp {
-  margin-top: .2em;
-  display: block;
-  font-size: 2.2em;
-  line-height: .5em;
+    margin-top: .2em;
+    display: block;
+    font-size: 2.2em;
+    line-height: .5em;
 }
 .temp_low {
-  display: inline;
-  font-size: .5em;
-  color: rgba(30, 30, 30, .5);
+    display: inline;
+    font-size: .5em;
+    color: rgba(30, 30, 30, .5);
+}
+
+// Blog posts
+
+.blog-post h3 {
+    margin-bottom: .5em;
+
+    a {
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+        line-height: 1.3em;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+.x-video-ghost {
+    background-color: white
 }

@@ -34,7 +34,6 @@ Ext.define('Kiva.view.LoanFilter', {
                     { xtype: 'spacer' },
                     {
                         xtype: 'button',
-                        iconMask: true,
                         iconCls: 'refresh'
                     }
                 ]

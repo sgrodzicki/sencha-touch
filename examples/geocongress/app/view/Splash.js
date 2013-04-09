@@ -30,8 +30,7 @@ Ext.define('GeoCon.view.Splash', {
                         id: 'settingsBtn',
                         xtype: 'button',
                         iconCls: 'settings',
-                        ui: 'plain',
-                        iconMask: true
+                        ui: 'plain'
                     }
                 ]
             },

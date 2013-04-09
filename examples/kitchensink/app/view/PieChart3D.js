@@ -23,8 +23,7 @@ Ext.define('Kitchensink.view.PieChart3D', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
-                        text: '&nbsp;Refresh',
+                        text: 'Refresh',
                         handler: function () {
                             Ext.ComponentQuery.query('polar', this.getParent().getParent())[0].setAnimate({
                                 duration: 500,
@@ -34,7 +33,7 @@ Ext.define('Kitchensink.view.PieChart3D', {
                         }
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('polar', this.getParent().getParent())[0];

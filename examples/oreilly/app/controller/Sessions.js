@@ -22,7 +22,6 @@ Ext.define('Oreilly.controller.Sessions', {
 			sessionDayPicker: {
 				toggle: 'onSessionDateChange'
 			},
-
 			speakers: {
 				itemtap: 'onSpeakerTap'
 			}
@@ -35,8 +34,10 @@ Ext.define('Oreilly.controller.Sessions', {
 		this.filterByButton(firstButton);
 	},
 
-	onSessionDateChange: function(seg, btn) {
-		this.filterByButton(btn);
+	onSessionDateChange: function(seg, btn, toggle) {
+        if (toggle) {
+            this.filterByButton(btn);
+        }
 	},
 
 	filterByButton: function(btn) {
@@ -50,11 +51,10 @@ Ext.define('Oreilly.controller.Sessions', {
 	},
 
 	onSessionTap: function(list, idx, el, record) {
-
 		var speakerStore = Ext.getStore('SessionSpeakers'),
 			speakerIds = record.get('speakerIds');
 
-		speakerStore.clearFilter();
+		speakerStore.clearFilter(true);
 		speakerStore.filterBy(function(speaker) {
 			return Ext.Array.contains(speakerIds, speaker.get('id'));
 		});
@@ -69,7 +69,6 @@ Ext.define('Oreilly.controller.Sessions', {
 	},
 
 	onSpeakerTap: function(list, idx, el, record) {
-
 		if (!this.speakerInfo) {
 			this.speakerInfo = Ext.widget('speakerInfo', {
 				scrollable: 'vertical'

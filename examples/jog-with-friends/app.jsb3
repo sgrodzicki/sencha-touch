@@ -295,6 +295,11 @@
                     "path": "../../src/util/sizemonitor/"
                 },
                 {
+                    "clsName": "Ext.util.sizemonitor.Default",
+                    "name": "Default.js",
+                    "path": "../../src/util/sizemonitor/"
+                },
+                {
                     "clsName": "Ext.util.sizemonitor.Scroll",
                     "name": "Scroll.js",
                     "path": "../../src/util/sizemonitor/"

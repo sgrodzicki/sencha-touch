@@ -14,7 +14,9 @@ Ext.define('GeoCon.view.legislator.TabPanel', {
 
     config: {
         tabBar: {
-            minHeight: null
+            layout: {
+                pack: 'center'
+            }
         },
         items: [
             {

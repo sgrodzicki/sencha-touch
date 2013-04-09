@@ -25,6 +25,13 @@ Ext.define('GeoCon.model.Bill', {
             { name: 'keywords',             type: 'object' },
             { name: 'last_action',          type: 'object' },
             { name: 'last_action_at',       type: 'date' },
+            {
+                name: 'last_action_str',
+                type: 'string',
+                convert: function(v, record) {
+                    return Ext.Date.format(record.data.last_action_at, 'F j, Y');
+                }
+            },
             { name: 'last_passage_vote_at', type: 'date' },
             { name: 'last_version',         type: 'object' },
             { name: 'last_version_on',      type: 'string' },
@@ -41,6 +48,7 @@ Ext.define('GeoCon.model.Bill', {
             { name: 'state',                type: 'string' },
             { name: 'summary',              type: 'string' },
             { name: 'titles',               type: 'object' },
+            { name: 'short_title',          type: 'string' },
             { name: 'version_codes',        type: 'object' },
             { name: 'version_info',         type: 'object' },
             { name: 'versions_count',       type: 'number' },

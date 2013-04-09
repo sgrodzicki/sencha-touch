@@ -2,19 +2,18 @@ Ext.define('GeoCon.store.Districts', {
     extend  : 'Ext.data.Store',
 
     config: {
-        fields: [ 'state', 'number' ],
+        fields: [ 'state', 'district' ],
 
         proxy: {
             type: 'jsonp',
-            url: 'http://services.sunlightlabs.com/api/districts.getDistrictFromLatLong',
-            callbackKey: 'jsonp',
+            url: 'http://congress.api.sunlightfoundation.com/districts/locate',
+            preventNamespacing: true,
             extraParams: {
-                apikey: '8a341f85c657435989e75c9a83294762'
+                apikey: '8a341f85c657435989e75c9a83294762',
+                per_page: 'all'
             },
             reader: {
-                type: 'json',
-                rootProperty: 'response.districts',
-                record: 'district'
+                rootProperty: 'results'
             }
         }
     }

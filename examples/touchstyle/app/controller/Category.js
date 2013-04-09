@@ -33,10 +33,6 @@ Ext.define('TouchStyle.controller.Category', {
         stack: []
     },
 
-    init: function() {
-        Ext.getStore('Categories').on('load', this.onStoreLoad, this);
-    },
-
     ensureStoreLoad: function(action) {
         var store = Ext.getStore('Categories');
 

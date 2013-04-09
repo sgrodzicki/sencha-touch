@@ -1,4 +1,3 @@
-
 $base-color: #d40e3f;
 $list-header-color: #666;
 $list-header-bg-color: #ccc;
@@ -6,31 +5,18 @@ $list-header-bg-color: #ccc;
 $index-bar-bg-color: #ccc;
 $index-bar-color: #666;
 
+@import 'sencha-touch/base';
+@import 'sencha-touch/base/all';
+
+@import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-@include sencha-panel;
-@include sencha-buttons;
-@include sencha-sheet;
-@include sencha-picker;
-@include sencha-tabs;
-@include sencha-toolbar;
-@include sencha-toolbar-forms;
-@include sencha-indexbar;
-@include sencha-list;
-@include sencha-list-paging;
-@include sencha-list-pullrefresh;
-@include sencha-layout;
-@include sencha-carousel;
-@include sencha-form;
-@include sencha-msgbox;
-@include sencha-loading-spinner;
-
-@include pictos-iconmask('team1');
-@include pictos-iconmask('info');
-@include pictos-iconmask('time');
-@include pictos-iconmask('locate');
-@include pictos-iconmask('chat');
-@include pictos-iconmask('action');
+@include icon('team');
+@include icon('info');
+@include icon('time');
+@include icon('locate');
+@include icon('chat');
+@include icon('action');
 
 @include sencha-tabbar-ui('gray', #111, 'matte', lighten($base-color, 10%));
 @include sencha-toolbar-ui('dark', darken($base-color, 10%), $base-gradient);
@@ -55,12 +41,12 @@ h4 {
 
 .x-list-item-label > .session {
 
-    @include display-box;
-    @include box-orient(horizontal);
-    @include box-align(center);
+    @include st-box;
+    @include st-box-orient(horizontal);
+    @include st-box-align(center);
 
     .title {
-        @include box-flex(1);
+        @include st-box-flex(1);
         font-weight: bold;
         font-size: 95%;
         overflow: hidden;
@@ -108,28 +94,35 @@ h4 {
     padding: 0.4em 1.3em;
 }
 
-
+.tweets {
+  h2 {
+    padding-bottom: 3px;
+  }
+  img {
+    float: left;
+  }
+  .tweet {
+    font-size: 70%;
+    margin-left: 60px;
+    min-height: 50px;
+  }
+  .x-list-item {
+    border-top: 1px solid white;
+  }
+  .posted {
+    float: right;
+  }
+}
 
 .tweets {
     h2 {
         font-weight: bold;
-        padding-bottom: 3px;
     }
     img {
         border-radius: 5px;
-        float: left;
     }
     .tweet {
-        font-size: 70%;
-        margin-left: 60px;
         color: #333;
-        min-height: 50px;
-    }
-    .x-list-item {
-        border-top: 1px solid white;
-    }
-    .posted {
-        float: right;
     }
 }
 

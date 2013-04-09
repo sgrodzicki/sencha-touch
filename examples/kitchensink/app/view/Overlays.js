@@ -20,11 +20,11 @@ Ext.define('Kitchensink.view.Overlays', {
         },
         items: [
             {
-                text: (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10) ? 'CrossCut Menu' : 'Action Sheet',
+                text: Ext.filterPlatform('blackberry') ? 'CrossCut Menu' : 'Action Sheet',
                 model: false,
                 handler: function() {
                     var items = [],
-                        isBB = (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10);
+                        isBB = Ext.filterPlatform('blackberry');
 
                     if (isBB) {
                         items = [
@@ -85,7 +85,7 @@ Ext.define('Kitchensink.view.Overlays', {
 
                     if (!this.actions) {
                         this.actions = Ext.Viewport.add({
-                            xclass: (isBB) ? 'Ext.bb.CrossCut' : 'Ext.ActionSheet',
+                            xtype: 'actionsheet',
                             defaults: {
                                 iconMask: true
                             },
@@ -115,8 +115,8 @@ Ext.define('Kitchensink.view.Overlays', {
                                 easing: 'ease-out'
                             },
                             centered: true,
-                            width: Ext.os.deviceType == 'Phone' ? 260 : 400,
-                            height: Ext.os.deviceType == 'Phone' ? 220 : 400,
+                            width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                            height: Ext.filterPlatform('ie10') ? '30%' : Ext.os.deviceType == 'Phone' ? 220 : 400,
                             styleHtmlContent: true,
                             html: '<p>This is a modal, centered and floating panel. hideOnMaskTap is true by default so ' +
                                 'we can tap anywhere outside the overlay to hide it.</p>',

@@ -6,7 +6,6 @@ Ext.define('Oreilly.view.session.List', {
 	xtype: 'sessions',
 
 	config: {
-
 		items: [
 			{
 				docked: 'top',
@@ -16,7 +15,6 @@ Ext.define('Oreilly.view.session.List', {
 				items: [
 					{
 						width: '100%',
-						padding: '0 5',
 						defaults: {
 							flex: 1
 						},
@@ -26,7 +24,8 @@ Ext.define('Oreilly.view.session.List', {
 				]
 			}
 		],
-
+        variableHeights: true,
+        useSimpleItems: true,
 		itemTpl: [
 			'<div class="session"><div class="title">{title}</div><div class="room">{room}</div></div>'
 		]

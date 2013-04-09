@@ -87,6 +87,8 @@ Ext.application({
         Ext.Viewport.add({
             xtype: 'carousel',
 
+            bufferSize: 2,
+
             //this time direction vertical
             direction: 'vertical',
 

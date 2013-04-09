@@ -10,11 +10,11 @@
 Ext.define('Twitter.proxy.Twitter', {
     extend: 'Ext.data.proxy.JsonP',
     alias: 'proxy.twitter',
-    
+
     config: {
         // This is the url we always query when searching for tweets
         url: 'http://search.twitter.com/search.json',
-        
+
         extraParams: {
             result_type: 'mixed', // Returns popular tweets at the top of the result
             lang: 'en'            // Only show English results

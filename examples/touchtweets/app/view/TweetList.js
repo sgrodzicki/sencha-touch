@@ -9,17 +9,28 @@ Ext.define('Twitter.view.TweetList', {
     extend: 'Ext.dataview.List',
     xtype: 'tweetlist',
     requires: [
-        'Twitter.view.TweetListItem',
         'Ext.plugin.PullRefresh',
         'Ext.plugin.ListPaging'
     ],
 
     config: {
         ui           : 'timeline',
-        defaultType  : 'tweetlistitem',
         allowDeselect: false,
-        useComponents: true,
+        useSimpleItems: true,
+        variableHeights: true,
+        infinite: true,
         emptyText: 'No tweets found.',
+
+        itemTpl: [
+            '<div class="tweet <tpl if=\'metadata && metadata.result_type && metadata.result_type == \"popular\"\'>popular</tpl>">',
+                '<img class="avatar" src="{profile_image_url}" width="48px" height="48px" />',
+                '<div class="username">{from_user}</div>',
+                '<div class="text">{text}</div>',
+                '<tpl if="metadata && metadata.recent_retweets">',
+                    '<div class="retweets">{metadata.recent_retweets} recent retweets</div>',
+                '</tpl>',
+            '</div>'
+        ],
 
         plugins: [
             'pullrefresh',

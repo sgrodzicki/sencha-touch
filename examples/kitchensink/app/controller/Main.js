@@ -39,7 +39,8 @@ Ext.define('Kitchensink.controller.Main', {
 
         routes: {
             'demo/:id': 'showViewById',
-            'menu/:id': 'showMenuById'
+            'menu/:id': 'showMenuById',
+            '': 'showMenuById'
         },
 
         /**

@@ -8,12 +8,17 @@ Ext.define('Kitchensink.view.EditorPanel', {
         modal: true,
         hideOnMaskTap: false,
         centered: true,
-        width: 300,
+        width: Ext.filterPlatform('ie10') ? '100%' : 300,
         scrollable: null,
         items: [{
             xtype: 'textfield',
             name: 'text',
-            label: 'Name'
+            label: 'Name',
+            listeners: {
+                keyup: function(field) {
+                    Ext.getCmp('changeButton').setDisabled(field.getValue() ? false : true);
+                }
+            }
         }, {
             docked: 'top',
             xtype: 'toolbar',
@@ -22,26 +27,33 @@ Ext.define('Kitchensink.view.EditorPanel', {
             docked: 'bottom',
             ui: ((Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10)) ? 'plain' : 'light',
             xtype: 'toolbar',
-            items: [{
-                text: 'Cancel',
-                handler: function() {
-                    Ext.getCmp('editorPanel').hide();
-                }
-            }, {
-                xtype: 'spacer'
-            }, {
-                text: 'Change',
-                ui: 'action',
-                handler: function() {
-                    var formPanel = Ext.getCmp('editorPanel'),
-                        formRecord = formPanel.getRecord();
-                    if (formRecord) {
-                        formRecord.set(formPanel.getValues());
-                        formRecord.commit();
+            items: [
+                {
+                    text: 'Cancel',
+                    handler: function() {
+                        Ext.getCmp('changeButton').setDisabled(false);
+                        Ext.getCmp('editorPanel').hide();
                     }
-                    formPanel.hide();
+                }, {
+                    xtype: 'spacer'
+                }, {
+                    text: 'Change',
+                    id: 'changeButton',
+                    ui: 'action',
+                    handler: function() {
+                        var formPanel = Ext.getCmp('editorPanel'),
+                            formRecord = formPanel.getRecord(),
+                            values = formPanel.getValues();
+
+                        if (formRecord) {
+                            formRecord.set(values);
+                            formRecord.commit();
+                        }
+
+                        formPanel.hide();
+                    }
                 }
-            }]
+            ]
         }]
     }
 });

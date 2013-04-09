@@ -12,6 +12,13 @@
     "css": [
         {
             "path": "../../resources/css/sencha-touch.css",
+            "platform": ["chrome", "safari", "ios", "android", "blackberry"],
+            "update": "delta"
+        },
+        {
+            "path": "../../resources/css/wp.css",
+            "platform": ["ie10"],
+            "theme": "Windows",
             "update": "delta"
         },
         {

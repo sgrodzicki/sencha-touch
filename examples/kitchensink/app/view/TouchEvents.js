@@ -18,7 +18,7 @@ Ext.define('Kitchensink.view.TouchEvents', {
 
         padElement.on(['touchstart', 'touchend', 'touchmove',
                         'swipe', 'dragstart', 'drag', 'dragend',
-                        'tap', 'doubletap', 'longpress', 'pinch', 'rotate'],
+                        'tap', 'singletap', 'doubletap', 'longpress', 'pinch', 'rotate'],
         'onTouchPadEvent', this);
     },
 

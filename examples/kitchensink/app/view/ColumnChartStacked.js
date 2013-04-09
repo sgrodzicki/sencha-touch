@@ -24,15 +24,13 @@ Ext.define('Kitchensink.view.ColumnChartStacked', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
                         text: 'Refresh',
                         handler: function () {
                             Ext.getStore('OrderItems').generateData(25);
                         }
                     },
                     {
-                        iconCls: 'loop2',
-                        iconMask: true,
+                        iconCls: 'retweet',
                         text: 'Stack',
                         handler: function (button) {
                             var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0],
@@ -43,7 +41,7 @@ Ext.define('Kitchensink.view.ColumnChartStacked', {
                         }
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];

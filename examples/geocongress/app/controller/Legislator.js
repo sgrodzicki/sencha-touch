@@ -112,7 +112,7 @@ Ext.define('GeoCon.controller.Legislator', {
         }
 
         Ext.getCmp('legislatorBio').setData(this.currentLegislator);
-        Ext.getCmp('legislatorToolbar').setTitle(this.currentLegislator.title + " " + this.currentLegislator.lastname);
+        Ext.getCmp('legislatorToolbar').setTitle(this.currentLegislator.title + " " + this.currentLegislator.last_name);
         Ext.getCmp('legislatorTabPanel').setActiveItem(0);
     }
 

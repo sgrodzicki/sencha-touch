@@ -61,12 +61,10 @@ Ext.application({
             ),
 
             trackingButton = Ext.create('Ext.Button', {
-                iconMask: true,
                 iconCls: 'locate'
             }),
 
             trafficButton = Ext.create('Ext.Button', {
-                iconMask: true,
                 pressed: true,
                 iconCls: 'maps'
             }),
@@ -74,9 +72,6 @@ Ext.application({
             toolbar = Ext.create('Ext.Toolbar', {
                 docked: 'top',
                 ui: 'light',
-                defaults: {
-                    iconMask: true
-                },
                 items: [
                     {
                         iconCls: 'home',

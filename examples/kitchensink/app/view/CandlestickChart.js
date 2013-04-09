@@ -28,7 +28,7 @@ Ext.define('Kitchensink.view.CandlestickChart', {
                         xtype: 'spacer'
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];

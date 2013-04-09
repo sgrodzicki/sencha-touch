@@ -28,20 +28,10 @@ $list-pressed-color: lighten($gray, 5%);
 $list-active-color: $gray;
 $list-active-gradient: matte;
 
-//import the sencha touch theme
+@import 'sencha-touch/base';
+@import 'sencha-touch/base/all';
+@import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
-
-//include all the components we need styling for
-@include sencha-panel;
-@include sencha-buttons;
-@include sencha-toolbar;
-@include sencha-list;
-@include sencha-list-paging;
-@include sencha-list-pullrefresh;
-@include sencha-layout;
-@include sencha-form;
-@include sencha-toolbar-forms;
-@include sencha-loading-spinner;
 
 //create a custom toolbar ui using the twitter blue color we defined above
 @include sencha-toolbar-ui('searchbar', $twitter-blue);
@@ -52,6 +42,7 @@ $list-active-gradient: matte;
 }
 
 //searchbar
+
 .x-toolbar-searchbar {
     padding: .2em;
     border-color: darken($twitter-blue, 20) !important;
@@ -94,7 +85,7 @@ $list-active-gradient: matte;
         color: darken($twitter-blue, 30);
         padding: 0.5em 0.8em;
         height: 2.8em;
-        border-top: 1px solid darken(#F2F3F6, 10) !important;
+        border-top-color: darken(#F2F3F6, 10) !important;
 
         &.x-item-selected {
             text-shadow: 0 1px 0 rgba(255,255,255,.6);
@@ -111,6 +102,11 @@ $list-active-gradient: matte;
         .search {
             line-height: 1em;
         }
+    }
+
+    .x-button {
+        min-height: 1.4em;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.4);
     }
 }
 
@@ -134,21 +130,30 @@ $list-active-gradient: matte;
         text-align: center;
     }
 
-    .x-list-item-body {
-        min-height: 0px;
-        padding: 0;
+    .x-list-item {
+        border-top: 1px solid #dedede;
+        &.x-list-footer-wrap {
+            border-bottom: 1px solid #dedede;
+        }
+    }
+    
+    .x-list-item .x-innerhtml {
+        padding: 0 !important;
     }
 
-    .x-list-item .x-dock-horizontal {
-        padding: .5em;
+    .tweet {
+        padding: .5em .5em .5em 65px;
         background: #fff;
-        border-bottom: 1px solid $gray;
+        position: relative;
 
         .avatar {
+            position: absolute;
+            left: .5em;
+            top: .5em;
             margin-right: .5em;
             border: 1px solid $gray;
             @include border-radius(.4em);
-             -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.3);
+            @include st-box-shadow(inset 0 2px 2px rgba(0,0,0,.3));
         }
 
         .username {
@@ -184,7 +189,6 @@ $list-active-gradient: matte;
         }
 
         &.popular {
-            position: relative;
             @include background-gradient(lighten($twitter-blue, 45), recessed);
 
             .hashtag {
@@ -195,19 +199,6 @@ $list-active-gradient: matte;
                 color: rgba(0,0,0,0.4);
                 font-size: .7em;
                 margin-top: .5em;
-            }
-
-            &:after {
-                position: absolute;
-                top: .5em;
-                right: .5em;
-                width: 1.5em;
-                height: 1.5em;
-                -webkit-mask-image: theme_image($theme-name, "pictos/favorites_circle.png");
-                -webkit-mask-size: 100% 100%;
-                background: rgba(255,255,255,.7);
-                z-index: 10;
-                content: "";
             }
         }
     }

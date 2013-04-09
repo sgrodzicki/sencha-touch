@@ -120,8 +120,14 @@ Ext.application({
             //give it an xtype of list for the list component
             xtype: 'list',
 
+            id: 'list',
+
+//            scrollable: {
+//                indicators: false
+//            },
+
             //set the itemtpl to show the fields for the store
-            itemTpl: '<div class="contact2"><strong>{firstName}</strong> {lastName}</div>',
+            itemTpl: '{firstName} {lastName}',
 
             //enable disclosure icons
             disclosure: true,
@@ -131,6 +137,12 @@ Ext.application({
 
             //enable the indexBar
             indexBar: true,
+
+            infinite: true,
+
+            useSimpleItems: true,
+
+            variableHeights: true,
 
             //set the function when a user taps on a disclsoure icon
             onItemDisclosure: function(record, item, index, e) {

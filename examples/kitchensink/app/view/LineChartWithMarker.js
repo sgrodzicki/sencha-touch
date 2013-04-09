@@ -24,14 +24,13 @@ Ext.define('Kitchensink.view.LineChartWithMarker', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
-                        text: '&nbsp;Refresh',
+                        text: 'Refresh',
                         handler: function (a, b, c, d, e) {
                             Ext.getStore('Pie').generateData(10);
                         }
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];

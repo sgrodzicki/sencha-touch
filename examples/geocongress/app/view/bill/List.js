@@ -8,17 +8,8 @@ Ext.define('GeoCon.view.bill.List', {
 
     config: {
         store: 'Bills',
-        grouped: true,
-
-        itemTpl: Ext.create('Ext.XTemplate',
-            '<div class="bill">',
-                '{[this.shortTitle(values.titles)]}',
-            '</div>',
-            {
-                shortTitle: function(titles) {
-                    return titles[0].title;
-                }
-            }
-        )
+        variableHeights: true,
+        useSimpleItems: true,
+        itemTpl: Ext.create('Ext.XTemplate', '<div class="bill">({bill_id}) {short_title}</div>')
     }
 });

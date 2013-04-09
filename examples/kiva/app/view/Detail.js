@@ -92,16 +92,22 @@ Ext.define('Kiva.view.Detail', {
             delete this.mapMarker;
         }
 
-        //add a marker for the Loanee's position on the map
-        this.mapMarker = new google.maps.Marker({
-            map: map.map,
-            title : newLoan.get('name'),
-            position: new google.maps.LatLng(coords[0], coords[1])
-        });
+        setTimeout(function(){
+            map = map.getMap();
+
+            if (!map) {
+                return;
+            }
+
+            map.entities.clear();
+            var offset = new Microsoft.Maps.Point(0, 5);
+            var pushpinOptions = {text : newLoan.get('name'), visible: true, textOffset: offset};
+            var pushpin= new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(coords[0], coords[1]), pushpinOptions);
+            map.setView( {center: new Microsoft.Maps.Location(coords[0], coords[1]), zoom: 12});
+            map.entities.push(pushpin);
+        }, 1000);
 
         carousel.setActiveItem(0);
-
-        map.setMapCenter(this.mapMarker.position);
     },
 
     updateLendButton: function() {

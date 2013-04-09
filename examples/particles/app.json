@@ -57,7 +57,14 @@
      */
     "css": [
         {
-            "path": "resources/css/app.css",
+            "path": "../../resources/css/sencha-touch.css",
+            "profile": ["chrome", "safari", "ios", "android", "blackberry"],
+            "update": "delta"
+        },
+        {
+            "path": "../../resources/css/wp.css",
+            "profile": ["ie10"],
+            "theme": "Windows",
             "update": "delta"
         }
     ],

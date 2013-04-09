@@ -213,12 +213,12 @@ Ext.application({
                     var results = [];
 
                     //get the results from the quesy
-                    if (response.query && response.query.results) {
+                    if (response && response.query && response.query.results) {
                         results = response.query.results;
-                    }
 
-                    //update html of the contentview using the results returned from YQL
-                    contentView.setHtml(options.tpl.apply(results));
+                        //update html of the contentview using the results returned from YQL
+                        contentView.setHtml(options.tpl.apply(results));
+                    }
 
                     //unmask the content view
                     contentView.unmask();

@@ -124,7 +124,7 @@ Ext.define('Kiva.controller.Loans', {
             });
         });
 
-        store.clearFilter();
+        store.clearFilter(true);
         store.filter(filters);
         store.load();
     }

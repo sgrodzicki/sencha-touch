@@ -18,14 +18,13 @@ Ext.define('Kitchensink.view.ScatterChart', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
-                        text: '&nbsp;Refresh',
+                        text: 'Refresh',
                         handler: function () {
                             Ext.getStore('OrderItems').generateData(25);
                         }
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];

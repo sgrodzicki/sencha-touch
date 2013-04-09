@@ -12,17 +12,15 @@ Ext.define('Oreilly.view.speaker.Detail', {
                 scrollable: 'vertical',
 				xtype: 'speakerInfo'
 			},
+            {
+                xtype: 'component',
+                cls: 'dark',
+                html: 'Speakers'
+            },
 			{
                 flex: 2,
 				xtype: 'list',
 				store: 'SpeakerSessions',
-				items: [
-					{
-						xtype: 'listitemheader',
-						cls: 'dark',
-						html: 'Sessions'
-					}
-				],
 				itemTpl: [
 					'{title}'
 				]

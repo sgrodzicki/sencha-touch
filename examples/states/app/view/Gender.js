@@ -12,9 +12,9 @@ Ext.define("States.view.Gender", {
         },
         flipXY: true,
         insetPadding: {
-            left: 25,
-            top: 25,
-            bottom: 0
+            left: 15,
+            top: 10,
+            bottom: 10
         },
         series: [
             {
@@ -49,7 +49,7 @@ Ext.define("States.view.Gender", {
                 },
                 labelInSpan: true,
                 label: {
-                    fontSize: 10
+                    fontSize: 9
                 }
             }
         ]

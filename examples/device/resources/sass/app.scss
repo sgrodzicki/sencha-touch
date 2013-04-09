@@ -1,25 +1,17 @@
+@import 'sencha-touch/base';
+@import 'sencha-touch/base/all';
+@import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-@include sencha-panel;
-@include sencha-buttons;
-@include sencha-tabs;
-@include sencha-toolbar;
-@include sencha-list;
-@include sencha-layout;
-@include sencha-form;
-@include sencha-msgbox;
-@include sencha-loading-spinner;
-
 //custom icons
-@include pictos-iconmask('photo1');
-@include pictos-iconmask('photos2');
-@include pictos-iconmask('photo_black2');
-@include pictos-iconmask('mail');
-@include pictos-iconmask('wifi3');
-@include pictos-iconmask('maps');
-@include pictos-iconmask('compass1');
-@include pictos-iconmask('refresh');
-@include pictos-iconmask('address_book');
+@include icon('cart');
+@include icon('mail');
+@include icon('wireless');
+@include icon('maps');
+@include icon('speedometer');
+@include icon('camera');
+@include icon('refresh');
+@include icon('team');
 
 //information
 .information {
@@ -161,5 +153,5 @@
             }
         }
     }
-    
+
 }

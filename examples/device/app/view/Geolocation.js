@@ -42,8 +42,7 @@ Ext.define('Device.view.Geolocation', {
                     {
                         action: 'refresh',
                         align: 'right',
-                        iconCls: 'refresh',
-                        iconMask: true
+                        iconCls: 'refresh'
                     }
                 ]
             },

@@ -21,11 +21,10 @@ Ext.define('Oreilly.controller.Speakers', {
 	},
 
 	onSpeakerTap: function(list, idx, el, record) {
-
 		var sessionStore = Ext.getStore('SpeakerSessions'),
 			sessionIds = record.get('sessionIds');
 
-		sessionStore.clearFilter();
+		sessionStore.clearFilter(true);
 		sessionStore.filterBy(function(session) {
 			return Ext.Array.contains(sessionIds, session.get('id'));
 		});

@@ -8,12 +8,12 @@ Ext.define('GeoCon.view.legislator.List', {
 
     config: {
         store: 'Legislators',
-        grouped: true,
+        itemHeight: 89,
         emptyText: 'Loading list of Legislators...',
         itemTpl: [
             '<div class="legislator-list-item">',
                 '<span class="legislator-pic" style="background-image: url(http://www.govtrack.us/data/photos/{govtrack_id}-50px.jpeg);"></span>',
-                '{lastname}, {firstname} {middlename}',
+                '{last_name}, {first_name} {middle_name}',
             '</div>'
         ]
     }

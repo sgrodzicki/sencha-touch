@@ -49,8 +49,22 @@ Ext.application({
 
             //now we specify the tabBar configuration and give it a docked property of bottom
             //this will dock the tabbar of this tabpanel to the bottom
+
             tabBar: {
-                docked: 'bottom'
+                // Dock it to the bottom
+                docked: 'bottom',
+
+                // Change the layout so each of the tabs are centered vertically and horizontally
+                layout: {
+                    pack: 'center',
+                    align: 'center'
+                },
+
+                // Make the tabbar scrollable horizontally, and disabled the indicators
+                scrollable: {
+                    direction: 'horizontal',
+                    indicators: false
+                }
             },
 
             //here we specify the ui of the tabbar to light
@@ -61,6 +75,10 @@ Ext.application({
             //be scrollable unless otherwise specified in the item configuration
             defaults: {
                 scrollable: true
+            },
+
+            layout: {
+                animation: false
             },
 
             //next we define the items that will appear inside our tab panel

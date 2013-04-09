@@ -23,7 +23,7 @@ Ext.define('Device.view.Main', {
                 items: [
                     {
                         title: 'Purchases',
-                        // iconCls: 'mail',
+                        iconCls: 'cart',
                         className: 'Device.view.Purchases'
                     },
                     {
@@ -38,22 +38,22 @@ Ext.define('Device.view.Main', {
                     },
                     {
                         title: 'Contacts',
-                        iconCls: 'address_book',
+                        iconCls: 'team',
                         className: 'Device.view.Contacts'
                     },
                     {
                         title: 'Camera',
-                        iconCls: 'photo1',
+                        iconCls: 'camera',
                         className: 'Device.view.Camera'
                     },
                     {
                         title: 'Orientation',
-                        iconCls: 'compass1',
+                        iconCls: 'speedometer',
                         className: 'Device.view.Orientation'
                     },
                     {
                         title: 'Connection',
-                        iconCls: 'wifi3',
+                        iconCls: 'wireless',
                         className: 'Device.view.Connection'
                     },
                     {

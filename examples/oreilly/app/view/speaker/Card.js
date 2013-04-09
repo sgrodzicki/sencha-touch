@@ -5,11 +5,11 @@ Ext.define('Oreilly.view.speaker.Card', {
 
 	config: {
 
-        tab: {
+		tab: {
 			title: 'Speakers',
-	        iconCls: 'team1',
-	        action: 'speakersTab'
-	    },
+			iconCls: 'team',
+			action: 'speakersTab'
+		},
 
         autoDestroy: false,
 
@@ -18,8 +18,7 @@ Ext.define('Oreilly.view.speaker.Card', {
 				xtype: 'speakers',
 				store: 'Speakers',
 				grouped: true,
-				pinHeaders: false,
-				indexBar: true
+				pinHeaders: false
 			}
 		]
 	}

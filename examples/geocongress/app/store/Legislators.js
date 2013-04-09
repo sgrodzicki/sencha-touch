@@ -7,8 +7,7 @@ Ext.define('GeoCon.store.Legislators', {
 
         proxy: {
             type: 'jsonp',
-            url: 'http://services.sunlightlabs.com/api/legislators.getList.json',
-            callbackKey: 'jsonp',
+            url: 'http://congress.api.sunlightfoundation.com/legislators',
 
             // The following must be set to disable extra parameters being sent to the API, which breaks it
             noCache: false,
@@ -17,12 +16,11 @@ Ext.define('GeoCon.store.Legislators', {
             limitParam: '',
 
             extraParams: {
-                apikey: '8a341f85c657435989e75c9a83294762'
+                apikey: '8a341f85c657435989e75c9a83294762',
+                per_page: 'all'
             },
             reader: {
-                type: 'json',
-                rootProperty: 'response.legislators',
-                record: 'legislator'
+                rootProperty: 'results'
             }
         }
     }

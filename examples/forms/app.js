@@ -97,8 +97,8 @@ Ext.application({
             // If we are not on a phone, we want to make the formpanel model and give it a fixed with and height.
             Ext.apply(config, {
                 modal: true,
-                height: 505,
-                width: 480,
+                height: '90%',
+                width: '60%',
                 centered: true,
 
                 // Disable hideOnMaskTap so it cannot be hidden
@@ -126,9 +126,7 @@ Ext.application({
                 title: 'Personal Info',
                 instructions: 'Please enter the information above.',
                 defaults: {
-                    required: true,
-                    labelAlign: 'left',
-                    labelWidth: '40%'
+                    required: true
                 },
                 items: [
                     {

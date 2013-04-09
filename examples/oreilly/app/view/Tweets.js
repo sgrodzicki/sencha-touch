@@ -9,7 +9,7 @@ Ext.define('Oreilly.view.Tweets', {
     xtype: 'tweets',
 
     config: {
-
+        variableHeights: true,
         title: 'Tweets',
         iconCls: 'chat',
         cls: 'tweets',

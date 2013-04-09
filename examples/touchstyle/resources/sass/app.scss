@@ -1,14 +1,13 @@
 $include-button-uis: false;
 $include-default-icons: false;
 
-//import the sencha touch theme
-@import 'sencha-touch/default/all';
+@import 'sencha-touch/base';
+@import 'sencha-touch/base/all';
+@import 'sencha-touch/default';
 
 @import url(http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700);
 
-@include sencha-layout;
-@include sencha-carousel;
-@include sencha-loading-spinner;
+@import 'sencha-touch/default/src/carousel/Carousel';
 
 body,
 .x-fullscreen, .x-layout-fit-item, .x-layout-card-item {
@@ -35,6 +34,7 @@ body,
     }
 
     .x-button {
+        border: 0;
         height: 33px;
         padding-left: 40px;
         background: url(../images/back.png) top left no-repeat;

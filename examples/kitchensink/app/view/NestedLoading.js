@@ -26,8 +26,8 @@ Ext.require(['Ext.data.Store', 'Kitchensink.model.User'], function() {
                                         modal: true,
                                         hideOnMaskTap: true,
                                         centered: true,
-                                        width: 300,
-                                        height: 200,
+                                        width: Ext.filterPlatform('ie10') ? '100%' : 300,
+                                        height: Ext.filterPlatform('ie10') ? '60%' : 200,
                                         styleHtmlContent: true,
                                         scrollable: true,
                                         items: {

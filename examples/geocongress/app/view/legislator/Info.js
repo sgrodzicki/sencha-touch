@@ -11,7 +11,6 @@ Ext.define('GeoCon.view.legislator.Info', {
     config: {
 
         layout: 'vbox',
-        scrollable: 'vertical',
 
         items: [
             {

@@ -19,7 +19,6 @@ Ext.define('Device.view.Push', {
                     {
                         align: 'left',
                         iconCls: 'add',
-                        iconMask: true,
                         action: 'new'
                     },
                     {

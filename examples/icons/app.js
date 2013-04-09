@@ -108,8 +108,6 @@ Ext.application({
 
                     // Add some default configurations to all items added to this toolbar
                     defaults: {
-                        // iconMask is used when you need an pictos icon in a button
-                        iconMask: true,
                         ui: 'plain'
                     },
 

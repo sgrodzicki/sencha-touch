@@ -3,11 +3,10 @@ Ext.define('GeoCon.store.Bills', {
 
     config: {
         model: 'GeoCon.model.Bill',
-        groupField: 'state',
 
         proxy: {
             type: 'jsonp',
-            url: 'http://api.realtimecongress.org/api/v1/bills.json',
+            url: 'http://congress.api.sunlightfoundation.com/bills',
 
             // The following must be set to disable extra parameters being sent to the API, which breaks it
             noCache: false,
@@ -16,12 +15,12 @@ Ext.define('GeoCon.store.Bills', {
             limitParam: '',
 
             extraParams: {
-                apikey: '8a341f85c657435989e75c9a83294762'
+                apikey: '8a341f85c657435989e75c9a83294762',
+                per_page: 'all'
             },
 
             reader: {
-                type: 'json',
-                rootProperty: 'bills'
+                rootProperty: 'results'
             }
         }
     }

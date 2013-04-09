@@ -35,9 +35,6 @@ Ext.define('Device.view.Camera', {
                             type: 'hbox',
                             pack: 'center'
                         },
-                        defaults: {
-                            iconMask: true
-                        },
                         items: [
                             {
                                 text: 'Capture',

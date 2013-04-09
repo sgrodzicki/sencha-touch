@@ -9,6 +9,8 @@ Ext.define('GeoCon.view.vote.List', {
     config: {
         store: 'Votes',
         grouped: true,
+        variableHeights: true,
+        useSimpleItems: true,
         disableSelection: true,
 
         itemTpl: Ext.create('Ext.XTemplate',

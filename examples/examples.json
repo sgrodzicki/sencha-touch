@@ -11,20 +11,12 @@
                 "status": "updated"
             },
             {
-                "text": "The Watch List",
-                "url": "http://www.watchlistapp.com",
-                "iconLocation": "watchlist",
-                "device": "tablet",
-                "desc": "An Facebook example with Phone and Tablet views backed by Node.js and MongoDB.",
-                "status": "new"
-            },
-            {
-                "text": "Jog With Friends",
-                "url": "http://ju.mp/senchajwf",
-                "iconLocation": "jog-with-friends/resources/images",
+                "text": "GeoCongress",
+                "url": "geocongress/index.html",
+                "iconLocation": "geocongress/resources/icons",
                 "device": "phone",
-                "desc": "A Facebook example which allows you to share when you jog.",
-                "status": "new"
+                "desc": "Find information on your local Legislators",
+                "status": "updated"
             },
             {
                 "text": "Touch Tweets",
@@ -35,19 +27,11 @@
                 "status": "updated"
             },
             {
-                "text": "Kiva",
-                "url": "kiva/index.html",
-                "iconLocation": "kiva/resources/icons",
-                "device": "tablet",
-                "desc": "A mobile interface for Kiva.org.",
-                "status": "updated"
-            },
-            {
-                "text": "GeoCongress",
-                "url": "geocongress/index.html",
-                "iconLocation": "geocongress/resources/icons",
+                "text": "Jog With Friends",
+                "url": "http://agile-anchorage-2261.herokuapp.com",
+                "iconLocation": "jog-with-friends/resources/images",
                 "device": "phone",
-                "desc": "Find information on your local Legislators",
+                "desc": "A Facebook example which allows you to share when you jog.",
                 "status": "updated"
             },
             {
@@ -91,13 +75,6 @@
                 "iconLocation": "energy/resources/icons",
                 "device": "phone",
                 "desc": "A demo of energy consumption/production of The United States."
-            },
-            {
-                "text": "Particle Animation",
-                "url": "particles/index.html",
-                "iconLocation": "particles/resources/icons",
-                "device": "phone",
-                "desc": "A demo of particle animation."
             }
         ]
     },

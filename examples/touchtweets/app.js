@@ -31,6 +31,40 @@ Ext.application({
     },
 
     launch: function() {
+
+//        Ext.Viewport.add([
+//            {
+//                id: 'currentFPS',
+//                xtype: 'component',
+//                bottom: 0,
+//                right: 0,
+//                width: 50,
+//                height: 50,
+//                style: 'background-color: red; color: white;'
+//            }, {
+//                id: 'averageFPS',
+//                xtype: 'component',
+//                bottom: 0,
+//                left: 0,
+//                width: 50,
+//                height: 50,
+//                style: 'background-color: green; color: white;'
+//            }
+//        ]);
+//
+//        var fpsIndicator = Ext.getCmp('currentFPS'),
+//            fpsAverage = Ext.getCmp('averageFPS'),
+//            fpsCount = 0,
+//            fpsSum = 0;
+//
+//
+//        Ext.AnimationQueue.onFpsChanged = function(fps) {
+//            fpsCount++;
+//            fpsSum += fps;
+//            fpsIndicator.setHtml(Math.round(fps));
+//            fpsAverage.setHtml(Math.round(fpsSum / fpsCount));
+//        };
+
         Ext.getBody().removeCls('loading');
     }
 });

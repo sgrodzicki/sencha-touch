@@ -18,7 +18,7 @@ Ext.define('Kitchensink.view.Icons', {
                 align: 'center'
             },
             docked: 'bottom',
-            scrollable: false
+            scrollable: null
         },
         defaults: {
             scrollable: true
@@ -40,79 +40,40 @@ Ext.define('Kitchensink.view.Icons', {
                 iconCls: 'favorites',
                 title  : 'Favorites',
                 cls    : 'card',
-                html   : '<span class="action">User tapped Favorites</span>'
+                html   : '<span class="action">User tapped Favorites</span>',
+                hidden: (Ext.filterPlatform('ie10') && Ext.os.is.Phone) ? true : false
             },
             {
                 iconCls: 'bookmarks',
                 title  : 'Bookmarks',
                 cls    : 'card dark',
-                html   : '<span class="action">User tapped Bookmarks</span>'
+                html   : '<span class="action">User tapped Bookmarks</span>',
+                hidden: (Ext.filterPlatform('ie10') && Ext.os.is.Phone) ? true : false
             },
             {
-                iconCls: (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10) ? 'more2' : 'more',
+                iconCls: 'more',
                 title  : 'More',
                 cls    : 'card',
                 html   : '<span class="action">User tapped More</span>'
             },
-//            {
-//                iconCls: 'search',
-//                title  : 'Search',
-//                cls    : 'card card3',
-//                html   : 'Pressed Search'
-//            },
-//            {
-//                iconCls: 'settings',
-//                title  : 'Settings',
-//                cls    : 'card card3',
-//                html   : 'Pressed Settings'
-//            },
-//            {
-//                iconCls: 'team',
-//                title  : 'Team',
-//                cls    : 'card card3',
-//                html   : 'Pressed Team'
-//            },
-//            {
-//                iconCls: 'time',
-//                title  : 'Time',
-//                cls    : 'card card3',
-//                html   : 'Pressed Time'
-//            },
-//            {
-//                iconCls: 'user',
-//                title  : 'User',
-//                cls    : 'card card3',
-//                html   : 'Pressed User'
-//            },
             {
                 xtype : 'toolbar',
                 ui: 'neutral',
                 docked: 'top',
-                scrollable: false,
+                scrollable: null,
                 defaults: {
-                    iconMask: true,
-                    ui      : 'plain'
+                    ui: 'plain'
                 },
                 items: [
                     { iconCls: 'action' },
                     { iconCls: 'add' },
-//                    { iconCls: 'arrow_up' },
-//                    { iconCls: 'arrow_right' },
-//                    { iconCls: 'arrow_down' },
-//                    { iconCls: 'arrow_left' },
                     { iconCls: 'compose' },
                     { iconCls: 'delete' },
                     { iconCls: 'refresh' },
                     { iconCls: 'reply' }
-//                    { iconCls: 'search' },
-//                    { iconCls: 'star' },
-//                    { iconCls: 'home' },
-//                    { iconCls: 'locate' },
-//                    { iconCls: 'maps' },
-//                    { iconCls: 'trash' }
                 ],
                 layout: {
-                    pack : 'center',
+                    pack : (Ext.filterPlatform('ie10') && !Ext.os.is.Phone) ? 'start' : 'center',
                     align: 'center'
                 }
             }

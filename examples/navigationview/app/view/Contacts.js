@@ -5,6 +5,7 @@ Ext.define('AddressBook.view.Contacts', {
     config: {
         title: 'Address Book',
         cls: 'x-contacts',
+        variableHeights: true,
 
         store: 'Contacts',
         itemTpl: [

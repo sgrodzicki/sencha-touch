@@ -111,14 +111,14 @@ Ext.application({
                     });
                 }
             },
+            { xtype: 'spacer' },
             {
-                text: 'useTitles',
+                text: 'Titles',
                 scope: this,
                 handler: function() {
                     this.picker.setUseTitles(!this.picker.getUseTitles());
                 }
             },
-            { xtype: 'spacer' },
             {
                 text: 'Done',
                 ui: 'action',
@@ -156,6 +156,7 @@ Ext.application({
                     });
                 }
             },
+            { xtype: 'spacer' },
             {
                 text: 'Toggle useTitles config',
                 scope: this,
@@ -163,7 +164,6 @@ Ext.application({
                     this.picker.setUseTitles(!this.picker.getUseTitles());
                 }
             },
-            { xtype: 'spacer' },
             {
                 text: 'Done',
                 ui: 'action',

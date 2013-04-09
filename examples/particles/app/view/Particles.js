@@ -102,25 +102,6 @@
                     me.emit(Math.min(5, 100 - me.emitter.instances.length));
                 }
             }, 30);
-
-            // <debug>
-            me.fps = Ext.Element.create({});
-            me.element.appendChild(me.fps);
-            me.fps.setStyle({
-                top: 0,
-                left: 0,
-                padding: 5,
-                color: 'white',
-                position: 'absolute',
-                zIndex: 1000
-            });
-            setInterval(function () {
-                if (Ext.draw.Animator.framerate) {
-                    me.fps.setHtml(Ext.draw.Animator.framerate.toFixed(2) + 'fps with ' + me.emitter.instances.length + ' sprites');
-                }
-                Ext.draw.Animator.clearCounter();
-            }, 1000);
-            // </debug>
         },
 
 //        onOrientationChange: function (e) {

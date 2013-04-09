@@ -6,7 +6,7 @@ Ext.define("States.view.Population", {
         shadow: false,
         store: "BarStore",
         innerPadding: {
-            top: 15
+            top: 10
         },
         interactions: [
             {
@@ -69,15 +69,17 @@ Ext.define("States.view.Population", {
                     stroke: '#333',
                     fill: 'rgb(49,235,247)',
                     minGapWidth: 1,
-                    renderer: function (attr, sprite, index, storeItem) {
+                    renderer: function (sprite, config, rendererData, index) {
                         var me = this,
                             minVal = me.attr.dataMinY,
                             maxVal = me.attr.dataMaxY,
+                            store = rendererData.store,
+                            storeItem = store.getData().items[index],
                             val = storeItem.get('population'),
                             ratio = (val - minVal) / (maxVal - minVal),
                             from = {r: 49, g: 130, b: 189},
                             to = {r: 222, g: 235, b: 247};
-                        attr.fillStyle = Ext.draw.Color.fly(
+                        config.fillStyle = Ext.draw.Color.fly(
                             Math.round((to.r - from.r) * ratio + from.r),
                             Math.round((to.g - from.g) * ratio + from.g),
                             Math.round((to.b - from.b) * ratio + from.b),

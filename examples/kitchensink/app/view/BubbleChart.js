@@ -24,14 +24,13 @@
                         },
                         {
                             iconCls: 'refresh',
-                            iconMask: true,
-                            text: '&nbsp;Refresh',
+                            text: 'Refresh',
                             handler: function () {
                                 Ext.getStore('BubbleStore').setData(createData(50));
                             }
                         },
                         {
-                            text: '&nbsp;Reset',
+                            text: 'Reset',
                             handler: function () {
                                 //ensure the query gets the chart for this kitchensink example
                                 var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];
@@ -73,10 +72,12 @@
                                 }
                             },
                             style: {
-                                renderer: function (target, sprite, index, storeItem) {
-                                    target.radius = interpolate(storeItem.data.g3, 0, 1000, 5, 30);
-                                    target.fillOpacity = interpolate(storeItem.data.g3, 0, 1000, 1, 0.7);
-                                    target.fill = interpolateColor(storeItem.data.g3, 0, 1000);
+                                renderer: function (sprite, config, rendererData, index) {
+                                    var store = rendererData.store,
+                                        storeItem = store.getData().items[index];
+                                    config.radius = interpolate(storeItem.data.g3, 0, 1000, 5, 30);
+                                    config.fillOpacity = interpolate(storeItem.data.g3, 0, 1000, 1, 0.7);
+                                    config.fill = interpolateColor(storeItem.data.g3, 0, 1000);
                                 }
                             }
                         }

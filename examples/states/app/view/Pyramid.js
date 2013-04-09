@@ -65,7 +65,7 @@ Ext.define('States.view.Pyramid', {
             me.getRangeOfData(data, range);
             style.dataY = data;
             sprites[0].setAttributes(style);
-            
+
 
             data = me.coordinateData(items, this.getY2Field());
             me.getRangeOfData(data, range);
@@ -80,7 +80,7 @@ Ext.define('States.view.Pyramid', {
         var me = this,
             chart = this.getChart(),
             animation = chart && chart.getAnimate(),
-            sprites = me.sprites, sprite;
+            sprites = me.sprites;
 
         if (!chart) {
             return [];
@@ -104,9 +104,7 @@ Ext.define('States.view.Pyramid', {
     provideLegendInfo: function (target) {
         var store = this.getStore();
         if (store) {
-            var items = store.getData().items,
-                labelField = this.getLabelField(),
-                hidden = this.getHidden();
+            var hidden = this.getHidden();
             for (var i = 0; i < 2; i++) {
                 target.push({
                     name: ['Female', 'Male'][i],

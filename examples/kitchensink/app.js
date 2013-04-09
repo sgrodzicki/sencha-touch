@@ -14,7 +14,7 @@ Ext.application({
     //<feature charts>
     requires: ['Kitchensink.view.ColorPatterns'],
     //</feature>
-    
+
     //sets up the icon and startup screens for when the app is added to a phone/tablet home screen
     startupImage: {
         '320x460': 'resources/startup/Default.jpg', // Non-retina iPhone, iPod touch, and all Android devices
@@ -37,10 +37,10 @@ Ext.application({
     //loads the views used by the app from the app/view folder
     views: [
         //component demos
-        'NestedList', 'List', 'SourceOverlay', 'Buttons',
-        'Forms', 'Icons', 'BottomTabs',
-        'Map', 'Overlays', 'Tabs', 'Toolbars',
-        'Video', 'Audio', 'Carousel', 'TouchEvents',
+        'NestedList', 'BasicList', 'GroupedList', 'DisclosureList', 'SourceOverlay', 'Buttons',
+        'FormPanel', 'Sliders', 'ToolbarInput', 'Icons', 'BottomTabs',
+        'Map', 'Overlays', 'Tabs', 'Toolbars', 'InlineDataView', 'BasicDataView', 'HorizontalDataView',
+        'Video', 'Audio', 'Carousel', 'TouchEvents', 'ThemeSencha', 'ThemeAuto', 'ThemeBB', 'ThemeWindows',
 
         //data and utility demos
         'JSONP', 'YQL', 'Ajax', 'NestedLoading',
@@ -50,20 +50,25 @@ Ext.application({
         'CoverLeft', 'CoverRight', 'CoverUp', 'CoverDown',
         'RevealLeft', 'RevealRight', 'RevealUp', 'RevealDown',
         'Pop', 'Fade', 'Flip', 'Cube'
-        
+
         //<feature charts>
         //charts/draw demos
-        ,'AreaChart', 'LineChart', 'ColumnChart', 'ColumnChartStacked', 'ColumnChart3D',
+        ,'AreaChart', 'LineChart', 'ColumnChart', 'ColumnChartWithRenderer', 'ColumnChartStacked', 'ColumnChart3D',
         'PieChart', 'FreeDraw', 'ScatterChart', 'PieChart3D', 'CandlestickChart', 'OHLCChart',
-        'LineChartWithMarker', 'BarChart', 'RadarChart', 'PlotChart', 'GaugeChart', 'BubbleChart', 
+        'LineChartWithMarker', 'LineChartWithRenderer', 'BarChart', 'RadarChart', 'PlotChart', 'GaugeChart', 'BubbleChart',
         'VectorIcons'
         //</feature>
     ],
 
     //loads app/store/Demos.js, which contains the tree data for our main navigation NestedList
-    stores: ['Demos', 'USD2EUR', 'OrderItems', 'StockPrice', 'List', 'Pie'],
+    stores: ['Demos', 'USD2EUR', 'OrderItems', 'StockPrice', 'List', 'Pie', 'Speakers'],
 
     //the Kitchen Sink has Phone and Tablet modes, which rearrange the screen based on the type
     //of device detected
-    profiles: ['Tablet', 'Phone']
+    profiles: ['Tablet', 'Phone'],
+
+    launch: function() {
+        Ext.create('Kitchensink.store.Speakers', { id: 'Speakers' });
+        Kitchensink.util.Proxy.process('feed.js');
+    }
 });

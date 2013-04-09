@@ -200,23 +200,22 @@ Ext.application({
 
                 // Add several items into the toolbar
                 items: [
-                    { iconMask: true, iconCls: 'action' },
-                    { iconMask: true, ui: 'plain', iconCls: 'add' },
-                    { iconMask: true, text: 'Test', iconCls: 'action' },
-                    { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
-                    { iconMask: true, ui: 'round', iconCls: 'download' },
-                    { iconMask: true, ui: 'action', iconCls: 'settings', badgeText: '2' },
-                    { iconMask: true, ui: 'confirm-round', iconCls: 'compose' },
-                    { iconMask: true, ui: 'decline', iconCls: 'delete' },
-                    { iconMask: true, iconAlign: 'right', ui: 'round', text: 'Home', iconCls: 'home' },
-                    { iconMask: true, ui: 'action-round', iconCls: 'locate' },
+                    { iconCls: 'action' },
+                    { ui: 'plain', iconCls: 'add' },
+                    { text: 'Test', iconCls: 'action' },
+                    { text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
+                    { ui: 'round', iconCls: 'download' },
+                    { ui: 'action', iconCls: 'settings', badgeText: '2' },
+                    { ui: 'confirm-round', iconCls: 'compose' },
+                    { ui: 'decline', iconCls: 'delete' },
+                    { iconAlign: 'right', ui: 'round', text: 'Home', iconCls: 'home' },
+                    { ui: 'action-round', iconCls: 'locate' },
                     { xtype: 'segmentedbutton', items: [
-                      { iconMask: true, iconCls: 'maps' },
-                      { iconMask: true, iconCls: 'organize', text: 'Sort' },
-                      { iconMask: true, iconCls: 'refresh' }
+                      { iconCls: 'maps' },
+                      { iconCls: 'organize', text: 'Sort' },
+                      { iconCls: 'refresh' }
                     ]},
-                    { iconMask: true, ui: 'back', iconCls: 'reply' },
-                    { iconMask: true, iconCls: 'x-icon-mask trash' }
+                    { iconCls: 'x-icon-mask trash' }
                 ]
             },
 
@@ -236,23 +235,22 @@ Ext.application({
                     }
                 },
                 items: [
-                    { iconMask: true, iconCls: 'action' },
-                    { iconMask: true, ui: 'plain', iconCls: 'add' },
-                    { iconMask: true, text: 'Test', iconCls: 'action' },
-                    { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
-                    { iconMask: true, ui: 'round', iconCls: 'download' },
-                    { iconMask: true, ui: 'action', iconCls: 'settings', badgeText: '2' },
-                    { iconMask: true, ui: 'confirm-round', iconCls: 'compose' },
-                    { iconMask: true, ui: 'decline', iconCls: 'delete' },
-                    { iconMask: true, iconAlign: 'right', ui: 'round', text: 'Home', iconCls: 'home' },
-                    { iconMask: true, ui: 'action-round', iconCls: 'locate' },
+                    { iconCls: 'action' },
+                    { ui: 'plain', iconCls: 'add' },
+                    { text: 'Test', iconCls: 'action' },
+                    { text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
+                    { ui: 'round', iconCls: 'download' },
+                    { ui: 'action', iconCls: 'settings', badgeText: '2' },
+                    { ui: 'confirm-round', iconCls: 'compose' },
+                    { ui: 'decline', iconCls: 'delete' },
+                    { iconAlign: 'right', ui: 'round', text: 'Home', iconCls: 'home' },
+                    { ui: 'action-round', iconCls: 'locate' },
                     { xtype: 'segmentedbutton', items: [
-                      { iconMask: true, iconCls: 'maps' },
-                      { iconMask: true, iconCls: 'organize', text: 'Sort' },
-                      { iconMask: true, iconCls: 'refresh' }
+                      { iconCls: 'maps' },
+                      { iconCls: 'organize', text: 'Sort' },
+                      { iconCls: 'refresh' }
                     ]},
-                    { iconMask: true, ui: 'back', iconCls: 'reply' },
-                    { iconMask: true, iconCls: 'x-icon-mask trash' }
+                    { iconCls: 'x-icon-mask trash' }
                 ]
             },
 

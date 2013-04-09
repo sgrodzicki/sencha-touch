@@ -1,6 +1,4 @@
-
 // GeoCongress Sass file
-
 $base-color: #386AA9;
 $color-light: #444;
 $complement: #777;
@@ -10,25 +8,13 @@ $list-header-color: #777;
 
 $include-default-icons: false;
 
+@import 'sencha-touch/base';
+@import 'sencha-touch/base/all';
+@import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-@include sencha-panel;
-@include sencha-buttons;
-@include sencha-sheet;
-@include sencha-picker;
-// @include sencha-tabs; // We create a custom tab style below
-@include sencha-toolbar;
-// @include sencha-carousel;
-// @include sencha-indexbar;
-@include sencha-list;
-@include sencha-layout;
-@include sencha-form;
-@include sencha-msgbox;
-@include sencha-loading-spinner;
-
-@include pictos-iconmask('settings');
-@include pictos-iconmask('refresh');
-
+@include icon('settings');
+@include icon('refresh');
 
 #splashScreen {
   background: #092542 inline_image("bg.png") center top no-repeat;
@@ -74,42 +60,43 @@ $include-default-icons: false;
   margin-right: 15px;
   background-position: center center;
   -webkit-border-radius: 5px;
-  -webkit-box-shadow: #ccc 0 1px 2px;
+  border-radius: 5px;
+  @include st-box-shadow(#ccc 0 1px 2px);
 }
 
 
-.x-tabbar {
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #666;
-  @include display-box;
-  @include box-orient(horizontal);
-
-  .x-tab {
-    border: 1px;
-    @include box-flex(1);
-    padding: .4em;
-    border: 1px solid #eee;
-    border-bottom-color: #ddd;
-    text-align: center;
-    @include background-gradient(#bbb);
-    @include bevel-text('light');
-    span {
-      font-weight: bold;
-      font-size: .9em;
-    }
-    &:first-child {
-      border-right: 1px solid #ccc;
-    }
-    &:last-child {
-      border-left: 1px solid #ccc;
-    }
-    &.x-tab-active {
-      @include background-gradient(#999, 'recessed');
-      border: 1px solid  #777;
-      border-bottom-color: #999;
-    }
-  }
-}
+//.x-tabbar {
+//  border-top: 1px solid #333;
+//  border-bottom: 1px solid #666;
+//  @include st-box;
+//  @include st-box-orient(horizontal);
+//
+//  .x-tab {
+//    border: 1px;
+//    @include st-box-flex(1);
+//    padding: .4em;
+//    border: 1px solid #eee;
+//    border-bottom-color: #ddd;
+//    text-align: center;
+//    @include background-gradient(#bbb);
+//    @include bevel-text('light');
+//    span {
+//      font-weight: bold;
+//      font-size: .9em;
+//    }
+//    &:first-child {
+//      border-right: 1px solid #ccc;
+//    }
+//    &:last-child {
+//      border-left: 1px solid #ccc;
+//    }
+//    &.x-tab-active {
+//      @include background-gradient(#999, 'recessed');
+//      border: 1px solid  #777;
+//      border-bottom-color: #999;
+//    }
+//  }
+//}
 
 #legislatorBio {
 

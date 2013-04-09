@@ -65,7 +65,7 @@
             }
         ]};
 
-    if (!Ext.os.is.Android2) {
+    if (!Ext.browser.is.AndroidStock2) {
         animations.items.push({
                 text: 'Cover',
                 id: 'Cover',
@@ -198,13 +198,78 @@
                     },
                     {
                         text: 'Forms',
-                        leaf: true,
-                        id: 'forms'
+                        leaf: false,
+                        id: 'forms',
+                        items: [
+                            {
+                                text: 'Form Panel',
+                                leaf: true,
+                                view: 'FormPanel',
+                                id: 'formpanel'
+                            },
+                            {
+                                text: 'Sliders',
+                                leaf: true,
+                                view: 'Sliders',
+                                id: 'sliders'
+                            },
+                            {
+                                text: 'Toolbar Inputs',
+                                leaf: true,
+                                view: 'ToolbarInput',
+                                id: 'toolbarinput'
+                            }
+                        ]
                     },
                     {
-                        text: 'List',
-                        leaf: true,
-                        id: 'list'
+                        text: 'DataViews',
+                        leaf: false,
+                        id: 'dataviews',
+                        items: [
+                            {
+                                text: 'Basic',
+                                leaf: true,
+                                view: 'BasicDataView',
+                                id: 'basicdataview'
+                            },
+                            {
+                                text: 'Horizontal',
+                                leaf: true,
+                                view: 'HorizontalDataView',
+                                id: 'horizontaldataview'
+                            },
+                            {
+                                text: 'Inline',
+                                leaf: true,
+                                view: 'InlineDataView',
+                                id: 'inlinedataview'
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Lists',
+                        leaf: false,
+                        id: 'lists',
+                        items: [
+                            {
+                                text: 'Basic',
+                                leaf: true,
+                                view: 'BasicList',
+                                id: 'basiclist'
+                            },
+                            {
+                                text: 'Grouped',
+                                leaf: true,
+                                view: 'GroupedList',
+                                id: 'groupedlist'
+                            },
+                            {
+                                text: 'Disclosure',
+                                leaf: true,
+                                view: 'DisclosureList',
+                                id: 'disclosurelist'
+                            }
+                        ]
                     },
                     {
                         text: 'Nested List',
@@ -294,6 +359,35 @@
                 id: 'audio'
             }
         ]
+    }, {
+        text: 'Themes',
+        id: 'theme',
+        items: [
+            {
+                text: 'Auto Detect',
+                view: 'ThemeAuto',
+                leaf: true,
+                id: 'autotheme'
+            },
+            {
+                text: 'Sencha',
+                view: 'ThemeSencha',
+                leaf: true,
+                id: 'senchatheme'
+            },
+            {
+                text: 'BlackBerry 10',
+                view: 'ThemeBB',
+                leaf: true,
+                id: 'bbtheme'
+            },
+            {
+                text: 'Windows 8',
+                view: 'ThemeWindows',
+                leaf: true,
+                id: 'windowstheme'
+            }
+        ]
     });
 
     //<feature charts>
@@ -320,10 +414,17 @@
                             limit: 1
                         },
                         {
-                            text: 'Line Chart (with Icons)',
+                            text: 'Line Chart (with icons)',
                             view: 'LineChartWithMarker',
                             leaf: true,
                             id: 'LineChartWithMarker',
+                            limit: 1
+                        },
+                        {
+                            text: 'Line Chart (with renderer)',
+                            view: 'LineChartWithRenderer',
+                            leaf: true,
+                            id: 'LineChartWithRenderer',
                             limit: 1
                         },
                         {
@@ -334,6 +435,13 @@
                             limit: 1
                         },
                         {
+                            text: 'Column Chart (w/renderer)',
+                            view: 'ColumnChartWithRenderer',
+                            leaf: true,
+                            id: 'ColumnChartWithRenderer',
+                            limit: 1
+                        },
+                        {
                             text: 'Bar Chart',
                             view: 'BarChart',
                             leaf: true,
@@ -341,7 +449,7 @@
                             limit: 1
                         },
                         {
-                            text: 'Column Chart (Stacked)',
+                            text: 'Column Chart (stacked)',
                             view: 'ColumnChartStacked',
                             leaf: true,
                             id: 'ColumnChartStacked',

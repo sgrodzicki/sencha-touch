@@ -58,7 +58,7 @@ Ext.define('GeoCon.controller.SplashScreen', {
                         idx = store.find('abbr', district.data.state),
                         state = store.getAt(idx);
 
-                    this.currentDistrict = district.data.number;
+                    this.currentDistrict = district.data.district;
 
                     if (state) {
                         this.currentState = state;
@@ -88,7 +88,7 @@ Ext.define('GeoCon.controller.SplashScreen', {
                         idx = store.find('abbr', district.data.state),
                         state = store.getAt(idx);
 
-                    this.currentDistrict = district.data.number;
+                    this.currentDistrict = district.data.district;
 
                     if (state) {
                         this.currentState = state;

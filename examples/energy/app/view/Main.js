@@ -35,7 +35,6 @@ Ext.define("EnergyApp.view.Main", {
         navigationButton: {
             id: "navigationButton",
             iconCls: 'arrow_down',
-            iconMask: true,
             text: Ext.os.is.Phone ? "" : "Navigate",
             zIndex: 30
         },
@@ -75,8 +74,10 @@ Ext.define("EnergyApp.view.Main", {
         var navigation = this.getNavigation(),
             navigationButton = this.getNavigationButton(),
             sheet = this.getSheet();
+
         if (docked) {
             this.add(navigation);
+
             navigation.setConfig({
                 docked: 'left',
                 width: 250,
@@ -84,13 +85,16 @@ Ext.define("EnergyApp.view.Main", {
             });
         } else {
             sheet.add(navigation);
+
             navigation.setConfig({
                 docked: 'bottom',
                 width: Ext.os.is.Phone ? 200 : 250,
                 height: 300
             });
         }
+
         navigation.show();
+        
         if (navigationButton) {
             navigationButton.setHidden(docked);
         }

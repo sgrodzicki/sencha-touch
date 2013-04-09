@@ -30,14 +30,13 @@ Ext.define('Kitchensink.view.RadarChart', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
                         text: 'Refresh',
                         handler: function () {
                             Ext.getStore('OrderItems').generateData(10 + 10 * Math.random());
                         }
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('polar', this.getParent().getParent())[0];

@@ -51,18 +51,26 @@ Ext.define('EnergyApp.controller.Main', {
             record = list.getStore().getAt(index),
             mainView = me.getMain(),
             mainRegion = mainView.getMainRegion(),
+            mainViewDocked = mainView.getNavigationDocked(),
             chartView = me.getChartView(),
             type = record.parentNode.data.key,
             state = record.data.key;
+
         mainRegion.setActiveItem(chartView, 'slide');
-        mainView.setTitle(record.label);
+        mainView.setTitle(record.get('label'));
         Ext.getCmp('prevButton').setDisabled(true);
         Ext.getCmp('nextButton').setDisabled(true);
+
+        if (!mainViewDocked) {
+            this.getMain().getSheet().hide();
+        }
+
         Ext.Ajax.request({
             url: 'app/data/' + type + "_" + state + ".json",
             success: function (response, opts) {
                 // decode responseText in order to create json object
                 var data = Ext.decode(response.responseText);
+
                 // load it into the charts store: this will update the area series
                 Ext.getStore('ChartStore').setData(data.items);
                 EnergyApp.app.loadPieAtYear();

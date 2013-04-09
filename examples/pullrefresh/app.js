@@ -69,7 +69,7 @@ Ext.setup({
             config: {
                 fields: ['from_user', 'profile_image_url', 'text', 'created_at'],
 
-                pageSize: 5,
+                pageSize: 15,
                 autoLoad: true,
 
                 proxy: {
@@ -95,18 +95,22 @@ Ext.setup({
             extend: 'Ext.List',
 
             config: {
-                store: Ext.create('TweetStore'),
-                limit: 5,
+                useSimpleItems: false,
+                variableHeights: true,
+                infinite: true,
                 disableSelection: true,
+                allowDeselect: false,
+                store: Ext.create('TweetStore'),
+
 
                 plugins: [
                     { xclass: 'Ext.plugin.ListPaging' },
                     { xclass: 'Ext.plugin.PullRefresh' }
                 ],
-
                 emptyText: '<p class="no-searches">No tweets found matching that search</p>',
 
                 itemTpl: Ext.create('Ext.XTemplate',
+                    '<div>',
                     '<img src="{profile_image_url}" />',
                     '<div class="tweet">',
                     '<span class="posted">{[this.posted(values.created_at)]}</span>',

@@ -24,14 +24,13 @@ Ext.define('Kitchensink.view.PieChart', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
-                        text: '&nbsp;Refresh',
+                        text: 'Refresh',
                         handler: function () {
                             Ext.getStore('Pie').generateData(9);
                         }
                     },
                     {
-                        text: '&nbsp;Reset',
+                        text: 'Reset',
                         handler: function () {
                             //ensure the query gets the chart for this kitchensink example
                             var chart = Ext.ComponentQuery.query('polar', this.getParent().getParent())[0];

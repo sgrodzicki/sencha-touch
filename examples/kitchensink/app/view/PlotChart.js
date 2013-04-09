@@ -57,15 +57,14 @@
                         },
                         {
                             iconCls: 'refresh',
-                            iconMask: true,
-                            text: '&nbsp;Refresh',
+                            text: 'Refresh',
                             handler: function () {
                                 var store = Ext.getStore('PlotStore');
                                 Ext.getStore('PlotStore').setData(createData(ct, fn[++i % fn.length]));
                             }
                         },
                         {
-                            text: '&nbsp;Reset',
+                            text: 'Reset',
                             handler: function () {
                                 //ensure the query gets the chart for this kitchensink example
                                 var chart = Ext.ComponentQuery.query('chart', this.getParent().getParent())[0];
@@ -114,9 +113,9 @@
                             },
                             style: {
                                 stroke: Kitchensink.view.ColorPatterns.getAlteredBaseColorsHSL({s: -0.1})[0],
-                                renderer: function (target, series, index, storeItem) {
-                                    var val = Math.abs(series.attr.dataY[index]);
-                                    target.globalAlpha = val < 0.01 ? 0 : val;
+                                renderer: function (sprite, config, rendererData, index) {
+                                    var val = Math.abs(sprite.attr.dataY[index]);
+                                    config.globalAlpha = val < 0.01 ? 0 : val;
                                 }
                             }
                         }

@@ -111,10 +111,6 @@ Ext.application({
         'Videos'
     ],
 
-    viewport: {
-        autoMaximize: true
-    },
-
     launch: function() {
 
         Ext.Viewport.setMasked({ xtype: 'loadmask' });

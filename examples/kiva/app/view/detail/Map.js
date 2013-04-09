@@ -6,7 +6,7 @@ Ext.define('Kiva.view.detail.Map', {
             // center: this.mapPosition,
             disableDefaultUI: true,
             zoom: 5,
-            draggable: false
+            disableUserInput: true
         }
 	}
 });

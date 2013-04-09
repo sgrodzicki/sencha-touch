@@ -6,14 +6,14 @@ Ext.define('Kitchensink.view.SourceOverlay', {
     extend: 'Ext.Panel',
     xtype: 'sourceoverlay',
     config: {
-        cls: 'ux-code x-panel',
+        cls: 'ux-code',
         modal: true,
         styleHtmlContent: true,
         hideOnMaskTap: true,
-        top: Ext.os.deviceType == 'Phone' ? '10%' : '10%',
-        left: Ext.os.deviceType == 'Phone' ? '5%' : '10%',
-        right: Ext.os.deviceType == 'Phone' ? '5%' : '10%',
-        bottom: Ext.os.deviceType == 'Phone' ? '10%' : '10%',
+        top: '10%',
+        left: Ext.filterPlatform('ie10') ? 0 : '10%',
+        right: Ext.filterPlatform('ie10') ? 0 : '10%',
+        bottom: '10%',
         scrollable: true
     },
 

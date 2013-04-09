@@ -3,15 +3,10 @@ $list-pressed-color: mix(#08679F, #fff, 10);
 $list-active-color: mix(#043F62, #fff, 0);
 
 //import the sencha touch theme
+@import 'sencha-touch/base';
+@import 'sencha-touch/base/all';
+@import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
-
-@include sencha-panel;
-@include sencha-buttons;
-@include sencha-toolbar;
-@include sencha-list;
-@include sencha-layout;
-@include sencha-form;
-@include sencha-loading-spinner;
 
 //blue toolbar
 @include sencha-toolbar-ui('sencha', #06517E, matte);
@@ -103,7 +98,7 @@ $list-active-color: mix(#043F62, #fff, 0);
     position: relative;
 
     &:before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;

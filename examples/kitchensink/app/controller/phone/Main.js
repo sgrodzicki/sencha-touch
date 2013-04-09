@@ -55,7 +55,7 @@ Ext.define('Kitchensink.controller.phone.Main', {
     showMenuById: function(id) {
         var nav  = this.getNav(),
             store = nav.getStore(),
-            item = id == 'root' ? store.getRoot() : store.getNodeById(id);
+            item = (!id || id == 'root') ? store.getRoot() : store.getNodeById(id);
 
         if (item) {
             nav.goToNode(item);
