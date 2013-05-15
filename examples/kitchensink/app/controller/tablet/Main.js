@@ -87,5 +87,7 @@ Ext.define('Kitchensink.controller.tablet.Main', {
 //        this.getSourceButton().setHidden(false);
     },
 
-    showMenuById: Ext.emptyFn
+    showMenuById: function() {
+        this.hideSheets();
+    }
 });

@@ -109,6 +109,11 @@ Ext.application({
     setStateData: function (id) {
         var statesData = States.statesData,
             countyData = statesData[id];
+
+        if (!Ext.isString(id)) {
+            return;
+        }
+
         Ext.getStore("PieStore").setData(countyData.race);
         Ext.getStore("PyramidStore").setData(countyData.sex_by_age);
         Ext.ComponentQuery.query("#titlebar")[0].setTitle('2010 Census Data - ' + statesData[id].NAME);

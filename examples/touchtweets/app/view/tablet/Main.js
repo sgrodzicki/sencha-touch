@@ -6,7 +6,7 @@
 Ext.define('Twitter.view.tablet.Main', {
     extend: 'Twitter.view.Main',
     xtype: 'mainview',
-    
+
     config: {
         fullscreen: true,
         layout: 'fit',
@@ -14,7 +14,7 @@ Ext.define('Twitter.view.tablet.Main', {
             {
                 layout: 'fit',
                 docked: 'left',
-                width : 250,
+                width : 320,
                 cls   : 'searchcontainer',
                 itemId: 'searchcontainer',
                 items: [

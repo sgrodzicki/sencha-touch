@@ -18,9 +18,9 @@ Ext.define('Kitchensink.view.ToolbarInput', {
                 xtype: 'toolbar',
                 items: [
                     {
-                        xtype      : 'searchfield',
+                        xtype: 'searchfield',
                         placeHolder: 'Search',
-                        name       : 'searchfield'
+                        name: 'searchfield'
                     }
                 ]
             },
@@ -30,9 +30,14 @@ Ext.define('Kitchensink.view.ToolbarInput', {
                 xtype: 'toolbar',
                 items: [
                     {
-                        xtype      : 'textfield',
+                        xtype: 'textfield',
+                        width: 100,
                         placeHolder: 'Text',
-                        name       : 'searchfield'
+                        name: 'searchfield'
+                    },
+                    {
+                        xtype: 'togglefield',
+                        name: 'toggle'
                     }
                 ]
             },

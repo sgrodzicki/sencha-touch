@@ -164,7 +164,7 @@ Ext.define('Kitchensink.controller.Main', {
      * the browser's back button
      */
     hideSheets: function () {
-        Ext.each(Ext.ComponentQuery.query('sheet'), function (sheet) {
+        Ext.each(Ext.ComponentQuery.query('sheet, #editorPanel'), function (sheet) {
             sheet.setHidden(true);
         });
     }

@@ -7,8 +7,8 @@ Ext.define('TouchStyle.view.tablet.Product', {
     config: {
         baseCls: 'product-view',
         centered: true,
-        width: 750,
-        height: 450,
+        width: '95%',
+        height: '60%',
         modal: true,
         hideOnMaskTap: true,
 
@@ -53,6 +53,9 @@ Ext.define('TouchStyle.view.tablet.Product', {
         image.on({
             scope: this,
             load: function() {
+                image.element.dom.style.backgroundSize = "contain";
+            },
+            error: function() {
                 image.element.dom.style.backgroundSize = "contain";
             }
         });

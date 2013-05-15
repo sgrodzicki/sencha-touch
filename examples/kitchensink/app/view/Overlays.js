@@ -86,9 +86,6 @@ Ext.define('Kitchensink.view.Overlays', {
                     if (!this.actions) {
                         this.actions = Ext.Viewport.add({
                             xtype: 'actionsheet',
-                            defaults: {
-                                iconMask: true
-                            },
                             items: items
                         });
                     }

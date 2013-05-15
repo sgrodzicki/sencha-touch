@@ -12,30 +12,137 @@
 </p>
 
 <div id="releases">
+
+    <div class="release">
+        <h1>
+            Release Notes for Sencha Touch 2.2.1
+        </h1>
+
+        <p class="notes">
+            Release Notes: Release Notes: May 15, 2013<br>
+            Version Number: 2.2.1
+        </p>
+
+        <ul>
+            <li>Enhancements/Changes
+                <p><strong>The default setting for autoBlurInput on the Android Viewport is now false. This has been changed due to the inconsistent
+                behavior of the blur workaround for different Android devices. The standard method of closing a keyboard on Android by hitting
+                the hardware back button is now the default.</strong></p>
+                <ul>
+                    <li>[TOUCH-4304] Removed remaining references to iconMask</li>
+                    <li>[TOUCH-3716] Add return to applyStyle</li>
+                    <li>[TOUCH-3782] Changed default Ext.id prefixes so they do not conflict with component namespaces</li>
+                    <li>[TOUCH-4061] Added a useDefaultXhrHeader configuration to the Ajax proxy. This allows Ajax proxies to make CORS requests</li>
+                    <li>[TOUCH-4042] Made the return value of Ext.app.Route.recognize compatible with the value that you have to pass to the Ext.app.Action constructor</li>
+                    <li>Remove default listeners for click, mousemove, mousedown, mouseup, mouseover, mouseout. These are mousedown, mousemove, mouseup are specifically added only when necessary in TouchGesture</li>
+                    <li>Added preventDefault to touchstart event to stop emulated mouse events on iOS</li>
+                    <li>Updated documentation for Format.date to reflect internal use of Javascript's Date.parse() and it's implications</li>
+                    <li>[TOUCH-3877] Return the normalized e.pageX and e.pageY when using the deprecated e.getPageXY() method</li>
+                    <li>[TOUCH-4045] Allow setting the HasOne instance to null on a record</li>
+                    <li>Removed incorrect deprecation for callOveridden</li>
+                    <li>[TOUCH-4308] Ext.data.Types.BOOL now converts the string '1' to true and the string '0' to false</li>
+                    <li>[TOUCH-4325] Removed incorrect alternateClassName from Sheet</li>
+                    <li>Eemove microloader compression from touch build process</li>
+                    <li>[TOUCH-4389] Updated docs for $button-radius so people know they can only use em</li>
+                    <li>[TOUCH-4118] Added support for labels in the Line series Sprite</li>
+                    <li>[TOUCH-4419] Removed unused compiled css files</li>
+                    <li>Turn the hideKeyboard hack for Android off by default as it causes issues on various versions of Android</li>
+                    <li>Change Silk to be Android 2.3 only. All Kindles are now considered Tablets</li>
+                    <li>Added support for 'selectionTolerance' config in Line series and Cartesian sprites</li>
+                    <li>Added detection for non-prefixed transforms being added to some of browsers (HTC One)</li>
+                    <li>[TOUCH-4310] Hide EditorPanel in Kitchensink when route changes</li>
+                    <li>Reimplemented zebra striping in List</li>
+                    <li>[TOUCH-4434] Added pack: justify documentation</li>
+                    <li>[TOUCH-4432] Updated Store.getRange documentation</li>
+                    <li>Update Ripple, Cordova, WebWorks browser detection</li>
+                    <li>Updated Touch feature detection to include Ripple</li>
+                    <li>[TOUCH-4461] Updated the behavior of the Img component to set the src of a background image if an error event occurs</li>
+                </ul>
+            </li>
+
+            <li>Bug Fixes
+                <ul>
+                    <li>[TOUCH-4286] Fixed Pie chart not updating when all data values are 0</li>
+                    <li>[TOUCH-4301] Fixed issue removing the cached ui config for components</li>
+                    <li>[TOUCH-4291] Fixed issue with Draggable instantiation</li>
+                    <li>[TOUCH-3728] Fixed padding on the Slider/Toggle component when added to a toolbar</li>
+                    <li>[TOUCH-4108] Fixed an issue where setting a new Grouper on a Store would not be reflected in the DataView or List bound to it</li>
+                    <li>[TOUCH-4056] Fixed an issue with the Direct proxy where exceptions would not be properly logged</li>
+                    <li>[TOUCH-3865] Fixed an issue where in some cases the record's internalId would become undefined</li>
+                    <li>Fixed memory leaks in Store and Proxy</li>
+                    <li>Fixed an issue where the scrollDock item would be inserted after the first item's header</li>
+                    <li>[TOUCH-3856] Fixed XTemplate to not run expression functions twice</li>
+                    <li>[TOUCH-4128] Fixed an issue where the foreignKey would not be set on an HasOne association when reading through a JSON proxy</li>
+                    <li>Fixed typo in url docs in Ext.Video</li>
+                    <li>Fixed issue with toggled state padding in the Blackberry theme</li>
+                    <li>[TOUCH-3857] Fixed issue in DataView when setting the value of a record held in a DataView before it is rendered</li>
+                    <li>[TOUCH-3929] Fixed issue with using a Component based data view with horizontal scrolling</li>
+                    <li>[TOUCH-4260] Fixed Ext.form.Panel to allow proper HTML5 submit events. In addition the before submit event will now pass the event object as the 4th parameter if the form was submitted via the submit event. The event can be canceled by calling stopEvent() on this object</li>
+                    <li>[TOUCH-4066] Fixed issue with Loader dependencies with inline defined classes</li>
+                    <li>[TOUCH-3730] Fixed emulated mouse events passing through to forms</li>
+                    <li>[TOUCH-3726, TOUCH-4002] Fixed Documentation for activate and deactivate to match order of params in code</li>
+                    <li>[TOUCH-4307] Fixed TabBar to correctly identify active tab</li>
+                    <li>[TOUCH-4324] Fixed event documentation for Ext.field.Toggle</li>
+                    <li>[TOUCH-3063] Fixed an issue where associations wouldn't be correctly read in if they were part of a single load</li>
+                    <li>[TOUCH-4328] Fixed redundant assignment in Drag recognizer</li>
+                    <li>[TOUCH-4330] Fixed an issue where animateActiveItem would set a default animation if none was already set</li>
+                    <li>[TOUCH-4335] Fixed documentation for Draggable class' description</li>
+                    <li>[TOUCH-4344] Fixed year in the release notes</li>
+                    <li>[TOUCH-4345] Fixed issue with destroying a list while it is bouncing</li>
+                    <li>[TOUCH-4352] Fixed $font-family variable in the default theme</li>
+                    <li>[TOUCH-4348] Fixed clearIcon to set the value to '' instead of it's original value</li>
+                    <li>[TOUCH-4327] Fixed documentation return types and parameters for widget and createByAlias</li>
+                    <li>[TOUCH-4318] Fixed PullRefresh issues with animations stopping causing text to overlay list</li>
+                    <li>[TOUCH-4388] Fixed label alignment in fields inside toolbars</li>
+                    <li>[TOUCH-4035] Fixed Donut chart not displaying properly with negative values</li>
+                    <li>[TOUCH-4306] Fixed pie chart with a single slice always places the label outside of the chart</li>
+                    <li>[TOUCH-4415] Fixed issue with the Surface add method when adding arrays of items</li>
+                    <li>[TOUCH-3640] Fixed documentation for Ext.dom.Element#select. The Element instance's select method has also been documented and fixed to pass the proper argument order</li>
+                    <li>[TOUCH-4425] Fixed typo in PullRefresh documentation</li>
+                    <li>[TOUCH-3962] Fixed Y axis not scaling when a series is removed via legend tap</li>
+                    <li>[TOUCH-3943] Fixed issues with event locations in Bar series (the chart's InnerPadding was ignored + theBar sprites have a different coordinate system)</li>
+                    <li>Fixed list round ui when not grouped</li>
+                    <li>[TOUCH-4426] Fixed issue where an empty root would be used in Sorter</li>
+                    <li>[TOUCH-4438] Fixed issue with Tab icon text alignment</li>
+                    <li>[TOUCH-4439] Fixed issue with States example when tapping outside the map</li>
+                    <li>Fixed disabled state on Blackberry 10 form labels</li>
+                    <li>[TOUCH-4410] Fixed the Pie chart renderer (the rendererData and the index were not passed to the function)</li>
+                    <li>Fixed indicator to require Ext.TaskQueue</li>
+                    <li>Fixed styling of selected item of grouped list footer when ui round</li>
+                    <li>[TOUCH-4445] Fixed styling of disabled fields on Blackberry 10</li>
+                    <li>[TOUCH-4466] Fixed issue with native orientation event binding</li>
+                    <li>Fixed zebra striping on ui: round on list</li>
+                    <li>[TOUCH-4470] Fixed issue with screenPositionRation on Android 4 stock browser</li>
+                    <li>Fixed slider not constraining the value when overlapping buttons are not allowed</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
     <div class="release">
         <h1>
             Release Notes for Sencha Touch 2.2.0
         </h1>
 
         <p class="notes">
-            Release Notes: Release Notes: April 9, 2012<br>
+            Release Notes: Release Notes: April 9, 2013<br>
             Version Number: 2.2.0
         </p>
 
         <ul>
             <li>Enhancements/Changes
                 <ul>
-                    <li>Tweaked button sizing and centering in Blackberry 10 theme</li>
-                    <li>[TOUCH-4201] Decreased default tapcancel sensitivity (from 4 pixels to 8). Documented the Tap and Drag recognizer configurations</li>
+                    <li>Tweaked button sizing and centering in the Blackberry 10 theme</li>
+                    <li>[TOUCH-4201] Decreased default tapcancel sensitivity (from 4 pixels to 8). Documented the Tap and Drag recognizer configurations.</li>
                     <li>Allow both mouse and touch event attachment at the same time for the Chrome Pixel</li>
                     <li>Added DataView and Theme section to Kitchensink</li>
                     <li>Adjusted search field spacing for better results on device</li>
-                    <li>[TOUCH-4218] Remove redundant ui ternary in MessageBox</li>
+                    <li>[TOUCH-4218] Removed redundant UI ternary in MessageBox</li>
                     <li>[TOUCH-4237] Removed the transparent background from fields fixing them from not displaying when disabled</li>
                     <li>Added !default to Windows theme scss variables</li>
                     <li>Added isDestroyed checks to all queued indicator methods</li>
-                    <li>Remove duplicate Base theme from the kitchen sink</li>
-                    <li>Increase scroller velocity on IE10</li>
+                    <li>Removed duplicate Base theme from the kitchen sink</li>
+                    <li>Increased scroller velocity on IE10</li>
                 </ul>
             </li>
 
@@ -48,10 +155,10 @@
                     <li>[TOUCH-4219] Fixed issue where select overlay was being forced below on BlackBerry theme</li>
                     <li>Fixed an issue where you couldn't choose the table name in the SQL proxy</li>
                     <li>[TOUCH-4247] Fixed search field styling on BlackBerry</li>
-                    <li>[TOUCH-4229] Fixed DelayedTask Class</li>
-                    <li>[TOUCH-4236] Fixed Date Reading & Writing on WebStorage Proxy</li>
-                    <li>[TOUCH-4253] Fixed weather example Blackberry theme</li>
-                    <li>Fixed loading spinner with Blackberry and Windows themes</li>
+                    <li>[TOUCH-4229] Fixed DelayedTask class</li>
+                    <li>[TOUCH-4236] Fixed Date Reading & Writing on the WebStorage Proxy</li>
+                    <li>[TOUCH-4253] Fixed the weather example in the Blackberry theme</li>
+                    <li>Fixed teh loading spinner with the Blackberry and Windows themes</li>
                     <li>Fixed $tab-active-color in the tab UI mixin</li>
                 </ul>
             </li>
@@ -71,7 +178,7 @@
         </h1>
 
         <p class="notes">
-            Release Notes: Release Notes: March 28, 2012<br>
+            Release Notes: Release Notes: March 28, 2013<br>
             Version Number: 2.2.0.rc
         </p>
 
@@ -147,7 +254,7 @@
         </h1>
 
         <p class="notes">
-            Release Notes: Release Notes: March 19, 2012<br>
+            Release Notes: Release Notes: March 19, 2013<br>
             Version Number: 2.2.0.b2
         </p>
 
@@ -235,7 +342,7 @@
         </h1>
 
         <p class="notes">
-            Release Notes: Release Notes: February 26, 2012<br>
+            Release Notes: Release Notes: February 26, 2013<br>
             Version Number: 2.2.0.b1
         </p>
 

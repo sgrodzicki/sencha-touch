@@ -24,7 +24,6 @@ Ext.define('Kitchensink.view.LineChartWithRenderer', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
                         text: 'Refresh',
                         handler: function (a, b, c, d, e) {
                             Ext.getStore('Pie').generateData(10);

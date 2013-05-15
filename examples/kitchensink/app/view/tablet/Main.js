@@ -32,7 +32,7 @@ Ext.define('Kitchensink.view.tablet.Main', {
                 xtype : 'tabletnestedlist',
                 useTitleAsBackText: false,
                 docked: 'left',
-                width: 300,
+                width: 200,
                 store: 'Demos'
             },
             {

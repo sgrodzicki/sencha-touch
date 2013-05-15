@@ -24,7 +24,6 @@ Ext.define('Kitchensink.view.ColumnChartWithRenderer', {
                     },
                     {
                         iconCls: 'refresh',
-                        iconMask: true,
                         text: 'Refresh',
                         handler: function (a, b, c, d, e) {
                             Ext.getStore('Pie').generateData(10);
@@ -59,7 +58,7 @@ Ext.define('Kitchensink.view.ColumnChartWithRenderer', {
                             if (!record) {
                                 return;
                             }
-                            // This renderer function paints the back column red instead  
+                            // This renderer function paints the back column red instead
                             // of palegreen if series #2 is greater than series #1.
                             changes.fillStyle = (diff > 0  ? 'tomato' : 'palegreen');
                             // Make the first and last columns larger.
@@ -156,7 +155,7 @@ Ext.define('Kitchensink.view.ColumnChartWithRenderer', {
                                     textSprite.show();
                                     rectSprite.show();
                                 }
-                        
+
                                 rectSprite.setAttributes({
                                     x: config.x + (index == last ? -18 : 20),
                                     y: config.y - 36,
@@ -168,7 +167,7 @@ Ext.define('Kitchensink.view.ColumnChartWithRenderer', {
                                     opacity: 1,
                                     zIndex: 10000
                                 });
-                        
+
                                 textSprite.setAttributes({
                                     text: "+ " + diff,
                                     x: config.x + (index == last ? -12 : 28),

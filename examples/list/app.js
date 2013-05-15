@@ -144,6 +144,10 @@ Ext.application({
 
             variableHeights: true,
 
+            striped: true,
+
+            ui: 'round',
+
             //set the function when a user taps on a disclsoure icon
             onItemDisclosure: function(record, item, index, e) {
                 //show a messagebox alert which shows the persons firstName
