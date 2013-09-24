@@ -19,14 +19,6 @@
                 "status": "updated"
             },
             {
-                "text": "Touch Tweets",
-                "url": "touchtweets/index.html",
-                "iconLocation": "touchtweets/resources/icons",
-                "device": "tablet",
-                "desc": "A Sencha Touch client which allows you to search Twitter.",
-                "status": "updated"
-            },
-            {
                 "text": "Jog With Friends",
                 "url": "http://agile-anchorage-2261.herokuapp.com",
                 "iconLocation": "jog-with-friends/resources/images",
@@ -43,6 +35,14 @@
                 "status": "updated"
             },
             {
+                "text": "Touch Tomatoes",
+                "url": "touchtomatoes/index.html",
+                "iconLocation": "touchtomatoes/resources/icons",
+                "device": "phone",
+                "desc": "Rotten Tomatoes application featuring Intro Overlay, JSONP and AJAX Search.",
+                "status": "new"
+            },
+            {
                 "text": "TouchStyle",
                 "url": "touchstyle/index.html",
                 "iconLocation": "touchstyle/resources/icons",
@@ -52,32 +52,9 @@
             }
         ]
     },
-    {
-        "title": "Drawing/Charting Examples",
-        "items": [
-            {
-                "text": "Stock Chart",
-                "url": "stockapp/index.html",
-                "iconLocation": "stockapp/resources/icons",
-                "device": "phone",
-                "desc": "A demo of a stock market chart application."
-            },
-            {
-                "text": "2010 Census",
-                "url": "states/index.html",
-                "iconLocation": "states/resources/icons",
-                "device": "tablet",
-                "desc": "A demo to visualize 2010 Census."
-            },
-            {
-                "text": "US Energy",
-                "url": "energy/index.html",
-                "iconLocation": "energy/resources/icons",
-                "device": "phone",
-                "desc": "A demo of energy consumption/production of The United States."
-            }
-        ]
-    },
+
+
+
     {
         "title": "Component Examples",
         "items": [

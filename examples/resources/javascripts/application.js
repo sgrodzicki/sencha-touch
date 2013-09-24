@@ -15,8 +15,10 @@ window.onload = function() {
         // preprocess tags out of the response to allow the json to parse correctly
         var text = request.responseText
                 .replace("//<feature charts>",'')
+                .replace("//</feature>",'')
+                .replace("//<feature grid>",'')
                 .replace("//</feature>",'');
-        
+
         categories = JSON.parse(text);
 
         ln = categories.length;
