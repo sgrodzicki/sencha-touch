@@ -375,22 +375,10 @@
                 id: 'autotheme'
             },
             {
-                text: 'Sencha',
-                view: 'ThemeSencha',
-                leaf: true,
-                id: 'senchatheme'
-            },
-            {
                 text: 'BlackBerry 10',
                 view: 'ThemeBB',
                 leaf: true,
                 id: 'bbtheme'
-            },
-            {
-                text: 'Windows 8',
-                view: 'ThemeWindows',
-                leaf: true,
-                id: 'windowstheme'
             },
             {
                 text: 'Cupertino',
@@ -409,6 +397,24 @@
                 view: 'ThemeMountainView',
                 leaf: true,
                 id: 'mountainviewtheme'
+            },
+            {
+                text: 'Sencha',
+                view: 'ThemeSencha',
+                leaf: true,
+                id: 'senchatheme'
+            },
+            {
+                text: 'Tizen',
+                view: 'ThemeTizen',
+                leaf: true,
+                id: 'tizentheme'
+            },
+            {
+                text: 'Windows',
+                view: 'ThemeWindows',
+                leaf: true,
+                id: 'windowstheme'
             }
         ]
     });

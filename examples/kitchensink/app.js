@@ -38,7 +38,7 @@ Ext.application({
         'FormPanel', 'Sliders', 'ToolbarInput', 'Icons', 'BottomTabs',
         'Map', 'Overlays', 'Menus', 'Tabs', 'Toolbars', 'InlineDataView', 'BasicDataView', 'HorizontalDataView',
         'Video', 'Audio', 'Carousel', 'TouchEvents', 'ThemeSencha', 'ThemeAuto', 'ThemeBB', 'ThemeWindows',
-        'ThemeCupertino', 'ThemeCupertinoClassic', 'ThemeMountainView',
+        'ThemeCupertino', 'ThemeCupertinoClassic', 'ThemeMountainView', 'ThemeTizen',
 
         //data and utility demos
         'JSONP', 'YQL', 'Ajax', 'NestedLoading',

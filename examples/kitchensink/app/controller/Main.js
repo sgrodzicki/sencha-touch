@@ -20,6 +20,8 @@ Ext.define('Kitchensink.controller.Main', {
             main: 'mainview',
             toolbar: '#mainNavigationBar',
             sourceButton: 'button[action=viewSource]',
+            themeToggleButton: 'button[action=toggleTheme]',
+
 
             sourceOverlay: {
                 selector: 'sourceoverlay',
@@ -31,6 +33,9 @@ Ext.define('Kitchensink.controller.Main', {
         control: {
             sourceButton: {
                 tap: 'onSourceTap'
+            },
+            themeToggleButton: {
+                tap: 'onThemeToggleTap'
             },
             nav: {
                 itemtap: 'onNavTap'
@@ -92,6 +97,23 @@ Ext.define('Kitchensink.controller.Main', {
                 }
             });
         }
+    },
+
+    onThemeToggleTap: function() {
+        switch(Ext.theme.name) {
+            case "Tizen": {
+                if (!Kitchensink.app.getThemeVariationTransitionCls()) {
+                    Kitchensink.app.setThemeVariationTransitionCls("tizenThemeTransition");
+                }
+
+                if (Kitchensink.app.getThemeVariation() === "light") {
+                    Kitchensink.app.setThemeVariation("dark");
+                } else {
+                    Kitchensink.app.setThemeVariation("light");
+                }
+            }
+        }
+
     },
 
     /**

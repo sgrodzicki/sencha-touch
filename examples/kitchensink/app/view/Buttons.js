@@ -12,7 +12,6 @@ Ext.define('Kitchensink.view.Buttons', {
             pack : 'center',
             align: 'stretch'
         },
-        cls   : 'card1',
         defaults: {
             xtype: 'container',
             flex : 1,

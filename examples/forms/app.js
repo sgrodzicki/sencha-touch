@@ -323,7 +323,10 @@ Ext.application({
             {
                 xtype: 'toolbar',
                 docked: 'bottom',
-                scrollable: true,
+                scrollable: {
+                    direction: 'horizontal',
+                    directionLock: true
+                },
                 items: [
                     // Lets add a load button which will load the formpanel with a User model
                     {

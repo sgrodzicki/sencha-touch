@@ -3219,22 +3219,29 @@ input[type="search"]::-webkit-search-cancel-button {
 .x-grid .x-grid-column.x-column-sorted-asc .x-innerhtml:after, .x-grid .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   position: absolute;
   width: 12px;
-  right: -16px;
   line-height: 64px;
   top: 0;
   height: 64px;
   font-family: 'Pictos';
   font-size: 12px;
 }
-/* line 49, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 50, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+.x-grid .x-grid-column.x-column-align-left .x-innerhtml:after, .x-grid .x-grid-column.x-column-align-center .x-innerhtml:after {
+  right: -16px;
+}
+/* line 54, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+.x-grid .x-grid-column.x-column-align-right .x-innerhtml:after {
+  left: -16px;
+}
+/* line 58, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-column.x-column-sorted-asc .x-innerhtml:after {
   content: "{";
 }
-/* line 52, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 61, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   content: "}";
 }
-/* line 57, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 66, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup {
   display: inline-block;
   position: relative;
@@ -3242,7 +3249,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 64px;
   padding-top: 32px;
 }
-/* line 64, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 73, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-inner > .x-innerhtml {
   height: 32px;
   line-height: 28px;
@@ -3258,18 +3265,18 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 80, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 89, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-grid-column {
   height: 32px !important;
   line-height: 27px !important;
   font-size: 0.7em;
 }
-/* line 87, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 96, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-grid-column.x-column-sorted-asc .x-innerhtml:after, .x-grid .x-grid-headergroup .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   line-height: 27px;
   height: 27px;
 }
-/* line 95, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 104, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-row {
   position: absolute;
   left: 0;
@@ -3277,7 +3284,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
-/* line 103, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 112, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell {
   display: inline-block;
   vertical-align: middle;
@@ -3287,26 +3294,26 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   border-width: 0 1px 0 0;
 }
-/* line 114, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 123, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell-align-center,
 .x-grid .x-grid-column-align-center {
   text-align: center;
 }
-/* line 119, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 128, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell-align-right,
 .x-grid .x-grid-column-align-right {
   text-align: right;
 }
-/* line 123, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 132, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions {
   border-width: 0 0 0 1px;
   border-style: solid;
 }
-/* line 127, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 136, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item .x-innerhtml {
   padding: 0px !important;
 }
-/* line 131, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 140, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-header {
   height: 32px;
   line-height: 28px;
@@ -3316,7 +3323,7 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   padding-left: 10px;
 }
-/* line 144, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 153, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle,
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator,
 .x-grid .x-grid-viewoptions .x-column-options-folder,
@@ -3326,7 +3333,7 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   bottom: 0;
 }
-/* line 150, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 159, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle:after,
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator:after,
 .x-grid .x-grid-viewoptions .x-column-options-folder:after,
@@ -3343,49 +3350,49 @@ input[type="search"]::-webkit-search-cancel-button {
   content: "l";
   vertical-align: middle;
 }
-/* line 165, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 174, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle {
   left: 0;
 }
-/* line 167, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 176, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle:after {
   line-height: 54px;
 }
-/* line 171, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 180, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator {
   right: 0;
 }
-/* line 173, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 182, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator:after {
   font-size: 30px;
   line-height: 54px;
   content: "E";
 }
-/* line 181, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 190, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-folder,
 .x-grid .x-grid-viewoptions .x-column-options-leaf {
   width: 30px;
   left: 40px;
 }
-/* line 185, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 194, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-folder:after,
 .x-grid .x-grid-viewoptions .x-column-options-leaf:after {
   line-height: 52px;
   content: "o";
 }
-/* line 191, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 200, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-leaf:after {
   content: "F";
 }
-/* line 195, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 204, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item.x-item-selected.x-list-item-tpl {
   background: transparent;
 }
-/* line 197, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 206, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item.x-item-selected.x-list-item-tpl .x-innerhtml {
   background: transparent;
 }
-/* line 202, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 211, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-text {
   display: block;
   height: 30px;
@@ -3394,16 +3401,16 @@ input[type="search"]::-webkit-search-cancel-button {
   vertical-align: middle;
   line-height: 28px;
 }
-/* line 212, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 221, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-columnoptions {
   border-width: 0 0 1px;
 }
-/* line 216, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 225, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-column {
   position: relative;
   padding: 0;
 }
-/* line 220, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 229, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-column:after {
   position: absolute;
   top: 0;
@@ -3416,12 +3423,12 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   content: "2";
 }
-/* line 234, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 243, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-cell {
   position: relative;
   padding: 0;
 }
-/* line 238, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 247, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-cell:after {
   position: absolute;
   top: 0;
@@ -3434,20 +3441,20 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   content: "_";
 }
-/* line 252, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 261, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-item-selected .x-grid-multiselection-cell:after {
   content: "3";
 }
-/* line 257, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 266, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar > .x-body {
   padding: 0 30px 0 50px;
 }
-/* line 262, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 271, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar-currentpage {
   position: relative;
   height: 22px;
 }
-/* line 266, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 275, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar-currentpage span {
   position: absolute;
   right: 0;
@@ -3455,20 +3462,20 @@ input[type="search"]::-webkit-search-cancel-button {
   line-height: 22px;
   height: 22px;
 }
-/* line 275, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 284, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow {
   height: 32px;
   font-size: 0.8em;
   position: relative;
 }
-/* line 280, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 289, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow .x-grid-cell {
   height: 32px;
   line-height: 30px;
   border-width: 0 0 1px;
   border-style: solid;
 }
-/* line 288, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 297, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow .x-grid-multiselection-cell:after {
   content: '';
 }
@@ -3495,58 +3502,67 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   min-width: 100%;
   min-height: 100%;
-  width: auto !important;
   height: auto !important;
+  width: auto !important;
+  		/*
+  		&.x-scroll-scroller-vertical {
+  			height: auto !important;
+  		}
+  
+  		&.x-scroll-scroller-horizontal {
+  			width: auto !important;
+  		}
+  		*/
 }
 
-/* line 25, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 36, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-stretcher {
   position: absolute;
   visibility: hidden;
 }
 
-/* line 30, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 41, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-/* line 36, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 47, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid {
   display: table;
   width: 100%;
   height: 100%;
 }
-/* line 41, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 52, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > * {
   display: table-row;
 }
-/* line 45, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 56, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > * > * {
   display: table-cell;
 }
-/* line 49, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 60, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :first-child > :first-child {
   width: 100%;
   height: 100%;
 }
-/* line 54, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 65, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :first-child > :nth-child(2) {
   padding: 3px 3px 0 0;
 }
-/* line 58, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 69, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :nth-child(2) > :first-child {
   padding: 0 0 3px 3px;
 }
 
-/* line 63, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 74, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar {
   position: relative;
   overflow: hidden;
 }
 
-/* line 68, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 79, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-stretcher {
   position: absolute;
   visibility: hidden;
@@ -3554,77 +3570,77 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 100%;
 }
 
-/* line 75, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 86, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x {
   width: 100%;
 }
-/* line 78, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 89, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x > .x-scroll-bar-stretcher {
   width: 300%;
 }
-/* line 82, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 93, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x.active {
   height: 6px;
 }
 
-/* line 87, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 98, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y {
   height: 100%;
 }
-/* line 90, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 101, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y > .x-scroll-bar-stretcher {
   height: 300%;
 }
-/* line 94, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 105, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y.active {
   width: 6px;
 }
 
-/* line 99, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 110, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator {
   background: #333;
   position: absolute;
   z-index: 3;
 }
 
-/* line 105, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 116, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator-x {
   height: 100%;
 }
 
-/* line 109, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 120, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator-y {
   width: 100%;
 }
 
-/* line 113, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 124, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded {
   background: none;
 }
-/* line 116, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 127, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded > * {
   position: absolute;
   background-color: #333;
 }
-/* line 121, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 132, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded > :nth-child(2) {
   -webkit-transform-origin: 0% 0%;
   background: none;
   content: url(data:image/bmp;base64,Qk08AAAAAAAAADYAAAAoAAAAAQAAAAEAAAABABAAAAAAAAYAAAASCwAAEgsAAAAAAAAAAAAAxhgAAAAA);
 }
-/* line 128, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 139, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-light > * {
   background-color: #eee;
 }
-/* line 132, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 143, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-light > :nth-child(2) {
   content: url(data:image/bmp;base64,Qk08AAAAAAAAADYAAAAoAAAAAQAAAAEAAAABABAAAAAAAAYAAAASCwAAEgsAAAAAAAAAAAAAvXcAAAAA);
 }
-/* line 138, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 149, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > * {
   width: 100%;
 }
-/* line 142, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 153, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :first-child {
   height: 3px;
   -moz-border-radius-topleft: 3px;
@@ -3634,11 +3650,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
 }
-/* line 147, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 158, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :nth-child(2) {
   height: 1px;
 }
-/* line 151, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 162, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :last-child {
   height: 3px;
   -moz-border-radius-bottomleft: 3px;
@@ -3648,11 +3664,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-/* line 158, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 169, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > * {
   height: 100%;
 }
-/* line 162, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 173, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :first-child {
   width: 3px;
   -moz-border-radius-topleft: 3px;
@@ -3662,11 +3678,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 167, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 178, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :nth-child(2) {
   width: 1px;
 }
-/* line 171, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 182, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :last-child {
   width: 3px;
   -moz-border-radius-topright: 3px;
@@ -3677,21 +3693,153 @@ input[type="search"]::-webkit-search-cancel-button {
   border-bottom-right-radius: 3px;
 }
 
-/* line 180, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 191, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-list-light .x-scroll-indicator,
 .x-dataview-light .x-scroll-indicator {
   background: #fff;
 }
 
-/* line 186, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 197, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-ios .x-scroll-scroller {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 191, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 202, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-ie .x-scroll-bar-y {
   position: absolute;
   margin-left: -5px;
+}
+
+/* line 174, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner {
+  font-size: 250%;
+  height: 1em;
+  width: 1em;
+  position: relative;
+  -webkit-transform-origin: 0.5em 0.5em;
+  transform-origin: 0.5em 0.5em;
+  /* Shared Properties for all the bars */
+}
+/* line 186, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span, .x-loading-spinner > span:before, .x-loading-spinner > span:after {
+  display: block;
+  position: absolute;
+  width: 0.1em;
+  height: 0.25em;
+  top: 0;
+  -webkit-transform-origin: 0.05em 0.5em;
+  transform-origin: 0.05em 0.5em;
+  content: " ";
+}
+/* line 197, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span {
+  left: 50%;
+  margin-left: -0.05em;
+}
+/* line 201, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-top {
+  background-color: rgba(255, 255, 255, 0.99);
+}
+/* line 202, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-top::after {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+/* line 203, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-left::before {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+/* line 204, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-left {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+/* line 205, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-left::after {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+/* line 206, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-bottom::before {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+/* line 207, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-bottom {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+/* line 208, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-bottom::after {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+/* line 209, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-right::before {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+/* line 210, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-right {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+/* line 211, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-right::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+/* line 212, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-top::before {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Rotate each of the 4 Spans */
+/* line 217, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-top {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+}
+
+/* line 218, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-right {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+}
+
+/* line 219, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-bottom {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+}
+
+/* line 220, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span.x-loading-left {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+}
+
+/* These are the two lines that surround each of the 4 Span lines */
+/* line 223, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span::before {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+}
+
+/* line 224, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner > span::after {
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+}
+
+/* Set Animation */
+/* line 227, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-loading-spinner {
+  -webkit-animation-name: x-loading-spinner-rotate;
+  -webkit-animation-duration: .5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: x-loading-spinner-rotate;
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 /* line 1, ../../../../resources/themes/stylesheets/sencha-touch/cupertino-classic/src/_Class.scss */
@@ -4816,6 +4964,7 @@ input[type="search"]::-webkit-search-cancel-button {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  background-color: #ddd;
 }
 
 /**
@@ -5537,6 +5686,42 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /**
+ * @class Ext.plugin.PullRefresh
+ */
+/* line 5, ../../../../resources/themes/stylesheets/sencha-touch/cupertino-classic/src/plugin/_PullRefresh.scss */
+.x-list-pullrefresh-arrow {
+  background: center center url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8CAYAAAAUufjgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAjFJREFUeNrsmU8oREEYwOexdtNuKBfFwdVhCyfuysnFiXISS+1BLopyUpKLXETkRLaUi1LK3Q2lpPbiQLnIn03a/Hm+z86Ttv0zM++bfbOar36Hbad5v535Zp7v47iuy0wOpyoEHccRHV9L9NxPkUE/bhKCOKiOSPAdn69DsJ5I8E2HYA0QJRJ8Bb50CDYRCT7pEMQD0kwk+CByUFQEW4gE73UIhoA2IsFb4ENEMCQ5MdU1IxwygpT3oKNLMGyyYFVscdhusc8tDpu+xRG7xf95BW0O2kNiV1AgIvaQ2BzUJNgJNJYZGyUU7OG1cal4Bi68oqkDPszy2teEwJp5Cdyu/lZ1g8CwIYJ7wEF+2YmrNw90Byx3BizgKhaqizEP1wg7CLLxCEzy/CtauMeBlQDyEfNuGrgU6SyM8F9SyVgHdmRaH6tAb4XkToEp2d4M5mOK0TWMigU2koa8vJMRZPxEb2ss2LEVPMpPLlMRxBgDZjQJLgNbxb6Uab9tAn3EcifAeKkBMoLY+j0GWonk7oB+lmsFkwhidAGHBPmIeTcAnJcbKCuIMQEs+hScAzZEBqoIYuzyFVCJI36lMJ2CDfxibZeUu+EX/4uMIFP8ZyLejxkgK0hG5a8kP4IYSZbr1IuQVHmAX0HGX4VuGfZVJ6cQxPd1uoRcWqDW0SroFVzZAnJZ/h0LWhAjUUAw4XdSSsH8fExRTEgtGAOuOTETBb16Jk412e+bxOSwglYw6PgWYABvLk8P7zGJFwAAAABJRU5ErkJggg==') no-repeat;
+  background-size: 2em 3em;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 200ms;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+/* line 13, ../../../../resources/themes/stylesheets/sencha-touch/cupertino-classic/src/plugin/_PullRefresh.scss */
+.x-android-2 .x-list-pullrefresh-arrow {
+  -webkit-transition-property: none;
+  -webkit-transition-duration: 0;
+}
+
+/* line 18, ../../../../resources/themes/stylesheets/sencha-touch/cupertino-classic/src/plugin/_PullRefresh.scss */
+.x-list-pullrefresh-release .x-list-pullrefresh-arrow {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+
+/* line 22, ../../../../resources/themes/stylesheets/sencha-touch/cupertino-classic/src/plugin/_PullRefresh.scss */
+.x-list-pullrefresh-message {
+  margin-bottom: 0.1em;
+}
+
+/**
  * @class Ext.slider.Slider
  */
 /* line 9, ../../../../resources/themes/stylesheets/sencha-touch/cupertino-classic/src/slider/_Slider.scss */
@@ -5731,7 +5916,20 @@ input[type="search"]::-webkit-search-cancel-button {
   max-width: 55%;
 }
 
-/* line 2, ../sass/_shared.scss */
+/* line 260, ../../../../resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-tab .x-button-icon.network:before,
+.x-button .x-button-icon.network:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-family: "Pictos";
+  content: "J";
+}
+
+/* line 8, ../sass/_shared.scss */
 .card > .x-inner, .card .x-body > .x-inner, .card .x-inner:not(.x-toolbar-inner).x-scroll-scroller {
   display: flex;
   display: -webkit-box;
@@ -5746,7 +5944,7 @@ input[type="search"]::-webkit-search-cancel-button {
   -ms-flex-pack: center;
   justify-content: center;
 }
-/* line 9, ../sass/_shared.scss */
+/* line 15, ../sass/_shared.scss */
 .card .x-innerhtml {
   text-align: center;
   font-size: 18px;
@@ -5757,12 +5955,12 @@ input[type="search"]::-webkit-search-cancel-button {
   width: 75%;
   margin: 0 auto;
 }
-/* line 19, ../sass/_shared.scss */
+/* line 25, ../sass/_shared.scss */
 .x-phone .card .x-innerhtml {
   width: auto;
   padding: 20px;
 }
-/* line 25, ../sass/_shared.scss */
+/* line 31, ../sass/_shared.scss */
 .card .action {
   display: inline-block;
   background-color: rgba(0, 0, 0, 0.06);
@@ -5775,12 +5973,12 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: 4px;
   color: #657b83;
 }
-/* line 34, ../sass/_shared.scss */
+/* line 40, ../sass/_shared.scss */
 .card code {
   color: #859900;
 }
 
-/* line 39, ../sass/_shared.scss */
+/* line 45, ../sass/_shared.scss */
 #launchscreen {
   display: flex;
   display: -webkit-box;
@@ -5795,15 +5993,15 @@ input[type="search"]::-webkit-search-cancel-button {
   -ms-flex-pack: center;
   justify-content: center;
 }
-/* line 45, ../sass/_shared.scss */
+/* line 51, ../sass/_shared.scss */
 #launchscreen .x-innerhtml {
   width: 90%;
 }
-/* line 48, ../sass/_shared.scss */
+/* line 54, ../sass/_shared.scss */
 .x-landscape #launchscreen .x-innerhtml {
   width: 90%;
 }
-/* line 52, ../sass/_shared.scss */
+/* line 58, ../sass/_shared.scss */
 #launchscreen .x-innerhtml > div {
   text-align: left;
   background-color: whitesmoke;
@@ -5812,67 +6010,67 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: 12pt;
   line-height: 18px;
 }
-/* line 62, ../sass/_shared.scss */
+/* line 68, ../sass/_shared.scss */
 #launchscreen h2, #launchscreen h3 {
   font-weight: bold;
 }
-/* line 66, ../sass/_shared.scss */
+/* line 72, ../sass/_shared.scss */
 #launchscreen p {
   color: black;
 }
-/* line 70, ../sass/_shared.scss */
+/* line 76, ../sass/_shared.scss */
 #launchscreen h3 {
   color: black;
 }
-/* line 74, ../sass/_shared.scss */
+/* line 80, ../sass/_shared.scss */
 #launchscreen .feature {
   padding-left: 65px;
   position: relative;
   margin: 15px;
   min-height: 60px;
 }
-/* line 80, ../sass/_shared.scss */
+/* line 86, ../sass/_shared.scss */
 #launchscreen .feature > img {
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 87, ../sass/_shared.scss */
+/* line 93, ../sass/_shared.scss */
 #launchscreen .main {
   border-bottom: 1px solid #cccccc;
   padding-bottom: 20px;
   margin-bottom: 20px;
   min-height: 80px;
 }
-/* line 94, ../sass/_shared.scss */
+/* line 100, ../sass/_shared.scss */
 #launchscreen footer {
   padding: 10px 0 0;
   font-size: 10pt;
   color: black;
 }
-/* line 100, ../sass/_shared.scss */
+/* line 106, ../sass/_shared.scss */
 #launchscreen a {
   font-weight: bold;
   text-decoration: none;
   color: #222222;
 }
-/* line 106, ../sass/_shared.scss */
+/* line 112, ../sass/_shared.scss */
 #launchscreen h1 {
   font-size: 18pt;
   font-weight: bold;
   color: black;
 }
-/* line 112, ../sass/_shared.scss */
+/* line 118, ../sass/_shared.scss */
 #launchscreen span {
   color: black;
 }
 
-/* line 118, ../sass/_shared.scss */
+/* line 124, ../sass/_shared.scss */
 #touchdemo > .x-panel-body {
   padding: 20px;
 }
 
-/* line 122, ../sass/_shared.scss */
+/* line 128, ../sass/_shared.scss */
 #touchpad {
   line-height: 60px;
   text-align: center;
@@ -5889,16 +6087,16 @@ input[type="search"]::-webkit-search-cancel-button {
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.8);
 }
-/* line 134, ../sass/_shared.scss */
+/* line 140, ../sass/_shared.scss */
 .x-phone #touchpad {
   font-size: 21px;
 }
-/* line 138, ../sass/_shared.scss */
+/* line 144, ../sass/_shared.scss */
 .x-tablet #touchpad {
   margin: 20px;
 }
 
-/* line 143, ../sass/_shared.scss */
+/* line 149, ../sass/_shared.scss */
 .x-ie #touchpad {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
@@ -5907,36 +6105,36 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: 0px;
 }
 
-/* line 147, ../sass/_shared.scss */
+/* line 153, ../sass/_shared.scss */
 #touchinfopanel {
   border-right: 1px solid black;
   background-color: #eee;
 }
-/* line 151, ../sass/_shared.scss */
+/* line 157, ../sass/_shared.scss */
 #touchinfopanel .x-toolbar-metal {
   height: 30px;
   border-top: 1px solid #666666;
   border-bottom: 1px solid #666666;
 }
-/* line 156, ../sass/_shared.scss */
+/* line 162, ../sass/_shared.scss */
 #touchinfopanel .x-toolbar-metal .x-toolbar-title {
   line-height: 30px !important;
   font-size: 16px;
   text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;
 }
 
-/* line 166, ../sass/_shared.scss */
+/* line 172, ../sass/_shared.scss */
 .dataview-basic .x-dataview-item {
   width: 100%;
   padding: 15px;
   border-bottom: 1px solid #c2c2c2;
   height: 128px;
 }
-/* line 172, ../sass/_shared.scss */
+/* line 178, ../sass/_shared.scss */
 .dataview-basic .x-dataview-item:last-child {
   border-bottom: 0px;
 }
-/* line 176, ../sass/_shared.scss */
+/* line 182, ../sass/_shared.scss */
 .dataview-basic .x-dataview-item .img {
   display: inline-block;
   width: 95px;
@@ -5946,13 +6144,13 @@ input[type="search"]::-webkit-search-cancel-button {
   background-position: 50%;
   float: left;
 }
-/* line 186, ../sass/_shared.scss */
+/* line 192, ../sass/_shared.scss */
 .dataview-basic .x-dataview-item .content {
   vertical-align: top;
   margin-left: 100px;
   padding: 30px 0px 0px 20px;
 }
-/* line 191, ../sass/_shared.scss */
+/* line 197, ../sass/_shared.scss */
 .dataview-basic .x-dataview-item .content .name {
   font-size: 20px;
   font-weight: bold;
@@ -5960,7 +6158,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 199, ../sass/_shared.scss */
+/* line 205, ../sass/_shared.scss */
 .dataview-basic .x-dataview-item .content .affiliation {
   color: #9d9d9d;
   font-size: 14px;
@@ -5969,12 +6167,12 @@ input[type="search"]::-webkit-search-cancel-button {
   white-space: nowrap;
 }
 
-/* line 212, ../sass/_shared.scss */
+/* line 218, ../sass/_shared.scss */
 .demo-weather {
   text-align: center;
 }
 
-/* line 215, ../sass/_shared.scss */
+/* line 221, ../sass/_shared.scss */
 .day {
   display: inline-block;
   background-color: #f9f9f9;
@@ -5992,19 +6190,19 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 1em;
   margin: .5em;
 }
-/* line 227, ../sass/_shared.scss */
+/* line 233, ../sass/_shared.scss */
 .x-android .day {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 
-/* line 231, ../sass/_shared.scss */
+/* line 237, ../sass/_shared.scss */
 .date {
   font-size: .8em;
 }
 
-/* line 234, ../sass/_shared.scss */
+/* line 240, ../sass/_shared.scss */
 .icon img {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -6015,7 +6213,7 @@ input[type="search"]::-webkit-search-cancel-button {
   width: 3.5em;
 }
 
-/* line 239, ../sass/_shared.scss */
+/* line 245, ../sass/_shared.scss */
 .temp {
   margin-top: .2em;
   display: block;
@@ -6023,18 +6221,18 @@ input[type="search"]::-webkit-search-cancel-button {
   line-height: .5em;
 }
 
-/* line 245, ../sass/_shared.scss */
+/* line 251, ../sass/_shared.scss */
 .temp_low {
   display: inline;
   font-size: .5em;
   color: rgba(30, 30, 30, 0.5);
 }
 
-/* line 253, ../sass/_shared.scss */
+/* line 259, ../sass/_shared.scss */
 .blog-post h3 {
   margin-bottom: .5em;
 }
-/* line 256, ../sass/_shared.scss */
+/* line 262, ../sass/_shared.scss */
 .blog-post h3 a {
   color: #000;
   font-weight: bold;
@@ -6043,20 +6241,20 @@ input[type="search"]::-webkit-search-cancel-button {
   border-bottom: 1px solid #dddddd;
 }
 
-/* line 265, ../sass/_shared.scss */
+/* line 271, ../sass/_shared.scss */
 .x-video-ghost {
   background-color: white;
 }
 
-/* line 270, ../sass/_shared.scss */
+/* line 276, ../sass/_shared.scss */
 .dataview-horizontal, .dataview-inline {
   background-color: #d0d0d0;
 }
-/* line 273, ../sass/_shared.scss */
+/* line 279, ../sass/_shared.scss */
 .dataview-horizontal .name, .dataview-inline .name {
   width: 75px;
 }
-/* line 277, ../sass/_shared.scss */
+/* line 283, ../sass/_shared.scss */
 .dataview-horizontal .img, .dataview-inline .img {
   display: inline-block;
   width: 75px;
@@ -6065,7 +6263,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-size: 104%;
   background-position: 50%;
 }
-/* line 286, ../sass/_shared.scss */
+/* line 292, ../sass/_shared.scss */
 .dataview-horizontal .x-dataview-item, .dataview-inline .x-dataview-item {
   -webkit-box-shadow: 0px 5px 10px -6px black;
   -moz-box-shadow: 0px 5px 10px -6px black;
@@ -6074,7 +6272,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin: 5px;
   background-color: white;
 }
-/* line 291, ../sass/_shared.scss */
+/* line 297, ../sass/_shared.scss */
 .dataview-horizontal .x-dataview-item div, .dataview-inline .x-dataview-item div {
   color: black;
   padding-top: 10px;
@@ -6083,18 +6281,18 @@ input[type="search"]::-webkit-search-cancel-button {
   text-overflow: ellipsis;
 }
 
-/* line 302, ../sass/_shared.scss */
+/* line 308, ../sass/_shared.scss */
 .myAudio-outer {
   text-align: center;
   background-color: #6A466F;
 }
 
-/* line 307, ../sass/_shared.scss */
+/* line 313, ../sass/_shared.scss */
 .myAudio {
   position: relative;
 }
 
-/* line 311, ../sass/_shared.scss */
+/* line 317, ../sass/_shared.scss */
 .myAudio audio {
   position: absolute;
   top: 50%;

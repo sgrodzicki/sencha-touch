@@ -41,15 +41,35 @@ Ext.define('Kitchensink.view.tablet.Main', {
                 xtype: 'tabletnavigationbar',
                 title: 'Kitchen Sink',
                 docked: 'top',
-                items: {
-                    xtype : 'button',
-                    id: 'viewSourceButton',
-                    hidden: true,
-                    align : 'right',
-                    ui    : 'action',
-                    action: 'viewSource',
-                    text  : 'Source'
-                }
+                items: Ext.theme.name === "Tizen" ?
+                    [
+                        {
+                            xtype : 'button',
+                            hidden: false,
+                            align : 'right',
+                            ui    : 'action',
+                            action: 'toggleTheme',
+                            text  : 'Toggle Theme'
+                        },
+                        {
+                            xtype : 'button',
+                            id: 'viewSourceButton',
+                            hidden: true,
+                            align : 'right',
+                            ui    : 'action',
+                            action: 'viewSource',
+                            text  : 'Source'
+                        }
+                    ] :
+                    {
+                        xtype : 'button',
+                        id: 'viewSourceButton',
+                        hidden: true,
+                        align : 'right',
+                        ui    : 'action',
+                        action: 'viewSource',
+                        text  : 'Source'
+                    }
             }
         ]
     }

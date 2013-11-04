@@ -15,6 +15,70 @@
 
     <div class="release">
         <h1>
+            Release Notes for Sencha Touch 2.3.1
+        </h1>
+
+        <p class="notes">
+            Release Notes: Release Notes: November 4, 2013<br>
+            Version Number: 2.3.1
+        </p>
+
+        <ul>
+            <li>
+                <p><strong>Enhancements and Changes</strong></p>
+                <p><strong>This build includes the Tizen 2.2 theme with both a Dark and Light variation.</strong></p>
+                <ul>    
+                    <li>Removed extended borders from first/last list items in the Cupertino Theme</li>
+                    <li>The resize event on elements no longer supported in Internet Explorer 11? Change to use the Scroll size monitor instead.</li>
+                    <li>Removed the AbstractRadial class that is not used anywhere in the framework</li>
+                    <li>Changed the cls assignment in Video to be baseCls</li>
+                    <li>Added Crosshair interaction</li>
+                    <li>[TOUCH-5064] Removed InputBlocker from Global Space</li>
+                    <li>[TOUCH-5042] Documented List's scrollToRecord function</li>
+                    <li>[TOUCH-5002] Added support for setting titleBar: false on a Grid</li>
+                </ul>
+            </li>
+
+            <li>Bug Fixes
+                <ul>
+                    <li>Fixed title shifting issue in the Windows theme</li>
+                    <li>[TOUCH-4930] Fixed Touch Tomatoes on Blackberry and Older Android when in portait and address bar is tapped</li>
+                    <li>Fixed issue with List classsed disappearing intermittently</li>
+                    <li>[TOUCH-4958, TOUCH-4928] Fixed to MessageBox Title size for Cupertino</li>
+                    <li>[TOUCH-4587] Fixed issue with dynamic update of List grouping</li>
+                    <li>Fixed axes docked to left and top did not align perfectly with the pixel grid</li>
+                    <li>[TOUCH-4982] Fixed form panels to properly send data from all fields</li>
+                    <li>[TOUCH-5004] Fixed to FastFocus on FileInput for iOS</li>
+                    <li>[TOUCH-5047] Fixed Smooth line chart not rendering correctly for series with large number of items</li>
+                    <li>[TOUCH-4986] Fixed TreeStore's getById only returning unfiltered (thus only expanded) items</li>
+                    <li>[TOUCH-4962] Fixed items not being removed from the cache when removing an item from LocalStorage</li>
+                    <li>[TOUCH-4924] Fixed adding listeners to a new store bound to a NestedList before we start loading its content. This will fix the LoadMask not showing when changing stores on a NestedList</li>
+                    <li>[TOUCH-4897] Fixed an issue where an item added to a HasMany collection would be updated in the list before actually having been added.</li>
+                    <li>[TOUCH-5014] Fixed PullRefresh arrow in Cupertino & Cupertino Classic Theme</li>
+                    <li>[TOUCH-5043] Fixed container to properly return reference to 'this' for chainable syntax</li>
+                    <li>[TOUCH-5040] Fixed Cupertino Classic Carousel indicator color</li>
+                    <li>[TOUCH-5074] Fixed Windows theme padding on list items</li>
+                    <li>[TOUCH-5063] Fixed Form Pabel Submit when scope is passed in for callbacks</li>
+                    <li>[TOUCH-5032] Fixed colors on Animation examples with Mountainview theme in Kithcen Sink</li>
+                    <li>[TOUCH-5008] Fixed loading spinner to Cupertino Classic Theme</li>
+                    <li>[TOUCH-5007] Fixed Ext.dom.Element.getPageBox to properly check for undefined value</li>
+                    <li>[TOUCH-4998] Fixed pressed state in sencha theme for rounded grouped lists</li>
+                    <li>[TOUCH-4995] Fixed readOnly on Inputs to properly remove tag when set to false</li>
+                    <li>[TOUCH-4967] Fixed SimpleListItem triggering 'updatedata' event twice during a Record Update</li>
+                    <li>[TOUCH-5088] Fixed iOS7 iPad landscape form input bug not having the window.scrollY set back to 0 on blur</li>
+                    <li>Fixed sorting icon on a right aligned column in TouchGrid</li>
+                    <li>[TOUCH-5086] Fixed an issue where the total column width would be calculated incorrectly when hiding a HeaderGroup</li>
+                </ul>
+            </li>
+            <li>Known Issues / Upcoming Changes
+                <ul>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="release">
+        <h1>
             Release Notes for Sencha Touch 2.3.0
         </h1>
 
@@ -49,6 +113,7 @@
             </li>
         </ul>
     </div>
+
     <div class="release">
         <h1>
             Release Notes for Sencha Touch 2.3.0 Beta 3
@@ -123,6 +188,7 @@
             </li>
         </ul>
     </div>
+
     <div class="release">
         <h1>
             Release Notes for Sencha Touch 2.3.0 Beta 2
