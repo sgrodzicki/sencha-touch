@@ -1,3 +1,9 @@
+@include icon('network');
+
+$background-color: white !default;
+$primary-text-color: black !default;
+$secondary-text-color: gray !default;
+
 .card {
 	> .x-inner, .x-body > .x-inner, .x-inner:not(.x-toolbar-inner).x-scroll-scroller {
 		@include st-box;

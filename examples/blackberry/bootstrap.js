@@ -117,6 +117,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.grid.VerticalGrid": [],
   "Ext.chart.interactions.Abstract": [],
   "Ext.chart.interactions.CrossZoom": [],
+  "Ext.chart.interactions.Crosshair": [],
   "Ext.chart.interactions.ItemHighlight": [],
   "Ext.chart.interactions.ItemInfo": [],
   "Ext.chart.interactions.PanZoom": [],
@@ -138,7 +139,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.chart.series.Scatter": [],
   "Ext.chart.series.Series": [],
   "Ext.chart.series.StackedCartesian": [],
-  "Ext.chart.series.sprite.AbstractRadial": [],
   "Ext.chart.series.sprite.Aggregative": [],
   "Ext.chart.series.sprite.Area": [],
   "Ext.chart.series.sprite.Bar": [],
@@ -339,6 +339,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.device.connection.Sencha": [],
   "Ext.device.connection.Simulator": [],
   "Ext.device.contacts.Abstract": [],
+  "Ext.device.contacts.Cordova": [
+    "Ext.device.contacts.PhoneGap"
+  ],
   "Ext.device.contacts.Sencha": [],
   "Ext.device.device.Abstract": [],
   "Ext.device.device.Cordova": [
@@ -443,6 +446,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.engine.Svg": [],
   "Ext.draw.engine.SvgContext": [],
   "Ext.draw.engine.SvgContext.Gradient": [],
+  "Ext.draw.engine.SvgExporter": [],
   "Ext.draw.gradient.Gradient": [],
   "Ext.draw.gradient.Linear": [],
   "Ext.draw.gradient.Radial": [],
@@ -458,8 +462,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.draw.sprite.Composite": [],
   "Ext.draw.sprite.Ellipse": [],
   "Ext.draw.sprite.EllipticalArc": [],
+  "Ext.draw.sprite.GradientDefinition": [],
   "Ext.draw.sprite.Image": [],
   "Ext.draw.sprite.Instancing": [],
+  "Ext.draw.sprite.Line": [],
   "Ext.draw.sprite.Path": [],
   "Ext.draw.sprite.Rect": [],
   "Ext.draw.sprite.Sector": [],
@@ -681,9 +687,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.Grouper": [],
   "Ext.util.HashMap": [],
   "Ext.util.Inflector": [],
-  "Ext.util.InputBlocker": [
-    "InputBlocker"
-  ],
+  "Ext.util.InputBlocker": [],
   "Ext.util.LineSegment": [],
   "Ext.util.MixedCollection": [],
   "Ext.util.Offset": [],
@@ -912,6 +916,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.chart.interactions.CrossZoom": [
     "interaction.crosszoom"
   ],
+  "Ext.chart.interactions.Crosshair": [
+    "interaction.crosshair"
+  ],
   "Ext.chart.interactions.ItemHighlight": [
     "interaction.itemhighlight"
   ],
@@ -961,7 +968,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.chart.series.Series": [],
   "Ext.chart.series.StackedCartesian": [],
-  "Ext.chart.series.sprite.AbstractRadial": [],
   "Ext.chart.series.sprite.Aggregative": [],
   "Ext.chart.series.sprite.Area": [
     "sprite.areaSeries"
@@ -1170,6 +1176,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.device.connection.Sencha": [],
   "Ext.device.connection.Simulator": [],
   "Ext.device.contacts.Abstract": [],
+  "Ext.device.contacts.Cordova": [],
   "Ext.device.contacts.Sencha": [],
   "Ext.device.device.Abstract": [],
   "Ext.device.device.Cordova": [],
@@ -1272,6 +1279,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.draw.engine.Svg": [],
   "Ext.draw.engine.SvgContext": [],
   "Ext.draw.engine.SvgContext.Gradient": [],
+  "Ext.draw.engine.SvgExporter": [],
   "Ext.draw.gradient.Gradient": [],
   "Ext.draw.gradient.Linear": [],
   "Ext.draw.gradient.Radial": [],
@@ -1303,11 +1311,15 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.draw.sprite.EllipticalArc": [
     "sprite.ellipticalArc"
   ],
+  "Ext.draw.sprite.GradientDefinition": [],
   "Ext.draw.sprite.Image": [
     "sprite.image"
   ],
   "Ext.draw.sprite.Instancing": [
     "sprite.instancing"
+  ],
+  "Ext.draw.sprite.Line": [
+    "sprite.line"
   ],
   "Ext.draw.sprite.Path": [
     "sprite.path"

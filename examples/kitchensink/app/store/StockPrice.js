@@ -30,6 +30,11 @@ Ext.define("Kitchensink.store.StockPrice", {
                     low: record.close + Math.min.apply(Math, ohlc),
                     close: record.close + ohlc[1]
                 };
+                if (record.open < record.low) {
+                    record.low = record.open;
+                } else if (record.open > record.high) {
+                    record.high = record.open;
+                }
                 data.push(record);
             }
             this.setData(data);

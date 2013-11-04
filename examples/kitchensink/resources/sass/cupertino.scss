@@ -6,6 +6,10 @@ $secondary-text-color: #000 !default;
 
 @import 'shared';
 
+#mainNestedList {
+	border-right: 1px solid #ccc;
+}
+
 .charttoolbar {
 	.x-button {
 		border: 1px solid $ios7-blue;

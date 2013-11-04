@@ -78,8 +78,8 @@
         },
         {
             "path": "resources/css/sencha-touch.css",
-            "platform": ["desktop", "firefox", "tizen"],
-            "exclude": ["ie10", "windows"],
+            "platform": ["desktop", "firefox"],
+            "exclude": ["ie10", "windows", "tizen"],
             "theme": "Default",
             "update": "delta"
         },
@@ -111,6 +111,12 @@
             "path": "resources/css/mountainview.css",
             "platform": ["android"],
             "theme": "MountainView",
+            "update": "delta"
+        },
+        {
+            "path": "resources/css/tizen.css",
+            "platform": ["tizen"],
+            "theme": "Tizen",
             "update": "delta"
         }
     ],

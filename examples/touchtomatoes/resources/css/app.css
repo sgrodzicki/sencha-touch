@@ -3496,22 +3496,29 @@ input[type="search"]::-webkit-search-cancel-button {
 .x-grid .x-grid-column.x-column-sorted-asc .x-innerhtml:after, .x-grid .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   position: absolute;
   width: 12px;
-  right: -16px;
   line-height: 64px;
   top: 0;
   height: 64px;
   font-family: 'Pictos';
   font-size: 12px;
 }
-/* line 49, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 50, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+.x-grid .x-grid-column.x-column-align-left .x-innerhtml:after, .x-grid .x-grid-column.x-column-align-center .x-innerhtml:after {
+  right: -16px;
+}
+/* line 54, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+.x-grid .x-grid-column.x-column-align-right .x-innerhtml:after {
+  left: -16px;
+}
+/* line 58, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-column.x-column-sorted-asc .x-innerhtml:after {
   content: "{";
 }
-/* line 52, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 61, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   content: "}";
 }
-/* line 57, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 66, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup {
   display: inline-block;
   position: relative;
@@ -3519,7 +3526,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 64px;
   padding-top: 32px;
 }
-/* line 64, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 73, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-inner > .x-innerhtml {
   height: 32px;
   line-height: 28px;
@@ -3535,18 +3542,18 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 80, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 89, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-grid-column {
   height: 32px !important;
   line-height: 27px !important;
   font-size: 0.7em;
 }
-/* line 87, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 96, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-headergroup .x-grid-column.x-column-sorted-asc .x-innerhtml:after, .x-grid .x-grid-headergroup .x-grid-column.x-column-sorted-desc .x-innerhtml:after {
   line-height: 27px;
   height: 27px;
 }
-/* line 95, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 104, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-row {
   position: absolute;
   left: 0;
@@ -3554,7 +3561,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
-/* line 103, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 112, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell {
   display: inline-block;
   vertical-align: middle;
@@ -3564,26 +3571,26 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   border-width: 0 1px 0 0;
 }
-/* line 114, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 123, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell-align-center,
 .x-grid .x-grid-column-align-center {
   text-align: center;
 }
-/* line 119, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 128, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-cell-align-right,
 .x-grid .x-grid-column-align-right {
   text-align: right;
 }
-/* line 123, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 132, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions {
   border-width: 0 0 0 1px;
   border-style: solid;
 }
-/* line 127, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 136, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item .x-innerhtml {
   padding: 0px !important;
 }
-/* line 131, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 140, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-header {
   height: 32px;
   line-height: 28px;
@@ -3593,7 +3600,7 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow: hidden;
   padding-left: 10px;
 }
-/* line 144, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 153, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle,
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator,
 .x-grid .x-grid-viewoptions .x-column-options-folder,
@@ -3603,7 +3610,7 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   bottom: 0;
 }
-/* line 150, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 159, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle:after,
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator:after,
 .x-grid .x-grid-viewoptions .x-column-options-folder:after,
@@ -3620,49 +3627,49 @@ input[type="search"]::-webkit-search-cancel-button {
   content: "l";
   vertical-align: middle;
 }
-/* line 165, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 174, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle {
   left: 0;
 }
-/* line 167, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 176, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-sortablehandle:after {
   line-height: 54px;
 }
-/* line 171, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 180, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator {
   right: 0;
 }
-/* line 173, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 182, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-visibleindicator:after {
   font-size: 30px;
   line-height: 54px;
   content: "E";
 }
-/* line 181, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 190, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-folder,
 .x-grid .x-grid-viewoptions .x-column-options-leaf {
   width: 30px;
   left: 40px;
 }
-/* line 185, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 194, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-folder:after,
 .x-grid .x-grid-viewoptions .x-column-options-leaf:after {
   line-height: 52px;
   content: "o";
 }
-/* line 191, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 200, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-leaf:after {
   content: "F";
 }
-/* line 195, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 204, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item.x-item-selected.x-list-item-tpl {
   background: transparent;
 }
-/* line 197, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 206, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-list-item.x-item-selected.x-list-item-tpl .x-innerhtml {
   background: transparent;
 }
-/* line 202, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 211, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-viewoptions .x-column-options-text {
   display: block;
   height: 30px;
@@ -3671,16 +3678,16 @@ input[type="search"]::-webkit-search-cancel-button {
   vertical-align: middle;
   line-height: 28px;
 }
-/* line 212, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 221, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-columnoptions {
   border-width: 0 0 1px;
 }
-/* line 216, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 225, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-column {
   position: relative;
   padding: 0;
 }
-/* line 220, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 229, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-column:after {
   position: absolute;
   top: 0;
@@ -3693,12 +3700,12 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   content: "2";
 }
-/* line 234, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 243, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-cell {
   position: relative;
   padding: 0;
 }
-/* line 238, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 247, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-multiselection-cell:after {
   position: absolute;
   top: 0;
@@ -3711,20 +3718,20 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   content: "_";
 }
-/* line 252, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 261, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-item-selected .x-grid-multiselection-cell:after {
   content: "3";
 }
-/* line 257, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 266, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar > .x-body {
   padding: 0 30px 0 50px;
 }
-/* line 262, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 271, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar-currentpage {
   position: relative;
   height: 22px;
 }
-/* line 266, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 275, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-pagingtoolbar-currentpage span {
   position: absolute;
   right: 0;
@@ -3732,20 +3739,20 @@ input[type="search"]::-webkit-search-cancel-button {
   line-height: 22px;
   height: 22px;
 }
-/* line 275, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 284, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow {
   height: 32px;
   font-size: 0.8em;
   position: relative;
 }
-/* line 280, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 289, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow .x-grid-cell {
   height: 32px;
   line-height: 30px;
   border-width: 0 0 1px;
   border-style: solid;
 }
-/* line 288, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
+/* line 297, ../../../../resources/themes/stylesheets/sencha-touch/base/src/grid/_Grid.scss */
 .x-grid .x-grid-summaryrow .x-grid-multiselection-cell:after {
   content: '';
 }
@@ -3772,58 +3779,67 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
   min-width: 100%;
   min-height: 100%;
-  width: auto !important;
   height: auto !important;
+  width: auto !important;
+  		/*
+  		&.x-scroll-scroller-vertical {
+  			height: auto !important;
+  		}
+  
+  		&.x-scroll-scroller-horizontal {
+  			width: auto !important;
+  		}
+  		*/
 }
 
-/* line 25, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 36, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-stretcher {
   position: absolute;
   visibility: hidden;
 }
 
-/* line 30, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 41, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-/* line 36, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 47, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid {
   display: table;
   width: 100%;
   height: 100%;
 }
-/* line 41, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 52, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > * {
   display: table-row;
 }
-/* line 45, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 56, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > * > * {
   display: table-cell;
 }
-/* line 49, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 60, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :first-child > :first-child {
   width: 100%;
   height: 100%;
 }
-/* line 54, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 65, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :first-child > :nth-child(2) {
   padding: 3px 3px 0 0;
 }
-/* line 58, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 69, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-grid > :nth-child(2) > :first-child {
   padding: 0 0 3px 3px;
 }
 
-/* line 63, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 74, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar {
   position: relative;
   overflow: hidden;
 }
 
-/* line 68, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 79, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-stretcher {
   position: absolute;
   visibility: hidden;
@@ -3831,77 +3847,77 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 100%;
 }
 
-/* line 75, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 86, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x {
   width: 100%;
 }
-/* line 78, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 89, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x > .x-scroll-bar-stretcher {
   width: 300%;
 }
-/* line 82, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 93, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-x.active {
   height: 6px;
 }
 
-/* line 87, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 98, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y {
   height: 100%;
 }
-/* line 90, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 101, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y > .x-scroll-bar-stretcher {
   height: 300%;
 }
-/* line 94, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 105, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-bar-y.active {
   width: 6px;
 }
 
-/* line 99, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 110, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator {
   background: #333;
   position: absolute;
   z-index: 3;
 }
 
-/* line 105, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 116, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator-x {
   height: 100%;
 }
 
-/* line 109, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 120, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator-y {
   width: 100%;
 }
 
-/* line 113, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 124, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded {
   background: none;
 }
-/* line 116, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 127, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded > * {
   position: absolute;
   background-color: #333;
 }
-/* line 121, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 132, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded > :nth-child(2) {
   -webkit-transform-origin: 0% 0%;
   background: none;
   content: url(data:image/bmp;base64,Qk08AAAAAAAAADYAAAAoAAAAAQAAAAEAAAABABAAAAAAAAYAAAASCwAAEgsAAAAAAAAAAAAAxhgAAAAA);
 }
-/* line 128, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 139, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-light > * {
   background-color: #eee;
 }
-/* line 132, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 143, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-light > :nth-child(2) {
   content: url(data:image/bmp;base64,Qk08AAAAAAAAADYAAAAoAAAAAQAAAAEAAAABABAAAAAAAAYAAAASCwAAEgsAAAAAAAAAAAAAvXcAAAAA);
 }
-/* line 138, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 149, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > * {
   width: 100%;
 }
-/* line 142, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 153, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :first-child {
   height: 3px;
   -moz-border-radius-topleft: 3px;
@@ -3911,11 +3927,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
 }
-/* line 147, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 158, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :nth-child(2) {
   height: 1px;
 }
-/* line 151, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 162, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-y > :last-child {
   height: 3px;
   -moz-border-radius-bottomleft: 3px;
@@ -3925,11 +3941,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-/* line 158, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 169, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > * {
   height: 100%;
 }
-/* line 162, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 173, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :first-child {
   width: 3px;
   -moz-border-radius-topleft: 3px;
@@ -3939,11 +3955,11 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 167, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 178, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :nth-child(2) {
   width: 1px;
 }
-/* line 171, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 182, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-scroll-indicator.rounded.x-scroll-indicator-x > :last-child {
   width: 3px;
   -moz-border-radius-topright: 3px;
@@ -3954,18 +3970,18 @@ input[type="search"]::-webkit-search-cancel-button {
   border-bottom-right-radius: 3px;
 }
 
-/* line 180, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 191, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-list-light .x-scroll-indicator,
 .x-dataview-light .x-scroll-indicator {
   background: #fff;
 }
 
-/* line 186, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 197, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-ios .x-scroll-scroller {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 191, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
+/* line 202, ../../../../resources/themes/stylesheets/sencha-touch/base/src/scroller/_Scroller.scss */
 .x-ie .x-scroll-bar-y {
   position: absolute;
   margin-left: -5px;
@@ -6642,29 +6658,34 @@ body.x-desktop {
   border-bottom-right-radius: 0.4em;
 }
 /* line 208, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
+.x-list-round.x-list-grouped .x-list-footer-wrap.x-item-pressed > .x-innerhtml,
+.x-list-round.x-list-grouped .x-list-footer-wrap.x-item-pressed > .x-dock-body {
+  background: transparent none;
+}
+/* line 215, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
 .x-list-round.x-list-grouped .x-list-footer-wrap.x-item-selected > .x-innerhtml,
 .x-list-round.x-list-grouped .x-list-footer-wrap.x-item-selected > .x-dock-body {
   background-image: none;
   background-color: #f7f7f7;
   color: #1e1e1e;
 }
-/* line 216, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
+/* line 223, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
 .x-list-round .x-indexbar-vertical {
   margin-right: 20px;
 }
 
-/* line 222, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
+/* line 229, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
 .x-list-round .x-list-footer-wrap.x-list-item-last.x-list-item-odd.x-list-item.x-list-item-tpl {
   background-color: transparent !important;
 }
 
-/* line 228, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
+/* line 235, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
 .x-list-round.x-list-grouped .x-list-item-odd.x-list-footer-wrap > .x-innerhtml,
 .x-list-round.x-list-grouped .x-list-item-odd.x-list-footer-wrap > .x-dock-body {
   background-color: #eaeaea !important;
 }
 
-/* line 235, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
+/* line 242, ../../../../resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
 .x-list .x-list-item-odd.x-list-item-tpl,
 .x-list .x-list-item-odd .x-dock-horizontal {
   background-color: #eaeaea !important;
@@ -7475,7 +7496,7 @@ body.x-desktop {
     font-size: 2.2em;
   }
 }
-@media screen and (orientation: landscape) and (max-height: 480px) {
+@media screen and (orientation: landscape) and (max-height: 480px) and (min-height: 300px) {
   /* line 17, ../sass/_welcomeOverlay.scss */
   .welcomeOverlay.x-panel .x-innerhtml .message {
     font-size: .8em;
@@ -7561,7 +7582,7 @@ body.x-desktop {
 /* line 44, ../sass/_list.scss */
 .grid .x-list-item {
   display: inline-block;
-  width: auto;
+  width: 50%;
   border: none !important;
   -webkit-perspective: 300px;
   -moz-perspective: 300px;
@@ -7583,7 +7604,7 @@ body.x-ios .grid .x-list-item.x-item-pressed .movie {
     width: 50%;
   }
 }
-@media screen and (orientation: landscape) and (max-height: 480px) {
+@media screen and (orientation: landscape) and (max-height: 480px) and (min-height: 300px) {
   /* line 44, ../sass/_list.scss */
   .grid .x-list-item {
     width: 33%;
@@ -7738,7 +7759,7 @@ body.x-ios .grid .x-list-item.x-item-pressed .movie {
   max-height: 300px;
   overflow: hidden;
 }
-@media screen and (orientation: landscape) and (max-height: 480px) {
+@media screen and (orientation: landscape) and (max-height: 480px) and (min-height: 300px) {
   /* line 19, ../sass/_details.scss */
   .moviedetails .title {
     font-size: 1.5em;
@@ -7778,7 +7799,7 @@ body.x-ios .grid .x-list-item.x-item-pressed .movie {
     height: 300px;
   }
 }
-@media screen and (orientation: landscape) and (max-height: 480px) {
+@media screen and (orientation: landscape) and (max-height: 480px) and (min-height: 300px) {
   /* line 41, ../sass/_details.scss */
   .moviedetails .img {
     display: none;
@@ -7795,7 +7816,7 @@ body.x-ios .grid .x-list-item.x-item-pressed .movie {
   font-size: .8em;
   font-weight: 400;
 }
-@media screen and (orientation: landscape) and (max-height: 480px) {
+@media screen and (orientation: landscape) and (max-height: 480px) and (min-height: 300px) {
   /* line 61, ../sass/_details.scss */
   .moviedetails .info {
     font-size: .5em;

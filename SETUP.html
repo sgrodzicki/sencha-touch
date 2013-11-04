@@ -34,26 +34,23 @@ body {font-family: Calibri; font-size: 11pt;}
 	<li>Download <a href="http://www.sencha.com/products/sencha-cmd/download">Sencha Cmd</a>. 
 		Sencha Cmd enables you to publish, package, and simulate an application, as well as to upgrade Sencha software. 
 		Sencha Cmd also installs Apache Ant, Compass, and Sass.</li>
-	<li>Download <a href="http://www.ruby-lang.org/en/downloads/">Ruby version 1.9.3</a> 
-		(Ruby version 2.0 doesn't work correctly with Sencha Cmd).
+	<li>Download <a href="http://www.ruby-lang.org/en/downloads/">Ruby</a> 
 		<ul>
-		<li><b>Mac OS</b>: Ruby is pre-installed. You can test which version 
-		you have with the <b>ruby -v</b> command. If you have version 2.0, 
-		download the <a href="https://rvm.io/">Ruby version manager</a> (rvm) and use this command to
-		download and install Ruby: <b>rvm install 1.9.3 --with-gcc=clang</b> 
-		and set your PATH variable to point to the Ruby 1.9.3 install directory.</li>
+		<li><b>Mac OS</b>: Ruby is pre-installed. You can verify 
+		it with the <b>ruby -v</b> command.</li>
 		<li><b>Windows</b> Download the open source <a href="http://www.7-zip.org">7-Zip</a> archiver. 
-		Download Ruby 1.9.3.n from <a href="http://rubyinstaller.org/downloads/">rubyinstaller.org</a>. 
+		Download Ruby (any version) from <a href="http://rubyinstaller.org/downloads/">rubyinstaller.org</a>. 
 		Set the Path environment variable to point to the directory in which you unzip the installer file.</li>
- 		<li><b>Ubuntu</b>: Use <b>sudo apt-get install ruby1.9.3</b> to download and install Ruby 1.9.3.</li>
+ 		<li><b>Ubuntu</b>: Use <b>sudo apt-get install ruby2.0.0</b> to download and install Ruby.</li>
 		</ul>
 	</li>
-	<li>Open a new command line window and start the Sencha Cmd web server. This server runs until you close
-		the window or press CTRL+C to stop the process. The directory name can be any directory where you 
-		want to serve your applications. To start the Sencha Cmd web server, use:<br>
-		<b>sencha fs web -port 8000 start -map</b> &lt;dir_name&gt;<br>
-		You can access the Sencha Cmd web server using:<br>
-		http://localhost:8000/&lt;dir_name&gt;/&lt;app_name&gt;</li>
+	<li>Start your web server. 
+		If using the Sencha Cmd web server, change directory to where you want to serve 
+		your application, open a new command line window and start the server with the
+		<b>sencha&nbsp;web&nbsp;start</b> command. You can stop the server by typing
+		CTRL+c or opening another command line and typing the <b>sencha&nbsp;web&nbsp;stop</b> command.
+		You can access the Sencha Cmd web server using
+		the <code>http://localhost:1841/&lt;app_name&gt;</code> URL.</li>
 	<li>If you are using Windows and running the IIS web server, add "application/x-json" 
 		as a MIME type; otherwise, IIS returns the JSON file with an error when you preview
 		your project. In Windows, enable IIS from the add/remove programs or programs and features dialog 

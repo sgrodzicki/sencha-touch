@@ -19,18 +19,18 @@ Ext.define('Kitchensink.view.phone.Main', {
 
         toolbar: {
             id: 'mainNavigationBar',
-            xtype : 'titlebar',
+            xtype: 'titlebar',
             docked: 'top',
-            title : 'Kitchen Sink',
+            title: 'Kitchen Sink',
 
             items: {
-                xtype : 'button',
+                xtype: 'button',
                 id: 'viewSourceButton',
                 hidden: true,
-                align : 'right',
-                ui    : 'action',
+                align: 'right',
+                ui: 'action',
                 action: 'viewSource',
-                text  : 'Source'
+                text: 'Source'
             }
         }
     }
